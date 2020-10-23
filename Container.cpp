@@ -3,11 +3,15 @@
 //
 
 #include "Container.h"
+#include "SubStates.h"
 #include <iostream>
-using namespace std;
 
-void Container::changeState() {
-    containerCurrentState->changeState(this);
+Container::Container() {
+    this->containerCurrentState = new BeingPacked();
+}
+
+Container::~Container() {
+    delete containerCurrentState;
 }
 
 void Container::setState(ContainerState *state) {
@@ -24,74 +28,17 @@ void Container::takeStock() {
 
 }
 
-void BeingPacked::changeState(Container *container) {
-    container->setState(new InShipping());
-
+void Container::addElement(Container *) {
+    //remains to be implemented
 }
 
-string BeingPacked::getState() {
-    return "Being Packed" ;
+Container *Container::removeElement() {
+    //remains to be implemented
+    return nullptr;
 }
 
-void InShipping::changeState(Container *container) {
-    container->setState(new ArrivedAtDestination());
-}
-
-string InShipping::getState() {
-    return "In Shipping" ;
-}
-
-
-void ArrivedAtDestination::changeState(Container *container) {
-    container->setState(new BeingPacked());
-
-}
-
-string ArrivedAtDestination::getState() {
-    return "Arrived at Destination";
-}
-
-void Box::addElement(Container *c) {
-    elements.push_back(c);
-
-}
-
-Container *Box::removeElement() {
-    elements.pop_back();
-}
-
-void Box::takeStock() {
-    Container::takeStock();
-    cout << "\nBox contains: " <<endl;
-    for (std::list<Container*>::iterator it = elements.begin(); it != elements.end(); ++it) {
-        (*it)->takeStock();
-    }
-}
-
-Box::~Box() {
-    for (std::list<Container*>::iterator it = elements.begin(); it != elements.end(); ++it) {
-        delete *it;
-    }
-}
-
-GarageEquipment::GarageEquipment(list<string> insides) {
-    if (insides.size() == 0) {
-        contents.push_back("Lots and lots of stuff");
-        return;
-    }
-    for (std::list<string>::iterator it = insides.begin(); it != insides.end(); ++it) {
-        contents.push_back(*it);
-    }
-}
-
-void GarageEquipment::takeStock() {
-    for (std::list<string>::iterator it = contents.begin(); it != contents.end(); ++it) {
-        cout << "-" << (*it) << endl;
-    }
-}
-
-GarageEquipment::~GarageEquipment() {
-
+void Container::advanceState() {
+    containerCurrentState->nextState(this);
 }
 
 
