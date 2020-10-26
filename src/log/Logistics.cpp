@@ -6,6 +6,8 @@
 
 #include "enums.h"
 
+using namespace log;
+
 
 /*
 void Logistics::doYearPlanning() {

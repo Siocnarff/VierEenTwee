@@ -3,36 +3,37 @@
 //
 
 #include "EngDept.h"
+#include <iostream>
 
 EngDept::~EngDept() {}
 
 void EngDept::HireEmployees(int budget) {
-    cout << "Hiring Employees" << endl;
+    std::cout << "Hiring Employees" << endl;
 }
 
 int EngDept::buildCar(int budget, RiskLevel) {
-    cout << "build car" << endl;
+    std::cout << "build car" << endl;
     return 2;
 }
 
-void EngDept::carArrivesAtFactory(Car *) {
-    cout << "car arrives at factory" << endl;
+void EngDept::carArrivesAtFactory(eng::Car *) {
+    std::cout << "car arrives at factory" << endl;
 }
 
 void EngDept::improveCar(int id) {
-    cout << "improve Car" << endl;
+    std::cout << "improve Car" << endl;
 }
 
 void EngDept::updateCar(int id) {
-    cout << "update Car" << endl;
+    std::cout << "update Car" << endl;
 }
 
-Car *EngDept::checkCarOutOfFactory(int id) {
-    cout << "Hiring Employees" << endl;
-    return new Car;
+eng::Car *EngDept::checkCarOutOfFactory(int id) {
+    std::cout << "Hiring Employees" << endl;
+    return new eng::Car;
 }
 
 void EngDept::fixCar(int id) {
-    cout << "Improve Car" << endl;
+    std::cout << "Improve Car" << endl;
 
 }

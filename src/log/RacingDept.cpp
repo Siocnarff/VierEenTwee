@@ -3,6 +3,7 @@
 //
 
 #include "RacingDept.h"
+#include <iostream>
 
 void RacingDept::HireEmployees(int budget) {
 
@@ -13,21 +14,21 @@ Strategy *RacingDept::PlanSeasonStrategy(int budget) {
 }
 
 
-Driver * RacingDept::trainDriver(Driver*, int time, WeatherConditions, TrackComplexity){
+ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, WeatherConditions, TrackComplexity){
     return nullptr;
 }
 
-Driver *RacingDept::trainDriver(Driver *, int time, WeatherConditions) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, WeatherConditions) {
     return nullptr;
 }
 
-Driver *RacingDept::trainDriver(Driver *, int time, TrackComplexity) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, TrackComplexity) {
     return nullptr;
 }
 
 
-void RacingDept::preRaceArrival(Car *c, Driver *d, Race *r, Container *con) {
-    cout << "arrive at destination" << endl;
+void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
+    std::cout << "arrive at destination" << endl;
     car  = c;
     driver = d;
     race = r;
@@ -35,20 +36,20 @@ void RacingDept::preRaceArrival(Car *c, Driver *d, Race *r, Container *con) {
 }
 
 int RacingDept::RacingWeekend() {
-    cout << "Let's start"<<endl;
-    notify(new Car);
-    cout << "strat packing up" << endl;
+    std::cout << "Let's start"<<endl;
+    notify(new eng::Car);
+    std::cout << "strat packing up" << endl;
     notify(new Container);
-    cout << "smoke a cigarette" << endl;
+    std::cout << "smoke a cigarette" << endl;
 
     return 5;
 }
 
 Container* RacingDept::postRacePackUp() { //make container*
-    cout << container->getState();
+    std::cout << container->getState();
     container->takeStock();
     container->advanceState();
-    cout << container->getState();
+    std::cout << container->getState();
 
 
 }

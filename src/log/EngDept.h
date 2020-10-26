@@ -6,8 +6,7 @@
 #define PREMODELLING_ENGDEPT_H
 
 #include "Colleague.h"
-#include "Car.h"
-#include "enums.h"
+#include "RiskLevel.h"
 
 using namespace log;
 
@@ -16,11 +15,11 @@ public:
     ~EngDept();
     void HireEmployees(int budget) override;
     int buildCar(int budget, RiskLevel);
-    void carArrivesAtFactory(Car*);
+    void carArrivesAtFactory(eng::Car*);
     void fixCar(int id);
     void improveCar(int id);
     void updateCar(int id);
-    Car* checkCarOutOfFactory(int id);
+    eng::Car* checkCarOutOfFactory(int id);
 };
 
 

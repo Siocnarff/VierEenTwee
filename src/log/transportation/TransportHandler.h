@@ -6,6 +6,8 @@
 #define PREMODELLING_TRANSPORTHANDLER_H
 #include <iostream>
 #include "Race.h"
+using namespace std;
+
 #include "Colleague.h"
 
 namespace log {
@@ -22,6 +24,5 @@ namespace log {
     };
 
 }
-
 
 #endif //PREMODELLING_TRANSPORTHANDLER_H

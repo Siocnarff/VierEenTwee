@@ -8,6 +8,7 @@
 #include "TransportHandler.h"
 
 namespace log {
+
     class Fly : public TransportHandler {
     public:
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;
@@ -22,8 +23,8 @@ namespace log {
     public:
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;
     };
-
 }
+
 
 
 #endif //LOGISTICS_TRANSPORTMETHODS_H

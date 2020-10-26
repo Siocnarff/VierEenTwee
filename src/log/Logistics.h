@@ -35,7 +35,7 @@ namespace log {
         void postSeasonDebrief();
 
     protected:
-        void sendCarToFactory(Car *) override;
+        void sendCarToFactory(eng::Car *) override;
 
         void containerHasBeenPacked(Container *) override;
 
@@ -57,7 +57,7 @@ namespace log {
         EngDept *callEngDept();
 
         map<char, Colleague *> departments;
-        Driver *driver;
+        ppl::Driver *driver;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;

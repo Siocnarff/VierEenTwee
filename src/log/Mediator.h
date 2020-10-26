@@ -1,15 +1,27 @@
 //
-// Created by josuabotha on 2020/10/26.
+// Created by jo-anne on 2020/10/22.
 //
 
-#ifndef F1_MEDIATOR_H
-#define F1_MEDIATOR_H
+#ifndef LOGISTICS_MEDIATOR_H
+#define LOGISTICS_MEDIATOR_H
+
+#include "Car.h"
+#include "Container.h"
 
 namespace log {
-    class Mediator {
 
+    class Mediator {
+    protected:
+        virtual void sendCarToFactory(eng::Car *) = 0;
+
+        virtual void containerHasBeenPacked(Container *) = 0;
+
+        virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
+
+    public:
+        friend class Colleague;
     };
+
 }
 
-
-#endif //F1_MEDIATOR_H
+#endif //LOGISTICS_MEDIATOR_H

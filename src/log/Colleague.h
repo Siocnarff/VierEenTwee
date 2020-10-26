@@ -7,7 +7,7 @@
 
 #include "Car.h"
 #include "Container.h"
-#include <iostream> //both eng- and racing- need it
+//#include <iostream> //both eng- and racing- need it
 
 namespace log {
     class Mediator;
@@ -18,7 +18,7 @@ namespace log {
 
         void addObserver(Mediator *obs);
 
-        void notify(Car *car);
+        void notify(eng::Car *car);
 
         void notify(Container *container);
 

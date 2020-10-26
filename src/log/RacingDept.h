@@ -11,22 +11,21 @@
 #include "Strategy.h"
 #include "Colleague.h"
 
-using namespace log;
 
-class RacingDept : public Colleague {
+class RacingDept : public log::Colleague {
 public:
     void HireEmployees(int budget) override;
     Strategy* PlanSeasonStrategy(int budget);
-    Driver *trainDriver(Driver *, int time, WeatherConditions);
-    Driver* trainDriver(Driver *, int time, TrackComplexity);
-    Driver* trainDriver(Driver *, int time, WeatherConditions, TrackComplexity);
-    void preRaceArrival(Car*, Driver*, Race*, Container*);
+    ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions);
+    ppl::Driver* trainDriver(ppl::Driver *, int time, TrackComplexity);
+    ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
+    void preRaceArrival(eng::Car*, ppl::Driver*, Race*, Container*);
     int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
     Container* postRacePackUp();
 
 private:
-    Car* car;
-    Driver* driver;
+    eng::Car* car;
+    ppl::Driver* driver;
     Container* container;
     Race* race;
 

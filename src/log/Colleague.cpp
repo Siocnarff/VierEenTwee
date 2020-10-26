@@ -12,7 +12,7 @@ void Colleague::addObserver(Mediator *obs) {
     observer = obs;
 }
 
-void Colleague::notify(Car *car) {
+void Colleague::notify(eng::Car *car) {
     observer->sendCarToFactory(car);
 }
 
