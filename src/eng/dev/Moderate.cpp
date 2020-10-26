@@ -1,6 +1,8 @@
 #include "Moderate.h"
 
-int dev::Moderate::trySomethingNew() {
+using namespace eng;
+
+int Moderate::trySomethingNew() {
 	// TODO - implement Moderate::trySomethingNew
 	throw "Not yet implemented";
 }

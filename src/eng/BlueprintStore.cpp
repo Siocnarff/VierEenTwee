@@ -1,10 +1,12 @@
 #include "BlueprintStore.h"
 #include "../dev/Blueprint.h"
 
-dev::Blueprint* eng::BlueprintStore::getBlueprint() {
+using namespace eng;
+
+Blueprint* BlueprintStore::getBlueprint() {
 	return this->blueprint;
 }
 
-void eng::BlueprintStore::setBlueprint(dev::Blueprint* blueprint) {
+void BlueprintStore::setBlueprint(Blueprint* blueprint) {
 	this->blueprint = blueprint;
 }

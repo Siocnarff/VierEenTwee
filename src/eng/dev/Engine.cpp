@@ -1,6 +1,8 @@
 #include "Engine.h"
 
-void dev::Engine::print() {
+using namespace eng;
+
+void Engine::print() {
 	// TODO - implement Engine::print
 	throw "Not yet implemented";
 }

@@ -3,16 +3,15 @@
 
 #include "Department.h"
 
-namespace dev {
-	class MicroTimeTravelDep : Department {
-
+namespace eng {
+	class MicroTimeTravelDep : public Department {
 
 	public:
-		void build(eng::Car* car);
+		void build(Car* car);
 
-		void fix(eng::Car* car);
+		void fix(Car* car);
 
-		void update(dev::Component* component) final;
+		void update(Component* component) final;
 	};
 }
 

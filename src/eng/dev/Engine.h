@@ -3,9 +3,8 @@
 
 #include "Component.h"
 
-namespace dev {
-	class Engine : Component {
-
+namespace eng {
+	class Engine : public Component {
 
 	public:
 		void print();

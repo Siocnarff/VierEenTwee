@@ -1,6 +1,7 @@
 #include "MicroInitiationPlutoniumHammer.h"
 
-void dev::MicroInitiationPlutoniumHammer::print() {
+using namespace eng;
+void MicroInitiationPlutoniumHammer::print() {
 	// TODO - implement MicroInitiationPlutoniumHammer::print
 	throw "Not yet implemented";
 }

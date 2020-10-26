@@ -13,7 +13,7 @@ namespace eng {
 		 */
 		int speed;
 		int handling;
-		people::Driver* driver;
+		ppl::Driver* driver;
 		int id;
         dev::Component** components;
 
@@ -26,9 +26,9 @@ namespace eng {
 
 		void setDamage(int damage);
 
-		people::Driver* getDriver();
+		ppl::Driver* getDriver();
 
-		void removeDriver(people::Driver* driver);
+		void removeDriver(ppl::Driver* driver);
 
 		void print();
 

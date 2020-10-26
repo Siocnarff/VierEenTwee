@@ -5,14 +5,14 @@
 #include "Component.h"
 #include "../Car.h"
 
-namespace dev {
-	class ChassisDep : Department {
+namespace eng {
+	class ChassisDep : public Department {
 
 
 	public:
-		void build(eng::Car* car);
+		void build(Car* car);
 
-		void fix(eng::Car* car);
+		void fix(Car* car);
 
 		void update(Component* component);
 	};

@@ -3,14 +3,13 @@
 
 #include "Department.h"
 
-namespace dev {
-	class ElectronicDep : Department {
-
+namespace eng {
+	class ElectronicDep : public Department {
 
 	public:
-		void build(eng::Car* car);
+		void build(Car* car);
 
-		void fix(eng::Car* car);
+		void fix(Car* car);
 
 		void update(Component* component);
 	};

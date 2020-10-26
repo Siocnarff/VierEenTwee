@@ -1,53 +1,55 @@
 #include "Car.h"
 #include "../people/Driver.h"
 
-int eng::Car::getSpeed() {
+using namespace eng;
+
+int Car::getSpeed() {
 	return this->speed;
 }
 
-int eng::Car::getHandling() {
+int Car::getHandling() {
 	return this->handling;
 }
 
-int eng::Car::getDamage() {
+int Car::getDamage() {
 	// TODO - implement Car::getDamage
 	throw "Not yet implemented";
 }
 
-void eng::Car::setDamage(int damage) {
+void Car::setDamage(int damage) {
 	// TODO - implement Car::setDamage
 	throw "Not yet implemented";
 }
 
-people::Driver* eng::Car::getDriver() {
+ppl::Driver* Car::getDriver() {
 	return this->driver;
 }
 
-void eng::Car::removeDriver(people::Driver* driver) {
+void Car::removeDriver(ppl::Driver* driver) {
 	// TODO - implement Car::removeDriver
 	throw "Not yet implemented";
 }
 
-void eng::Car::print() {
+void Car::print() {
 	// TODO - implement Car::print
 	throw "Not yet implemented";
 }
 
-int eng::Car::getDriverXP() {
+int Car::getDriverXP() {
 	// TODO - implement Car::getDriverXP
 	throw "Not yet implemented";
 }
 
-bool eng::Car::driverInCar() {
+bool Car::driverInCar() {
 	// TODO - implement Car::driverInCar
 	throw "Not yet implemented";
 }
 
-int eng::Car::getId() {
+int Car::getId() {
 	return this->id;
 }
 
-void eng::Car::clone() {
+void Car::clone() {
 	// TODO - implement Car::clone
 	throw "Not yet implemented";
 }

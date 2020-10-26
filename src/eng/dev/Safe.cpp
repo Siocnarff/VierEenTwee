@@ -1,6 +1,8 @@
 #include "Safe.h"
 
-int dev::Safe::trySomethingNew() {
+using namespace eng;
+
+int Safe::trySomethingNew() {
 	// TODO - implement Safe::trySomethingNew
 	throw "Not yet implemented";
 }

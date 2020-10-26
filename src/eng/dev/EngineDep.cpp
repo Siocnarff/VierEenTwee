@@ -2,17 +2,19 @@
 #include "../Car.h"
 #include "Component.h"
 
-void dev::EngineDep::build(eng::Car* car) {
+using namespace eng;
+
+void EngineDep::build(Car* car) {
 	// TODO - implement EngineDep::build
 	throw "Not yet implemented";
 }
 
-void dev::EngineDep::fix(eng::Car* car) {
+void EngineDep::fix(Car* car) {
 	// TODO - implement EngineDep::fix
 	throw "Not yet implemented";
 }
 
-void dev::EngineDep::update(dev::Component* component) {
+void EngineDep::update(Component* component) {
 	// TODO - implement EngineDep::update
 	throw "Not yet implemented";
 }

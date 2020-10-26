@@ -3,8 +3,8 @@
 
 #include "Risk.h"
 
-namespace dev {
-	class Moderate : Risk {
+namespace eng {
+	class Moderate : public Risk {
 
 	public:
 		int trySomethingNew();
