@@ -1,28 +1,30 @@
 #include "Person.h"
 
-people::Person::Person(std::string n, bool d, int s) {
+using namespace ppl;
+
+Person::Person(std::string n, bool d, int s) {
 	// TODO - implement Person::Person
 	throw "Not yet implemented";
 }
 
-std::string people::Person::getName() {
+std::string Person::getName() {
 	return this->name;
 }
 
-bool people::Person::hasDegree() {
+bool Person::hasDegree() {
 	// TODO - implement Person::hasDegree
 	throw "Not yet implemented";
 }
 
-int people::Person::getSkillLevel() {
+int Person::getSkillLevel() {
 	return this->skillLevel;
 }
 
-void people::Person::printResume() {
+void Person::printResume() {
 	// TODO - implement Person::printResume
 	throw "Not yet implemented";
 }
 
-int people::Person::getId() {
+int Person::getId() {
 	return this->id;
 }

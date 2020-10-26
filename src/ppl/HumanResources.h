@@ -1,16 +1,15 @@
 #ifndef PEOPLE_HUMANRESOURCES_H
 #define PEOPLE_HUMANRESOURCES_H
 
-namespace people {
-	class HumanResources {
+namespace ppl {
+    class HumanResources {
 
+    public:
+        Person *hire(std::string job);
 
-	public:
-		people::Person* hire(std::string job);
-
-	protected:
-		virtual Person* source() = 0;
-	};
+    protected:
+        virtual Person *source() = 0;
+    };
 }
 
 #endif

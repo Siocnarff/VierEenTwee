@@ -1,11 +1,13 @@
 #include "Amateur.h"
 
-void people::Amateur::printResume() {
+using namespace ppl;
+
+void Amateur::printResume() {
 	// TODO - implement Amateur::printResume
 	throw "Not yet implemented";
 }
 
-void people::Amateur::setJob(std::string job) {
+void Amateur::setJob(std::string job) {
 	// TODO - implement Amateur::setJob
 	throw "Not yet implemented";
 }

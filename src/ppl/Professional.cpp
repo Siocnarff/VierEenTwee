@@ -1,11 +1,13 @@
 #include "Professional.h"
 
-void people::Professional::printResume() {
+using namespace ppl;
+
+void Professional::printResume() {
 	// TODO - implement Professional::printResume
 	throw "Not yet implemented";
 }
 
-void people::Professional::setJob(std::string job) {
+void Professional::setJob(std::string job) {
 	// TODO - implement Professional::setJob
 	throw "Not yet implemented";
 }

@@ -1,12 +1,12 @@
 #ifndef PEOPLE_HIREAMATEUR_H
 #define PEOPLE_HIREAMATEUR_H
 
-namespace people {
-	class HireAmateur : people::HumanResources {
+namespace ppl {
+	class HireAmateur : public HumanResources {
 
 
 	public:
-		people::Person* source();
+		Person* source();
 	};
 }
 

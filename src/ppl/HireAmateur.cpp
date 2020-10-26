@@ -1,6 +1,8 @@
 #include "HireAmateur.h"
 
-people::Person* people::HireAmateur::source() {
+using namespace ppl;
+
+Person* HireAmateur::source() {
 	// TODO - implement HireAmateur::source
 	throw "Not yet implemented";
 }

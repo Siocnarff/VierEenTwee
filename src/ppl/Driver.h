@@ -1,8 +1,8 @@
 #ifndef PEOPLE_DRIVER_H
 #define PEOPLE_DRIVER_H
 
-namespace people {
-	class Driver : people::Person {
+namespace ppl {
+	class Driver : public Person {
 
 	private:
 		int xp;

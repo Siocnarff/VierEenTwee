@@ -1,8 +1,8 @@
 #ifndef PEOPLE_STUDENT_H
 #define PEOPLE_STUDENT_H
 
-namespace people {
-	class Student : people::Person {
+namespace ppl {
+	class Student : public Person {
 
 	public:
 		std::string jobDescription;

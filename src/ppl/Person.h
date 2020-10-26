@@ -1,7 +1,7 @@
 #ifndef PEOPLE_PERSON_H
 #define PEOPLE_PERSON_H
 
-namespace people {
+namespace ppl {
 	class Person {
 
 	private:

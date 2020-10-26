@@ -1,12 +1,11 @@
 #ifndef PEOPLE_HIREPROFESSIONAL_H
 #define PEOPLE_HIREPROFESSIONAL_H
 
-namespace people {
-	class HireProfessional : people::HumanResources {
-
+namespace ppl {
+	class HireProfessional : public HumanResources {
 
 	public:
-		people::Person* source();
+		Person* source();
 	};
 }
 

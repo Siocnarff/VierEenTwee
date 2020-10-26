@@ -1,8 +1,8 @@
-#ifndef PEOPLE_AMATEUR_H
-#define PEOPLE_AMATEUR_H
+#ifndef ppl_AMATEUR_H
+#define ppl_AMATEUR_H
 
-namespace people {
-	class Amateur : people::Person {
+namespace ppl {
+	class Amateur : public Person {
 
 	public:
 		std::string jobDescription;

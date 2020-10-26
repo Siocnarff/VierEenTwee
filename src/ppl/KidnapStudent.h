@@ -1,12 +1,11 @@
 #ifndef PEOPLE_KIDNAPSTUDENT_H
 #define PEOPLE_KIDNAPSTUDENT_H
 
-namespace people {
-	class KidnapStudent : people::HumanResources {
-
+namespace ppl {
+	class KidnapStudent : public HumanResources {
 
 	public:
-		people::Person* source();
+		Person* source();
 	};
 }
 

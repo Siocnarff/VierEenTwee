@@ -1,8 +1,8 @@
 #ifndef PEOPLE_PROFESSIONAL_H
 #define PEOPLE_PROFESSIONAL_H
 
-namespace people {
-	class Professional : people::Person {
+namespace ppl {
+	class Professional : public Person {
 
 	public:
 		std::string jobDescription;
