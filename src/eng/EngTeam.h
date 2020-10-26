@@ -1,14 +1,13 @@
 #ifndef ENG_ENGTEAM_H
 #define ENG_ENGTEAM_H
 
-#include "../dev/Risk.h"
+#include <componentDevelopment/Department.h>
 #include "Car.h"
 #include "../log/RiskLevel.h"
-#include "Garage.h"
-#include "BlueprintStore.h"
-#include "ComponentSimulator.h"
-#include "WindTunnel.h"
-#include "../dev/Department.h"
+#include "buildings/Garage.h"
+#include "buildings/BlueprintStore.h"
+#include "buildings/ComponentSimulator.h"
+#include "buildings/WindTunnel.h"
 #include "../log/Mediator.h"
 
 namespace eng {

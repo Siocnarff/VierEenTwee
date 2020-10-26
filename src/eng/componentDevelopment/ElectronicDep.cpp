@@ -1,6 +1,4 @@
 #include "ElectronicDep.h"
-#include "../Car.h"
-#include "Component.h"
 
 using namespace eng;
 

@@ -7,7 +7,7 @@ namespace eng {
 	class Safe : public Risk {
 
 	public:
-		int trySomethingNew();
+		int trySomethingNew() final;
 	};
 }
 

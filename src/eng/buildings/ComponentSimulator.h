@@ -1,8 +1,8 @@
 #ifndef ENG_COMPONENTSIMULATOR_H
 #define ENG_COMPONENTSIMULATOR_H
 
-#include "../dev/Component.h"
-#include "Car.h"
+#include "../componentDevelopment/Component.h"
+#include "../Car.h"
 
 namespace eng {
 	class ComponentSimulator {

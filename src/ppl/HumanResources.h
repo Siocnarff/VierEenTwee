@@ -1,6 +1,9 @@
 #ifndef PEOPLE_HUMANRESOURCES_H
 #define PEOPLE_HUMANRESOURCES_H
 
+#include <string>
+#include "Person.h"
+
 namespace ppl {
     class HumanResources {
 

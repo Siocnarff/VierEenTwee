@@ -7,7 +7,7 @@ namespace eng {
 	class Engine : public Component {
 
 	public:
-		void print();
+		void print() final;
 	};
 }
 

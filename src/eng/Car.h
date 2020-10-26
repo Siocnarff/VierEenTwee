@@ -1,8 +1,7 @@
 #ifndef ENG_CAR_H
 #define ENG_CAR_H
 
-#include "../people/Driver.h"
-#include "../dev/Component.h"
+#include <componentDevelopment/Component.h>
 
 namespace eng {
 	class Car {
@@ -15,14 +14,14 @@ namespace eng {
 		int handling;
 		ppl::Driver* driver;
 		int id;
-        dev::Component** components;
+        Component** components;
 
 	public:
-		int getSpeed();
+		int getSpeed() const;
 
-		int getHandling();
+		int getHandling() const;
 
-		int getDamage();
+		static int getDamage();
 
 		void setDamage(int damage);
 
@@ -36,7 +35,7 @@ namespace eng {
 
 		bool driverInCar();
 
-		int getId();
+		int getId() const;
 
 		void clone();
 	};

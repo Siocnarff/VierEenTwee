@@ -1,7 +1,7 @@
 #ifndef ENG_BLUEPRINTSTORE_H
 #define ENG_BLUEPRINTSTORE_H
 
-#include "../dev/Blueprint.h"
+#include "../componentDevelopment/Blueprint.h"
 
 namespace eng {
 	class BlueprintStore {

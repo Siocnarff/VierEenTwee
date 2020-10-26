@@ -1,5 +1,4 @@
 #include "ComponentSimulator.h"
-#include "../dev/Component.h"
 
 using namespace eng;
 
