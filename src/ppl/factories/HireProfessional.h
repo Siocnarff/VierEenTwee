@@ -2,6 +2,7 @@
 #define PEOPLE_HIREPROFESSIONAL_H
 
 namespace ppl {
+
 	class HireProfessional : public HumanResources {
 
 	public:

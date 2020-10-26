@@ -4,7 +4,6 @@
 namespace ppl {
 	class HireAmateur : public HumanResources {
 
-
 	public:
 		Person* source();
 	};

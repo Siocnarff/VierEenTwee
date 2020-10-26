@@ -1,7 +1,7 @@
 #ifndef ENG_WINDTUNNEL_H
 #define ENG_WINDTUNNEL_H
 
-#include "Car.h"
+#include "../Car.h"
 
 namespace eng {
 	class WindTunnel {

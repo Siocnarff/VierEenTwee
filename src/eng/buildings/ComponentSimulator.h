@@ -2,7 +2,7 @@
 #define ENG_COMPONENTSIMULATOR_H
 
 #include "../dev/Component.h"
-#include "Car.h"
+#include "../Car.h"
 
 namespace eng {
 	class ComponentSimulator {
