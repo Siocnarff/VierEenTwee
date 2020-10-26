@@ -3,11 +3,12 @@
 //
 
 #include "Container.h"
-#include "SubStates.h"
+#include "ArrivedState.h"
 #include <iostream>
+using namespace log;
 
 Container::Container() {
-    this->containerCurrentState = new BeingPacked();
+    this->containerCurrentState = new BeingPackedState();
 }
 
 Container::~Container() {
@@ -19,12 +20,12 @@ void Container::setState(ContainerState *state) {
     this->containerCurrentState = state;
 }
 
-string Container::getState() {
+std::string Container::getState() {
     return containerCurrentState->getState();
 }
 
 void Container::takeStock() {
-    cout << "CONTAINER STOCK TAKE" << endl;
+    std::cout << "CONTAINER STOCK TAKE" << std::endl;
 
 }
 

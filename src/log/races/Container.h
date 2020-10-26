@@ -6,28 +6,41 @@
 #define PREMODELLING_CONTAINER_H
 
 #include <string>
-using namespace std;
+#include <list>
+#include <iostream>
 
-class ContainerState;
+namespace log {
+    class ContainerState;
 
-class Container {
-    friend class BeingPacked;
-    friend class InShipping;
-    friend class ArrivedAtDestination;
-private:
-    ContainerState* containerCurrentState;
-public:
-    Container();
-    virtual ~Container();
-    virtual void takeStock() ;
-    virtual void advanceState();
-    string getState();
+    class Container {
+        friend class BeingPackedState;
 
-protected:
-    virtual void addElement(Container *) ;
-    virtual Container * removeElement();
-    virtual void setState(ContainerState* state);
+        friend class InShippingState;
 
-};
+        friend class ArrivedState;
+
+    private:
+        ContainerState *containerCurrentState;
+    public:
+        Container();
+
+        virtual ~Container();
+
+        virtual void takeStock();
+
+        virtual void advanceState();
+
+        std::string getState();
+
+    protected:
+        virtual void addElement(Container *);
+
+        virtual Container *removeElement();
+
+        virtual void setState(ContainerState *state);
+
+    };
+
+}
 
 #endif //PREMODELLING_CONTAINER_H

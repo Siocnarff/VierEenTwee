@@ -3,6 +3,7 @@
 //
 
 #include "Race.h"
+using namespace log;
 
 Race::Race() {
     location = "outer space";
@@ -12,7 +13,7 @@ Race::Race() {
     prev = nullptr;
 }
 
-Race::Race(string loc, TrackComplexity comp, bool eur, Race *nextR, Race* prevR) {
+Race::Race(std::string loc, TrackComplexity comp, bool eur, Race *nextR, Race* prevR) {
     location = loc;
     complexity = comp;
     isInEurope = eur;
@@ -24,7 +25,7 @@ bool Race::isRaceEuropean() {
     return isInEurope;
 }
 
-string Race::getLocation() {
+std::string Race::getLocation() {
     return location;
 }
 

@@ -7,16 +7,20 @@
 
 #include "Container.h"
 #include <string>
-using namespace std;
 
-class Container;
+namespace log {
 
-class ContainerState {
-public:
-    virtual void nextState(Container*) = 0;
-    virtual string getState() = 0;
-    virtual ~ContainerState();
-};
+    class Container;
 
+    class ContainerState {
+    public:
+        virtual void nextState(Container *) = 0;
+
+        virtual std::string getState() = 0;
+
+        virtual ~ContainerState();
+    };
+
+}
 
 #endif //LOGISTICS_CONTAINERSTATE_H
