@@ -1,12 +1,14 @@
-#ifndef DRIVERSLEADERBOARD_H
-#define DRIVERSLEADERBOARD_H
+#ifndef RACING_DRIVERSLEADERBOARD_H
+#define RACING_DRIVERSLEADERBOARD_H
 #include <string>
-class DriversLeaderboard : public Leaderboard {
+#include "Leaderboard.h"
+namespace racing{
+class DriversLeaderboard : public racing::Leaderboard {
 
 
 public:
-	void UpdateDriverLeaderBoard(String driverName, int Score);
+	void UpdateDriverLeaderBoard(std::string driverName, int Score);
 	//used to update the indivitual scores of the driver then displays the output 
 };
-
+}
 #endif

@@ -1,16 +1,15 @@
-#ifndef CARSTATEFULLHP_H
-#define CARSTATEFULLHP_H
-#include "Car.h"
+#ifndef RACING_CARSTATEFULLHP_H
+#define RACING_CARSTATEFULLHP_H
+#include "../eng/Car.h"
 #include "CarState.h"
-#include <string>
-using namespace std;
-class CarStateFullHP : public CarState {
+namespace racing{
+class CarStateFullHP : public racing::CarState {
 
 
 public:
-	void handleChange(Car* c, int d);
+	void handleChange(eng::Car* c, int d);
 
-	string getCarState();
+	std::string getCarState();
 };
-
+}
 #endif
