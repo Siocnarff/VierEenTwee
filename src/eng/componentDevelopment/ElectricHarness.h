@@ -7,7 +7,7 @@ namespace eng {
 	class ElectricHarness : public Component {
 
 	public:
-		void print();
+		void print() final;
 	};
 }
 

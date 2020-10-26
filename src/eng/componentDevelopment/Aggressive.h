@@ -4,7 +4,7 @@
 #import "Risk.h"
 
 namespace eng {
-	class Agressive : public Risk {
+	class Aggressive : public Risk {
 
 
 	public:

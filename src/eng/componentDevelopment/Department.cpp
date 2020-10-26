@@ -4,7 +4,7 @@
 
 using namespace eng;
 
-void Department::setRiskLevel(RiskLevel level) {
+void Department::setRiskLevel(log::RiskLevel level) {
 	// TODO - implement Department::setRiskLevel
 	throw "Not yet implemented";
 }

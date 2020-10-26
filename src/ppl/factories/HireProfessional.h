@@ -1,6 +1,8 @@
 #ifndef PEOPLE_HIREPROFESSIONAL_H
 #define PEOPLE_HIREPROFESSIONAL_H
 
+#include <HumanResources.h>
+
 namespace ppl {
 
 	class HireProfessional : public HumanResources {

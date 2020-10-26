@@ -1,13 +1,13 @@
+#include <specialists/Driver.h>
 #include "Car.h"
-#include "../people/Driver.h"
 
 using namespace eng;
 
-int Car::getSpeed() {
+int Car::getSpeed() const {
 	return this->speed;
 }
 
-int Car::getHandling() {
+int Car::getHandling() const {
 	return this->handling;
 }
 
@@ -45,7 +45,7 @@ bool Car::driverInCar() {
 	throw "Not yet implemented";
 }
 
-int Car::getId() {
+int Car::getId() const {
 	return this->id;
 }
 

@@ -1,7 +1,7 @@
 #ifndef DEV_DEPARTMENT_H
 #define DEV_DEPARTMENT_H
 
-#include "../../people/Person.h"
+#include "../../ppl/Person.h"
 #include "../../log/RiskLevel.h"
 #include "Risk.h"
 #include "../Car.h"
@@ -16,7 +16,7 @@ namespace eng {
 		ppl::Person** specialists;
 
 	public:
-		void setRiskLevel(RiskLevel level);
+		void setRiskLevel(log::RiskLevel level);
 
 		void build(Car* car);
 

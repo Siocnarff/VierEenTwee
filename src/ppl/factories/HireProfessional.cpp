@@ -1,3 +1,4 @@
+#include <Person.h>
 #include "HireProfessional.h"
 
 using namespace ppl;

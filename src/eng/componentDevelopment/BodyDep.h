@@ -13,7 +13,7 @@ namespace eng {
 
 		void fix(Car* car);
 
-		void update(Component* component);
+		void update(Component* component) final;
 	};
 }
 
