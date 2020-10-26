@@ -7,20 +7,20 @@
 #include "../Car.h"
 #include "Component.h"
 
-namespace dev {
+namespace eng {
 	class Department {
 
 	private:
 		Department* nextDepartment;
 		Risk* riskLevel;
-		people::Person** specialists;
+		ppl::Person** specialists;
 
 	public:
-		void setRiskLevel(eng::RiskLevel level);
+		void setRiskLevel(RiskLevel level);
 
-		void build(eng::Car* car);
+		void build(Car* car);
 
-		void fix(eng::Car* car);
+		void fix(Car* car);
 
 		virtual void update(Component* component) = 0;
 	};

@@ -7,12 +7,12 @@ namespace eng {
 	class BlueprintStore {
 
 	private:
-		dev::Blueprint* blueprint;
+		Blueprint* blueprint;
 
 	public:
-		dev::Blueprint* getBlueprint();
+		Blueprint* getBlueprint();
 
-		void setBlueprint(dev::Blueprint* blueprint);
+		void setBlueprint(Blueprint* blueprint);
 	};
 }
 

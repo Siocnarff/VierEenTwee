@@ -1,6 +1,8 @@
 #include "ElectricHarness.h"
 
-void dev::ElectricHarness::print() {
+using namespace eng;
+
+void ElectricHarness::print() {
 	// TODO - implement ElectricHarness::print
 	throw "Not yet implemented";
 }

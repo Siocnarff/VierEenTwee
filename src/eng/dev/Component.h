@@ -3,7 +3,7 @@
 
 #include "Blueprint.h"
 
-namespace dev {
+namespace eng {
 	class Component {
 
 	private:

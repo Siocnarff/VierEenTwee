@@ -21,7 +21,7 @@ namespace eng {
 		WindTunnel windTunnel;
 		ComponentSimulator simulator;
 		log::Mediator* logisticsDep;
-        dev::Department** department;
+        Department** department;
 
 	public:
 		void hireEmployees(int budget);
@@ -36,9 +36,9 @@ namespace eng {
 
 		void improveCar(int id);
 
-		eng::Car* checkCarOutOfFactory(int id);
+		Car* checkCarOutOfFactory(int id);
 
-		void setRiskLevel(dev::Risk riskLevel);
+		void setRiskLevel(Risk riskLevel);
 	};
 }
 

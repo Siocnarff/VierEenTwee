@@ -1,6 +1,8 @@
 #include "Body.h"
 
-void dev::Body::print() {
+using namespace eng;
+
+void Body::print() {
 	// TODO - implement Body::print
 	throw "Not yet implemented";
 }

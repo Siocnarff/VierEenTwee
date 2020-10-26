@@ -1,6 +1,8 @@
 #include "Agressive.h"
 
-int dev::Agressive::trySomethingNew() {
+using namespace eng;
+
+int Agressive::trySomethingNew() {
 	// TODO - implement Agressive::trySomethingNew
 	throw "Not yet implemented";
 }

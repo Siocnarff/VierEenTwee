@@ -5,13 +5,13 @@
 #include "../Car.h"
 #include "Component.h"
 
-namespace dev {
-	class BodyDep : Department {
+namespace eng {
+	class BodyDep : public Department {
 
 	public:
-		void build(eng::Car* car);
+		void build(Car* car);
 
-		void fix(eng::Car* car);
+		void fix(Car* car);
 
 		void update(Component* component);
 	};

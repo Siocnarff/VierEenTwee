@@ -1,17 +1,19 @@
 #include "BodyDep.h"
 #include "../Car.h"
 
-void dev::BodyDep::build(eng::Car* car) {
+using namespace eng;
+
+void BodyDep::build(Car* car) {
 	// TODO - implement BodyDep::build
 	throw "Not yet implemented";
 }
 
-void dev::BodyDep::fix(eng::Car* car) {
+void BodyDep::fix(Car* car) {
 	// TODO - implement BodyDep::fix
 	throw "Not yet implemented";
 }
 
-void dev::BodyDep::update(dev::Component* component) {
+void BodyDep::update(Component* component) {
 	// TODO - implement BodyDep::update
 	throw "Not yet implemented";
 }

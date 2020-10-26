@@ -3,8 +3,8 @@
 
 #import "Risk.h"
 
-namespace dev {
-	class Agressive : Risk {
+namespace eng {
+	class Agressive : public Risk {
 
 
 	public:

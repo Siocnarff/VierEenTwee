@@ -3,9 +3,8 @@
 
 #include "Component.h"
 
-namespace dev {
-	class ElectricHarness : Component {
-
+namespace eng {
+	class ElectricHarness : public Component {
 
 	public:
 		void print();

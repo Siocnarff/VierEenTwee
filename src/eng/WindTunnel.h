@@ -6,7 +6,6 @@
 namespace eng {
 	class WindTunnel {
 
-
 	public:
 		void testCar(Car* car);
 	};

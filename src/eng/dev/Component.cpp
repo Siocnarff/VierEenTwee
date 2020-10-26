@@ -1,20 +1,22 @@
 #include "Component.h"
 #include "Blueprint.h"
 
-int dev::Component::getQualityLabel() {
+using namespace eng;
+
+int Component::getQualityLabel() {
 	return this->qualityLabel;
 }
 
-void dev::Component::setQualityLabel(int qualityLabel) {
+void Component::setQualityLabel(int qualityLabel) {
 	this->qualityLabel = qualityLabel;
 }
 
-dev::Blueprint* dev::Component::createBlueprint() {
+Blueprint* Component::createBlueprint() {
 	// TODO - implement Component::createBlueprint
 	throw "Not yet implemented";
 }
 
-void dev::Component::rebuildComponent(dev::Blueprint* plan) {
+void Component::rebuildComponent(Blueprint* plan) {
 	// TODO - implement Component::rebuildComponent
 	throw "Not yet implemented";
 }

@@ -7,9 +7,8 @@
 namespace eng {
 	class ComponentSimulator {
 
-
 	public:
-		void testComponent(dev::Component* component);
+		void testComponent(Component* component);
 
 		void testComponents(Car* car);
 	};

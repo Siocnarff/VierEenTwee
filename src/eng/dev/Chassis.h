@@ -3,9 +3,8 @@
 
 #include "Component.h"
 
-namespace dev {
-	class Chassis : Component {
-
+namespace eng {
+	class Chassis : public Component {
 
 	public:
 		void print() final;

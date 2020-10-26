@@ -3,9 +3,8 @@
 
 #include "Component.h"
 
-namespace dev {
-	class MicroInitiationPlutoniumHammer : Component {
-
+namespace eng {
+	class MicroInitiationPlutoniumHammer : public Component {
 
 	public:
 		void print() final;
