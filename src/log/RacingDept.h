@@ -5,8 +5,10 @@
 #ifndef PREMODELLING_RACINGDEPT_H
 #define PREMODELLING_RACINGDEPT_H
 
+#include <enums/WeatherConditions.h>
+#include <enums/TrackComplexity.h>
 #include "Car.h"
-#include "Race.h"
+#include "races/Race.h"
 #include "Driver.h"
 #include "Strategy.h"
 #include "Colleague.h"
@@ -14,7 +16,7 @@
 
 class RacingDept : public log::Colleague {
 public:
-    void HireEmployees(int budget) override;
+    void hireEmployees(int budget) override;
     Strategy* PlanSeasonStrategy(int budget);
     ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions);
     ppl::Driver* trainDriver(ppl::Driver *, int time, TrackComplexity);

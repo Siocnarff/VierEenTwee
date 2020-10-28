@@ -8,12 +8,6 @@
 #include "Car.h"
 #include "races/Container.h"
 //#include <iostream> //both eng- and racing- need it
-
-
-
-
-
-
 namespace log {
     class Mediator;
 
@@ -29,7 +23,7 @@ namespace log {
 
         void notify(bool isEuropeanRace);
 
-        virtual void HireEmployees(int) = 0;
+        virtual void hireEmployees(int) = 0;
 
     private:
         Mediator *observer;

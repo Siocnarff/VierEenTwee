@@ -14,7 +14,7 @@ namespace ppl {
 		int id;
 
 	public:
-		Person(std::string name, bool hasDegree, int skillLevel);
+		Person(std::string n, bool d, int s);
 
 		std::string getName();
 

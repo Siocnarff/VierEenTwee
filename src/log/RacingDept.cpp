@@ -5,7 +5,7 @@
 #include "RacingDept.h"
 #include <iostream>
 
-void RacingDept::HireEmployees(int budget) {
+void RacingDept::hireEmployees(int budget) {
 
 }
 

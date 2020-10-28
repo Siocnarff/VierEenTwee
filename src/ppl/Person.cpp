@@ -5,7 +5,7 @@
 
 using namespace ppl;
 
-Person::Person(std::string n, bool hasDegree, int s) : name(std::move(n)), degree(hasDegree), skillLevel(s) {
+Person::Person(std::string n, bool d, int s) : name(std::move(n)), degree(d), skillLevel(s) {
     id = Person::idCounter++;
 }
 

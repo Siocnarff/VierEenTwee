@@ -7,6 +7,9 @@
 
 namespace rce {
     class Tyres {
+        //What is important to have in the tyres?
+
+        //Why are my tyres green?
 
     };
 }

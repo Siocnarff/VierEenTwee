@@ -4,7 +4,7 @@
 
 #ifndef PREMODELLING_STRATEGY_H
 #define PREMODELLING_STRATEGY_H
-#include "RiskLevel.h"
+#include "enums/RiskLevel.h"
 #include <string>
 #include <list>
 

@@ -5,8 +5,8 @@
 #ifndef LOGISTICS_RACE_H
 #define LOGISTICS_RACE_H
 #include <string>
-#include "TrackComplexity.h"
-#include "WeatherConditions.h"
+#include <enums/TrackComplexity.h>
+#include <enums/WeatherConditions.h>
 
 namespace log {
     class Race {
