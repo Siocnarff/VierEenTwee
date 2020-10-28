@@ -2,6 +2,7 @@
 #define ENG_CAR_H
 
 #include <componentDevelopment/Component.h>
+#include "../../ppl/specialists/Driver.h"
 
 namespace eng {
 	class Car {

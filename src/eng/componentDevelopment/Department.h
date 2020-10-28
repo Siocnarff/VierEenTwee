@@ -2,7 +2,7 @@
 #define DEV_DEPARTMENT_H
 
 #include "../../ppl/Person.h"
-#include "../../log/RiskLevel.h"
+#include "../../log/enums/RiskLevel.h"
 #include "Risk.h"
 #include "../Car.h"
 #include "Component.h"

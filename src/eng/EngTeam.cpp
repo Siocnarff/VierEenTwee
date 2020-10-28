@@ -37,7 +37,6 @@ Car* EngTeam::checkCarOutOfFactory(int id) {
 	throw "Not yet implemented";
 }
 
-void EngTeam::setRiskLevel(Risk riskLevel) {
-	// TODO - implement EngTeam::setRiskLevel
-	throw "Not yet implemented";
+void EngTeam::setRiskLevel(Risk *riskLevel) {
+
 }

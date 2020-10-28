@@ -1,15 +1,14 @@
 #ifndef PEOPLE_PROFESSIONAL_H
 #define PEOPLE_PROFESSIONAL_H
 
+#include <Person.h>
+
 namespace ppl {
 	class Professional : public Person {
-
 	public:
-		std::string jobDescription;
+        Professional(std::string n, bool d, int s);
 
-		void printResume();
-
-		void setJob(std::string job);
+        bool isProfessional() const override;
 	};
 }
 

@@ -2,12 +2,8 @@
 
 using namespace ppl;
 
-void Professional::printResume() {
-	// TODO - implement Professional::printResume
-	throw "Not yet implemented";
-}
+Professional::Professional(std::string n, bool d, int s) : Person(n, d, s) {}
 
-void Professional::setJob(std::string job) {
-	// TODO - implement Professional::setJob
-	throw "Not yet implemented";
+bool Professional::isProfessional() const {
+    return true;
 }

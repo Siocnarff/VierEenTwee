@@ -3,7 +3,7 @@
 
 #include <componentDevelopment/Department.h>
 #include "Car.h"
-#include "../log/RiskLevel.h"
+#include "../log/enums/RiskLevel.h"
 #include "buildings/Garage.h"
 #include "buildings/BlueprintStore.h"
 #include "buildings/ComponentSimulator.h"
@@ -37,7 +37,7 @@ namespace eng {
 
 		Car* checkCarOutOfFactory(int id);
 
-		void setRiskLevel(Risk riskLevel);
+		void setRiskLevel(Risk* riskLevel);
 	};
 }
 
