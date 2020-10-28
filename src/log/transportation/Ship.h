@@ -5,6 +5,7 @@
 #ifndef SRC_SHIP_H
 #define SRC_SHIP_H
 
+#include <races/Race.h>
 #include "TransportHandler.h"
 
 namespace log{

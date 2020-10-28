@@ -7,13 +7,12 @@
 
 #include <map>
 #include <vector>
+#include <transportation/TransportHandler.h>
+#include <races/RaceIterator.h>
 
 #include "Mediator.h"
-#include "TransportHandler.h"
-#include "RaceIterator.h"
-#include "RacesList.h"
 #include "RacingDept.h"
-#include "EngDept.h"
+#include "../eng/EngTeam.h"
 
 namespace log {
 
@@ -51,7 +50,7 @@ namespace log {
     private:
         RacingDept *callRacingDept();
 
-        EngDept *callEngDept();
+        eng::EngTeam *callEngDept();
 
         map<char, Colleague *> departments;
         ppl::Driver *driver;

@@ -5,6 +5,7 @@
 #ifndef SRC_FLY_H
 #define SRC_FLY_H
 
+#include <races/Race.h>
 #include "TransportHandler.h"
 
 namespace log {

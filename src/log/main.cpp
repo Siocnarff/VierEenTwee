@@ -1,10 +1,11 @@
 #include <iostream>
+#include <races/RacesList.h>
 
 #include "Logistics.h"
 
 void testBasicIntegration() {
     RacingDept* racingDept = new RacingDept();
-    EngDept* engDept = new EngDept();
+    eng::EngTeam* engDept = new eng::EngTeam();
     Logistics* a = new Logistics;
 
     a->registerNotifier(racingDept);
@@ -21,7 +22,7 @@ void testBasicIntegration() {
 }
 
 void testIterator(){
-    string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
+    std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
     TrackComplexity complexity[5] = {Difficult, Easy, Extreme, Average, Easy};
     bool european[5] = {1,0,1,1,0};
     RacesList* raceList = new RacesList;
@@ -31,33 +32,33 @@ void testIterator(){
 
     Race* temp = raceList->getHeadRace();
     while (temp!= NULL) {
-        cout << temp->getLocation() << endl;
+        std::cout << temp->getLocation() << std::endl;
         temp = temp->nextRace();
     }
-    cout << endl;
+    std::cout << std::endl;
 
     for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        cout << t.currentItem()->getLocation() << endl;
+        std::cout << t.currentItem()->getLocation() << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 
     raceList->addRace(new Race("vantance", Easy, 0));
     for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        cout << t.currentItem()->getLocation() << endl;
+        std::cout << t.currentItem()->getLocation() << std::endl;
     }
 
 }
 
 void testContainerState() {
     Container* container = new Container();
-    cout << endl;
+    std::cout << std::endl;
 
     for (int i = 0; i < 4; ++i) {
-        cout << container->getState() << endl;
+        std::cout << container->getState() << std::endl;
         container->advanceState();
     }
 
-    cout << "\nWacky Containers!" << endl;
+    std::cout << "\nWacky Containers!" << std::endl;
 }
 
 

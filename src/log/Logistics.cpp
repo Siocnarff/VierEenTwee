@@ -2,15 +2,15 @@
 // Created by jo on 2020/10/09.
 //
 
-#include <log/transportation/Fly.h>
-#include <log/transportation/Ship.h>
-#include <log/transportation/Road.h>
+#include "transportation/Fly.h"
+#include "transportation/Ship.h"
+#include "transportation/Road.h"
 #include "Logistics.h"
 
 using namespace log;
 
 void Logistics::registerNotifier(Colleague *colleague) {
-    RacingDept* temp = new RacingDept;
+    auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));
     } else {
@@ -110,11 +110,11 @@ void Logistics::putRacesIntoCalender() {
 }
 
 RacingDept *Logistics::callRacingDept() {
-    return static_cast<RacingDept*>(departments['r']);
+    return dynamic_cast<RacingDept*>(departments['r']);
 }
 
-EngDept *Logistics::callEngDept() {
-    return static_cast<EngDept*>(departments['e']);
+eng::EngTeam *Logistics::callEngDept() {
+    return dynamic_cast<eng::EngTeam*>(departments['e']);
 }
 
 /**

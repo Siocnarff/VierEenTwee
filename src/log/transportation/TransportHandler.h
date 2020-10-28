@@ -5,7 +5,8 @@
 #ifndef PREMODELLING_TRANSPORTHANDLER_H
 #define PREMODELLING_TRANSPORTHANDLER_H
 #include <iostream>
-#include "Race.h"
+#include <races/Race.h>
+
 using namespace std;
 
 #include "Colleague.h"
