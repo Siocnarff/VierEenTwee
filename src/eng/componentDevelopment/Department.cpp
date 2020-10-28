@@ -1,18 +1,35 @@
 #include "Department.h"
+#include "Safe.h"
+#include "Moderate.h"
+#include "Aggressive.h"
 
 using namespace eng;
 
 void Department::setRiskLevel(log::RiskLevel level) {
-	// TODO - implement Department::setRiskLevel
-	throw "Not yet implemented";
+    if (level == log::Safe) {
+        riskLevel = new Safe();
+    } else if (level == log::Moderate) {
+        riskLevel = new Moderate();
+    } else {
+        riskLevel = new Aggressive();
+    }
 }
 
-void Department::build(Car* car) {
-	// TODO - implement Department::build
-	throw "Not yet implemented";
+void Department::build(Car *car) {
+    // TODO - implement Department::build
+    throw "Not yet implemented";
 }
 
-void Department::fix(Car* car) {
-	// TODO - implement Department::fix
-	throw "Not yet implemented";
+void Department::fix(Car *car) {
+    // TODO - implement Department::fix
+    throw "Not yet implemented";
+}
+
+Department::Department(Department *next) {
+    riskLevel = new Moderate();
+    nextDepartment = next;
+}
+
+void Department::addSpecialist(ppl::Person *specialist) {
+    specialists.push_back(specialist);
 }

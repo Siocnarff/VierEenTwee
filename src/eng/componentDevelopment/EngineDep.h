@@ -8,7 +8,9 @@ namespace eng {
 
 
 	public:
-		void build(Car* car);
+        explicit EngineDep(Department *next = nullptr);
+
+        void build(Car* car);
 
 		void fix(Car* car);
 

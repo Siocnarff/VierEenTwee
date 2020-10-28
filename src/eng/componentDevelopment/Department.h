@@ -13,9 +13,13 @@ namespace eng {
 	private:
 		Department* nextDepartment;
 		Risk* riskLevel;
-		ppl::Person** specialists;
+		std::vector<ppl::Person*> specialists;
 
 	public:
+	    explicit Department(Department* next);
+
+	    void addSpecialist(ppl::Person* specialist);
+
 		void setRiskLevel(log::RiskLevel level);
 
 		void build(Car* car);

@@ -20,7 +20,8 @@ namespace eng {
 		WindTunnel windTunnel;
 		ComponentSimulator simulator;
 		log::Mediator* logisticsDep;
-        Department** department;
+        Department* department[5];
+        Risk* innovation;
 
 	public:
 		void hireEmployees(int budget);

@@ -1,4 +1,6 @@
 #include "BodyDep.h"
+
+#include <utility>
 #include "../Car.h"
 
 using namespace eng;
@@ -17,3 +19,5 @@ void BodyDep::update(Component* component) {
 	// TODO - implement BodyDep::update
 	throw "Not yet implemented";
 }
+
+BodyDep::BodyDep(Department *next) : Department(next) {}

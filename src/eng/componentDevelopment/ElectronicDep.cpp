@@ -16,3 +16,5 @@ void ElectronicDep::update(Component* component) {
 	// TODO - implement ElectronicDep::update
 	throw "Not yet implemented";
 }
+
+ElectronicDep::ElectronicDep(Department *next) : Department(next) {}

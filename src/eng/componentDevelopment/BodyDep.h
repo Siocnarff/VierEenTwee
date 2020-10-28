@@ -9,6 +9,8 @@ namespace eng {
 	class BodyDep : public Department {
 
 	public:
+        explicit BodyDep(Department* next = nullptr);
+
 		void build(Car* car);
 
 		void fix(Car* car);

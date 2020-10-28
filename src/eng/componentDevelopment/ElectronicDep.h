@@ -7,7 +7,9 @@ namespace eng {
 	class ElectronicDep : public Department {
 
 	public:
-		void build(Car* car);
+        explicit ElectronicDep(Department *next = nullptr);
+
+        void build(Car* car);
 
 		void fix(Car* car);
 
