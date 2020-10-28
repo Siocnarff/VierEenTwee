@@ -8,10 +8,14 @@ namespace ppl {
     class HumanResources {
 
     public:
+        HumanResources();
+
         Person *hire(std::string job);
 
     protected:
-        virtual Person *source() = 0;
+        virtual Person *source(std::string job) = 0;
+
+        static std::string randomName();
     };
 }
 

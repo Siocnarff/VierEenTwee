@@ -34,6 +34,4 @@ namespace ppl {
     };
 }
 
-int ppl::Person::idCounter = 0;
-
 #endif

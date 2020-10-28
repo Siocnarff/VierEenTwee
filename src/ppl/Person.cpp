@@ -26,8 +26,8 @@ void Person::printResume() {
                 << "========================== Resume =========================\n"
                 << "===========================================================\n"
                 << "id: " << id  << std::endl
-                << "Name" << name << std::endl
-                << "Has A Degree: " << (degree ? "Yes" : "no") << std::endl
+                << "Name: " << name << std::endl
+                << "Has A Degree: " << (degree ? "Yes" : "No") << std::endl
                 << "Job Description: " << jobDescription << std::endl
                 << "Skill Level: " << skillLevel << std::endl
                 << "===========================================================\n";
