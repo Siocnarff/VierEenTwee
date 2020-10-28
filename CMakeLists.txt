@@ -71,7 +71,7 @@ add_executable(
         src/ppl/specialists/Amateur.h
         src/ppl/specialists/Driver.cpp
         src/ppl/specialists/Driver.h
-        src/ppl/specialists/Person.cpp
+        src/ppl/Person.cpp
         src/ppl/specialists/Professional.cpp
         src/ppl/specialists/Professional.h
         src/ppl/specialists/Student.cpp

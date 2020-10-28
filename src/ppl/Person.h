@@ -5,9 +5,10 @@
 
 namespace ppl {
 	class Person {
-
 	private:
+        static int idCounter;   //  initialized to zero below this class definition
 		std::string name;
+		std::string jobDescription;
 		bool degree;
 		int skillLevel;
 		int id;
@@ -17,14 +18,22 @@ namespace ppl {
 
 		std::string getName();
 
-		bool hasDegree();
+		std::string getJobDescription();
 
-		int getSkillLevel();
+		void setJobDescription(std::string job);
+
+		bool hasDegree() const;
+
+		int getSkillLevel() const;
 
 		void printResume();
 
-		int getId();
-	};
+		int getId() const;
+
+        virtual bool isProfessional() const;
+    };
 }
+
+int ppl::Person::idCounter = 0;
 
 #endif

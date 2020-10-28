@@ -8,7 +8,7 @@ namespace ppl {
 	class HireProfessional : public HumanResources {
 
 	public:
-		Person* source();
+		Person* source(std::string job);
 	};
 }
 

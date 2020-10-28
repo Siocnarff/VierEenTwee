@@ -2,12 +2,4 @@
 
 using namespace ppl;
 
-void Student::printResume() {
-	// TODO - implement Student::printResume
-	throw "Not yet implemented";
-}
-
-void Student::setJob(std::string job) {
-	// TODO - implement Student::setJob
-	throw "Not yet implemented";
-}
+Student::Student(std::string n, bool d, int s) : Person(n, d, s) {}
