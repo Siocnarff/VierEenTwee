@@ -1,0 +1,26 @@
+~ Logistics.cpp Logistics.h
+x enums.h
+~ Container.cpp Container.h - composite (Marike)
+~ TransportHandler.cpp TransportHander.h
+x Colleague.cpp Colleague.h
+~ RacingDept.cpp RacingDept.h
+~ EngDept.cpp EngDept.h
+~ Car.h Car.cpp
+x Iterator.h
+~ Driver.cpp Driver.h
+~ Strategy.h
+x Mediator.h
+x ContainerState.cpp ContainerState.h
+x ContainerParts.cpp ContainerParts.h
+x RaceIterator.cpp RaceIterator.h
+x Aggregate.h
+x RacesList.cpp RacesList.h
+x TransportMethods.cpp TransportMethods.h
+x Iterator.h
+x Race.cpp Race.h
+x RaceIterator.cpp RaceIterator.h
+x Aggregate.h
+x RacesList.cpp RacesList.h
+x SubStates.cpp SubStates.h
+
+RaceList file

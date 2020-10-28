@@ -1,0 +1,82 @@
+cmake_minimum_required(VERSION 3.10)
+project(VierEenTwee)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(src/eng)
+include_directories(src/eng/buildings)
+include_directories(src/eng/componentDevelopment)
+include_directories(src/log)
+include_directories(src/ppl)
+include_directories(src/ppl/factories)
+include_directories(src/ppl/specialists)
+
+add_executable(
+        VierEenTwee
+        src/main.cpp
+        src/eng/buildings/BlueprintStore.cpp
+        src/eng/buildings/BlueprintStore.h
+        src/eng/buildings/ComponentSimulator.cpp
+        src/eng/buildings/ComponentSimulator.h
+        src/eng/buildings/Garage.cpp
+        src/eng/buildings/Garage.h
+        src/eng/buildings/WindTunnel.cpp
+        src/eng/buildings/WindTunnel.h
+        src/eng/componentDevelopment/Aggressive.cpp
+        src/eng/componentDevelopment/Aggressive.h
+        src/eng/componentDevelopment/Blueprint.cpp
+        src/eng/componentDevelopment/Blueprint.h
+        src/eng/componentDevelopment/Body.cpp
+        src/eng/componentDevelopment/Body.h
+        src/eng/componentDevelopment/BodyDep.cpp
+        src/eng/componentDevelopment/BodyDep.h
+        src/eng/componentDevelopment/Chassis.cpp
+        src/eng/componentDevelopment/Chassis.h
+        src/eng/componentDevelopment/ChassisDep.cpp
+        src/eng/componentDevelopment/ChassisDep.h
+        src/eng/componentDevelopment/Component.cpp
+        src/eng/componentDevelopment/Component.h
+        src/eng/componentDevelopment/Department.cpp
+        src/eng/componentDevelopment/Department.h
+        src/eng/componentDevelopment/ElectricHarness.cpp
+        src/eng/componentDevelopment/ElectricHarness.h
+        src/eng/componentDevelopment/ElectricDepartment.cpp
+        src/eng/componentDevelopment/ElectricDepartment.h
+        src/eng/componentDevelopment/Engine.cpp
+        src/eng/componentDevelopment/Engine.h
+        src/eng/componentDevelopment/EngineDep.cpp
+        src/eng/componentDevelopment/EngineDep.h
+        src/eng/componentDevelopment/MicroInitiationPlutoniumHammer.cpp
+        src/eng/componentDevelopment/MicroInitiationPlutoniumHammer.h
+        src/eng/componentDevelopment/MicroTimeTravelDep.cpp
+        src/eng/componentDevelopment/MicroTimeTravelDep.h
+        src/eng/componentDevelopment/Moderate.cpp
+        src/eng/componentDevelopment/Moderate.h
+        src/eng/componentDevelopment/Risk.h
+        src/eng/componentDevelopment/Safe.cpp
+        src/eng/componentDevelopment/Safe.h
+        src/eng/Car.cpp
+        src/eng/Car.h
+        src/eng/EngTeam.cpp
+        src/eng/EngTeam.h
+        src/log/Mediator.h
+        src/log/enums/RiskLevel.h
+        src/ppl/factories/HireAmateur.cpp
+        src/ppl/factories/HireAmateur.h
+        src/ppl/factories/HireProfessional.cpp
+        src/ppl/factories/HireProfessional.h
+        src/ppl/factories/KidnapStudent.cpp
+        src/ppl/factories/KidnapStudent.h
+        src/ppl/specialists/Amateur.cpp
+        src/ppl/specialists/Amateur.h
+        src/ppl/specialists/Driver.cpp
+        src/ppl/specialists/Driver.h
+        src/ppl/Person.cpp
+        src/ppl/specialists/Professional.cpp
+        src/ppl/specialists/Professional.h
+        src/ppl/specialists/Student.cpp
+        src/ppl/specialists/Student.h
+        src/ppl/HumanResources.cpp
+        src/ppl/HumanResources.h
+        src/ppl/Person.h
+        )

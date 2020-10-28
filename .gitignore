@@ -1,0 +1,20 @@
+Examples/
+Tutorials/
+
+cmake-build-*/
+cmake-build/
+
+out/
+.idea/
+.idea_modules/
+
+*.zip
+*.png
+*.jpg
+
+#user specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
