@@ -8,12 +8,6 @@
 #include "Car.h"
 #include "races/Container.h"
 //#include <iostream> //both eng- and racing- need it
-
-
-
-
-
-
 namespace log {
     class Mediator;
 
