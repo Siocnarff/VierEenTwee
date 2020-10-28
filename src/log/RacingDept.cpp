@@ -28,7 +28,7 @@ ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, TrackComplexity) {
 
 
 void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
-    std::cout << "arrive at destination" << endl;
+    std::cout << "arrive at destination" << std::endl;
     car  = c;
     driver = d;
     race = r;
@@ -36,11 +36,11 @@ void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container 
 }
 
 int RacingDept::RacingWeekend() {
-    std::cout << "Let's start"<<endl;
+    std::cout << "Let's start"<<std::endl;
     notify(new eng::Car);
-    std::cout << "strat packing up" << endl;
+    std::cout << "strat packing up" << std::endl;
     notify(new Container);
-    std::cout << "smoke a cigarette" << endl;
+    std::cout << "smoke a cigarette" << std::endl;
 
     return 5;
 }
@@ -50,6 +50,7 @@ Container* RacingDept::postRacePackUp() { //make container*
     container->unpack();
     container->advanceState();
     std::cout << container->getState();
+    return new Container;
 
 
 }

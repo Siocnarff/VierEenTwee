@@ -17,7 +17,7 @@ namespace log {
 
         Container *removeElement() override;
 
-        Tyres * unpack() override;
+        rce::Tyres * unpack() override;
 
         ~Box() override;
     };

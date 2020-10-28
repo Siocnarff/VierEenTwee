@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="src" targetName="src" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4bf9887e-9513-481a-9b5f-d1c869c3eca2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eng/componentDevelopment/Aggressive.h" beforeDir="false" afterPath="$PROJECT_DIR$/eng/componentDevelopment/Aggressive.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/EngDept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/EngDept.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/Logistics.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/Logistics.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/RacingDept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/RacingDept.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/RacingDept.h" beforeDir="false" afterPath="$PROJECT_DIR$/log/RacingDept.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/Strategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/log/Strategy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/Box.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/Box.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/Box.h" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/Box.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/CateringEquipment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/CateringEquipment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/CateringEquipment.h" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/CateringEquipment.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/Container.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/Container.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/GarageEquipment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/GarageEquipment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/GarageEquipment.h" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/GarageEquipment.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/races/Race.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/log/races/Race.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1jQRsj3fo13qBoi1xeIrV3zrDam" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/log/transportation" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="src" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src" TARGET_NAME="src" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="src" RUN_TARGET_NAME="src">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bf9887e-9513-481a-9b5f-d1c869c3eca2" name="Default Changelist" comment="" />
+      <created>1603734538349</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603734538349</updated>
+      <workItem from="1603734539929" duration="6723000" />
+      <workItem from="1603887831509" duration="2970000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="721" y="184" width="468" height="704" key="#com.intellij.ide.util.MemberChooser" timestamp="1603864396941">
+      <screen x="0" y="34" width="1920" height="1046" />
+    </state>
+    <state x="721" y="184" key="#com.intellij.ide.util.MemberChooser/0.34.1920.1046@0.34.1920.1046" timestamp="1603864396941" />
+    <state x="721" y="174" width="468" height="704" key="#com.intellij.ide.util.MemberChooser/0.34.1920.978@0.34.1920.978" timestamp="1603739683614" />
+    <state x="627" y="213" width="655" height="626" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603735746091">
+      <screen x="0" y="34" width="1920" height="978" />
+    </state>
+    <state x="627" y="213" width="655" height="626" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.34.1920.978@0.34.1920.978" timestamp="1603735746091" />
+    <state x="736" y="309" width="438" height="502" key="refactoring.ChangeSignatureDialog" timestamp="1603864195702">
+      <screen x="0" y="34" width="1920" height="1046" />
+    </state>
+    <state x="736" y="309" width="438" height="502" key="refactoring.ChangeSignatureDialog/0.34.1920.1046@0.34.1920.1046" timestamp="1603864195702" />
+    <state x="540" y="233" key="run.anything.popup" timestamp="1603739695425">
+      <screen x="0" y="34" width="1920" height="978" />
+    </state>
+    <state x="540" y="233" key="run.anything.popup/0.34.1920.978@0.34.1920.978" timestamp="1603739695425" />
+  </component>
+</project>

@@ -45,6 +45,8 @@ WeatherConditions Race::getRaceDayWeather() {
         case 2:
             return Rainy;
             break;
+        default:
+            break;
     }
 }
 
