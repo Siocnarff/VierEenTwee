@@ -13,11 +13,11 @@ Container *Box::removeElement() {
     elements.pop_back();
 }
 
-void Box::takeStock() {
-    Container::takeStock();
+Tyres * Box::unpack() {
+    Container::unpack();
     std::cout << "\nBox contains: " << std::endl;
     for (std::list<Container*>::iterator it = elements.begin(); it != elements.end(); ++it) {
-        (*it)->takeStock();
+        (*it)->unpack();
     }
 }
 

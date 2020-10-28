@@ -14,7 +14,7 @@ namespace log {
     public:
         GarageEquipment(std::list <std::string> insides);
 
-        void takeStock() override;
+        Tyres * unpack() override;
 
         ~GarageEquipment() override;
     };

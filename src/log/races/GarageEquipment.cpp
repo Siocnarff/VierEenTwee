@@ -16,7 +16,7 @@ GarageEquipment::GarageEquipment(std::list<std::string> insides) {
     }
 }
 
-void GarageEquipment::takeStock() {
+Tyres * GarageEquipment::unpack() {
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
         std::cout << "-" << (*it) << std::endl;
     }

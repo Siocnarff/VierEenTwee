@@ -8,6 +8,8 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include "Tyres.h"
+
 
 namespace log {
     class ContainerState;
@@ -26,7 +28,8 @@ namespace log {
 
         virtual ~Container();
 
-        virtual void takeStock();
+        virtual rce::Tyres * unpack();
+        virtual void repack(rce::Tyres);
 
         virtual void advanceState();
 

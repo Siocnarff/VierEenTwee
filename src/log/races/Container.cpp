@@ -24,8 +24,16 @@ std::string Container::getState() {
     return containerCurrentState->getState();
 }
 
-void Container::takeStock() {
-    std::cout << "CONTAINER STOCK TAKE" << std::endl;
+rce::Tyres * Container::unpack() {
+    std::cout << "CONTAINER UNPACK BY printing out contents and returning the tyres in the container" << std::endl;
+    return new rce::Tyres;
+
+}
+
+void Container::repack(rce::Tyres) {
+    //add tyres to containers
+    std::cout << "print out contents" << std::endl;
+    //some other stuff
 
 }
 

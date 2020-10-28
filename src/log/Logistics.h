@@ -8,15 +8,12 @@
 #include <map>
 #include <vector>
 
-#include "Strategy.h"
-#include "Driver.h"
+#include "Mediator.h"
+#include "TransportHandler.h"
 #include "RaceIterator.h"
 #include "RacesList.h"
-
 #include "RacingDept.h"
 #include "EngDept.h"
-#include "Road.h"
-#include "Mediator.h"
 
 namespace log {
 

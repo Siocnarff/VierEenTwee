@@ -47,7 +47,7 @@ int RacingDept::RacingWeekend() {
 
 Container* RacingDept::postRacePackUp() { //make container*
     std::cout << container->getState();
-    container->takeStock();
+    container->unpack();
     container->advanceState();
     std::cout << container->getState();
 

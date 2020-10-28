@@ -17,7 +17,7 @@ namespace log {
 
         Container *removeElement() override;
 
-        void takeStock() override;
+        Tyres * unpack() override;
 
         ~Box() override;
     };

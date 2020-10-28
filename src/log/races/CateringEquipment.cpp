@@ -6,8 +6,8 @@
 
 using namespace log;
 
-void CateringEquipment::takeStock() {
-    //Container::takeStock();
+Tyres * CateringEquipment::unpack() {
+    //Container::unpack();
 }
 
 CateringEquipment::CateringEquipment(std::list<std::string> insides) {
