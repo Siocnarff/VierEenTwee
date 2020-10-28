@@ -2,15 +2,15 @@
 // Created by jo on 2020/10/09.
 //
 
-#include <log/transportation/Fly.h>
-#include <log/transportation/Ship.h>
-#include <log/transportation/Road.h>
+#include "transportation/Fly.h"
+#include "transportation/Ship.h"
+#include "transportation/Road.h"
 #include "Logistics.h"
 
 using namespace log;
 
 void Logistics::registerNotifier(Colleague *colleague) {
-    RacingDept* temp = new RacingDept;
+    auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));
     } else {
@@ -25,11 +25,12 @@ void Logistics::doYearPlanning() {
     //2. Hire for all departments
     for( auto const& [key, val] : departments )
     {
-        val->HireEmployees(budget);
+        val->hireEmployees(budget);
     }
     //3. putRacesIntoCalender();
     //4. hire driver
     //5. hire transportManager
+
 
 }
 
@@ -39,7 +40,7 @@ void Logistics::preSeasonPreparation() {
     as genotify word, sal ons binne notify() die bande bestel;
     print: tyres arrived*/
 
-    callRacingDept()->trainDriver(new ppl::Driver, 15, Rainy, );
+    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
     //order
     carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
@@ -109,15 +110,19 @@ void Logistics::putRacesIntoCalender() {
 }
 
 RacingDept *Logistics::callRacingDept() {
-    return static_cast<RacingDept*>(departments['r']);
+    return dynamic_cast<RacingDept*>(departments['r']);
 }
 
-EngDept *Logistics::callEngDept() {
-    return static_cast<EngDept*>(departments['e']);
+eng::EngTeam *Logistics::callEngDept() {
+    return dynamic_cast<eng::EngTeam*>(departments['e']);
 }
 
+/**
+ * @author Berné
+ */
 Logistics::Logistics() {
     transportManager = new Fly();
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Road);
 }
+

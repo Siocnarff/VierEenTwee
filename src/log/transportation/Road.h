@@ -5,6 +5,7 @@
 #ifndef LOGISTICS_TRANSPORTMETHODS_H
 #define LOGISTICS_TRANSPORTMETHODS_H
 
+#include <races/Race.h>
 #include "TransportHandler.h"
 
 namespace log {

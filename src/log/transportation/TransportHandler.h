@@ -5,7 +5,8 @@
 #ifndef PREMODELLING_TRANSPORTHANDLER_H
 #define PREMODELLING_TRANSPORTHANDLER_H
 #include <iostream>
-#include "Race.h"
+#include <races/Race.h>
+
 using namespace std;
 
 #include "Colleague.h"
@@ -16,7 +17,7 @@ namespace log {
     private:
         TransportHandler *nextTransportationMethod;
     public:
-        void HireEmployees(int budget) override;
+        void hireEmployees(int budget) override;
 
         void addAMethod(TransportHandler *transport);
 

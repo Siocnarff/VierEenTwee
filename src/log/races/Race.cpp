@@ -2,6 +2,8 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include <enums/TrackComplexity.h>
+#include <enums/WeatherConditions.h>
 #include "Race.h"
 using namespace log;
 
@@ -44,6 +46,8 @@ WeatherConditions Race::getRaceDayWeather() {
             break;
         case 2:
             return Rainy;
+            break;
+        default:
             break;
     }
 }

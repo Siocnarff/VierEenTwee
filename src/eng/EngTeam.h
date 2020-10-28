@@ -2,6 +2,7 @@
 #define ENG_ENGTEAM_H
 
 #include <componentDevelopment/Department.h>
+#include <Colleague.h>
 #include "Car.h"
 #include "../log/enums/RiskLevel.h"
 #include "buildings/Garage.h"
@@ -11,7 +12,7 @@
 #include "../log/Mediator.h"
 
 namespace eng {
-	class EngTeam {
+class EngTeam : public log::Colleague {
 
 	private:
 		int improvementBudget = 0;
@@ -24,7 +25,7 @@ namespace eng {
         Risk* innovation;
 
 	public:
-		void hireEmployees(int budget);
+		void hireEmployees(int budget) override;
 
 		void registerForSeason(log::Mediator* logisticsDep);
 
