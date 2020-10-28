@@ -7,7 +7,9 @@ namespace eng {
 	class MicroTimeTravelDep : public Department {
 
 	public:
-		void build(Car* car);
+        explicit MicroTimeTravelDep(Department *next = nullptr);
+
+        void build(Car* car);
 
 		void fix(Car* car);
 

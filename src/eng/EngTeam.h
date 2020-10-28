@@ -14,13 +14,14 @@ namespace eng {
 	class EngTeam {
 
 	private:
-		int improvementBudget;
+		int improvementBudget = 0;
 		Garage garage;
 		BlueprintStore blueprint;
 		WindTunnel windTunnel;
 		ComponentSimulator simulator;
 		log::Mediator* logisticsDep;
-        Department** department;
+        Department* department[5];
+        Risk* innovation;
 
 	public:
 		void hireEmployees(int budget);

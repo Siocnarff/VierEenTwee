@@ -16,3 +16,7 @@ void ChassisDep::update(Component* component) {
 	// TODO - implement ChassisDep::update
 	throw "Not yet implemented";
 }
+
+ChassisDep::ChassisDep(Department *next) : Department(next) {
+    departmentName = "Chassis Department";
+}

@@ -40,8 +40,8 @@ add_executable(
         src/eng/componentDevelopment/Department.h
         src/eng/componentDevelopment/ElectricHarness.cpp
         src/eng/componentDevelopment/ElectricHarness.h
-        src/eng/componentDevelopment/ElectronicDep.cpp
-        src/eng/componentDevelopment/ElectronicDep.h
+        src/eng/componentDevelopment/ElectricDepartment.cpp
+        src/eng/componentDevelopment/ElectricDepartment.h
         src/eng/componentDevelopment/Engine.cpp
         src/eng/componentDevelopment/Engine.h
         src/eng/componentDevelopment/EngineDep.cpp

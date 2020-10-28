@@ -22,15 +22,13 @@ int Person::getSkillLevel() const {
 }
 
 void Person::printResume() {
-	std::cout   << "===========================================================\n"
-                << "========================== Resume =========================\n"
-                << "===========================================================\n"
-                << "id: " << id  << std::endl
-                << "Name: " << name << std::endl
-                << "Has A Degree: " << (degree ? "Yes" : "No") << std::endl
-                << "Job Description: " << jobDescription << std::endl
-                << "Skill Level: " << skillLevel << std::endl
-                << "===========================================================\n";
+	std::cout   << "RESUME:\n"
+                << "    id: " << id  << std::endl
+                << "    Name: " << name << std::endl
+                << "    Has A Degree: " << (degree ? "Yes" : "No") << std::endl
+                << "    Job Description: " << jobDescription << std::endl
+                << "    Skill Level: " << skillLevel << std::endl
+                << "----\n";
 }
 
 int Person::getId() const {

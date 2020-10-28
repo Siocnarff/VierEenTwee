@@ -18,3 +18,7 @@ void EngineDep::update(Component* component) {
 	// TODO - implement EngineDep::update
 	throw "Not yet implemented";
 }
+
+EngineDep::EngineDep(Department *next) : Department(next) {
+    departmentName = "Engine Department";
+}

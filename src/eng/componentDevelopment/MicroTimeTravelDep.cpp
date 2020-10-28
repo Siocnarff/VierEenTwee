@@ -18,3 +18,7 @@ void MicroTimeTravelDep::update(Component* component) {
 	// TODO - implement MicroTimeTravelDep::update
 	throw "Not yet implemented";
 }
+
+MicroTimeTravelDep::MicroTimeTravelDep(Department *next) : Department(next) {
+    departmentName = "Department of Micro-Time-Travel";
+}
