@@ -25,7 +25,7 @@ void Logistics::doYearPlanning() {
     //2. Hire for all departments
     for( auto const& [key, val] : departments )
     {
-        val->HireEmployees(budget);
+        val->hireEmployees(budget);
     }
     //3. putRacesIntoCalender();
     //4. hire driver

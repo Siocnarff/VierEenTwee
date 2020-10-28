@@ -14,7 +14,7 @@
 
 class RacingDept : public log::Colleague {
 public:
-    void HireEmployees(int budget) override;
+    void hireEmployees(int budget) override;
     Strategy* PlanSeasonStrategy(int budget);
     ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions);
     ppl::Driver* trainDriver(ppl::Driver *, int time, TrackComplexity);

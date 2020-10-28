@@ -5,7 +5,7 @@
 #include "TransportHandler.h"
 using namespace log;
 
-void TransportHandler::HireEmployees(int budget) {
+void TransportHandler::hireEmployees(int budget) {
 
 }
 

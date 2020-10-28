@@ -13,7 +13,7 @@ using namespace log;
 class EngDept: public log::Colleague {
 public:
     ~EngDept();
-    void HireEmployees(int budget) override;
+    void hireEmployees(int budget) override;
     int buildCar(int budget, RiskLevel);
     void carArrivesAtFactory(eng::Car*);
     void fixCar(int id);

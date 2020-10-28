@@ -7,7 +7,7 @@
 
 EngDept::~EngDept() {}
 
-void EngDept::HireEmployees(int budget) {
+void EngDept::hireEmployees(int budget) {
     std::cout << "Hiring Employees" << endl;
 }
 

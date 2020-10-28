@@ -16,7 +16,7 @@ namespace log {
     private:
         TransportHandler *nextTransportationMethod;
     public:
-        void HireEmployees(int budget) override;
+        void hireEmployees(int budget) override;
 
         void addAMethod(TransportHandler *transport);
 

@@ -24,7 +24,7 @@ namespace log {
 
         void notify(bool isEuropeanRace);
 
-        virtual void HireEmployees(int) = 0;
+        virtual void hireEmployees(int) = 0;
 
     private:
         Mediator *observer;
