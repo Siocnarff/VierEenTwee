@@ -13,7 +13,7 @@ void CarState::setDamage(int damage) {
 }
 
 void CarState::Deal_damage(int d) {
-	// TODO - implement CarState::Deal damage
+	// TODO - implement carState::Deal damage
 	throw "Not yet implemented";
 }
 
