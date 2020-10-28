@@ -1,12 +1,12 @@
 #include "Simulator.h"
 
-void Simulator::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
-{
-	this->weather=weather;
-	this->driver=driver;
-	this->time=time;
-	this->trackDifficulty=trackDifficulty;
-}
+// void Simulator::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
+// {
+// 	this->weather=weather;
+// 	this->driver=driver;
+// 	this->time=time;
+// 	this->trackDifficulty=trackDifficulty;
+// }
 
 int Simulator::getTime()
 {
@@ -25,5 +25,25 @@ string Simulator::getWeather()
 
 ppl::Driver* Simulator::getDriver()
 {
-	return driver;
+	return this->driver;
+}
+
+void Simulator::setDriver(ppl::Driver* d)
+{
+	driver=d;
+}
+
+void Simulator::setWeather(string w)
+{
+	weather=w;
+}
+
+void Simulator::setTime(int t)
+{
+	time=t;
+}
+
+void Simulator::setDifficulty(int dif)
+{
+	trackDifficulty=dif;
 }
