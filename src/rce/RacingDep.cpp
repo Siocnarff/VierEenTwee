@@ -16,24 +16,32 @@ void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficu
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
-	this->ppl::Driver=driver;
-	this->weather=weather;
-	this->time=time;
-	this->trackDifficulty=trackDifficulty;
 
 	if(weather=="wet")
 	{
 		Simulator* wet=new SimulatorWetCondition();
+		wet->setDriver(driver);
+		wet->setWeather(weather);
+		wet->setDifficulty(trackDifficulty);
+		wet->setTime(time);
 		wet->SimulateWeather();
 	}
 	else if(weather=="hot")
 	{
 		Simulator* hot=new SimulatorHotCondition();
+		hot->setDriver(driver);
+		hot->setWeather(weather);
+		hot->setDifficulty(trackDifficulty);
+		hot->setTime(time);
 		hot->SimulateWeather();
 	}
 	else if(weather=="normal")
 	{
 		Simulator* normal=new SimulatorNormalCondition();
+		normal->setDriver(driver);
+		normal->setWeather(weather);
+		normal->setDifficulty(trackDifficulty);
+		normal->setTime(time);
 		normal->SimulateWeather();
 	}
 }
