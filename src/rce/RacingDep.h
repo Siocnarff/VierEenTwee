@@ -32,7 +32,7 @@ private:
 public:
 	void HireEmployees(int b);
 	CreateStrategy* PlanSeasonStrategy(int budget);//weather
-	void trainDriver(string weather, ppl::Driver* ppl::Driver,int trackDifficulty,int time);//weather and time 
+	void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);//weather and time 
 	void preRaceArrival(Car* c, ppl::Driver* d, Race* r, Container* con);
 	int RacingWeekend();// why is it an int?
 	void postRacePackUp();// return the container with tires in

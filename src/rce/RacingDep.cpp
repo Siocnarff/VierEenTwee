@@ -12,11 +12,11 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 	throw "Not yet implemented";
 }
 
-void RacingDep::trainDriver(string weather, ppl::Driver* ppl::Driver,int trackDifficulty,int time) 
+void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
 {
-	create simulator according to weather,track difficulty
-	train ppl::Driver (increase xp) according to track difficulty and time
-	this->ppl::Driver=ppl::Driver;
+	//create simulator according to weather,track difficulty
+	//train ppl::Driver (increase xp) according to track difficulty and time
+	this->ppl::Driver=driver;
 	this->weather=weather;
 	this->time=time;
 	this->trackDifficulty=trackDifficulty;
