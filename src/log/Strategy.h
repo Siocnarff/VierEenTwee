@@ -4,16 +4,17 @@
 
 #ifndef PREMODELLING_STRATEGY_H
 #define PREMODELLING_STRATEGY_H
-#include "enums.h"
+#include "RiskLevel.h"
 #include <string>
 #include <list>
-using namespace std;
+
+using namespace log;
 
 class Strategy {
 private:
     RiskLevel riskLevel;
-    list<TyresCompounds> tyres;
-    string stratName;
+    std::list<int> tyres;
+    std::string stratName;
 public:
     Strategy* execute() {
         return nullptr;

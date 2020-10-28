@@ -1,7 +1,7 @@
 #ifndef DEV_AGRESSIVE_H
 #define DEV_AGRESSIVE_H
 
-#import "Risk.h"
+#include "Risk.h"
 
 namespace eng {
 	class Aggressive : public Risk {

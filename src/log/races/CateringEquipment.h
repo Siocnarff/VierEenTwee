@@ -13,7 +13,7 @@ namespace log {
         std::list <std::string> contents;
     public:
         CateringEquipment(std::list <std::string> insides);
-        Tyres * unpack() override;
+        rce::Tyres * unpack() override;
         ~CateringEquipment() override;
     };
 }

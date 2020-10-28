@@ -6,8 +6,10 @@
 
 using namespace log;
 
-Tyres * CateringEquipment::unpack() {
+rce::Tyres * CateringEquipment::unpack() {
     //Container::unpack();
+    //moet verander word
+    return new rce::Tyres;
 }
 
 CateringEquipment::CateringEquipment(std::list<std::string> insides) {

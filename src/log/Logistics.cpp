@@ -31,6 +31,7 @@ void Logistics::doYearPlanning() {
     //4. hire driver
     //5. hire transportManager
 
+
 }
 
 void Logistics::preSeasonPreparation() {
@@ -39,7 +40,7 @@ void Logistics::preSeasonPreparation() {
     as genotify word, sal ons binne notify() die bande bestel;
     print: tyres arrived*/
 
-    callRacingDept()->trainDriver(new ppl::Driver, 15, Rainy, );
+    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
     //order
     carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
@@ -116,8 +117,12 @@ EngDept *Logistics::callEngDept() {
     return static_cast<EngDept*>(departments['e']);
 }
 
+/**
+ * @author Berné
+ */
 Logistics::Logistics() {
     transportManager = new Fly();
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Road);
 }
+
