@@ -13,6 +13,7 @@ include_directories(src/ppl/specialists)
 
 add_executable(
         VierEenTwee
+        src/main.cpp
         src/eng/buildings/BlueprintStore.cpp
         src/eng/buildings/BlueprintStore.h
         src/eng/buildings/ComponentSimulator.cpp

@@ -9,7 +9,7 @@ namespace eng {
 
 	private:
 		std::vector<int> lookup;
-        Car* car[];
+        Car** car;
 
 	public:
 		void storeCar(Car* car);

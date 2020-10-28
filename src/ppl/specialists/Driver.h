@@ -1,11 +1,13 @@
 #ifndef PEOPLE_DRIVER_H
 #define PEOPLE_DRIVER_H
 
+#include <Person.h>
+
 namespace ppl {
-	class Driver : public Person {
+class Driver : public Person {
 
 	private:
-		int xp;
+		int xp = 0;
 		int homeTracks[];
 
 	public:

@@ -1,6 +1,4 @@
 #include "Department.h"
-#include "../Car.h"
-#include "../../log/RiskLevel.h"
 
 using namespace eng;
 
