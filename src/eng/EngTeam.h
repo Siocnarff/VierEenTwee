@@ -14,7 +14,7 @@ namespace eng {
 	class EngTeam {
 
 	private:
-		int improvementBudget;
+		int improvementBudget = 0;
 		Garage garage;
 		BlueprintStore blueprint;
 		WindTunnel windTunnel;

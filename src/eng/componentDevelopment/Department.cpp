@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Department.h"
 #include "Safe.h"
 #include "Moderate.h"
@@ -32,4 +33,7 @@ Department::Department(Department *next) {
 
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
+    std::cout << departmentName << " hired a new specialist:\n";
+    specialist->printResume();
+    std::cout << std::endl;
 }

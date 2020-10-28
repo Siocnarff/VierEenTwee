@@ -4,10 +4,10 @@
 #include "Department.h"
 
 namespace eng {
-	class ElectronicDep : public Department {
+	class ElectricDepartment : public Department {
 
 	public:
-        explicit ElectronicDep(Department *next = nullptr);
+        explicit ElectricDepartment(Department *next = nullptr);
 
         void build(Car* car);
 

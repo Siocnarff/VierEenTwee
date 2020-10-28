@@ -20,4 +20,6 @@ void BodyDep::update(Component* component) {
 	throw "Not yet implemented";
 }
 
-BodyDep::BodyDep(Department *next) : Department(next) {}
+BodyDep::BodyDep(Department *next) : Department(next){
+    departmentName = "Body Department";
+}

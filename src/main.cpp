@@ -13,7 +13,10 @@ int ppl::Person::idCounter = 0;
 using namespace eng;
 
 int main () {
-    auto** factories = new ppl::HumanResources*[3];
+    EngTeam engTeam;
+    engTeam.hireEmployees(49);
+
+    /*auto** factories = new ppl::HumanResources*[3];
     factories[0] = new ppl::KidnapStudent();
     factories[1] = new ppl::HireAmateur();
     factories[2] = new ppl::HireProfessional();
@@ -36,5 +39,5 @@ int main () {
     for (int i = 0; i < 15; ++i) {
         people[i]->printResume();
         std::cout << std::endl;
-    }
+    }*/
 }

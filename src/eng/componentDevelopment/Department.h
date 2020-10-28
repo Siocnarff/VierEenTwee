@@ -15,6 +15,9 @@ namespace eng {
 		Risk* riskLevel;
 		std::vector<ppl::Person*> specialists;
 
+    protected:
+        std::string departmentName;
+
 	public:
 	    explicit Department(Department* next);
 
@@ -27,7 +30,7 @@ namespace eng {
 		void fix(Car* car);
 
 		virtual void update(Component* component) = 0;
-	};
+    };
 }
 
 #endif
