@@ -6,7 +6,7 @@
 
 using namespace log;
 
-GarageEquipment::GarageEquipment(std::list<std::string> insides) {
+GarageEquipment::GarageEquipment(std::list <std::string> insides) {
     if (insides.size() == 0) {
         contents.push_back("Lots and lots of stuff");
         return;

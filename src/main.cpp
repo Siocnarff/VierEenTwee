@@ -4,15 +4,13 @@
 
 #include <iostream>
 #include <factories/HireProfessional.h>
-#include <factories/HireAmateur.h>
-#include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "log/races/RacesList.h"
 #include "log/Logistics.h"
 
 int ppl::Person::idCounter = 0;
 
-using namespace eng;
+using namespace log;
 
 void testBasicIntegration() {
     RacingDept* racingDept = new RacingDept();
@@ -71,16 +69,16 @@ void testIterator(){
 
 }
 
-void testContainerState() {
+void testContainerPacking() {
     Container* container = new Container();
     std::cout << std::endl;
 
-    for (int i = 0; i < 4; ++i) {
-        std::cout << container->getState() << std::endl;
-        container->advanceState();
-    }
+
 
     std::cout << "\nWacky Containers!" << std::endl;
+
+    //Need a pack container function. Will only call the first container?
+
 }
 
 
@@ -118,6 +116,6 @@ int main () {
 
 //    testIterator();
 
-//    testContainerState();
+    testContainerPacking();
 
 }

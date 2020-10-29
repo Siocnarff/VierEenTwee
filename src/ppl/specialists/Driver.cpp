@@ -2,7 +2,7 @@
 
 using namespace ppl;
 
-Driver::Driver(std::string n, bool d, int s) : Person(n, d, s) {
+Driver::Driver(std::string name, bool hasDegree, int skillLevel) : Person(name, hasDegree, skillLevel) {
     this->xp = 0;
     setJobDescription("Drives cars at an above average speed.");
 }

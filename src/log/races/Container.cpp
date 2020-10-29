@@ -3,25 +3,14 @@
 //
 
 #include "Container.h"
-#include "BeingPackedState.h"
 #include <iostream>
 using namespace log;
 
 Container::Container() {
-    this->containerCurrentState = new BeingPackedState();
 }
 
 Container::~Container() {
-    delete containerCurrentState;
-}
 
-void Container::setState(ContainerState *state) {
-    delete this->containerCurrentState;
-    this->containerCurrentState = state;
-}
-
-std::string Container::getState() {
-    return containerCurrentState->getState();
 }
 
 rce::Tyres * Container::unpack() {
@@ -30,8 +19,14 @@ rce::Tyres * Container::unpack() {
 
 }
 
-void Container::repack(rce::Tyres) {
+void Container::pack(rce::Tyres, std::list<std::string> garageList, std::list<std::string> cateringList) {
     //add tyres to containers
+    //Instantiate GarageEquipment and CateringEquipment (according to riskLevel/budget?)
+    //Link container to box containing boxes containing CateringEquip and GarageEquip (one box to both?)
+
+
+
+
     std::cout << "print out contents" << std::endl;
     //some other stuff
 
@@ -40,14 +35,4 @@ void Container::repack(rce::Tyres) {
 void Container::addElement(Container *) {
     //remains to be implemented
 }
-
-Container *Container::removeElement() {
-    //remains to be implemented
-    return nullptr;
-}
-
-void Container::advanceState() {
-    containerCurrentState->nextState(this);
-}
-
 

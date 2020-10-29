@@ -15,8 +15,6 @@ namespace log {
     public:
         void addElement(Container *) override;
 
-        Container *removeElement() override;
-
         rce::Tyres * unpack() override;
 
         ~Box() override;

@@ -15,32 +15,21 @@ namespace log {
     class ContainerState;
 
     class Container {
-        friend class BeingPackedState;
-
-        friend class InShippingState;
-
-        friend class ArrivedState;
 
     private:
-        ContainerState *containerCurrentState;
+        rce::Tyres packedTyres;
+
     public:
         Container();
 
         virtual ~Container();
 
         virtual rce::Tyres * unpack();
-        virtual void repack(rce::Tyres);
 
-        virtual void advanceState();
-
-        std::string getState();
+        virtual void pack(rce::Tyres);
 
     protected:
         virtual void addElement(Container *);
-
-        virtual Container *removeElement();
-
-        virtual void setState(ContainerState *state);
 
     };
 

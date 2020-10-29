@@ -11,6 +11,7 @@ namespace rce {
     class Tyres {
     private:
         std::list<Tyres*> tyres;
+        std::String tyreType;
 
     public:
         Tyres();

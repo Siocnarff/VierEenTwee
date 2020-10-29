@@ -9,12 +9,6 @@ void Box::addElement(Container *c) {
     elements.push_back(c);
 }
 
-Container *Box::removeElement() {
-    Container* temp = elements.back();
-    elements.pop_back();
-    return temp;
-
-}
 
 rce::Tyres * Box::unpack() {
     Container::unpack();
