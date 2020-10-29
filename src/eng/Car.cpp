@@ -3,53 +3,65 @@
 
 using namespace eng;
 
+Car::Car(int identification) {
+    id = identification;
+    driver = nullptr;
+    damage = 0;
+    components = nullptr;
+}
+
 int Car::getSpeed() const {
-	return this->speed;
+    if (components) {
+        return 1;
+    }
+    return 0;
 }
 
 int Car::getHandling() const {
-	return this->handling;
+    if (components) {
+        return 1;
+    }
+    return 0;
 }
 
-int Car::getDamage() {
-	// TODO - implement Car::getDamage
-	throw "Not yet implemented";
+int Car::getDamage() const {
+    return damage;
 }
 
-void Car::setDamage(int damage) {
-	// TODO - implement Car::setDamage
-	throw "Not yet implemented";
+void Car::setDamage(int carDamage) {
+    damage = carDamage;
 }
 
-ppl::Driver* Car::getDriver() {
-	return this->driver;
+ppl::Driver *Car::getDriver() {
+    return driver;
 }
 
-void Car::removeDriver(ppl::Driver* driver) {
-	// TODO - implement Car::removeDriver
-	throw "Not yet implemented";
+void Car::removeDriver(ppl::Driver *driver) {
+    driver = nullptr;
 }
 
 void Car::print() {
-	// TODO - implement Car::print
-	throw "Not yet implemented";
+    // TODO - implement Car::print
+    throw "Not yet implemented";
 }
 
 int Car::getDriverXP() {
-	// TODO - implement Car::getDriverXP
-	throw "Not yet implemented";
+    if (driver) {
+        return driver->getXp();
+    } else {
+        return -1;
+    }
 }
 
 bool Car::driverInCar() {
-	// TODO - implement Car::driverInCar
-	throw "Not yet implemented";
+    return driver != nullptr;
 }
 
 int Car::getId() const {
-	return this->id;
+    return this->id;
 }
 
 void Car::clone() {
-	// TODO - implement Car::clone
-	throw "Not yet implemented";
+    // TODO - implement Car::clone
+    throw "Not yet implemented";
 }

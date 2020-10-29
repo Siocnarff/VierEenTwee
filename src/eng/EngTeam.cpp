@@ -12,6 +12,7 @@
 using namespace eng;
 
 void EngTeam::hireEmployees(int budget) {
+    std::cout << "Engineering team is hiring new employees..." << std::endl;
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -78,19 +79,26 @@ void EngTeam::hireEmployees(int budget) {
     }
 }
 
-void EngTeam::registerForSeason(log::Mediator *logisticsDep) {
-    // TODO - implement EngTeam::registerForSeason
-    throw "Not yet implemented";
+void EngTeam::registerForSeason(log::Mediator *mediator) {
+    this->logisticsDep = mediator;
 }
 
 int EngTeam::buildCar(int budget, log::RiskLevel riskLevel) {
-    // TODO - implement EngTeam::buildCar
-    throw "Not yet implemented";
+    briefDepartments(budget, riskLevel);
+    int id = carIdGenerator++;
+    department[0]->build(new Car(id));
+    return id;
+}
+
+void EngTeam::briefDepartments(int cash, log::RiskLevel riskLevel) {
+    for (auto & dep : department) {
+        dep->setRiskLevel(riskLevel);
+        dep->topUpBudget(cash);
+    }
 }
 
 void EngTeam::carArrivesAtFactory(Car *car) {
-    // TODO - implement EngTeam::carArrivesAtFactory
-    throw "Not yet implemented";
+    garage.storeCar(car);
 }
 
 void EngTeam::fixCar(int id) {

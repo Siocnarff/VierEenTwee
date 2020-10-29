@@ -8,23 +8,24 @@ namespace eng {
 	class Car {
 
 	private:
-		/**
-		 * ranges between 0 - 100
-		 */
-		int speed;
-		int handling;
-		ppl::Driver* driver;
-		int id;
+        /**
+         * ranges between 0 - 100
+         */
+        int damage;
+        ppl::Driver* driver;
+        int id;
         Component** components;
 
 	public:
+	    explicit Car(int identification);
+
 		int getSpeed() const;
 
 		int getHandling() const;
 
-		static int getDamage();
+		int getDamage() const;
 
-		void setDamage(int damage);
+		void setDamage(int carDamage);
 
 		ppl::Driver* getDriver();
 
