@@ -111,3 +111,7 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
 void EngTeam::setRiskLevel(Risk *riskLevel) {
     innovation = riskLevel;
 }
+
+void EngTeam::toggleVerbose() {
+    verbose = !verbose;
+}

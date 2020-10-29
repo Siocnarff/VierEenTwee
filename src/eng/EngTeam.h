@@ -23,6 +23,7 @@ class EngTeam : public log::Colleague {
 		log::Mediator* logisticsDep;
         Department* department[5];
         Risk* innovation;
+        bool verbose = true;
 
 	public:
 		void hireEmployees(int budget) override;
@@ -40,6 +41,8 @@ class EngTeam : public log::Colleague {
 		Car* checkCarOutOfFactory(int id);
 
 		void setRiskLevel(Risk* riskLevel);
+
+		void toggleVerbose();
 	};
 }
 
