@@ -3,16 +3,24 @@ project(VierEenTwee)
 
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(src)
 include_directories(src/eng)
 include_directories(src/eng/buildings)
 include_directories(src/eng/componentDevelopment)
 include_directories(src/log)
+include_directories(src/log/enums)
+include_directories(src/log/races)
+include_directories(src/log/transportation)
 include_directories(src/ppl)
 include_directories(src/ppl/factories)
 include_directories(src/ppl/specialists)
+include_directories(src/rce)
+include_directories(src/rce/carState)
+include_directories(src/rce/leaderboard)
+include_directories(src/rce/pitstop)
+include_directories(src/rce/simulator)
 
-add_executable(
-        VierEenTwee
+add_executable(VierEenTwee
         src/main.cpp
         src/eng/buildings/BlueprintStore.cpp
         src/eng/buildings/BlueprintStore.h
@@ -38,10 +46,10 @@ add_executable(
         src/eng/componentDevelopment/Component.h
         src/eng/componentDevelopment/Department.cpp
         src/eng/componentDevelopment/Department.h
-        src/eng/componentDevelopment/ElectricHarness.cpp
-        src/eng/componentDevelopment/ElectricHarness.h
         src/eng/componentDevelopment/ElectricDepartment.cpp
         src/eng/componentDevelopment/ElectricDepartment.h
+        src/eng/componentDevelopment/ElectricHarness.cpp
+        src/eng/componentDevelopment/ElectricHarness.h
         src/eng/componentDevelopment/Engine.cpp
         src/eng/componentDevelopment/Engine.h
         src/eng/componentDevelopment/EngineDep.cpp
@@ -59,8 +67,52 @@ add_executable(
         src/eng/Car.h
         src/eng/EngTeam.cpp
         src/eng/EngTeam.h
-        src/log/Mediator.h
         src/log/enums/RiskLevel.h
+        src/log/enums/TrackComplexity.h
+        src/log/enums/WeatherConditions.h
+        src/log/races/Aggregate.h
+        src/log/races/ArrivedState.cpp
+        src/log/races/ArrivedState.h
+        src/log/races/BeingPackedState.cpp
+        src/log/races/BeingPackedState.h
+        src/log/races/Box.cpp
+        src/log/races/Box.h
+        src/log/races/CateringEquipment.cpp
+        src/log/races/CateringEquipment.h
+        src/log/races/Container.cpp
+        src/log/races/Container.h
+        src/log/races/ContainerState.cpp
+        src/log/races/ContainerState.h
+        src/log/races/GarageEquipment.cpp
+        src/log/races/GarageEquipment.h
+        src/log/races/InShippingState.cpp
+        src/log/races/InShippingState.h
+        src/log/races/Iterator.h
+        src/log/races/main.cpp
+        src/log/races/Race.cpp
+        src/log/races/Race.h
+        src/log/races/RaceIterator.cpp
+        src/log/races/RaceIterator.h
+        src/log/races/RacesList.cpp
+        src/log/races/RacesList.h
+        src/log/races/Tyres.cpp
+        src/log/races/Tyres.h
+        src/log/transportation/Fly.cpp
+        src/log/transportation/Fly.h
+        src/log/transportation/Road.cpp
+        src/log/transportation/Road.h
+        src/log/transportation/Ship.cpp
+        src/log/transportation/Ship.h
+        src/log/transportation/TransportHandler.cpp
+        src/log/transportation/TransportHandler.h
+        src/log/Colleague.cpp
+        src/log/Colleague.h
+        src/log/Logistics.cpp
+        src/log/Logistics.h
+        src/log/Mediator.h
+        src/log/RacingDept.cpp
+        src/log/RacingDept.h
+        src/log/Strategy.h
         src/ppl/factories/HireAmateur.cpp
         src/ppl/factories/HireAmateur.h
         src/ppl/factories/HireProfessional.cpp
@@ -71,14 +123,12 @@ add_executable(
         src/ppl/specialists/Amateur.h
         src/ppl/specialists/Driver.cpp
         src/ppl/specialists/Driver.h
-        src/ppl/Person.cpp
         src/ppl/specialists/Professional.cpp
         src/ppl/specialists/Professional.h
         src/ppl/specialists/Student.cpp
         src/ppl/specialists/Student.h
         src/ppl/HumanResources.cpp
         src/ppl/HumanResources.h
+        src/ppl/Person.cpp
         src/ppl/Person.h
-        src/log/Colleague.h
-        src/log/Colleague.cpp
-        )
+)

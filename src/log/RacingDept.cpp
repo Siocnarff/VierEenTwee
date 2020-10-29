@@ -37,7 +37,7 @@ void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container 
 
 int RacingDept::RacingWeekend() {
     std::cout << "Let's start"<<std::endl;
-    notify(new eng::Car);
+    notify(new eng::Car(2));
     std::cout << "strat packing up" << std::endl;
     notify(new Container);
     std::cout << "smoke a cigarette" << std::endl;
