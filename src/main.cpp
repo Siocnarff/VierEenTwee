@@ -12,12 +12,12 @@
 
 int ppl::Person::idCounter = 0;
 
-using namespace eng;
+using namespace log;
 
 void testBasicIntegration() {
-    RacingDept* racingDept = new RacingDept();
-    eng::EngTeam* engDept = new eng::EngTeam();
-    Logistics* a = new Logistics;
+    auto* racingDept = new RacingDept();
+    auto* engDept = new eng::EngTeam();
+    auto* a = new Logistics;
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;
@@ -47,7 +47,7 @@ void testIterator(){
     int complexity[5] = {2, 0, 3, 1, 0};
     bool european[5] = {true,false,true,true,false};
     int laps[5] = {32,14,56,67,20};
-    RacesList* raceList = new RacesList;
+    log::RacesList* raceList = new RacesList;
     for (int i = 0; i < 5; ++i) {
         raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
     }
