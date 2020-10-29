@@ -27,6 +27,8 @@ namespace eng {
 
         void briefDepartments(int cash, log::RiskLevel riskLevel);
 
+        void print(const std::string& message) const;
+
     public:
         void hireEmployees(int budget) override;
 
