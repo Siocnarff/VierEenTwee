@@ -30,6 +30,8 @@ namespace log {
 
         virtual void hireEmployees(int) = 0;
 
+        void notify(log::RiskLevel*);
+
     private:
         Mediator *observer;
     };

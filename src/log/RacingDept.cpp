@@ -9,25 +9,25 @@ void RacingDept::hireEmployees(int budget) {
 
 }
 
-Strategy *RacingDept::PlanSeasonStrategy(int budget) {
-    return new Strategy(budget);
+rce::Strategy *RacingDept::PlanSeasonStrategy(int budget) {
+    return new rce::Strategy(budget);
 }
 
 
-ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, WeatherConditions, TrackComplexity){
+ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, log::WeatherConditions, log::TrackComplexity){
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, WeatherConditions) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::WeatherConditions) {
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, TrackComplexity) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::TrackComplexity) {
     return nullptr;
 }
 
 
-void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
+void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con) {
     std::cout << "arrive at destination" << std::endl;
     car  = c;
     driver = d;
@@ -37,20 +37,20 @@ void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container 
 
 int RacingDept::RacingWeekend() {
     std::cout << "Let's start"<<std::endl;
-    notify(new eng::Car(0));
+    notify(new eng::Car(2));
     std::cout << "strat packing up" << std::endl;
-    notify(new Container);
+    notify(new log::Container);
     std::cout << "smoke a cigarette" << std::endl;
 
     return 5;
 }
 
-Container* RacingDept::postRacePackUp() { //make container*
+log::Container* RacingDept::postRacePackUp() { //make container*
     std::cout << container->getState();
     container->unpack();
     container->advanceState();
     std::cout << container->getState();
-    return new Container;
+    return new log::Container;
 
 
 }
