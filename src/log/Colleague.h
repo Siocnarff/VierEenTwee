@@ -7,13 +7,14 @@
 
 #include "Car.h"
 #include "races/Container.h"
+#include "Strategy.h"
 //#include <iostream> //both eng- and racing- need it
 namespace log {
     class Mediator;
 
     class Colleague {
     public:
-        ~Colleague();
+        virtual ~Colleague();
 
         void addObserver(Mediator *obs);
 
@@ -22,6 +23,10 @@ namespace log {
         void notify(Container *container);
 
         void notify(bool isEuropeanRace);
+
+        void notify(rce::Strategy*);
+
+        void notify(int* tyreCompoundOrder); // list of 3
 
         virtual void hireEmployees(int) = 0;
 

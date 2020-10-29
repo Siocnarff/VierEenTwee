@@ -14,6 +14,9 @@
 #include "RacingDept.h"
 #include "../eng/EngTeam.h"
 
+/**
+ * @author Berné
+ */
 namespace log {
 
     class Logistics : public Mediator {
@@ -30,6 +33,8 @@ namespace log {
 
         void postSeasonDebrief();
 
+        void toggleTransparency();
+
     protected:
         void sendCarToFactory(eng::Car *) override;
 
@@ -37,13 +42,15 @@ namespace log {
 
         void requestContainerStateChange(bool isEuropeanRace) override;
 
+        void informStrategyChanged(rce::Strategy *) override;
+
         Container *getEuropeanContainer();
 
         Container *getNextNonEuropean();
 
         void packContainers();
 
-        void SimulateEvent(Race *);
+        void simulateEvent(Race *);
 
         void putRacesIntoCalender();
 
@@ -52,19 +59,20 @@ namespace log {
 
         eng::EngTeam *callEngDept();
 
-        map<char, Colleague *> departments;
+        std::map<char, Colleague *> departments;
         ppl::Driver *driver;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
         RacesList *racingCalendar;
-        vector<int> carsInSeasonIDs;
-        vector<Container *> nonEuropeanContainers; //lots of containers for non-European
+        std::vector<int> carsInSeasonIDs;
+        std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         Strategy *currentTeamStrategy;
 
         int seasonPointTally;
         int budget;
+        bool verbose = false;
 
     };
 
