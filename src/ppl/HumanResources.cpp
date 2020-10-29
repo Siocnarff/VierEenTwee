@@ -60,9 +60,7 @@ std::string HumanResources::randomName() {
                            "Jarod Jiron",
                            "Courtney Coursey",
                            "Ali Andrus"};
-    return names[int(random() % 50)];
+    return names[int(rand() % 50)];
 }
 
-HumanResources::HumanResources() {
-    srandom(time(nullptr));
-}
+HumanResources::HumanResources() = default;
