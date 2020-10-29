@@ -7,6 +7,10 @@
 #include "SimulatorWetCondition.h"
 
 #include "CreateStrategy.h"
+#include "SafeStrategy.h"
+#include "ModerateStrategy.h"
+#include "AggressiveStrategy.h"
+
 #include "Driver.h"
 
 #include <string>
@@ -26,12 +30,12 @@ private:
 	list<ppl::Person*> pitcrew;
 	Car* car;
 	
-/// ppl::Driver array of size 2?
-/// car array of size 2? 
-/// different strategies for each ppl::Driver and car?
+// / ppl::Driver array of size 2?
+// / car array of size 2? 
+// / different strategies for each ppl::Driver and car?
 public:
 	void HireEmployees(int b);
-	CreateStrategy* PlanSeasonStrategy(int budget);//weather
+	CreateStrategy* PlanSeasonStrategy(int budget,string weather,int riskLevel);//weather
 	void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);//weather and time 
 	void preRaceArrival(Car* c, ppl::Driver* d, Race* r, Container* con);
 	int RacingWeekend();// why is it an int?
@@ -41,7 +45,7 @@ public:
 	
 	Leaderboard* getResults();
 	void setResult(int result);
-	int getResult();
+	int getResult();// needed?
 
 	Race* getRace();
 	string getTeamName();
