@@ -1,6 +1,7 @@
 //
 // Created by josuabotha on 2020/10/28.
 //
+/*
 
 #include <iostream>
 #include <factories/HireProfessional.h>
@@ -15,6 +16,7 @@ using namespace eng;
 int main () {
     EngTeam engTeam;
     engTeam.hireEmployees(49);
+*/
 
     /*auto** factories = new ppl::HumanResources*[3];
     factories[0] = new ppl::KidnapStudent();
@@ -40,4 +42,3 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
-}

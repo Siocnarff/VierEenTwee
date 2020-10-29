@@ -66,6 +66,7 @@ int ppl::Person::idCounter = 0;
 
 int main() {
 
+    srand((unsigned) time(0)); // for good randomness;
 
     //testBasicIntegration();
 

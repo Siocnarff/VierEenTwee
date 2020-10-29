@@ -9,6 +9,10 @@
 
 using namespace log;
 
+
+/**
+ * @author Berné
+ */
 void Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
@@ -19,18 +23,28 @@ void Logistics::registerNotifier(Colleague *colleague) {
     colleague->addObserver(this);
 
 }
-
+/**
+ * @author Berné
+ */
 void Logistics::doYearPlanning() {
+
     //1. getBudget from "Sponsors"
+    budget = abs(rand()%100+1);
     //2. Hire for all departments
     for( auto const& [key, val] : departments )
     {
         val->hireEmployees(budget);
     }
     //3. putRacesIntoCalender();
+    putRacesIntoCalender();
     //4. hire driver
-    //5. hire transportManager
+    driver = new ppl::Driver("Fluffy McAllen", 0, 0);
+    //5. Set home tracks
 
+    //6. hire transportManager
+    transportManager = new Road();
+    transportManager->addAMethod(new Ship);
+    transportManager->addAMethod(new Fly);
 
 }
 
@@ -109,10 +123,16 @@ void Logistics::putRacesIntoCalender() {
     cout << "put races into calender" << endl;
 }
 
+/**
+ * @author Berné
+ */
 RacingDept *Logistics::callRacingDept() {
     return dynamic_cast<RacingDept*>(departments['r']);
 }
 
+/**
+ * @author Berné
+ */
 eng::EngTeam *Logistics::callEngDept() {
     return dynamic_cast<eng::EngTeam*>(departments['e']);
 }

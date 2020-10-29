@@ -26,3 +26,7 @@ void TransportHandler::transport(Race *fromLocation, Race *destination, eng::Car
         cout << "Cannot handle request" << endl;
     }
 }
+
+TransportHandler::~TransportHandler() {
+    delete nextTransportationMethod;
+}
