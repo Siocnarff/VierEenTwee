@@ -62,6 +62,7 @@ void testContainerState() {
 }
 
 
+int ppl::Person::idCounter = 0;
 
 int main() {
 
@@ -70,7 +71,7 @@ int main() {
 
     //testIterator();
 
-    //testContainerState();
+    testContainerState();
 
     return 0;
 }
