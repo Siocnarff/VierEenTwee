@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(VierEenTwee)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/eng)
 include_directories(src/eng/buildings)
@@ -79,4 +79,6 @@ add_executable(
         src/ppl/HumanResources.cpp
         src/ppl/HumanResources.h
         src/ppl/Person.h
+        src/log/Colleague.h
+        src/log/Colleague.cpp
         )
