@@ -58,13 +58,13 @@ Lyne 2-4 sal herhaal word vir die #races
 
 /**
  * ERROR! FILE PATH HARD CODED
- * ERROR! WON'T DO NEW LINES
  */
 void Logistics::putRacesIntoCalender() {
     racingCalendar = new RacesList;
 
     try{
-        std::ifstream infile("/home/jo-anne/Documents/VierEenTwee/src/log/races/raceData.txt");
+        std::ifstream infile;
+        infile.open("/home/jo-anne/Documents/VierEenTwee/src/log/races/raceData.txt");
         int numRaces;
         infile >> numRaces;
 
@@ -74,16 +74,21 @@ void Logistics::putRacesIntoCalender() {
         int laps;
         getline(infile, name); //to remove first random /n
         for (int i = 0; i < numRaces; ++i) {
-            infile >> name;
+            std::getline(infile, name);
             infile >> complexity;
             infile >> inEurope;
             infile >> laps;
             Race* newRace = new Race(name, complexity, inEurope, laps);
             racingCalendar->addRace(newRace);
+            getline(infile, name); //to remove first random /n
         }
-    }catch(std::ifstream::failure e){ //exception e
+        infile.close();
+    } catch(std::ifstream::failure e){ //exception e
         cout << "There was a file-reading error !\n";
     }
+
+    racingCalendar->printList();
+
     cout << "put races into calender" << endl;
 }
 
