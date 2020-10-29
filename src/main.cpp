@@ -14,6 +14,7 @@ using namespace eng;
 
 int main () {
     EngTeam engTeam;
+    engTeam.toggleTransparency();
     engTeam.hireEmployees(49);
 
     /*auto** factories = new ppl::HumanResources*[3];
