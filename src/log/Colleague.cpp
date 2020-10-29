@@ -23,3 +23,7 @@ void Colleague::notify(Container *container) {
 void Colleague::notify(bool isEuropeanRace) {
     observer->requestContainerStateChange(isEuropeanRace);
 }
+
+void Colleague::notify(rce::Strategy *s) {
+    observer->informStrategyChanged(s);
+}

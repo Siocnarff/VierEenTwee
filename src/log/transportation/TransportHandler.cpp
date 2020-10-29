@@ -23,6 +23,10 @@ void TransportHandler::transport(Race *fromLocation, Race *destination, eng::Car
     if (nextTransportationMethod) {
         nextTransportationMethod->transport(fromLocation, destination, car);
     } else {
-        cout << "Cannot handle request" << endl;
+        std::cout << "Cannot handle request" << std::endl;
     }
+}
+
+TransportHandler::~TransportHandler() {
+    delete nextTransportationMethod;
 }
