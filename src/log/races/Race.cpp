@@ -103,7 +103,7 @@ int Race::getNumLaps() {
 }*/
 
 std::ostream& operator<<(std::ostream& stream, log::Race rc) {
-    stream << rc.getLocation() << '/nEurope: ' << rc.isRaceEuropean() << '/nNumLaps: ' << rc.getNumLaps() << std::endl;
+    stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
     return stream;
 }
 

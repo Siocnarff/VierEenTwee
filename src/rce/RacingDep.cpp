@@ -6,34 +6,99 @@ void RacingDep::HireEmployees(int b)
 	throw "Not yet implemented";
 }
 
-CreateStrategy* RacingDep::PlanSeasonStrategy(int budget) 
+CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int riskLevel) 
 {
-	// TODO - implement RacingDep::PlanSeasonStrategy
-	throw "Not yet implemented";
+	//safe ,moderate ,aggressive
+	CreateStrategy* strat;
+	int* tyre=new int[3];
+	if(budeget<25)
+	{
+		if(weather=="rainy")
+		{	tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+			strat=new SafeStrategy(2,tyre,15);
+			return strat->execute();
+		}
+		else
+		{
+			tyre[0]=2;
+			tyre[1]=3;
+			tyre[2]=0;
+			strat=new ModerateStrategy(2,tyre,30);
+			return strat->execute();
+		}
+	}
+	else if(budget>=25 && budget<50)
+	{
+		if(weather=="rainy")
+		{
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+			strat=new ModerateStrategy(2,tyre,45);
+			return strat->execute();
+		}
+		else 
+		{
+			tyre[0]=0;
+			tyre[1]=2;
+			tyre[2]=3;
+			strat=new AggressiveStrategy(1,tyre,60);
+			return strat->execute();
+		}
+	}
+	else
+	{
+		if(weather=="rainy")
+		{
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+			strat=new ModerateStrategy(1,tyre,75);
+			return strat->execute();
+		}
+		else
+		{
+			tyre[0]=2;
+			tyre[1]=2;
+			tyre[2]=1;
+			strat=new AggressiveStrategy(2,tyre,90);
+			return strat->execute();
+		}
+	}
 }
 
 void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
-	this->ppl::Driver=driver;
-	this->weather=weather;
-	this->time=time;
-	this->trackDifficulty=trackDifficulty;
 
 	if(weather=="wet")
 	{
 		Simulator* wet=new SimulatorWetCondition();
+		wet->setDriver(driver);
+		wet->setWeather(weather);
+		wet->setDifficulty(trackDifficulty);
+		wet->setTime(time);
 		wet->SimulateWeather();
 	}
 	else if(weather=="hot")
 	{
 		Simulator* hot=new SimulatorHotCondition();
+		hot->setDriver(driver);
+		hot->setWeather(weather);
+		hot->setDifficulty(trackDifficulty);
+		hot->setTime(time);
 		hot->SimulateWeather();
 	}
 	else if(weather=="normal")
 	{
 		Simulator* normal=new SimulatorNormalCondition();
+		normal->setDriver(driver);
+		normal->setWeather(weather);
+		normal->setDifficulty(trackDifficulty);
+		normal->setTime(time);
 		normal->SimulateWeather();
 	}
 }

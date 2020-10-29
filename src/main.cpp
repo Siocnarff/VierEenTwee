@@ -118,14 +118,19 @@ int main () {
 
     auto* racingDept = new RacingDept();
     auto* engDept = new eng::EngTeam();
+    auto* log = new Logistics;
+
+    log->registerNotifier(racingDept);
+    log->registerNotifier(engDept);
+
     engDept->toggleVerbose();
-    auto* a = new Logistics;
+    log->toggleVerbose();
+    log->doYearPlanning();
 
-    a->registerNotifier(racingDept);
+    log->toggleVerbose();
+    log->raceSeason();
 
-    a->registerNotifier(engDept);
 
-    a->doYearPlanning();
 
 //    testIterator();
 

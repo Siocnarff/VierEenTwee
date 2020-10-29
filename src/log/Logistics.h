@@ -33,6 +33,8 @@ namespace log {
 
         void postSeasonDebrief();
 
+        void toggleVerbose();
+
     protected:
         void sendCarToFactory(eng::Car *) override;
 
@@ -68,6 +70,8 @@ namespace log {
 
         int seasonPointTally;
         int budget;
+
+        bool verbose = true;
 
     };
 

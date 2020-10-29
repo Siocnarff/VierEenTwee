@@ -2,4 +2,4 @@
 
 using namespace ppl;
 
-Amateur::Amateur(std::string n, bool d, int s) : Person(n, d, s) {}
+Amateur::Amateur(std::string name, bool hasDegree, int skillLevel) : Person(name, hasDegree, skillLevel) {}
