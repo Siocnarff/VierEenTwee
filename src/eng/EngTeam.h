@@ -27,6 +27,8 @@ namespace eng {
 
         void cashUpDeps(int cash);
 
+        void print(const std::string &message) const;
+
     public:
         void hireEmployees(int budget) override;
 
