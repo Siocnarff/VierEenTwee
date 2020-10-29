@@ -118,7 +118,7 @@ int main () {
 
     auto* racingDept = new RacingDept();
     auto* engDept = new eng::EngTeam();
-    engDept->toggleVerbose();
+    //engDept->toggleTransparency();
     auto* a = new Logistics;
 
     a->registerNotifier(racingDept);
@@ -126,6 +126,9 @@ int main () {
     a->registerNotifier(engDept);
 
     a->doYearPlanning();
+
+    a->toggleTransparency();
+   // a->raceSeason();
 
 //    testIterator();
 

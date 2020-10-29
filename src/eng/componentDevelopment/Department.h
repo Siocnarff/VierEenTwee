@@ -13,6 +13,7 @@ namespace eng {
 	private:
 		Department* nextDepartment;
 		Risk* riskLevel;
+		int budget = 0;
 		std::vector<ppl::Person*> specialists;
 
     protected:
@@ -21,7 +22,7 @@ namespace eng {
 	public:
 	    explicit Department(Department* next);
 
-	    void addSpecialist(ppl::Person* specialist);
+	    void addSpecialist(ppl::Person *specialist, bool printResults = false);
 
 		void setRiskLevel(log::RiskLevel level);
 
@@ -30,6 +31,8 @@ namespace eng {
 		void fix(Car* car);
 
 		virtual void update(Component* component) = 0;
+
+        void topUpBudget(int cash);
     };
 }
 

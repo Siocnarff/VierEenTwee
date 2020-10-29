@@ -11,7 +11,7 @@ void Department::setRiskLevel(log::RiskLevel level) {
         riskLevel = new Safe();
     } else if (level == log::Moderate) {
         riskLevel = new Moderate();
-    } else {
+    } else if (level == log::Aggressive) {
         riskLevel = new Aggressive();
     }
 }
@@ -31,9 +31,15 @@ Department::Department(Department *next) {
     nextDepartment = next;
 }
 
-void Department::addSpecialist(ppl::Person *specialist) {
+void Department::addSpecialist(ppl::Person *specialist, bool printResults) {
     specialists.push_back(specialist);
-    std::cout << departmentName << " hired a new specialist:\n";
-    specialist->printResume();
-    std::cout << std::endl;
+    if (printResults) {
+        std::cout << departmentName << " hired a new specialist:\n";
+        specialist->printResume();
+        std::cout << std::endl;
+    }
+}
+
+void Department::topUpBudget(int cash) {
+    budget += cash;
 }
