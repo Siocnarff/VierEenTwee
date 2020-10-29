@@ -6,8 +6,8 @@
 class AggressiveStrategy :public CreateStrategy 
 {
 public:
-	AggressiveStrategy();
-	CreateStrategy* execute(int p,int* t,int risk);
+	AggressiveStrategy(int p,int* t,int risk);
+	CreateStrategy* execute();
 	
 };
 

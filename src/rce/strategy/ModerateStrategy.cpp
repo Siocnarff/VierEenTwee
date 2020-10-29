@@ -8,7 +8,8 @@ CreateStrategy* ModerateStrategy::execute()
 ModerateStrategy::ModerateStrategy(int p,int* t,int risk) 
 {
 	cout<<"The startegists have decided to implement a moderate strategy"<<endl;
-	Pitstops=p;
-	tyres=t;
-	riskLevel=risk;
+    SetPitstops(p);
+    SetTyres(t);
+    SetRiskLevel(risk);
+    SetStratName("Moderate");
 }
