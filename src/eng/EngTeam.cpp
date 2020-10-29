@@ -86,19 +86,25 @@ void EngTeam::registerForSeason(log::Mediator *mediator) {
     this->logisticsDep = mediator;
 }
 
-int EngTeam::buildCar(int budget, log::RiskLevel riskLevel) {
-    briefDepartments(budget, riskLevel);
+int EngTeam::buildCar(int budget) {
+    cashUpDeps(budget);
     int id = carIdGenerator++;
     department[0]->build(new Car(id));
     return id;
 }
 
-void EngTeam::briefDepartments(int cash, log::RiskLevel riskLevel) {
+void EngTeam::cashUpDeps(int cash) {
     for (auto &dep : department) {
-        dep->setRiskLevel(riskLevel);
         dep->topUpBudget(cash);
     }
 }
+
+void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
+    for (auto &dep : department) {
+        dep->setRiskLevel(riskLevel);
+    }
+}
+
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
@@ -119,7 +125,7 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
     throw "Not yet implemented";
 }
 
-void EngTeam::setRiskLevel(Risk *riskLevel) {
+void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
     innovation = riskLevel;
 }
 
