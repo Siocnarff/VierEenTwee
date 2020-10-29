@@ -5,7 +5,6 @@
 #include <iostream>
 #include <factories/HireProfessional.h>
 #include "eng/EngTeam.h"
-#include "log/races/RacesList.h"
 #include "log/Logistics.h"
 
 int ppl::Person::idCounter = 0;
