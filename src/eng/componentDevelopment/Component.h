@@ -5,11 +5,11 @@
 
 namespace eng {
 	class Component {
-
+	friend class Car;
 	private:
-		int quality;
-		int damage;
-		int qualityLabel;
+		int quality = 0;
+		int damage = 0;
+		int qualityLabel = 0;
 
 	public:
 		int getQualityLabel();
