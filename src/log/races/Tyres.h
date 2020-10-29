@@ -5,11 +5,17 @@
 #ifndef SRC_TYRES_H
 #define SRC_TYRES_H
 
+#include <list>
+
 namespace rce {
     class Tyres {
-        //What is important to have in the tyres?
+    private:
+        std::list<Tyres*> tyres;
 
-        //Why are my tyres green?
+    public:
+        Tyres();
+        ~Tyres();
+        Tyres* getTyres(int);
 
     };
 }

@@ -4,11 +4,11 @@ CarState::CarState(RaceWeekend * r) {
 	this->race = r;
 }
 
-int CarState::getDamage() {
+int racing::CarState::getDamage() {
 	return this->damage;
 }
 
-void CarState::setDamage(int damage) {
+void racing::CarState::setDamage(int damage) {
 	this->damage = damage;
 }
 
