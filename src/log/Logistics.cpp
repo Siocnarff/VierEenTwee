@@ -8,6 +8,8 @@
 #include "Logistics.h"
 #include "RacesList.h"
 
+#include "log/races/Aggregate.h"
+
 using namespace log;
 
 /**
@@ -41,27 +43,47 @@ void Logistics::registerNotifier(Colleague *colleague) {
 
 }
 
+/*
+Race Template:
+#races
+RaceName as a string
+TrackComplexity as int in [0,3]
+InEurope as int in [0,1]
+Numbers of laps (int)
+Lyne 2-4 sal herhaal word vir die #races
+*/
+
+#include <fstream>
+#include <sstream>
+
+/**
+ * ERROR! FILE PATH HARD CODED
+ * ERROR! WON'T DO NEW LINES
+ */
 void Logistics::putRacesIntoCalender() {
     racingCalendar = new RacesList;
-    /*
-     * include <fstream>
-std::ifstream infile("thefile.txt");
 
-     #include <sstream>
-#include <string>
+    try{
+        std::ifstream infile("/home/jo-anne/Documents/VierEenTwee/src/log/races/raceData.txt");
+        int numRaces;
+        infile >> numRaces;
 
-std::string line;
-while (std::getline(infile, line))
-{
-    std::istringstream iss(line);
-    int a, b;
-    if (!(iss >> a >> b)) { break; } // error
-
-    // process pair (a,b)
-}
-
-     *
-     */
+        std::string name;
+        int complexity;
+        bool inEurope;
+        int laps;
+        getline(infile, name); //to remove first random /n
+        for (int i = 0; i < numRaces; ++i) {
+            infile >> name;
+            infile >> complexity;
+            infile >> inEurope;
+            infile >> laps;
+            Race* newRace = new Race(name, complexity, inEurope, laps);
+            racingCalendar->addRace(newRace);
+        }
+    }catch(std::ifstream::failure e){ //exception e
+        cout << "There was a file-reading error !\n";
+    }
     cout << "put races into calender" << endl;
 }
 

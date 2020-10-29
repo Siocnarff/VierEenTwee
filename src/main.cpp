@@ -21,7 +21,6 @@ void testBasicIntegration() {
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;
-
     a->registerNotifier(racingDept);
 //    cout << "Regestered RacingTeam" << endl;
 //    cout << "---------------------" << endl;
@@ -45,11 +44,12 @@ void testBasicIntegration() {
 
 void testIterator(){
     std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
-    TrackComplexity complexity[5] = {Difficult, Easy, Extreme, Average, Easy};
-    bool european[5] = {1,0,1,1,0};
+    int complexity[5] = {2, 0, 3, 1, 0};
+    bool european[5] = {true,false,true,true,false};
+    int laps[5] = {32,14,56,67,20};
     RacesList* raceList = new RacesList;
     for (int i = 0; i < 5; ++i) {
-        raceList->addRace(new Race(names[i], complexity[i], european[i]));
+        raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
     }
 
     Race* temp = raceList->getHeadRace();
@@ -64,7 +64,7 @@ void testIterator(){
     }
     std::cout << std::endl;
 
-    raceList->addRace(new Race("vantance", Easy, 0));
+    raceList->addRace(new Race("vantance", 0, 0, 16));
     for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
         std::cout << t.currentItem()->getLocation() << std::endl;
     }
@@ -114,7 +114,17 @@ int main () {
         std::cout << std::endl;
     }*/
 
-    testBasicIntegration();
+//    testBasicIntegration();
+
+    auto* racingDept = new RacingDept();
+    auto* engDept = new eng::EngTeam();
+    auto* a = new Logistics;
+
+    a->registerNotifier(racingDept);
+
+    a->registerNotifier(engDept);
+
+    a->doYearPlanning();
 
 //    testIterator();
 
