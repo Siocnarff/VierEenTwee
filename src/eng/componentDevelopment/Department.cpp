@@ -16,16 +16,6 @@ void Department::setRiskLevel(log::RiskLevel level) {
     }
 }
 
-void Department::build(Car *car) {
-    // TODO - implement Department::build
-    throw "Not yet implemented";
-}
-
-void Department::fix(Car *car) {
-    // TODO - implement Department::fix
-    throw "Not yet implemented";
-}
-
 Department::Department(Department *next) {
     riskLevel = new Moderate();
     nextDepartment = next;
