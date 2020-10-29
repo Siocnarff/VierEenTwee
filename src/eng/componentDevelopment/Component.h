@@ -2,6 +2,7 @@
 #define DEV_COMPONENT_H
 
 #include "Blueprint.h"
+#include <iostream>
 
 namespace eng {
 	class Component {
@@ -11,7 +12,10 @@ namespace eng {
 		int damage = 0;
 		int qualityLabel = 0;
 
-	public:
+    protected:
+        explicit Component(Component* component);
+
+    public:
 		int getQualityLabel();
 
 		void setQualityLabel(int qualityLabel);
@@ -21,7 +25,9 @@ namespace eng {
 		Blueprint* createBlueprint();
 
 		void rebuildComponent(Blueprint* plan);
-	};
+
+        virtual Component *clone() = 0;
+    };
 }
 
 #endif

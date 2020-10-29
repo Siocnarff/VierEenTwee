@@ -3,6 +3,11 @@
 using namespace eng;
 
 void Body::print() {
-	// TODO - implement Body::print
-	throw "Not yet implemented";
+	std::cout << "Body" << std::endl;
 }
+
+Component *Body::clone() {
+    return new Body(this);
+}
+
+Body::Body(Component *toClone) : Component(toClone) {}

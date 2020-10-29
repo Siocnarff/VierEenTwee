@@ -3,6 +3,11 @@
 using namespace eng;
 
 void ElectricHarness::print() {
-	// TODO - implement ElectricHarness::print
-	throw "Not yet implemented";
+	std::cout << "Electric Harness" << std::endl;
+}
+
+ElectricHarness::ElectricHarness(Component *toClone) : Component(toClone) {}
+
+Component *ElectricHarness::clone() {
+    return new ElectricHarness(this);
 }

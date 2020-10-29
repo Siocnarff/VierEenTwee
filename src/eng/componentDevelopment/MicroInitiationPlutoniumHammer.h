@@ -5,9 +5,13 @@
 
 namespace eng {
 	class MicroInitiationPlutoniumHammer : public Component {
+    private:
+        explicit MicroInitiationPlutoniumHammer(Component * toClone);
 
-	public:
-		void print() final;
+    public:
+        void print() final;
+
+        Component* clone() final;
 	};
 }
 
