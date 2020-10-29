@@ -125,10 +125,6 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
     throw "Not yet implemented";
 }
 
-void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
-    innovation = riskLevel;
-}
-
 void EngTeam::toggleTransparency() {
     transparent = !transparent;
 }
