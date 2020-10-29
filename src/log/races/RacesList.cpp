@@ -24,15 +24,11 @@ void RacesList::addRace(Race *race) {
         while (temp->nextRace() != nullptr) {
             temp = temp->nextRace();
         }
-        temp->setNextRace(race);
-        race->setPrevRace(temp);
+        temp->setNextRace(race); //temp.next = race and race.prev = temp
+        //race->setPrevRace(temp); //race.prev = temp and temp.next = race
     }
     ++numRaces;
 }
-
-/*Race *RacesList::removeRace() {
-    return nullptr;
-}*/
 
 bool RacesList::isEmpty() {
     return (headRace== nullptr);
@@ -63,5 +59,22 @@ int RacesList::getNumRaces() {
     return numRaces;
 }
 
+void RacesList::printList() {
+    Race* temp = headRace;
+    if (isEmpty()) {
+        return;
+    }
+    else {
+        while (temp != nullptr) {
+            //std::cout << temp;
+            std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:" << temp->getRaceDayWeather() << std::endl;
+            temp = temp->nextRace();
+        }
+    }
 
+}
+
+/*Race *RacesList::removeRace() {
+    return nullptr;
+}*/
 

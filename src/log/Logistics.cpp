@@ -68,10 +68,7 @@ void Logistics::putRacesIntoCalender() {
         int numRaces;
         infile >> numRaces;
 
-        std::string name;
-        int complexity;
-        bool inEurope;
-        int laps;
+        std::string name; int complexity; bool inEurope; int laps;
         getline(infile, name); //to remove first random /n
         for (int i = 0; i < numRaces; ++i) {
             std::getline(infile, name);
@@ -89,7 +86,7 @@ void Logistics::putRacesIntoCalender() {
 
     racingCalendar->printList();
 
-    cout << "put races into calender" << endl;
+
 }
 
 

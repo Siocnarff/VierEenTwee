@@ -118,6 +118,7 @@ int main () {
 
     auto* racingDept = new RacingDept();
     auto* engDept = new eng::EngTeam();
+    engDept->toggleVerbose();
     auto* a = new Logistics;
 
     a->registerNotifier(racingDept);
