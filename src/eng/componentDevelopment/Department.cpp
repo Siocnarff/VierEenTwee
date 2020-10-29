@@ -37,3 +37,7 @@ void Department::addSpecialist(ppl::Person *specialist) {
     specialist->printResume();
     std::cout << std::endl;
 }
+
+void Department::topUpBudget(int cash) {
+    budget += cash;
+}
