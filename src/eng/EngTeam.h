@@ -15,8 +15,8 @@ namespace eng {
     class EngTeam : public log::Colleague {
 
     private:
+        bool transparent = false;
         int carIdGenerator = 0;
-        int improvementBudget = 0;
         Garage garage;
         BlueprintStore blueprint;
         WindTunnel windTunnel;
@@ -43,6 +43,8 @@ namespace eng {
         Car *checkCarOutOfFactory(int id);
 
         void setRiskLevel(Risk *riskLevel);
+
+        void toggleTransparency();
     };
 }
 

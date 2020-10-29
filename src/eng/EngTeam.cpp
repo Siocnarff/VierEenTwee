@@ -70,12 +70,12 @@ void EngTeam::hireEmployees(int budget) {
     srandom(time(nullptr));
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[3]->addSpecialist(humanResources->hire(secretJobs[random() % 5]));
+            department[3]->addSpecialist(humanResources->hire(secretJobs[random() % 5]), transparent);
         }
-        department[4]->addSpecialist(humanResources->hire(bodyJobs[random() % 5]));
-        department[2]->addSpecialist(humanResources->hire(electricalJobs[random() % 5]));
-        department[1]->addSpecialist(humanResources->hire(engineJobs[random() % 5]));
-        department[0]->addSpecialist(humanResources->hire(chassisJobs[random() % 5]));
+        department[4]->addSpecialist(humanResources->hire(bodyJobs[random() % 5]), transparent);
+        department[2]->addSpecialist(humanResources->hire(electricalJobs[random() % 5]), transparent);
+        department[1]->addSpecialist(humanResources->hire(engineJobs[random() % 5]), transparent);
+        department[0]->addSpecialist(humanResources->hire(chassisJobs[random() % 5]), transparent);
     }
 }
 
@@ -118,4 +118,8 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
 
 void EngTeam::setRiskLevel(Risk *riskLevel) {
     innovation = riskLevel;
+}
+
+void EngTeam::toggleTransparency() {
+    transparent = !transparent;
 }

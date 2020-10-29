@@ -22,7 +22,7 @@ namespace eng {
 	public:
 	    explicit Department(Department* next);
 
-	    void addSpecialist(ppl::Person* specialist);
+	    void addSpecialist(ppl::Person *specialist, bool printResults = false);
 
 		void setRiskLevel(log::RiskLevel level);
 
