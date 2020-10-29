@@ -8,6 +8,9 @@
 #include <enums/TrackComplexity.h>
 #include <enums/WeatherConditions.h>
 
+/**
+ * @author Berné
+ */
 namespace log {
     class Race {
     private:
