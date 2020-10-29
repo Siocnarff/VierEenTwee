@@ -237,7 +237,7 @@ void Logistics::toggleTransparency() {
 
 void Logistics::informStrategyChanged(rce::Strategy *newStrats) {
     currentTeamStrategy = newStrats;
-    callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
+    //callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 }
 
 

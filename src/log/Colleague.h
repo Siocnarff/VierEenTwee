@@ -26,6 +26,8 @@ namespace log {
 
         void notify(rce::Strategy*);
 
+        void notify(int* tyreCompoundOrder); // list of 3
+
         virtual void hireEmployees(int) = 0;
 
     private:
