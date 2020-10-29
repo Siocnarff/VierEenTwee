@@ -5,7 +5,7 @@
 
 namespace ppl {
 	class Student : public Person {
-        Student(std::string n, bool d, int s);
+        Student(std::string name, bool hasDegree, int skillLevel);
 	};
 }
 

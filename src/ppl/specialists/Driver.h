@@ -12,7 +12,7 @@ class Driver : public Person {
 		std::vector<int> homeTracks;
 
 	public:
-        Driver(std::string n, bool d, int s);
+        Driver(std::string name, bool hasDegree, int skillLevel);
 
         void addHomeTrack(int trackId);
 
