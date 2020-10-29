@@ -2,6 +2,7 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include "races/Tyres.h"
 #include "Box.h"
 using namespace log;
 

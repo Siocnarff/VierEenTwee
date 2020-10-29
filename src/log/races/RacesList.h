@@ -18,7 +18,6 @@ namespace log {
 //    RaceIterator createIterator() override;
         RacesList();
 
-        //RaceIterator createIterator();
         void addRace(Race *);
 
         //Race* removeRace();
@@ -30,8 +29,11 @@ namespace log {
 
         RaceIterator end();
 
+        int getNumRaces();
+
     private:
         Race *headRace; //ie. head
+        int numRaces;
     };
 
 }

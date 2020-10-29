@@ -6,12 +6,29 @@
 #include "transportation/Ship.h"
 #include "transportation/Road.h"
 #include "Logistics.h"
+#include "RacesList.h"
 
 using namespace log;
 
+/**
+ * @author Berné
+ * @status Done
+ */
+Logistics::Logistics() {
+
+    driver = nullptr;
+    transportManager = nullptr;
+    raceIterator = nullptr;
+    racingCalendar = nullptr;
+    europeanContainer = nullptr;
+    currentTeamStrategy = nullptr;
+    seasonPointTally = -1;
+    budget = -1;
+}
 
 /**
  * @author Berné
+ * @status done
  */
 void Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;
@@ -23,23 +40,55 @@ void Logistics::registerNotifier(Colleague *colleague) {
     colleague->addObserver(this);
 
 }
+
+void Logistics::putRacesIntoCalender() {
+    racingCalendar = new RacesList;
+    /*
+     * include <fstream>
+std::ifstream infile("thefile.txt");
+
+     #include <sstream>
+#include <string>
+
+std::string line;
+while (std::getline(infile, line))
+{
+    std::istringstream iss(line);
+    int a, b;
+    if (!(iss >> a >> b)) { break; } // error
+
+    // process pair (a,b)
+}
+
+     *
+     */
+    cout << "put races into calender" << endl;
+}
+
+
 /**
  * @author Berné
  */
 void Logistics::doYearPlanning() {
-
     //1. getBudget from "Sponsors"
     budget = abs(rand()%100+1);
+    
     //2. Hire for all departments
     for( auto const& [key, val] : departments )
     {
         val->hireEmployees(budget);
     }
+    
     //3. putRacesIntoCalender();
     putRacesIntoCalender();
+    
     //4. hire driver
     driver = new ppl::Driver("Fluffy McAllen", 0, 0);
+    
     //5. Set home tracks
+    for (int i = 0; i < abs(rand()%5)+1; ++i) { //interval [1,5]
+        driver->addHomeTrack(abs(rand()% racingCalendar->getNumRaces())); //pick one of number of races
+    }
 
     //6. hire transportManager
     transportManager = new Road();
@@ -47,6 +96,7 @@ void Logistics::doYearPlanning() {
     transportManager->addAMethod(new Fly);
 
 }
+
 
 void Logistics::preSeasonPreparation() {
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
@@ -123,10 +173,6 @@ void Logistics::SimulateEvent(Race *) {
     //callRacingDept;
 }
 
-void Logistics::putRacesIntoCalender() {
-    cout << "put races into calender" << endl;
-}
-
 /**
  * @author Berné
  */
@@ -141,12 +187,5 @@ eng::EngTeam *Logistics::callEngDept() {
     return dynamic_cast<eng::EngTeam*>(departments['e']);
 }
 
-/**
- * @author Berné
- */
-Logistics::Logistics() {
-    transportManager = new Fly();
-    transportManager->addAMethod(new Ship);
-    transportManager->addAMethod(new Road);
-}
+
 

@@ -12,6 +12,7 @@ using namespace log;
 
 RacesList::RacesList() {
     headRace = nullptr;
+    numRaces = 0;
 }
 
 //IS DONE?
@@ -26,6 +27,7 @@ void RacesList::addRace(Race *race) {
         temp->setNextRace(race);
         race->setPrevRace(temp);
     }
+    ++numRaces;
 }
 
 /*Race *RacesList::removeRace() {
@@ -51,6 +53,14 @@ RaceIterator RacesList::end() {
 
 Race *RacesList::getHeadRace() const {
     return headRace;
+}
+
+/**
+ * @return numRaces
+ * @author Berné
+ */
+int RacesList::getNumRaces() {
+    return numRaces;
 }
 
 
