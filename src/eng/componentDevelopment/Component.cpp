@@ -20,3 +20,8 @@ void Component::rebuildComponent(Blueprint* plan) {
 	// TODO - implement Component::rebuildComponent
 	throw "Not yet implemented";
 }
+
+Component::Component(Component *component) {
+    quality = component->quality;
+    qualityLabel = component->qualityLabel;
+}

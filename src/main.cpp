@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <factories/HireProfessional.h>
+#include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
