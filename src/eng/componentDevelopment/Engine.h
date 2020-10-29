@@ -5,10 +5,13 @@
 
 namespace eng {
 	class Engine : public Component {
+    private:
+        explicit Engine(Component *toClone);
 
-	public:
-		void print() final;
-	};
+    public:
+        void print() final;
+
+        Component *clone() final;
+    };
 }
-
 #endif

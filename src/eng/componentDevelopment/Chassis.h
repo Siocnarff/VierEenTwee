@@ -5,9 +5,13 @@
 
 namespace eng {
 	class Chassis : public Component {
+    private:
+        explicit Chassis(Component * toClone);
 
-	public:
-		void print() final;
+    public:
+        void print() final;
+
+        Component* clone() final;;
 	};
 }
 

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <factories/HireProfessional.h>
+#include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
@@ -14,6 +14,7 @@ using namespace eng;
 
 int main () {
     EngTeam engTeam;
+    engTeam.toggleTransparency();
     engTeam.hireEmployees(49);
 
     /*auto** factories = new ppl::HumanResources*[3];
