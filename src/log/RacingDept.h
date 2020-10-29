@@ -13,31 +13,30 @@
 #include "Strategy.h"
 #include "Colleague.h"
 
-namespace log {
-    class RacingDept : public log::Colleague {
-    public:
-        void hireEmployees(int budget) override;
 
-        Strategy *PlanSeasonStrategy(int budget);
+class RacingDept : public log::Colleague {
+public:
+    void hireEmployees(int budget) override;
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+    rce::Strategy *PlanSeasonStrategy(int budget);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, TrackComplexity);
+    ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
+    ppl::Driver *trainDriver(ppl::Driver *, int time, log::TrackComplexity);
 
-        void preRaceArrival(eng::Car *, ppl::Driver *, Race *, Container *);
+    ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
 
-        int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-        Container *postRacePackUp();
+    void preRaceArrival(eng::Car *, ppl::Driver *, log::Race *, log::Container *);
 
-    private:
-        eng::Car *car;
-        ppl::Driver *driver;
-        Container *container;
-        Race *race;
+    int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+    log::Container *postRacePackUp();
 
-    };
-}
+private:
+    eng::Car *car;
+    ppl::Driver *driver;
+    log::Container *container;
+    log::Race *race;
+
+};
 
 #endif //PREMODELLING_RACINGDEPT_H
