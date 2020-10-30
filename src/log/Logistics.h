@@ -20,7 +20,7 @@ namespace log {
     public:
         Logistics();
 
-        eng::EngTeam registerNotifier(Colleague *);
+        void registerNotifier(Colleague *);
 
         void doYearPlanning();
 
@@ -63,7 +63,7 @@ namespace log {
         vector<int> carsInSeasonIDs;
         vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
-        Strategy *currentTeamStrategy;
+        rce::CreateStrategy *currentTeamStrategy;
 
         int seasonPointTally;
         int budget;

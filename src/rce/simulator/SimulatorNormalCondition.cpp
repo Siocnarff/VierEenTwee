@@ -1,6 +1,6 @@
 #include "SimulatorNormalCondition.h"
 
-namespace rce {
+using namespace rce;
     void SimulatorNormalCondition::SimulateWeather() {
         int xp = 0;
         std::cout << "Driver using simulator to train in normal conditions" << std::endl;
@@ -11,4 +11,3 @@ namespace rce {
     SimulatorNormalCondition::SimulatorNormalCondition() {
 
     }
-}

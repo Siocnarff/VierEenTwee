@@ -5,12 +5,14 @@
 #include "RacingDept.h"
 #include <iostream>
 
+using namespace log;
+
 void RacingDept::hireEmployees(int budget) {
 
 }
 
-Strategy *RacingDept::PlanSeasonStrategy(int budget) {
-    return new Strategy(budget);
+rce::CreateStrategy *RacingDept::PlanSeasonStrategy(int budget) {
+    throw "not yet implemented";
 }
 
 

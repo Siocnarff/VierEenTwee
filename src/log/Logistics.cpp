@@ -9,7 +9,7 @@
 
 using namespace log;
 
-eng::EngTeam Logistics::registerNotifier(Colleague *colleague) {
+void Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));
@@ -118,11 +118,18 @@ eng::EngTeam *Logistics::callEngDept() {
 }
 
 /**
- * @author Berné
+ * @author Jo
  */
 Logistics::Logistics() {
     transportManager = new Fly();
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Road);
+}
+
+/*
+ * @author Jo
+ */
+void Logistics::toggleVerbose() {
+    verbose = !verbose;
 }
 

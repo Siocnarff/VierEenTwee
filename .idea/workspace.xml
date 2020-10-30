@@ -34,12 +34,31 @@
   <component name="ChangeListManager">
     <list default="true" id="b7f0bc22-7b8a-48ac-93d7-27914a80cdef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/23" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/33" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/34" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/35" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/37" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/38" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/40" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/41" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/Simulator.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/Simulator.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorHotCondition.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorHotCondition.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorNormalCondition.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorNormalCondition.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorWetCondition.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VierEenTwee.dir/src/rce/simulator/SimulatorWetCondition.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/log/Logistics.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/log/Logistics.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/log/Logistics.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/log/Logistics.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/log/RacingDept.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/log/RacingDept.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarState.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/simulator/Simulator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/simulator/Simulator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/simulator/Simulator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/simulator/Simulator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/simulator/SimulatorNormalCondition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/simulator/SimulatorNormalCondition.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603895896857</updated>
       <workItem from="1603895898044" duration="1761000" />
-      <workItem from="1603916064070" duration="27913000" />
+      <workItem from="1603916064070" duration="28871000" />
     </task>
     <servers />
   </component>
@@ -112,10 +131,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="721" y="208" width="468" height="704" key="#com.intellij.ide.util.MemberChooser" timestamp="1604045542218">
+    <state x="721" y="208" width="468" height="704" key="#com.intellij.ide.util.MemberChooser" timestamp="1604048952492">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state x="721" y="208" width="468" height="704" key="#com.intellij.ide.util.MemberChooser/0.34.1920.1046@0.34.1920.1046" timestamp="1604045542218" />
+    <state x="721" y="208" width="468" height="704" key="#com.intellij.ide.util.MemberChooser/0.34.1920.1046@0.34.1920.1046" timestamp="1604048952492" />
     <state x="627" y="247" width="655" height="626" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604047370068">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
@@ -128,22 +147,22 @@
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
     <state x="690" y="258" width="530" height="605" key="FileChooserDialogImpl/0.34.1920.1046@0.34.1920.1046" timestamp="1603940628330" />
-    <state width="869" height="950" key="GridCell.Tab.0.bottom" timestamp="1604045701934">
+    <state width="869" height="884" key="GridCell.Tab.0.bottom" timestamp="1604049158531">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state width="869" height="950" key="GridCell.Tab.0.bottom/0.34.1920.1046@0.34.1920.1046" timestamp="1604045701934" />
-    <state width="869" height="950" key="GridCell.Tab.0.center" timestamp="1604045701932">
+    <state width="869" height="884" key="GridCell.Tab.0.bottom/0.34.1920.1046@0.34.1920.1046" timestamp="1604049158531" />
+    <state width="869" height="884" key="GridCell.Tab.0.center" timestamp="1604049158530">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state width="869" height="950" key="GridCell.Tab.0.center/0.34.1920.1046@0.34.1920.1046" timestamp="1604045701932" />
-    <state width="869" height="950" key="GridCell.Tab.0.left" timestamp="1604045701931">
+    <state width="869" height="884" key="GridCell.Tab.0.center/0.34.1920.1046@0.34.1920.1046" timestamp="1604049158530" />
+    <state width="869" height="884" key="GridCell.Tab.0.left" timestamp="1604049158529">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state width="869" height="950" key="GridCell.Tab.0.left/0.34.1920.1046@0.34.1920.1046" timestamp="1604045701931" />
-    <state width="869" height="950" key="GridCell.Tab.0.right" timestamp="1604045701933">
+    <state width="869" height="884" key="GridCell.Tab.0.left/0.34.1920.1046@0.34.1920.1046" timestamp="1604049158529" />
+    <state width="869" height="884" key="GridCell.Tab.0.right" timestamp="1604049158531">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>
-    <state width="869" height="950" key="GridCell.Tab.0.right/0.34.1920.1046@0.34.1920.1046" timestamp="1604045701933" />
+    <state width="869" height="884" key="GridCell.Tab.0.right/0.34.1920.1046@0.34.1920.1046" timestamp="1604049158531" />
     <state width="1864" height="321" key="GridCell.Tab.1.bottom" timestamp="1604045683947">
       <screen x="0" y="34" width="1920" height="1046" />
     </state>

@@ -20,7 +20,7 @@ int Simulator::getTrackDifficulty()
 	return trackDifficulty;
 }
 
-string Simulator::getWeather()
+std::string Simulator::getWeather()
 {
 	return weather;
 }
@@ -35,7 +35,7 @@ void Simulator::setDriver(ppl::Driver* d)
 	driver=d;
 }
 
-void Simulator::setWeather(string w)
+void Simulator::setWeather(std::string w)
 {
 	weather=w;
 }

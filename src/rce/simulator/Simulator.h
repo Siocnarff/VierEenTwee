@@ -9,7 +9,7 @@ namespace rce {
     class Simulator {
     private:
         ppl::Driver *driver;
-        string weather;
+        std::string weather;
         int time;
         int trackDifficulty;
     public:
@@ -20,13 +20,13 @@ namespace rce {
 
         int getTrackDifficulty();
 
-        string getWeather();
+        std::string getWeather();
 
         ppl::Driver *getDriver();
 
         void setDriver(ppl::Driver *d);
 
-        void setWeather(string w);
+        void setWeather(std::string w);
 
         void setTime(int t);
 

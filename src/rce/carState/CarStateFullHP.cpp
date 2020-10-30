@@ -1,5 +1,7 @@
 #include "CarStateFullHP.h"
+
 using namespace rce;
+
 void CarStateFullHP::handleChange(int i, int d) {
 	if(d > 0 && d <90)
 	{

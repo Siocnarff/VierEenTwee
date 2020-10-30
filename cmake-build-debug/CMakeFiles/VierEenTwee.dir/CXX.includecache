@@ -36,22 +36,6 @@ buildings/WindTunnel.h
 vector
 -
 
-../src/eng/componentDevelopment/BodyDep.h
-Department.h
-../src/eng/componentDevelopment/Department.h
-../Car.h
-../src/eng/Car.h
-Component.h
-../src/eng/componentDevelopment/Component.h
-
-../src/eng/componentDevelopment/ChassisDep.h
-Department.h
-../src/eng/componentDevelopment/Department.h
-Component.h
-../src/eng/componentDevelopment/Component.h
-../Car.h
-../src/eng/Car.h
-
 ../src/eng/componentDevelopment/Component.h
 Blueprint.h
 ../src/eng/componentDevelopment/Blueprint.h
@@ -69,18 +53,6 @@ Risk.h
 ../src/eng/Car.h
 Component.h
 ../src/eng/componentDevelopment/Component.h
-
-../src/eng/componentDevelopment/ElectricDepartment.h
-Department.h
-../src/eng/componentDevelopment/Department.h
-
-../src/eng/componentDevelopment/EngineDep.h
-Department.h
-../src/eng/componentDevelopment/Department.h
-
-../src/eng/componentDevelopment/MicroTimeTravelDep.h
-Department.h
-../src/eng/componentDevelopment/Department.h
 
 ../src/eng/componentDevelopment/Risk.h
 
@@ -188,12 +160,6 @@ HumanResources.h
 HumanResources.h
 -
 
-../src/ppl/factories/KidnapStudent.h
-HumanResources.h
--
-Person.h
--
-
 ../src/ppl/specialists/Driver.h
 Person.h
 -
@@ -211,30 +177,6 @@ componentDevelopment/Component.h
 -
 ../../ppl/specialists/Driver.h
 /home/jo-anne/Documents/VierEenTwee/ppl/specialists/Driver.h
-
-/home/jo-anne/Documents/VierEenTwee/src/eng/EngTeam.cpp
-HumanResources.h
--
-factories/KidnapStudent.h
--
-factories/HireAmateur.h
--
-factories/HireProfessional.h
--
-componentDevelopment/BodyDep.h
--
-componentDevelopment/MicroTimeTravelDep.h
--
-componentDevelopment/ElectricDepartment.h
--
-componentDevelopment/EngineDep.h
--
-componentDevelopment/ChassisDep.h
--
-EngTeam.h
-/home/jo-anne/Documents/VierEenTwee/src/eng/EngTeam.h
-chrono
--
 
 /home/jo-anne/Documents/VierEenTwee/src/eng/EngTeam.h
 componentDevelopment/Department.h
@@ -286,18 +228,6 @@ Blueprint.h
 iostream
 -
 
-/home/jo-anne/Documents/VierEenTwee/src/log/Colleague.cpp
-Colleague.h
-/home/jo-anne/Documents/VierEenTwee/src/log/Colleague.h
-Mediator.h
-/home/jo-anne/Documents/VierEenTwee/src/log/Mediator.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/Colleague.h
-Car.h
-/home/jo-anne/Documents/VierEenTwee/src/log/Car.h
-races/Container.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Container.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/Logistics.cpp
 transportation/Fly.h
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/Fly.h
@@ -330,12 +260,6 @@ Car.h
 races/Container.h
 /home/jo-anne/Documents/VierEenTwee/src/log/races/Container.h
 
-/home/jo-anne/Documents/VierEenTwee/src/log/RacingDept.cpp
-RacingDept.h
-/home/jo-anne/Documents/VierEenTwee/src/log/RacingDept.h
-iostream
--
-
 /home/jo-anne/Documents/VierEenTwee/src/log/RacingDept.h
 enums/WeatherConditions.h
 -
@@ -354,12 +278,6 @@ Colleague.h
 
 /home/jo-anne/Documents/VierEenTwee/src/log/enums/RiskLevel.h
 
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Aggregate.h
-Race.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
-RaceIterator.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RaceIterator.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/races/Container.h
 string
 -
@@ -370,16 +288,6 @@ iostream
 Tyres.h
 /home/jo-anne/Documents/VierEenTwee/src/log/races/Tyres.h
 
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Iterator.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.cpp
-enums/TrackComplexity.h
--
-enums/WeatherConditions.h
--
-Race.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
 string
 -
@@ -388,47 +296,13 @@ enums/TrackComplexity.h
 enums/WeatherConditions.h
 -
 
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RaceIterator.cpp
-RaceIterator.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RaceIterator.h
-Race.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
-RacesList.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RacesList.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RaceIterator.h
-Iterator.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Iterator.h
-Race.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RacesList.cpp
-RacesList.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RacesList.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RacesList.h
-Aggregate.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Aggregate.h
-Race.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/Race.h
-RaceIterator.h
-/home/jo-anne/Documents/VierEenTwee/src/log/races/RaceIterator.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/races/Tyres.h
 
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Fly.cpp
-Fly.h
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Fly.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/Fly.h
 races/Race.h
 -
 TransportHandler.h
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/TransportHandler.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Road.cpp
-Road.h
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Road.h
 
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/Road.h
 races/Race.h
@@ -436,17 +310,9 @@ races/Race.h
 TransportHandler.h
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/TransportHandler.h
 
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Ship.cpp
-Ship.h
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/Ship.h
-
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/Ship.h
 races/Race.h
 -
-TransportHandler.h
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/TransportHandler.h
-
-/home/jo-anne/Documents/VierEenTwee/src/log/transportation/TransportHandler.cpp
 TransportHandler.h
 /home/jo-anne/Documents/VierEenTwee/src/log/transportation/TransportHandler.h
 
