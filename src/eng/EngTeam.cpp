@@ -89,7 +89,6 @@ void EngTeam::registerForSeason(log::Mediator *mediator) {
 int EngTeam::buildCar(int budget) {
     Car* prototype = garage.getPrototype();
     cashUpDeps(prototype ? budget : budget - 50);
-
     if (prototype) {
 
     }

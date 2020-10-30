@@ -3,18 +3,19 @@
 using namespace eng;
 
 void Garage::storeCar(Car *c) {
-    unsigned long storageLocation = lookup.size();
-    if(storageLocation < 20) {
-        car[storageLocation] = c;
-        lookup.push_back(c->getId());
-    } else {
-        throw "Garage is full!";
+    for (int i = 0; i < 20; ++i) {
+        if (lookup[i] == -1) {
+            car[i] = c;
+            lookup[i] = c->getId();
+        }
     }
+    throw "Garage is full!";
 }
 
 Car *Garage::retrieveCar(int id) {
-    for (int i = 0; i < lookup.size(); ++i) {
+    for (int i = 0; i < 20; ++i) {
         if (lookup[i] == id) {
+            lookup[i] = -1;
             return car[i];
         }
     }
@@ -22,8 +23,10 @@ Car *Garage::retrieveCar(int id) {
 }
 
 Car *Garage::getPrototype() {
-    if (lookup.empty()) {
-        return nullptr;
+    for (int i = 0; i < 20; ++i) {
+        if (lookup[i] != -1) {
+            return car[i];
+        }
     }
-    return car[lookup[0]];
+    return nullptr;
 }
