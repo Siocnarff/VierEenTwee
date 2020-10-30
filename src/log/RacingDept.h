@@ -10,10 +10,10 @@
 #include "Car.h"
 #include "races/Race.h"
 #include "../../ppl/specialists/Driver.h"
-#include "Strategy.h"
 #include "Colleague.h"
+#include "Strategy.h"
 
-namespace log {
+namespace rce {
     class RacingDept : public log::Colleague {
     public:
         void hireEmployees(int budget) override;
@@ -22,20 +22,20 @@ namespace log {
 
         ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, TrackComplexity);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::TrackComplexity);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
 
-        void preRaceArrival(eng::Car *, ppl::Driver *, Race *, Container *);
+        void preRaceArrival(eng::Car *, ppl::Driver *, log::Race *, log::Container *);
 
         int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-        Container *postRacePackUp();
+        log::Container *postRacePackUp();
 
     private:
         eng::Car *car;
         ppl::Driver *driver;
-        Container *container;
-        Race *race;
+        log::Container *container;
+        log::Race *race;
 
     };
 }

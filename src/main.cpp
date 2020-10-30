@@ -14,8 +14,8 @@ using namespace log;
 
 void testBasicIntegration() {
     auto* a = new Logistics;
-    auto* engDept = new eng::EngTeam(a);
-    auto* racingDept = new rce::RacingDept(a);
+    auto* engDept = new eng::EngTeam;
+    auto* racingDept = new rce::RacingDept;
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;
@@ -41,31 +41,31 @@ void testBasicIntegration() {
 }
 
 void testIterator(){
-    std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
-    int complexity[5] = {2, 0, 3, 1, 0};
-    bool european[5] = {true,false,true,true,false};
-    int laps[5] = {32,14,56,67,20};
-    RacesList* raceList = new RacesList;
-    for (int i = 0; i < 5; ++i) {
-        raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
-    }
-
-    Race* temp = raceList->getHeadRace();
-    while (temp!= NULL) {
-        std::cout << temp->getLocation() << std::endl;
-        temp = temp->nextRace();
-    }
-    std::cout << std::endl;
-
-    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        std::cout << t.currentItem()->getLocation() << std::endl;
-    }
-    std::cout << std::endl;
-
-    raceList->addRace(new Race("vantance", 0, 0, 16));
-    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        std::cout << t.currentItem()->getLocation() << std::endl;
-    }
+//    std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
+//    int complexity[5] = {2, 0, 3, 1, 0};
+//    bool european[5] = {true,false,true,true,false};
+//    int laps[5] = {32,14,56,67,20};
+//    RacesList* raceList = new RacesList;
+//    for (int i = 0; i < 5; ++i) {
+//        raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
+//    }
+//
+//    Race* temp = raceList->getHeadRace();
+//    while (temp!= NULL) {
+//        std::cout << temp->getLocation() << std::endl;
+//        temp = temp->nextRace();
+//    }
+//    std::cout << std::endl;
+//
+//    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
+//        std::cout << t.currentItem()->getLocation() << std::endl;
+//    }
+//    std::cout << std::endl;
+//
+//    raceList->addRace(new Race("vantance", 0, 0, 16));
+//    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
+//        std::cout << t.currentItem()->getLocation() << std::endl;
+//    }
 
 }
 

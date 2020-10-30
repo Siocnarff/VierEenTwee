@@ -66,7 +66,7 @@ add_executable(VierEenTwee
         src/eng/Car.cpp
         src/eng/Car.h
         src/eng/EngTeam.cpp
-        src/eng/EngTeam.h
+        #[[src/eng/EngTeam.h
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
@@ -124,5 +124,5 @@ add_executable(VierEenTwee
         src/ppl/HumanResources.cpp
         src/ppl/HumanResources.h
         src/ppl/Person.cpp
-        src/ppl/Person.h
+        src/ppl/Person.h]]
 )
