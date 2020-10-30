@@ -10,9 +10,16 @@ void BodyDep::build(Car* car) {
 	throw "Not yet implemented";
 }
 
-void BodyDep::fix(Car* car) {
-	// TODO - implement BodyDep::fix
-	throw "Not yet implemented";
+void BodyDep::fix(Car* car, bool transparent) {
+	int damage = fixComponent(car, 3);
+	if (transparent) {
+		if (damage == 0) {
+			std::cout << "Body is still nice and streamlined, sending car to next department." << std::endl;
+		} else {
+			std::cout << departmentName << " is ironing out all the wrinkles which made up about " << damage << "% of the surface." << std::endl;
+		}
+	}
+	Department::fix(car, transparent);
 }
 
 void BodyDep::update(Component* component) {

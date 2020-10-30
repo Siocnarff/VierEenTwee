@@ -111,8 +111,9 @@ void EngTeam::carArrivesAtFactory(Car *car) {
 }
 
 void EngTeam::fixCar(int id) {
-    // TODO - implement EngTeam::fixCar
-    throw "Not yet implemented";
+    if(department[0]){
+    	department[0]->fix(garage.retrieveCar(id), transparent);
+    }
 }
 
 void EngTeam::improveCar(int id) {

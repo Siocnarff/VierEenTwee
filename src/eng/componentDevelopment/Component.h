@@ -7,6 +7,7 @@
 namespace eng {
 	class Component {
 	friend class Car;
+	friend class Department;
 	private:
 		int quality = 0;
 		int damage = 0;

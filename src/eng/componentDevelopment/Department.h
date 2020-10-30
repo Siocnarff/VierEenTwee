@@ -28,11 +28,15 @@ namespace eng {
 
 		virtual void build(Car* car) = 0;
 
-		virtual void fix(Car* car) = 0;
+		virtual void fix(Car* car, bool transparent);
 
 		virtual void update(Component* component) = 0;
 
         void topUpBudget(int cash);
+
+        int fixComponent(Car*, int);
+
+        bool haveSpecialists();
     };
 }
 
