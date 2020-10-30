@@ -12,13 +12,18 @@ private:
 	int risklevel;
 	int* tyres=new int[3];// 3 compounds in pairs and a wet compound [soft,meduim,hard]//only 5 pairs per weekend
 	int Pitstops;//added
+	string StratName;
 public:
-	CreateStrategy* execute();
+	virtual CreateStrategy* execute()=0;
 	CreateStrategy();
-	int getRiskLevel();
 	void SetRiskLevel(int rl);
-	// void SetTyres();// only set in execute
+	void SetTyres(int* t);
 	void SetPitstops(int p);
+	void SetStratName(string s);
+    int getRiskLevel();
+    int* getTyres();
+    int getPitstops();
+    string getStratName();
 	// need some getters or make some of the members public
 };
 

@@ -13,7 +13,7 @@
 using namespace eng;
 
 void EngTeam::hireEmployees(int budget) {
-    std::cout << "Engineering team is hiring new employees..." << std::endl;
+    print("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -69,8 +69,8 @@ void EngTeam::hireEmployees(int budget) {
     department[0] = new ChassisDep(department[1]);
     // Hire for all departments if hirelings sufficiently skilled (implied by budget >= 50)
     time_t t = time(nullptr);
-    int time = (int)t;
-	srand(time);
+    int time = (int) t;
+    srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
             department[3]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
@@ -83,22 +83,28 @@ void EngTeam::hireEmployees(int budget) {
 }
 
 void EngTeam::registerForSeason(log::Mediator *mediator) {
-    this->logisticsDep = mediator;
+    logisticsDep = mediator;
 }
 
-int EngTeam::buildCar(int budget, log::RiskLevel riskLevel) {
-    briefDepartments(budget, riskLevel);
+int EngTeam::buildCar(int budget) {
+    cashUpDeps(budget);
     int id = carIdGenerator++;
     department[0]->build(new Car(id));
     return id;
 }
 
-void EngTeam::briefDepartments(int cash, log::RiskLevel riskLevel) {
-    for (auto & dep : department) {
-        dep->setRiskLevel(riskLevel);
+void EngTeam::cashUpDeps(int cash) {
+    for (auto &dep : department) {
         dep->topUpBudget(cash);
     }
 }
+
+void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
+    for (auto &dep : department) {
+        dep->setRiskLevel(riskLevel);
+    }
+}
+
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
@@ -119,10 +125,12 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
     throw "Not yet implemented";
 }
 
-void EngTeam::setRiskLevel(Risk *riskLevel) {
-    innovation = riskLevel;
-}
-
 void EngTeam::toggleTransparency() {
     transparent = !transparent;
+}
+
+void EngTeam::print(const std::string &message) const {
+    if (transparent) {
+        std::cout << message << std::endl;
+    }
 }

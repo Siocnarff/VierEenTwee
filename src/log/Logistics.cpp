@@ -42,7 +42,7 @@ void Logistics::preSeasonPreparation() {
 
     callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
     //order
-    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
+    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget)); //tyres
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
     testCar();
     getRaceIterator();
@@ -57,7 +57,7 @@ void Logistics::raceSeason() {
          * iter++;
          */
     //2 cars
-    callRacingDept()->preRaceArrival(new eng::Car, driver, new Race, new Container);
+    callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
     //
     seasonPointTally += callRacingDept()->RacingWeekend();
     callRacingDept()->postRacePackUp(); //execute

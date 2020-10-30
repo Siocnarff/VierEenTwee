@@ -9,28 +9,35 @@
 #include <enums/TrackComplexity.h>
 #include "Car.h"
 #include "races/Race.h"
-#include "Driver.h"
+#include "../../ppl/specialists/Driver.h"
 #include "Strategy.h"
 #include "Colleague.h"
 
+namespace log {
+    class RacingDept : public log::Colleague {
+    public:
+        void hireEmployees(int budget) override;
 
-class RacingDept : public log::Colleague {
-public:
-    void hireEmployees(int budget) override;
-    Strategy* PlanSeasonStrategy(int budget);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, TrackComplexity);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
-    void preRaceArrival(eng::Car*, ppl::Driver*, Race*, Container*);
-    int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-    Container* postRacePackUp();
+        Strategy *PlanSeasonStrategy(int budget);
 
-private:
-    eng::Car* car;
-    ppl::Driver* driver;
-    Container* container;
-    Race* race;
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
 
-};
+        ppl::Driver *trainDriver(ppl::Driver *, int time, TrackComplexity);
+
+        ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
+
+        void preRaceArrival(eng::Car *, ppl::Driver *, Race *, Container *);
+
+        int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+        Container *postRacePackUp();
+
+    private:
+        eng::Car *car;
+        ppl::Driver *driver;
+        Container *container;
+        Race *race;
+
+    };
+}
 
 #endif //PREMODELLING_RACINGDEPT_H

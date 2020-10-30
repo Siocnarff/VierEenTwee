@@ -9,24 +9,28 @@ void RacingDep::HireEmployees(int b)
 CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int riskLevel) 
 {
 	//safe ,moderate ,aggressive
-	CreateStrategy* strat;
+    if(strategy)
+    {
+        delete strategy;
+        strategy=NULL;
+    }
 	int* tyre=new int[3];
-	if(budeget<25)
+	if(budget<25)
 	{
 		if(weather=="rainy")
 		{	tyre[0]=3;
 			tyre[1]=2;
 			tyre[2]=0;
-			strat=new SafeStrategy(2,tyre,15);
-			return strat->execute();
+			strategy=new SafeStrategy(2,tyre,15);
+			return strategy->execute();
 		}
 		else
 		{
 			tyre[0]=2;
 			tyre[1]=3;
 			tyre[2]=0;
-			strat=new ModerateStrategy(2,tyre,30);
-			return strat->execute();
+            strategy=new ModerateStrategy(2,tyre,30);
+			return strategy->execute();
 		}
 	}
 	else if(budget>=25 && budget<50)
@@ -36,16 +40,16 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int risk
 			tyre[0]=3;
 			tyre[1]=2;
 			tyre[2]=0;
-			strat=new ModerateStrategy(2,tyre,45);
-			return strat->execute();
+            strategy=new ModerateStrategy(2,tyre,45);
+			return strategy->execute();
 		}
 		else 
 		{
 			tyre[0]=0;
 			tyre[1]=2;
 			tyre[2]=3;
-			strat=new AggressiveStrategy(1,tyre,60);
-			return strat->execute();
+            strategy=new AggressiveStrategy(1,tyre,60);
+			return strategy->execute();
 		}
 	}
 	else
@@ -55,16 +59,16 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int risk
 			tyre[0]=3;
 			tyre[1]=2;
 			tyre[2]=0;
-			strat=new ModerateStrategy(1,tyre,75);
-			return strat->execute();
+            strategy=new ModerateStrategy(1,tyre,75);
+			return strategy->execute();
 		}
 		else
 		{
 			tyre[0]=2;
 			tyre[1]=2;
 			tyre[2]=1;
-			strat=new AggressiveStrategy(2,tyre,90);
-			return strat->execute();
+            strategy=new AggressiveStrategy(2,tyre,90);
+			return strategy->execute();
 		}
 	}
 }
@@ -103,7 +107,7 @@ void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficu
 	}
 }
 
-void RacingDep::preRaceArrival(Car* c, ppl::Driver* d, Race* r, Container* con) 
+void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, Race* r, Container* con)
 {
 	// TODO - implement RacingDep::preRaceArrival
 	throw "Not yet implemented";

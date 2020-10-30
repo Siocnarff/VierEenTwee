@@ -8,7 +8,7 @@ Car::Car(int identification) {
     id = identification;
 }
 
-Car::Car (Car *car) {
+Car::Car(Car *car) {
     id = car->id;
     driver = car->driver;
     damage = car->damage;
@@ -42,13 +42,19 @@ void Car::removeDriver(ppl::Driver *driver) {
 }
 
 void Car::print() {
-    std::cout   << "CAR STATS:\n"
-                << "    id: " << id << std::endl
-                << "    Driver: " << (driver ? driver->getName() : "No Driver") << std::endl
-                << "    Damage: " << damage << std::endl
-                << "    Speed: " << getSpeed() << std::endl
-                << "    Handling: " << getHandling() << std::endl
-                << "----\n";
+    std::cout << "CAR STATS:\n"
+              << "    id: " << id << std::endl
+              << "    Driver: " << (driver ? driver->getName() : "No Driver") << std::endl
+              << "    Damage: " << damage << std::endl
+              << "    Components:" << std::endl;
+    for (auto &component : components) {
+        if (component) {
+            component->print();
+        }
+    }
+    std::cout << "    Speed: " << getSpeed() << std::endl
+              << "    Handling: " << getHandling() << std::endl
+              << "----\n";
 }
 
 int Car::getDriverXP() {
@@ -67,7 +73,6 @@ int Car::getId() const {
     return this->id;
 }
 
-void Car::clone() {
-    // TODO - implement Car::clone
-    throw "Not yet implemented";
+Car * Car::clone() {
+    return new Car(this);
 }

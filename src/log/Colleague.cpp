@@ -9,17 +9,17 @@ using namespace log;
 Colleague::~Colleague() = default;
 
 void Colleague::addObserver(Mediator *obs) {
-    observer = obs;
+    logisticsDep = obs;
 }
 
 void Colleague::notify(eng::Car *car) {
-    observer->sendCarToFactory(car);
+    logisticsDep->sendCarToFactory(car);
 }
 
 void Colleague::notify(Container *container) {
-    observer->containerHasBeenPacked(container);
+    logisticsDep->containerHasBeenPacked(container);
 }
 
 void Colleague::notify(bool isEuropeanRace) {
-    observer->requestContainerStateChange(isEuropeanRace);
+    logisticsDep->requestContainerStateChange(isEuropeanRace);
 }

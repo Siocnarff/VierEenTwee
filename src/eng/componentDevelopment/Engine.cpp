@@ -3,7 +3,7 @@
 using namespace eng;
 
 void Engine::print() {
-	std::cout << "Engine" << std::endl;
+    std::cout   << "        Engine Quality: " << getQualityLabel() << std::endl;
 }
 
 Engine::Engine(Component *toClone) : Component(toClone) {}
