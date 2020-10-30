@@ -8,7 +8,7 @@ using namespace rce;
 
 int RaceWeekend::RacingWeekend() {
     for (int i = 0; i < 3; i++) {
-        setDayWeather();
+//        setDayWeather();
         for (int n = 0; n < 2; n++) {
             if (CState[n]->getCarState() != "Broken") {
                 time[i] = 100;
@@ -47,7 +47,7 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 }//end of handling if
-                srand(time(NULL));
+                srand(0);//srand(time);
                 if (hometrack == true) {
                     time[n] -= rand() % 10 + 1;
                 }
@@ -66,7 +66,7 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 }//end of xp if
-                log::RiskLevel rl = getRiskLevel();
+                log::RiskLevel rl = strategy->getRiskLevel();
                 int dam;
                 int randval;
                 if (rl == log::Aggressive) {
@@ -126,8 +126,7 @@ int RaceWeekend::RacingWeekend() {
                 }
                 deel_Damage(n, dam);
                 if (CState[n]->getCarState() == "Broken") {
-                    notifyCar(int
-                    n);
+                    //notifyCar(int n);
                 } else {
                     if (CState[n]->getCarState() == "Broken" && CState[n]->getDamage() >= 80) {
                         time[n] += rand() % 5 + 1;
@@ -187,9 +186,9 @@ void RaceWeekend::setPitcrew(list<Pitcrew*> pitcrew) {
 	this->pitcrew = pitcrew;
 }*/
 
-void RaceWeekend::notifyCar(int i) {
+/*void RaceWeekend::notifyCar(int i) {
 
-}
+}*/
 
 int RaceWeekend::getTime(int i) {
     return this->time[i];
@@ -203,20 +202,20 @@ int RaceWeekend::getScore(int i) {
     return this->score[i];
 }
 
-void RaceWeekend::setScore(int score) {
+/*void RaceWeekend::setScore(int score) {
     //this->score[i] = score;
     throw "i not declared";
-}
+}*/
 
-RaceWeekend::RaceWeekend(eng::Car **cars, ppl::Driver **drivers, log::Race *r, strategy::CreateStategy *s,
-                         list<Pitcrew *> p, log::Container *c) {
+RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,
+                         std::list<PitCrew *> p, log::Container *c) {
     car = new eng::Car *[2];
-    driver = new eng::Driver *[2];
-    CState = new eng::CarState *[2];
+    driver = new ppl::Driver *[2];
+    CState = new CarState *[2];
     for (int i = 0; i < 2; i++) {
-        car[i] = cars[i];
-        driver[i] = drivers[i];
-        CState[i] = new CarState(this);
+        car[i] = &cars[i];
+        driver[i] = &drivers[i];
+        //CState[i] = new CarState(this);
 
     }
     this->raceConditions = r;
@@ -232,10 +231,6 @@ log::WeatherConditions RaceWeekend::getDayWeather() {
     return this->DayWeather;
 }
 
-void RaceWeekend::setDayWeather() {
-    DayWeather = raceConditions->getDayWeather();
-}
-
 CarState *RaceWeekend::getCState(int i) {
     return this->CState[i];
 }
@@ -246,5 +241,32 @@ void RaceWeekend::setCState(CarState *CState, int i) {
 }
 
 void RaceWeekend::deel_Damage(int i, int d) {
-    CState[i]->handleChange(d);
+//    CState[i]->handleChange(d);
+}
+
+/*
+RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s, std::list<PitCrew *> p,
+                         log::Container *c) {
+
+}
+*/
+
+std::list<PitCrew *> RaceWeekend::getPitcrew() {
+    return std::list<PitCrew *>();
+}
+
+void RaceWeekend::setPitcrew(std::list<PitCrew *> pitcrew) {
+
+}
+
+void RaceWeekend::notifyCarState(int i) {
+
+}
+
+void RaceWeekend::setScore(int score, int i) {
+
+}
+
+void RaceWeekend::setDayWeather(log::WeatherConditions *DayWeather) {
+
 }

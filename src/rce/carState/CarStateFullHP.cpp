@@ -3,7 +3,7 @@
 using namespace rce;
 
 void CarStateFullHP::handleChange(int i, int d) {
-    if (d > 0 && d < 90) {
+    /*if (d > 0 && d < 90) {
         setDamage(d);
         race->setCState(new)
 
@@ -11,7 +11,7 @@ void CarStateFullHP::handleChange(int i, int d) {
         if (d >= 90)
             race->setCState(new)
 
-    }
+    }*/
 }
 
 std::string CarStateFullHP::getCarState() {

@@ -7,7 +7,7 @@ using namespace rce;
 	throw "Not yet implemented";
 }*/
 
-void DriverPitStop::setCar(Car* c) {
+void DriverPitStop::setCar(eng::Car* c) {
 	this->car = c;
 }
 

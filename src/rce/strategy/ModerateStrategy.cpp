@@ -9,7 +9,7 @@ CreateStrategy* ModerateStrategy::execute()
 
 ModerateStrategy::ModerateStrategy(int p,int* t,int risk) 
 {
-	std::cout<<"The startegists have decided to implement a moderate strategy"<<std::endl;
+	std::cout<<"The strategists have decided to implement a moderate strategy"<<std::endl;
     SetPitstops(p);
     SetTyres(t);
     SetRiskLevel(risk);

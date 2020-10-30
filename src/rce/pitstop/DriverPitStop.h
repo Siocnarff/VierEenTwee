@@ -15,7 +15,7 @@ namespace rce {
 
         void setCar(eng::Car *car);
 
-        //void race();
+        void race();
     };
 }
 #endif

@@ -4,6 +4,7 @@
 
 #include <rce/strategy/CreateStrategy.h>
 #include <rce/leaderboard/Leaderboard.h>
+#include <log/Colleague.h>
 #include "PitCrew.h"
 
 namespace rce {

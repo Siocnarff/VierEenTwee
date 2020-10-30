@@ -21,5 +21,11 @@ void Colleague::notify(Container *container) {
 }
 
 void Colleague::notify(bool isEuropeanRace) {
-    logisticsDept->requestContainerStateChange(isEuropeanRace);
+    //logisticsDept->requestContainerStateChange(isEuropeanRace);
+    if (isEuropeanRace) {
+        std::cout << "Transportation in Europe\n";
+    } else {
+        std::cout << "Transportation outside of Europe\n";
+    }
+
 }

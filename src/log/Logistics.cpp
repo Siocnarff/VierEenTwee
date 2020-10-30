@@ -38,6 +38,7 @@ void Logistics::registerNotifier(Colleague *colleague) {
     if (typeid(*temp) == typeid(*colleague)) {
         departments.insert(pair<char, Colleague *>('e', colleague));
     } else {
+        colleague->notify(true);
         departments.insert(pair<char, Colleague *>('r', colleague));
     }
     colleague->addObserver(this);
@@ -95,7 +96,7 @@ void Logistics::preSeasonPreparation() {
     //moet meer spesifiek wees hierso.
     //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
     //Dalk kan ons dit volgens riskLevel doen
-//    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
+    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
 
     //order stuff
 
@@ -195,18 +196,22 @@ void Logistics::simulateEvent(Race *r) {
     transportManager->transport(nullptr, r, carInTransport);
 
     //get correct container and pre-race arrival
+/*
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
     }
     else {
         callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
     }
+*/
     //racing weekend finishes and get points
+/*
     int* temp = callRacingDept()->RacingWeekend();
     seasonPointTally[0]+= temp[0];
     seasonPointTally[1]+= temp[1];
+*/
     //finish the packup
-    Container* tCont = callRacingDept()->postRacePackUp(); //execute
+//    Container* tCont = callRacingDept()->postRacePackUp(); //execute
 }
 
 /**
@@ -250,8 +255,8 @@ void Logistics::putRacesIntoCalender() {
 }
 
 rce::RacingDep *Logistics::callRacingDept() {
-    //return dynamic_cast<rce::RacingDep *>(departments['r']);
-    return nullptr;
+    return dynamic_cast<rce::RacingDep *>(departments['r']);
+    //return nullptr;
 }
 
 eng::EngTeam *Logistics::callEngDept() {

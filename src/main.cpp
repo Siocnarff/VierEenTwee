@@ -15,7 +15,7 @@ int ppl::Person::idCounter = 0;
 void testBasicIntegration() {
     auto* a = new log::Logistics();
     auto* engDept = new eng::EngTeam();
-    auto* racingDept = new rce::RacingDep();
+//    auto* racingDept = new rce::RacingDep();
 /*
     a->registerNotifier(racingDept);
     a->registerNotifier(engDept);
@@ -27,7 +27,7 @@ void testBasicIntegration() {
 
     delete a;
     delete engDept;
-    delete racingDept;
+//    delete racingDept;
 }
 
 void testIterator(){
@@ -101,7 +101,7 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
-//    testBasicIntegration();
+    testBasicIntegration();
 
     /*auto *racingDept = new rce::RacingDep();
     auto *engTeam = new eng::EngTeam();
@@ -145,3 +145,5 @@ int main () {
 cmake-build-debug/
 src/.idea/
 */
+
+src/rce/RacingDep.h src/rce/carState/CarStateFullHP.cpp src/rce/leaderboard/Score.cpp src/rce/pitstop/DriverPitStop.cpp src/rce/pitstop/DriverPitStop.h src/rce/pitstop/Tyres.cpp src/rce/pitstop/Tyres.h rc/rce/strategy/CreateStrategy.cpp src/rce/strategy/CreateStrategy.h src/rce/strategy/ModerateStrategy.cpp src/rce/strategy/ModerateStrategy.h src/rce/strategy/SafeStrategy.h

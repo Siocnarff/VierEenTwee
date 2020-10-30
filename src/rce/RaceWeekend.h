@@ -42,8 +42,7 @@ namespace rce {
 
 
     public:
-        RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,
-                    list<PitCrew *> p, log::Container *c);
+        RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,std::list<PitCrew *> p, log::Container *c);
 
         int RacingWeekend();
 
@@ -59,7 +58,7 @@ namespace rce {
 
         void setContainer(log::Container *container);
 
-        list<PitCrew *> getPitcrew();
+        std::list<PitCrew *> getPitcrew();
 
         void setPitcrew(std::list<PitCrew *> pitcrew);
 
@@ -73,7 +72,7 @@ namespace rce {
 
         void setScore(int score, int i);
 
-        log::WeatherConditions *getDayWeather();
+        log::WeatherConditions getDayWeather();
 
         void setDayWeather(log::WeatherConditions *DayWeather);
 
