@@ -12,8 +12,6 @@
 
 using namespace eng;
 
-EngTeam::EngTeam(log::Mediator* mediator) : log::Colleague(mediator) {}
-
 void EngTeam::hireEmployees(int budget) {
     print("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
@@ -131,4 +129,8 @@ void EngTeam::print(const std::string &message) const {
     if (transparent) {
         std::cout << message << std::endl;
     }
+}
+
+void EngTeam::registerForSeason(log::Mediator* mediator) {
+    logistcsDep = mediator;
 }

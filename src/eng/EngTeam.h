@@ -26,12 +26,12 @@ namespace eng {
 
         void cashUpDeps(int cash);
 
-        void print(const std::string &message) const;
+        void print(const std::string& message) const;
 
     public:
-        explicit EngTeam(log::Mediator *mediator);
-
         void hireEmployees(int budget) override;
+
+        void registerForSeason(log::Mediator* mediator);
 
         int buildCar(int budget);
 

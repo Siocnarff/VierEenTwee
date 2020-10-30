@@ -5,6 +5,7 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
+#include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 

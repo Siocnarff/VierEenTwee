@@ -23,7 +23,3 @@ void Colleague::notify(Container *container) {
 void Colleague::notify(bool isEuropeanRace) {
     logistcsDep->requestContainerStateChange(isEuropeanRace);
 }
-
-Colleague::Colleague(Mediator *mediator) {
-    logistcsDep = mediator;
-}
