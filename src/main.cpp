@@ -146,4 +146,4 @@ cmake-build-debug/
 src/.idea/
 */
 
-src/rce/RacingDep.h src/rce/carState/CarStateFullHP.cpp src/rce/leaderboard/Score.cpp src/rce/pitstop/DriverPitStop.cpp src/rce/pitstop/DriverPitStop.h src/rce/pitstop/Tyres.cpp src/rce/pitstop/Tyres.h rc/rce/strategy/CreateStrategy.cpp src/rce/strategy/CreateStrategy.h src/rce/strategy/ModerateStrategy.cpp src/rce/strategy/ModerateStrategy.h src/rce/strategy/SafeStrategy.h
+//src/rce/RacingDep.h src/rce/carState/CarStateFullHP.cpp src/rce/leaderboard/Score.cpp src/rce/pitstop/DriverPitStop.cpp src/rce/pitstop/DriverPitStop.h src/rce/pitstop/Tyres.cpp src/rce/pitstop/Tyres.h rc/rce/strategy/CreateStrategy.cpp src/rce/strategy/CreateStrategy.h src/rce/strategy/ModerateStrategy.cpp src/rce/strategy/ModerateStrategy.h src/rce/strategy/SafeStrategy.h
