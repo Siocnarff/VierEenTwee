@@ -9,13 +9,15 @@ namespace eng {
 
 	private:
 		std::vector<int> lookup;
-        Car** car;
+        Car* car[20];
 
 	public:
 		void storeCar(Car* car);
 
 		Car* retrieveCar(int id);
-	};
+
+        Car *getPrototype();
+    };
 }
 
 #endif

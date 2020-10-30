@@ -87,15 +87,22 @@ void EngTeam::registerForSeason(log::Mediator *mediator) {
 }
 
 int EngTeam::buildCar(int budget) {
-    cashUpDeps(budget);
+    Car* prototype = garage.getPrototype();
+    cashUpDeps(prototype ? budget : budget - 50);
+
+    if (prototype) {
+
+    }
     int id = carIdGenerator++;
     department[0]->build(new Car(id));
     return id;
 }
 
 void EngTeam::cashUpDeps(int cash) {
-    for (auto &dep : department) {
-        dep->topUpBudget(cash);
+    if (cash > 0) {
+        for (auto &dep : department) {
+            dep->topUpBudget(cash);
+        }
     }
 }
 
