@@ -2,6 +2,11 @@
 
 using namespace eng;
 void MicroInitiationPlutoniumHammer::print() {
-	// TODO - implement MicroInitiationPlutoniumHammer::print
-	throw "Not yet implemented";
+    std::cout   << "        MicroInitiationPlutoniumHammer Quality: " << getQualityLabel() << std::endl;
+}
+
+MicroInitiationPlutoniumHammer::MicroInitiationPlutoniumHammer(Component *toClone) : Component(toClone) {}
+
+Component *MicroInitiationPlutoniumHammer::clone() {
+    return new MicroInitiationPlutoniumHammer(this);
 }

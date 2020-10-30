@@ -2,4 +2,4 @@
 
 using namespace ppl;
 
-Student::Student(std::string n, bool d, int s) : Person(n, d, s) {}
+Student::Student(std::string name, bool hasDegree, int skillLevel) : Person(name, hasDegree, skillLevel) {}

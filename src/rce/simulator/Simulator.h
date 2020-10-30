@@ -13,11 +13,15 @@ private:
 	int time;
 	int trackDifficulty;
 public:
-	void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);
+	// void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);
 	virtual void SimulateWeather()=0;
 	int getTime();
 	int getTrackDifficulty();
 	string getWeather();
 	ppl::Driver* getDriver();
+	void setDriver(ppl::Driver* d);
+	void setWeather(string w);
+	void setTime(int t);
+	void setDifficulty(int dif);
 };
 #endif

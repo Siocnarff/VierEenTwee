@@ -6,7 +6,7 @@
 namespace ppl {
 	class Professional : public Person {
 	public:
-        Professional(std::string n, bool d, int s);
+        Professional(std::string name, bool hasDegree, int skillLevel);
 
         bool isProfessional() const override;
 	};

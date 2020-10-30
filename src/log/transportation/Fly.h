@@ -11,8 +11,6 @@
 namespace log {
     class Fly : public TransportHandler {
     public:
-        Fly(Mediator* mediator);
-
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;
     };
 }

@@ -11,13 +11,15 @@ namespace eng {
         /**
          * ranges between 0 - 100
          */
-        int damage;
-        ppl::Driver* driver;
-        int id;
-        Component** components;
+        int damage = 0;
+        ppl::Driver* driver = nullptr;
+        int id = 0;
+        Component* components[5] = {nullptr};
 
 	public:
 	    explicit Car(int identification);
+
+	    explicit Car(Car *car);
 
 		int getSpeed() const;
 
@@ -39,7 +41,7 @@ namespace eng {
 
 		int getId() const;
 
-		void clone();
+		Car * clone();
 	};
 }
 

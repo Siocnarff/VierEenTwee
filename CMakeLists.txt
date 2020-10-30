@@ -13,12 +13,12 @@ include_directories(src/log/races)
 include_directories(src/log/transportation)
 include_directories(src/ppl)
 include_directories(src/ppl/factories)
-include_directories(src/ppl/specialists)
+#[[include_directories(src/ppl/specialists)
 include_directories(src/rce)
 include_directories(src/rce/carState)
 include_directories(src/rce/leaderboard)
 include_directories(src/rce/pitstop)
-include_directories(src/rce/simulator)
+include_directories(src/rce/simulator)]]
 
 add_executable(VierEenTwee
         src/main.cpp
@@ -125,41 +125,4 @@ add_executable(VierEenTwee
         src/ppl/HumanResources.h
         src/ppl/Person.cpp
         src/ppl/Person.h
-#        src/rce/carState/CarState.cpp
-#        src/rce/carState/CarState.h
-#        src/rce/carState/CarStateBroken.cpp
-#        src/rce/carState/CarStateBroken.h
-#        src/rce/carState/CarStateDamaged.cpp
-#        src/rce/carState/CarStateDamaged.h
-#        src/rce/carState/CarStateFullHP.cpp
-#        src/rce/carState/CarStateFullHP.h
-#        src/rce/leaderboard/DriverScore.cpp
-#        src/rce/leaderboard/DriverScore.h
-#        src/rce/leaderboard/DriversLeaderboard.cpp
-#        src/rce/leaderboard/DriversLeaderboard.h
-#        src/rce/leaderboard/Leaderboard.cpp
-#        src/rce/leaderboard/Score.cpp
-#        src/rce/leaderboard/Score.h
-#        src/rce/leaderboard/TeamLeaderboard.cpp
-#        src/rce/leaderboard/TeamLeaderboard.h
-#        src/rce/pitstop/ChangeTyre.cpp
-#        src/rce/pitstop/ChangeTyre.h
-#        src/rce/pitstop/DriverPitStop.cpp
-#        src/rce/pitstop/DriverPitStop.h
-#        src/rce/pitstop/PitCrew.cpp
-#        src/rce/pitstop/PitCrew.h
-#        src/rce/pitstop/Pitstop.cpp
-#        src/rce/pitstop/Pitstop.h
-        src/rce/simulator/Simulator.cpp
-        src/rce/simulator/Simulator.h
-        src/rce/simulator/SimulatorHotCondition.cpp
-        src/rce/simulator/SimulatorHotCondition.h
-        src/rce/simulator/SimulatorNormalCondition.cpp
-        src/rce/simulator/SimulatorNormalCondition.h
-        src/rce/simulator/SimulatorWetCondition.cpp
-        src/rce/simulator/SimulatorWetCondition.h
-#        src/rce/RaceWeekend.cpp
-#        src/rce/RaceWeekend.h
-#        src/rce/RacingDep.cpp
-#        src/rce/RacingDep.h
-        src/main.cpp)
+)

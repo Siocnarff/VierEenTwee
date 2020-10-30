@@ -11,8 +11,6 @@
 namespace log{
     class Ship : public TransportHandler {
     public:
-        Ship(Mediator *mediator);
-
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;
     };
 }

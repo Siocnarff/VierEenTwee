@@ -25,14 +25,16 @@ namespace eng {
         Department *department[5];
         Risk *innovation;
 
-        void briefDepartments(int cash, log::RiskLevel riskLevel);
+        void cashUpDeps(int cash);
+
+        void print(const std::string& message) const;
 
     public:
-        explicit EngTeam(log::Mediator* mediator);
-
         void hireEmployees(int budget) override;
 
-        int buildCar(int budget, log::RiskLevel riskLevel);
+        void registerForSeason(log::Mediator *mediator);
+
+        int buildCar(int budget);
 
         void carArrivesAtFactory(Car *car);
 
@@ -40,9 +42,9 @@ namespace eng {
 
         void improveCar(int id);
 
-		void setRiskLevel(Risk* riskLevel);
-
         Car *checkCarOutOfFactory(int id);
+
+        void setRiskLevel(log::RiskLevel riskLevel);
 
         void toggleTransparency();
     };
