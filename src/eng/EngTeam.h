@@ -21,7 +21,6 @@ namespace eng {
         BlueprintStore blueprint;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
-        log::Mediator *logisticsDep;
         Department *department[5];
         Risk *innovation;
 
