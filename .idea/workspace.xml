@@ -33,15 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7f0bc22-7b8a-48ac-93d7-27914a80cdef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarState.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarState.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateBroken.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateDamaged.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateDamaged.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateDamaged.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateDamaged.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/carState/CarStateFullHP.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/DriverPitStop.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/PitCrew.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/rce/pitstop/Pitstop.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1603895896857</updated>
       <workItem from="1603895898044" duration="1761000" />
-      <workItem from="1603916064070" duration="27341000" />
+      <workItem from="1603916064070" duration="27913000" />
     </task>
     <servers />
   </component>
