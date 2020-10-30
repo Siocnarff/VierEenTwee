@@ -1,4 +1,7 @@
 #include "Score.h"
+
+using namespace rce;
+
 Score::Score(Leaderboard* driverlead,Leaderboard* Teamlead)
 {
 	this->driverlead = driverlead;

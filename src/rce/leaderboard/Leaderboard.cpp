@@ -1,5 +1,7 @@
 #include "Leaderboard.h"
 
+using namespace rce;
+
 Leaderboard::Leaderboard(){}
 
 bool Leaderboard::getdisplayLeaderboard()
