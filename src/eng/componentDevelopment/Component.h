@@ -3,6 +3,7 @@
 
 #include "Blueprint.h"
 #include <iostream>
+#include <vector>
 
 namespace eng {
 	class Component {

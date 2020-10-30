@@ -117,7 +117,7 @@ void EngTeam::carArrivesAtFactory(Car *car) {
 }
 
 void EngTeam::fixCar(int id) {
-    if(department[0]){
+    if (department[0]) {
     	Car* car = garage.retrieveCar(id);
     	department[0]->fix(car, transparent);
     	garage.storeCar(car);
@@ -125,13 +125,22 @@ void EngTeam::fixCar(int id) {
 }
 
 void EngTeam::improveCar(int id) {
-    // TODO - implement EngTeam::improveCar
-    throw "Not yet implemented";
+	Car* car = garage.retrieveCar(id);
+    if (/*using wind tunnel*/) {
+    	windTunnel.testCar(car);
+    } else {
+		simulator.testComponents(car);
+    }
+	for (int part = 0; part < 5; part++) {
+		if (car->components[part]) {
+			//store component design, change component and run simulation.
+			//if better put improved component in car else rebuild original.
+		}
+	}
 }
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
-    // TODO - implement EngTeam::checkCarOutOfFactory
-    throw "Not yet implemented";
+    garage.retrieveCar(id);
 }
 
 void EngTeam::toggleTransparency() {

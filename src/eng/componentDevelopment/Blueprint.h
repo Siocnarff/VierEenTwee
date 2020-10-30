@@ -5,16 +5,15 @@
 
 namespace eng {
     class Blueprint {
+    	friend class Component;
 
     private:
         std::vector<int> state;
 
-    public:
         std::vector<int> getState();
 
         void setState(std::vector<int> state);
     };
-
 }
 
 
