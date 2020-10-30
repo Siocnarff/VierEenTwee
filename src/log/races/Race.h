@@ -18,16 +18,11 @@ namespace log {
         Race *prev;
         //WeatherConditions raceDayWeather;
         int numLaps;
+        TrackComplexity computeTrackComplexity(int comp);
     public:
         Race();
 
-        /**
-         * @details Constructor taking in variables.
-         * @warning Should not be instantiated with only one race. Either both or none is better practice
-         * @param next
-         * @param prev
-         */
-        Race(std::string, TrackComplexity, bool, Race *next = nullptr, Race *prev = nullptr);
+        Race(std::string, int complexity, bool inEU, int laps, Race *next = nullptr, Race *prev = nullptr);
 
         void setNextRace(Race *);
 

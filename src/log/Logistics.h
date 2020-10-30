@@ -37,7 +37,7 @@ namespace log {
 
         void containerHasBeenPacked(Container *) override;
 
-        void requestContainerStateChange(bool isEuropeanRace) override;
+        //void requestContainerStateChange(bool isEuropeanRace) override;
 
         Container *getEuropeanContainer();
 
@@ -47,7 +47,7 @@ namespace log {
 
         Container* packSingleContainer(int);
 
-        void SimulateEvent(Race *);
+        void simulateEvent(Race *);
 
         void putRacesIntoCalender();
 
@@ -66,7 +66,7 @@ namespace log {
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
-        int* seasonPointTally[2];
+        int seasonPointTally[2];
         int budget;
 
         bool verbose = true;
