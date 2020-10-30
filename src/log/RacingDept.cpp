@@ -7,6 +7,8 @@
 
 using namespace rce;
 
+RacingDept::RacingDept(log::Mediator *mediator) : Colleague(mediator) {}
+
 void RacingDept::hireEmployees(int budget) {
 
 }

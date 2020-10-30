@@ -123,3 +123,5 @@ void EngTeam::setRiskLevel(Risk *riskLevel) {
 void EngTeam::toggleTransparency() {
     transparent = !transparent;
 }
+
+EngTeam::EngTeam(log::Mediator *mediator) : Colleague(mediator) {}

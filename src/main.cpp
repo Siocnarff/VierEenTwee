@@ -12,12 +12,12 @@
 
 int ppl::Person::idCounter = 0;
 
-using namespace eng;
+using namespace log;
 
 void testBasicIntegration() {
-    RacingDept* racingDept = new RacingDept();
-    eng::EngTeam* engDept = new eng::EngTeam();
-    Logistics* a = new Logistics;
+    auto* a = new Logistics;
+    auto* engDept = new eng::EngTeam(a);
+    auto* racingDept = new rce::RacingDept(a);
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;

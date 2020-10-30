@@ -52,26 +52,19 @@ int RacingDep::RacingWeekend() {
     std::cout << "Let's start"<<std::endl;
     notify(new eng::Car(0));
     std::cout << "strat packing up" << std::endl;
-    notify(new Container);
+    notify(new log::Container);
     std::cout << "smoke a cigarette" << std::endl;
 
     return 5;
 }
 
-Container* RacingDep::postRacePackUp() { //make container*
+log::Container* RacingDep::postRacePackUp() { //make container*
     std::cout << container->getState();
     container->unpack();
     container->advanceState();
     std::cout << container->getState();
     return new Container;
 
-
-}
-
-void RacingDep::registerForSeason(Observer* logisticsDept) 
-{
-	// TODO - implement RacingDep::registerForSeason
-	throw "Not yet implemented";
 }
 
 Leaderboard* RacingDep::getResults() 
@@ -136,3 +129,5 @@ void RacingDep::SetCarAfterRace()
 	// TODO - implement RacingDep::SetCarAfterRace
 	throw "Not yet implemented";
 }
+
+RacingDep::RacingDep(log::Mediator *mediator) : Colleague(mediator) {}

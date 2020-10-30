@@ -16,6 +16,7 @@
 namespace rce {
     class RacingDept : public log::Colleague {
     public:
+        explicit RacingDept(log::Mediator* mediator);
         void hireEmployees(int budget) override;
         Strategy* PlanSeasonStrategy(int budget);
         ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions);
