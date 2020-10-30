@@ -70,14 +70,13 @@ void testIterator(){
 }
 
 void testContainerPacking() {
-    Container* container = new Container();
-    std::cout << std::endl;
+    auto* a = new Logistics();
 
+    a->preSeasonPreparation();
 
+    std::cout << "PreSeasonPrep done" << std::endl;
 
-    std::cout << "\nWacky Containers!" << std::endl;
-
-    //Need a pack container function. Will only call the first container?
+    delete a;
 
 }
 
@@ -114,18 +113,18 @@ int main () {
 
 //    testBasicIntegration();
 
-    auto* a = new Logistics;
-    auto* racingDept = new rce::RacingDept(a);
-    auto* engDept = new eng::EngTeam(a);
-    //engDept->toggleTransparency();
-
-    a->registerNotifier(racingDept);
-
-    a->registerNotifier(engDept);
-
-    a->doYearPlanning();
-
-    a->toggleTransparency();
+//    auto* a = new Logistics;
+//    auto* racingDept = new rce::RacingDept(a);
+//    auto* engDept = new eng::EngTeam(a);
+//    //engDept->toggleTransparency();
+//
+//    a->registerNotifier(racingDept);
+//
+//    a->registerNotifier(engDept);
+//
+//    a->doYearPlanning();
+//
+//    a->toggleTransparency();
    // a->raceSeason();
 
 //    testIterator();

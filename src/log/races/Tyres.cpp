@@ -32,4 +32,8 @@ int rce::Tyres::getThread() {
     return this->thread;
 }
 
-void rce::Tyres::reduceThread() {}
+void rce::Tyres::reduceThread() {
+    if (thread > 0) {
+        thread = thread-5;
+    }
+}

@@ -11,6 +11,10 @@
 
 #include <fstream>
 #include <sstream>
+#include <log/races/Box.h>
+#include <log/races/GarageEquipment.h>
+#include <log/races/CateringEquipment.h>
+#include <log/races/TyreBox.h>
 
 
 using namespace log;
@@ -118,24 +122,30 @@ void Logistics::doYearPlanning() {
 
 
 void Logistics::preSeasonPreparation() {
-    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
+//    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
     /*as genotify word, sal ons binne notify() die bande bestel;
     print: tyres arrived*/
+
+    //Pack containers right after tyre compound received
+
+    int tyrecompound = 2;
+
+    packContainers(tyrecompound);
 
     //moet meer spesifiek wees hierso.
     //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
     //Dalk kan ons dit volgens riskLevel doen
-    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
+//    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
 
     //order stuff
 
     //build cars x2
-    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
+//    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
 
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
     testCar();
     getRaceIterator();
-    packContainers();*/
+   */
 
 }
 
@@ -209,9 +219,32 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
-void Logistics::packContainers() {
-    std::cout << "pack containers" << std::endl;
+void Logistics::packContainers(int tyreCompound) {
+
+    //Need to create container objects to match to races
+    //Test by packing a single container:
+
+    Container* container = packSingleContainer(tyreCompound);
+
+    std::cout << "Packed all containers" << std::endl;
 }
+
+Container* Logistics::packSingleContainer(int tyreCompound) {
+    Box* box = new Box();
+    GarageEquipment* garageEquip = new GarageEquipment();
+    CateringEquipment* cateringEquip = new CateringEquipment();
+    TyreBox* tyreBox = new TyreBox(tyreCompound);
+
+    box->addElement(garageEquip);
+    box->addElement(cateringEquip);
+    box->addElement(tyreBox);
+
+    std::cout << "Packed a container" << std::endl;
+
+    return box;
+
+}
+
 
 /**
  * @author Jo

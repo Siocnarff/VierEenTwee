@@ -49,12 +49,7 @@ int RacingDept::RacingWeekend() {
     return 5;
 }
 
-log::Container* RacingDept::postRacePackUp() { //make container*
-    std::cout << container->getState();
-    container->unpack();
-    container->advanceState();
-    std::cout << container->getState();
+log::Container* RacingDept::postRacePackUp() { //make container*container->unpack();
     return new log::Container;
-
 
 }

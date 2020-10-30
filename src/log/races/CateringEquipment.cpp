@@ -6,11 +6,13 @@
 
 using namespace log;
 
+CateringEquipment::CateringEquipment() {}
+
 rce::Tyres * CateringEquipment::unpack() {
     //Container::unpack();
     //moet verander word -- Okay, so die functionality moet verander . . . ?? Ons moet wanneer dit unpack, moet ons deur al die unpack() funksies
     //run, en al die dinge noem wat ge-unpack word. Hoe werk ons pack? Dit is wanneer die container ge-instantiate word.
-    return new rce::Tyres;
+    return nullptr;
 }
 
 CateringEquipment::CateringEquipment(std::list<std::string> insides) {

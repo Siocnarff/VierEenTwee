@@ -76,6 +76,7 @@ namespace log {
         int budget;
         bool verbose = false;
 
+        void packContainers();
     };
 
 
