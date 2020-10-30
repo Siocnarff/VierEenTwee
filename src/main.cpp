@@ -13,7 +13,7 @@ int ppl::Person::idCounter = 0;
 using namespace log;
 
 void testBasicIntegration() {
-    auto* a = new Logistics;
+    auto* a = new Logistics();
     auto* engDept = new eng::EngTeam;
     auto* racingDept = new rce::RacingDept;
 
