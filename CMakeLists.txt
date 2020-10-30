@@ -71,22 +71,14 @@ add_executable(VierEenTwee
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
         src/log/races/Aggregate.h
-        src/log/races/ArrivedState.cpp
-        src/log/races/ArrivedState.h
-        src/log/races/BeingPackedState.cpp
-        src/log/races/BeingPackedState.h
         src/log/races/Box.cpp
         src/log/races/Box.h
         src/log/races/CateringEquipment.cpp
         src/log/races/CateringEquipment.h
         src/log/races/Container.cpp
         src/log/races/Container.h
-        src/log/races/ContainerState.cpp
-        src/log/races/ContainerState.h
         src/log/races/GarageEquipment.cpp
         src/log/races/GarageEquipment.h
-        src/log/races/InShippingState.cpp
-        src/log/races/InShippingState.h
         src/log/races/Iterator.h
         src/log/races/main.cpp
         src/log/races/Race.cpp
@@ -97,6 +89,8 @@ add_executable(VierEenTwee
         src/log/races/RacesList.h
         src/log/races/Tyres.cpp
         src/log/races/Tyres.h
+        src/log/races/TyreBox.cpp
+        src/log/races/TyreBox.h
         src/log/transportation/Fly.cpp
         src/log/transportation/Fly.h
         src/log/transportation/Road.cpp

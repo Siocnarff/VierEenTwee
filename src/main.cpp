@@ -11,7 +11,75 @@
 
 int ppl::Person::idCounter = 0;
 
-using namespace eng;
+void testBasicIntegration() {
+    auto* a = new log::Logistics();
+    auto* engDept = new eng::EngTeam;
+    auto* racingDept = new rce::RacingDep;
+
+//    cout << "Created departments" << endl;
+//    cout << "-------------------" << endl;
+    a->registerNotifier(racingDept);
+//    cout << "Regestered RacingTeam" << endl;
+//    cout << "---------------------" << endl;
+
+    a->registerNotifier(engDept);
+
+    a->doYearPlanning();
+//    cout << "Year planning done" << endl;
+//    cout << "--------------------" << endl;
+    a->preSeasonPreparation();
+
+//    cout << "PreSeason prep done" << endl;
+//    cout << "--------------------" << endl;
+    a->raceSeason();
+    a->postSeasonDebrief();
+
+    delete a;
+    delete engDept;
+    delete racingDept;
+}
+
+void testIterator(){
+//    std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
+//    int complexity[5] = {2, 0, 3, 1, 0};
+//    bool european[5] = {true,false,true,true,false};
+//    int laps[5] = {32,14,56,67,20};
+//    RacesList* raceList = new RacesList;
+//    for (int i = 0; i < 5; ++i) {
+//        raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
+//    }
+//
+//    Race* temp = raceList->getHeadRace();
+//    while (temp!= NULL) {
+//        std::cout << temp->getLocation() << std::endl;
+//        temp = temp->nextRace();
+//    }
+//    std::cout << std::endl;
+//
+//    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
+//        std::cout << t.currentItem()->getLocation() << std::endl;
+//    }
+//    std::cout << std::endl;
+//
+//    raceList->addRace(new Race("vantance", 0, 0, 16));
+//    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
+//        std::cout << t.currentItem()->getLocation() << std::endl;
+//    }
+
+}
+
+void testContainerPacking() {
+    auto* a = new log::Logistics();
+
+    a->preSeasonPreparation();
+
+    std::cout << "PreSeasonPrep done" << std::endl;
+
+    delete a;
+
+}
+
+
 
 int main () {
     /*EngTeam engTeam;
@@ -59,7 +127,21 @@ int main () {
 // ERROR : STORE CAR NOT IMPLEMENTED
     //log->raceSeason();
 
+//    auto *racingDept = new log::RacingDept();
+//    auto *engTeam = new eng::EngTeam();
+//    auto *log = new log::Logistics;
+//
+//    log->registerNotifier(racingDept);
+//    log->registerNotifier(engTeam);
+//
+//    engTeam->toggleTransparency();
+//    log->toggleVerbose();
+//    log->doYearPlanning();
+//
+//    log->toggleVerbose();
+//    log->raceSeason();
 
+    testContainerPacking();
 
 //    testIterator();
 

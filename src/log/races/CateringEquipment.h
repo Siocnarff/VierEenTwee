@@ -12,6 +12,7 @@ namespace log {
     private:
         std::list <std::string> contents;
     public:
+        CateringEquipment();
         CateringEquipment(std::list <std::string> insides);
         rce::Tyres * unpack() override;
         ~CateringEquipment() override;

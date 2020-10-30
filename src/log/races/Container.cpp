@@ -3,51 +3,35 @@
 //
 
 #include "Container.h"
-#include "BeingPackedState.h"
 #include <iostream>
 using namespace log;
 
 Container::Container() {
-    this->containerCurrentState = new BeingPackedState();
 }
 
 Container::~Container() {
-    delete containerCurrentState;
-}
 
-void Container::setState(ContainerState *state) {
-    delete this->containerCurrentState;
-    this->containerCurrentState = state;
-}
-
-std::string Container::getState() {
-    return containerCurrentState->getState();
 }
 
 rce::Tyres * Container::unpack() {
+
+
     std::cout << "CONTAINER UNPACK BY printing out contents and returning the tyres in the container" << std::endl;
-    return new rce::Tyres;
+    return nullptr;
 
 }
 
-void Container::repack(rce::Tyres) {
-    //add tyres to containers
+void Container::pack() {
+    //nodig om dit te roep? ek dink nie meer so nie
+
+
+
     std::cout << "print out contents" << std::endl;
     //some other stuff
 
 }
 
-void Container::addElement(Container *) {
-    //remains to be implemented
+void Container::addElement(Container * newContainer) {
+    std::cout << "Pack box into main container" << std::endl;
 }
-
-Container *Container::removeElement() {
-    //remains to be implemented
-    return nullptr;
-}
-
-void Container::advanceState() {
-    containerCurrentState->nextState(this);
-}
-
 

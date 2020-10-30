@@ -6,7 +6,9 @@
 
 using namespace log;
 
-GarageEquipment::GarageEquipment(std::list<std::string> insides) {
+GarageEquipment::GarageEquipment() {}
+
+GarageEquipment::GarageEquipment(std::list <std::string> insides) {
     if (insides.size() == 0) {
         contents.push_back("Lots and lots of stuff");
         return;
@@ -20,7 +22,7 @@ rce::Tyres * GarageEquipment::unpack() {
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
         std::cout << "-" << (*it) << std::endl;
     }
-    return new rce::Tyres();
+    return nullptr;
 }
 
 GarageEquipment::~GarageEquipment() = default;
