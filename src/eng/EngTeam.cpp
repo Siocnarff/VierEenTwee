@@ -137,6 +137,8 @@ void EngTeam::improveCar(int id) {
 			int currentQuality = component->getQualityLabel();
 			blueprintStore.setBlueprint(component->createBlueprint());
 			department[num]->update(component);
+			simulator.testComponent(component);
+			int changedQuality = component->getQualityLabel();
 
 			//store component design, change component and run simulation.
 			//if better put improved component in car else rebuild original.
