@@ -7,9 +7,16 @@ void ChassisDep::build(Car* car) {
 	throw "Not yet implemented";
 }
 
-void ChassisDep::fix(Car* car) {
-	// TODO - implement ChassisDep::fix
-	throw "Not yet implemented";
+void ChassisDep::fix(Car* car, bool transparent) {
+	int damage = fixComponent(car, 0);
+	if (transparent) {
+		if (damage == 0) {
+			std::cout << "Chassis was not damaged, sending car to next department." << std::endl;
+		} else {
+			std::cout << departmentName << " is fixing the chassis which was at " << damage << "% damage." << std::endl;
+		}
+	}
+	Department::fix(car, transparent);
 }
 
 void ChassisDep::update(Component* component) {

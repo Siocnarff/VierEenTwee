@@ -16,16 +16,6 @@ void Department::setRiskLevel(log::RiskLevel level) {
     }
 }
 
-void Department::build(Car *car) {
-    // TODO - implement Department::build
-    throw "Not yet implemented";
-}
-
-void Department::fix(Car *car) {
-    // TODO - implement Department::fix
-    throw "Not yet implemented";
-}
-
 Department::Department(Department *next) {
     riskLevel = new Moderate();
     nextDepartment = next;
@@ -40,6 +30,26 @@ void Department::addSpecialist(ppl::Person *specialist, bool printResults) {
     }
 }
 
+void Department::fix(Car *car, bool transparent) {
+	if (nextDepartment) {
+		nextDepartment->fix(car, transparent);
+	} else {
+		if (transparent) {
+			std::cout << "There are no more departments, the car has been completely fixed and stored in garage." << std::endl;
+		}
+	}
+}
+
 void Department::topUpBudget(int cash) {
     budget += cash;
+}
+
+int Department::fixComponent(Car *car, int id) {
+	int damage = car->components[id]->damage;
+	car->components[id]->damage = 0;
+	return damage;
+}
+
+bool Department::haveSpecialists() {
+	return !specialists.empty();
 }

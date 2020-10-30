@@ -3,9 +3,11 @@
 
 #include <componentDevelopment/Component.h>
 #include "../../ppl/specialists/Driver.h"
+#include "Department.h"
 
 namespace eng {
 	class Car {
+	friend class Department;
 
 	private:
         /**

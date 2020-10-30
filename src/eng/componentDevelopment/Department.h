@@ -26,13 +26,17 @@ namespace eng {
 
 		void setRiskLevel(log::RiskLevel level);
 
-		void build(Car* car);
+		virtual void build(Car* car) = 0;
 
-		void fix(Car* car);
+		virtual void fix(Car* car, bool transparent);
 
 		virtual void update(Component* component) = 0;
 
         void topUpBudget(int cash);
+
+        int fixComponent(Car*, int);
+
+        bool haveSpecialists();
     };
 }
 
