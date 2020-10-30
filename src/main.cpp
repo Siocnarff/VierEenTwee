@@ -13,7 +13,7 @@
 int ppl::Person::idCounter = 0;
 
 void testBasicIntegration() {
-    auto* a = new Logistics();
+    auto* a = new log::Logistics();
     auto* engDept = new eng::EngTeam;
     auto* racingDept = new rce::RacingDept;
 
@@ -70,7 +70,7 @@ void testIterator(){
 }
 
 void testContainerPacking() {
-    auto* a = new Logistics();
+    auto* a = new log::Logistics();
 
     a->preSeasonPreparation();
 
@@ -127,7 +127,7 @@ int main () {
 //    log->toggleVerbose();
 //    log->raceSeason();
 
-
+    testContainerPacking();
 
 //    testIterator();
 

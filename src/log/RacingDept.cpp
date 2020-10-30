@@ -5,7 +5,7 @@
 #include "RacingDept.h"
 #include <iostream>
 
-using namespace log;
+using namespace rce;
 
 void RacingDept::hireEmployees(int budget) {
 
@@ -16,20 +16,20 @@ rce::CreateStrategy *RacingDept::PlanSeasonStrategy(int budget) {
 }
 
 
-ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, WeatherConditions, TrackComplexity){
+ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, log::WeatherConditions, log::TrackComplexity){
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, WeatherConditions) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::WeatherConditions) {
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, TrackComplexity) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::TrackComplexity) {
     return nullptr;
 }
 
 
-void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
+void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con) {
     std::cout << "arrive at destination" << std::endl;
     car  = c;
     driver = d;
@@ -41,11 +41,12 @@ int RacingDept::RacingWeekend() {
     std::cout << "Let's start"<<std::endl;
     notify(new eng::Car(2));
     std::cout << "strat packing up" << std::endl;
-    notify(new Container);
+    notify(new log::Container);
     std::cout << "smoke a cigarette" << std::endl;
 
     return 5;
 }
+
 
 log::Container* RacingDept::postRacePackUp() { //make container*container->unpack();
     return new log::Container;

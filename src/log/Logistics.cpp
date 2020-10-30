@@ -19,7 +19,7 @@
 using namespace log;
 
 void Logistics::registerNotifier(Colleague *colleague) {
-    auto* temp = new RacingDept;
+    auto* temp = new rce::RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));
     } else {
@@ -155,8 +155,8 @@ void Logistics::putRacesIntoCalender() {
     cout << "put races into calender" << endl;
 }
 
-RacingDept *Logistics::callRacingDept() {
-    return dynamic_cast<RacingDept*>(departments['r']);
+rce::RacingDept *Logistics::callRacingDept() {
+    return dynamic_cast<rce::RacingDept*>(departments['r']);
 }
 
 eng::EngTeam *Logistics::callEngDept() {
