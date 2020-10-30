@@ -14,16 +14,15 @@ Container::~Container() {
 }
 
 rce::Tyres * Container::unpack() {
+
+
     std::cout << "CONTAINER UNPACK BY printing out contents and returning the tyres in the container" << std::endl;
-    return new rce::Tyres;
+    return nullptr;
 
 }
 
-void Container::pack(rce::Tyres, std::list<std::string> garageList, std::list<std::string> cateringList) {
-    //add tyres to containers
-    //Instantiate GarageEquipment and CateringEquipment (according to riskLevel/budget?)
-    //Link container to box containing boxes containing CateringEquip and GarageEquip (one box to both?)
-
+void Container::pack() {
+    //nodig om dit te roep? ek dink nie meer so nie
 
 
 
@@ -32,7 +31,7 @@ void Container::pack(rce::Tyres, std::list<std::string> garageList, std::list<st
 
 }
 
-void Container::addElement(Container *) {
-    //remains to be implemented
+void Container::addElement(Container * newContainer) {
+    std::cout << "Pack box into main container" << std::endl;
 }
 

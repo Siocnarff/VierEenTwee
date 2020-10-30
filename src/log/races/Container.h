@@ -17,7 +17,6 @@ namespace log {
     class Container {
 
     private:
-        rce::Tyres packedTyres;
 
     public:
         Container();
@@ -26,7 +25,7 @@ namespace log {
 
         virtual rce::Tyres * unpack();
 
-        virtual void pack(rce::Tyres);
+        void pack();
 
     protected:
         virtual void addElement(Container *);

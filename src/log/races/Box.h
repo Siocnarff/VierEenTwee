@@ -13,6 +13,8 @@ namespace log {
     private:
         std::list<Container *> elements;
     public:
+        Box();
+
         void addElement(Container *) override;
 
         rce::Tyres * unpack() override;
