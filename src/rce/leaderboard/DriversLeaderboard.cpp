@@ -1,5 +1,8 @@
 #include "DriversLeaderboard.h"
 #include <iostream>
+
+using namespace rce;
+
 /*void DriversLeaderboard::UpdateDriverLeaderBoard(String driverName, int Score) {
 	// TODO - implement DriversLeaderboard::UpdateDriverLeaderBoard
 	throw "Not yet implemented";

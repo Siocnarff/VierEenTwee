@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+using namespace rce;
+
 int RaceWeekend::RacingWeekend() {
 	for(int i = 0; i < 3; i++)
 	{

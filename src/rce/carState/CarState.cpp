@@ -1,21 +1,23 @@
 #include "CarState.h"
 
-CarState::CarState(RaceWeekend * r) {
-	this->race = r;
+using namespace rce;
+
+CarState::CarState(RaceWeekend *r) {
+    this->race = r;
 }
 
 int CarState::getDamage() {
-	return this->damage;
+    return this->damage;
 }
 
 void CarState::setDamage(int damage) {
-	this->damage = damage;
+    this->damage = damage;
 }
 
 void CarState::Deal_damage(int d) {
-	// TODO - implement carState::Deal damage
+    // TODO - implement carState::Deal damage
 
-	throw "Not yet implemented";
+    throw "Not yet implemented";
 }
 
 

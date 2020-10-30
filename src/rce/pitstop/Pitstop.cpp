@@ -1,5 +1,7 @@
 #include "Pitstop.h"
 
+using namespace rce;
+
 void Pitstop::addCrew(PitCrew* crew) {
 	// TODO - implement Pitstop::addCrew
 	throw "Not yet implemented";

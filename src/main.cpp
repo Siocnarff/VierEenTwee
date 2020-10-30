@@ -3,14 +3,14 @@
 //
 
 #include <iostream>
-#include <factories/HireProfessional.h>
+#include "factories/HireProfessional.h"
+#include <factories/HireAmateur.h>
+#include <log/Logistics.h>
+#include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
-#include "log/races/RacesList.h"
-#include "log/Logistics.h"
+#include "log/RacingDept.h"
 
 int ppl::Person::idCounter = 0;
-
-using namespace log;
 
 void testBasicIntegration() {
     auto* a = new Logistics();
@@ -83,8 +83,9 @@ void testContainerPacking() {
 
 
 int main () {
-//    EngTeam engTeam;
-//    engTeam.hireEmployees(49);
+    /*EngTeam engTeam;
+    engTeam.toggleTransparency();
+    engTeam.hireEmployees(49);*/
 
     /*auto** factories = new ppl::HumanResources*[3];
     factories[0] = new ppl::KidnapStudent();
@@ -110,25 +111,26 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
-
 //    testBasicIntegration();
 
-//    auto* a = new Logistics;
-//    auto* racingDept = new rce::RacingDept(a);
-//    auto* engDept = new eng::EngTeam(a);
-//    //engDept->toggleTransparency();
+//    auto *racingDept = new log::RacingDept();
+//    auto *engTeam = new eng::EngTeam();
+//    auto *log = new log::Logistics;
 //
-//    a->registerNotifier(racingDept);
+//    log->registerNotifier(racingDept);
+//    log->registerNotifier(engTeam);
 //
-//    a->registerNotifier(engDept);
+//    engTeam->toggleTransparency();
+//    log->toggleVerbose();
+//    log->doYearPlanning();
 //
-//    a->doYearPlanning();
-//
-//    a->toggleTransparency();
-   // a->raceSeason();
+//    log->toggleVerbose();
+//    log->raceSeason();
+
+
 
 //    testIterator();
 
-    testContainerPacking();
+//    testContainerState();
 
 }

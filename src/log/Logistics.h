@@ -1,4 +1,4 @@
-    //
+//
 // Created by jo on 2020/10/09.
 //
 
@@ -30,6 +30,8 @@ namespace log {
 
         void postSeasonDebrief();
 
+        void toggleVerbose();
+
     protected:
         void sendCarToFactory(eng::Car *) override;
 
@@ -50,7 +52,7 @@ namespace log {
         void putRacesIntoCalender();
 
     private:
-        rce::RacingDept *callRacingDept();
+        RacingDept *callRacingDept();
 
         eng::EngTeam *callEngDept();
 
@@ -63,12 +65,13 @@ namespace log {
         vector<int> carsInSeasonIDs;
         vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
-        Strategy *currentTeamStrategy;
+        rce::CreateStrategy *currentTeamStrategy;
 
         int seasonPointTally;
         int budget;
 
-        void packContainers();
+        bool verbose = true;
+
     };
 
 

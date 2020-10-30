@@ -21,7 +21,6 @@ namespace eng {
         BlueprintStore blueprint;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
-        log::Mediator *logisticsDep;
         Department *department[5];
         Risk *innovation;
 
@@ -32,7 +31,7 @@ namespace eng {
     public:
         void hireEmployees(int budget) override;
 
-        void registerForSeason(log::Mediator *mediator);
+        void registerForSeason(log::Mediator* mediator);
 
         int buildCar(int budget);
 

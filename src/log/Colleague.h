@@ -25,8 +25,8 @@ namespace log {
 
         virtual void hireEmployees(int) = 0;
 
-    private:
-        Mediator *observer;
+    protected:
+        Mediator *logistcsDep;
     };
 
 }

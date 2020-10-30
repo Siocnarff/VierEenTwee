@@ -1,5 +1,7 @@
 #include "RacingDep.h"
 
+using namespace rce;
+
 void RacingDep::HireEmployees(int b) 
 {
 	// TODO - implement RacingDep::HireWorker

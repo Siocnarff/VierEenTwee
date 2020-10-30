@@ -1,5 +1,8 @@
 #include "TeamLeaderboard.h"
 #include <iostream>
+
+using namespace rce;
+
 TeamLeaderboard::TeamLeaderboard():Leaderboard()
 {
 

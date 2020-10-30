@@ -15,7 +15,7 @@
 #include "TrackComplexity.h"
 #include "Leaderboard.h"
 #include <string>
-namespace racing{
+namespace rce{
 class RaceWeekend {
 
 private:

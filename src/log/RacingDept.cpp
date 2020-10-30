@@ -5,33 +5,31 @@
 #include "RacingDept.h"
 #include <iostream>
 
-using namespace rce;
-
-RacingDept::RacingDept(log::Mediator *mediator) : Colleague(mediator) {}
+using namespace log;
 
 void RacingDept::hireEmployees(int budget) {
 
 }
 
-Strategy *RacingDept::PlanSeasonStrategy(int budget) {
-    return new Strategy(budget);
+rce::CreateStrategy *RacingDept::PlanSeasonStrategy(int budget) {
+    throw "not yet implemented";
 }
 
 
-ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, log::WeatherConditions, log::TrackComplexity){
+ppl::Driver * RacingDept::trainDriver(ppl::Driver*, int time, WeatherConditions, TrackComplexity){
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::WeatherConditions) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, WeatherConditions) {
     return nullptr;
 }
 
-ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, log::TrackComplexity) {
+ppl::Driver *RacingDept::trainDriver(ppl::Driver *, int time, TrackComplexity) {
     return nullptr;
 }
 
 
-void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con) {
+void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
     std::cout << "arrive at destination" << std::endl;
     car  = c;
     driver = d;
@@ -41,9 +39,9 @@ void RacingDept::preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::
 
 int RacingDept::RacingWeekend() {
     std::cout << "Let's start"<<std::endl;
-    notify(new eng::Car(0));
+    notify(new eng::Car(2));
     std::cout << "strat packing up" << std::endl;
-    notify(new log::Container);
+    notify(new Container);
     std::cout << "smoke a cigarette" << std::endl;
 
     return 5;
@@ -53,3 +51,4 @@ log::Container* RacingDept::postRacePackUp() { //make container*container->unpac
     return new log::Container;
 
 }
+

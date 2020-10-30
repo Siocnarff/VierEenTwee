@@ -1,5 +1,7 @@
 #include "PitCrew.h"
 
+using namespace rce;
+
 PitCrew::PitCrew() {
 	// TODO - implement PitCrew::PitCrew
 	throw "Not yet implemented";
