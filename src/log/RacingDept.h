@@ -9,7 +9,7 @@
 #include <enums/TrackComplexity.h>
 #include "Car.h"
 #include "races/Race.h"
-#include "Driver.h"
+#include "../../ppl/specialists/Driver.h"
 #include "Strategy.h"
 #include "Colleague.h"
 
