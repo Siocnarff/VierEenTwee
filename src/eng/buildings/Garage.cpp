@@ -23,10 +23,19 @@ Car *Garage::retrieveCar(int id) {
 }
 
 Car *Garage::getPrototype() {
+    int bestPerformance = -1;
+    int idOfBest = -1;
     for (int i = 0; i < 20; ++i) {
         if (lookup[i] != -1) {
-            return car[i];
+            int performance = car[i]->getSpeed() + car[i]->getHandling();
+            if (performance > bestPerformance) {
+                bestPerformance = performance;
+                idOfBest = i;
+            }
         }
+    }
+    if (idOfBest != -1) {
+        return car[idOfBest];
     }
     return nullptr;
 }
