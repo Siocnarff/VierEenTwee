@@ -2,6 +2,7 @@
 #define SIMULATORHOTCONDITION_H
 
 #include "Simulator.h"
+using namespace rce;
 
 class SimulatorHotCondition :public Simulator 
 {

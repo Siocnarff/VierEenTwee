@@ -3,11 +3,12 @@
 
 #include "Simulator.h"
 
-class SimulatorWetCondition :public Simulator 
-{
-public:
-	SimulatorWetCondition();
-	void SimulateWeather();
-};
+namespace rce {
+    class SimulatorWetCondition : public Simulator {
+    public:
+        SimulatorWetCondition();
 
+        void SimulateWeather();
+    };
+}
 #endif

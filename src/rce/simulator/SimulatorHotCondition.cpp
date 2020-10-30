@@ -1,5 +1,5 @@
 #include "SimulatorHotCondition.h"
-
+using namespace rce;
 SimulatorHotCondition::SimulatorHotCondition()
 {
 
