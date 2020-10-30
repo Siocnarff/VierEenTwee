@@ -5,34 +5,25 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
-#include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
+#include <log/Logistics.h>
 #include "eng/EngTeam.h"
+#include "rce/RacingDep.h"
 
 int ppl::Person::idCounter = 0;
 
 void testBasicIntegration() {
     auto* a = new log::Logistics();
-    auto* engDept = new eng::EngTeam;
-    auto* racingDept = new rce::RacingDep;
-
-//    cout << "Created departments" << endl;
-//    cout << "-------------------" << endl;
+    auto* engDept = new eng::EngTeam();
+    auto* racingDept = new rce::RacingDep();
+/*
     a->registerNotifier(racingDept);
-//    cout << "Regestered RacingTeam" << endl;
-//    cout << "---------------------" << endl;
-
     a->registerNotifier(engDept);
-
     a->doYearPlanning();
-//    cout << "Year planning done" << endl;
-//    cout << "--------------------" << endl;
     a->preSeasonPreparation();
-
-//    cout << "PreSeason prep done" << endl;
-//    cout << "--------------------" << endl;
     a->raceSeason();
     a->postSeasonDebrief();
+*/
 
     delete a;
     delete engDept;

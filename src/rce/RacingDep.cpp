@@ -140,7 +140,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditi
 void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, log::Container* con)
 {
 	// TODO - implement RacingDep::preRaceArrival
-	throw "Not yet implemented";
+	//throw "Not yet implemented";
 }
 
 /*int RacingDep::RacingWeekend()
@@ -223,6 +223,22 @@ void RacingDep::SetCarAfterRace()
 {
 	// TODO - implement RacingDep::SetCarAfterRace
 	throw "Not yet implemented";
+}
+
+int *RacingDep::RacingWeekend() {
+    return nullptr;
+}
+
+log::Container *RacingDep::postRacePackUp() {
+    return nullptr;
+}
+
+RacingDep::~RacingDep() {
+
+}
+
+RacingDep::RacingDep() {
+    std::cout << "Constructor" << std::endl;
 }
 
 

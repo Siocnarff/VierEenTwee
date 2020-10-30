@@ -19,11 +19,11 @@
 using namespace log;
 
 void Logistics::registerNotifier(Colleague *colleague) {
-    auto* temp = new rce::RacingDep;
+    auto* temp = new eng::EngTeam;
     if (typeid(*temp) == typeid(*colleague)){
-        departments.insert(pair<char,Colleague*>('r',colleague));
-    } else {
         departments.insert(pair<char,Colleague*>('e',colleague));
+    } else {
+        departments.insert(pair<char,Colleague*>('r',colleague));
     }
     colleague->addObserver(this);
 
@@ -80,7 +80,9 @@ void Logistics::raceSeason() {
          * iter++;
          */
     //2 cars
-    callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
+    //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
+//    callRacingDept()->preRaceArrival(new eng::Car(2), driver, new Race, new Box);
+
     //
     throw "Implement for two cars";
     //seasonPointTally += callRacingDept()->RacingWeekend();
@@ -134,9 +136,9 @@ void Logistics::packContainers(int tyreCompound) {
 
 Container* Logistics::packSingleContainer(int tyreCompound) {
     Box* box = new Box();
-    GarageEquipment* garageEquip = new GarageEquipment();
-    CateringEquipment* cateringEquip = new CateringEquipment();
-    TyreBox* tyreBox = new TyreBox(tyreCompound);
+    auto* garageEquip = new GarageEquipment();
+    auto* cateringEquip = new CateringEquipment();
+    auto* tyreBox = new TyreBox(tyreCompound);
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
@@ -157,7 +159,8 @@ void Logistics::putRacesIntoCalender() {
 }
 
 rce::RacingDep *Logistics::callRacingDept() {
-    return dynamic_cast<rce::RacingDep *>(departments['r']);
+    //return dynamic_cast<rce::RacingDep *>(departments['r']);
+    return nullptr;
 }
 
 eng::EngTeam *Logistics::callEngDept() {

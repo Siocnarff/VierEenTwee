@@ -13,7 +13,7 @@ namespace log {
 
     class Colleague {
     public:
-        ~Colleague();
+        virtual ~Colleague();
 
         void addObserver(Mediator *obs);
 
@@ -26,7 +26,7 @@ namespace log {
         virtual void hireEmployees(int) = 0;
 
     protected:
-        Mediator *logistcsDep;
+        Mediator *logisticsDept;
     };
 
 }

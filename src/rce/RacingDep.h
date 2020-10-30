@@ -26,6 +26,8 @@ namespace rce {
 // / different strategies for each ppl::Driver and car?
     public:
 
+        RacingDep();
+
         void hireEmployees(int budget) override;
 
         rce::CreateStrategy *PlanSeasonStrategy(int budget);
@@ -48,6 +50,7 @@ namespace rce {
         log::Container *postRacePackUp();
         //void postRacePackUp();// return the container with tires in
 
+        ~RacingDep() override;
 
 
     // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
