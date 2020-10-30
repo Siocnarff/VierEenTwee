@@ -1,13 +1,13 @@
 #include "AggressiveStrategy.h"
-
+using namespace rce;
 CreateStrategy* AggressiveStrategy::execute() 
 {
 	return this;
 }
 
-AggressiveStrategy::AggressiveStrategy(int p,int* t,int risk) 
+AggressiveStrategy::AggressiveStrategy(int p,int* t,log::RiskLevel risk)
 {
-	cout<<"The startegists have decided to implement an aggressive strategy"<<endl;
+	std::cout<<"The startegists have decided to implement an aggressive strategy"<<std::endl;
 	SetPitstops(p);
 	SetTyres(t);
 	SetRiskLevel(risk);

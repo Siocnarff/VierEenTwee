@@ -1,5 +1,5 @@
 #include "CreateStrategy.h"
-
+using namespace rce;
 CreateStrategy* CreateStrategy::execute()
 {
 	// returns our final strategy// return this;
@@ -16,7 +16,7 @@ int CreateStrategy::getRiskLevel()
 	return risklevel;
 }
 
-void CreateStrategy::SetRiskLevel(int rl) 
+void CreateStrategy::SetRiskLevel(log::RiskLevel rl)
 {
 	risklevel=rl;
 }
@@ -31,7 +31,7 @@ void CreateStrategy::SetPitstops(int p)
  	tyres=t;
  }
 
- void CreateStrategy::SetStratName(string s)
+ void CreateStrategy::SetStratName(std::string s)
  {
      StratName=s;
  }
@@ -45,7 +45,7 @@ void CreateStrategy::SetPitstops(int p)
      return Pitstops;
  }
 
- string CreateStrategy::getStratName()
+std::string CreateStrategy::getStratName()
  {
      return StratName;
  }

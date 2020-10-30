@@ -3,25 +3,37 @@
 
 #include <string>
 #include <iostream>
-#include "Driver.h"
-using namespace std;
-class Simulator 
+#include "../ppl/specialists/Driver.h"
+
+#include "../log/enums/WeatherConditions.h"
+#include "../log/enums/TrackComplexity.h"
+namespace rce
 {
-private:
-	ppl::Driver* driver;
-	string weather;
-	int time;
-	int trackDifficulty;
-public:
-	// void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);
-	virtual void SimulateWeather()=0;
-	int getTime();
-	int getTrackDifficulty();
-	string getWeather();
-	ppl::Driver* getDriver();
-	void setDriver(ppl::Driver* d);
-	void setWeather(string w);
-	void setTime(int t);
-	void setDifficulty(int dif);
-};
+    class Simulator
+    {
+    private:
+        ppl::Driver *driver;
+        log::WeatherConditions weather;
+        int time;
+        log::TrackComplexity trackDifficulty;
+    public:
+        virtual void SimulateWeather() = 0;
+
+        int getTime();
+
+        log::TrackComplexity getTrackDifficulty();
+
+        log::WeatherConditions getWeather();
+
+        ppl::Driver *getDriver();
+
+        void setDriver(ppl::Driver *d);
+
+        void setWeather(log::WeatherConditions w);
+
+        void setTime(int t);
+
+        void setDifficulty(log::TrackComplexity dif);
+    };
+}
 #endif

@@ -2,12 +2,13 @@
 #define SIMULATORWETCONDITION_H
 
 #include "Simulator.h"
-
-class SimulatorWetCondition :public Simulator 
+namespace rce
 {
-public:
-	SimulatorWetCondition();
-	void SimulateWeather();
-};
+    class SimulatorWetCondition : public Simulator{
+    public:
+        SimulatorWetCondition();
 
+        void SimulateWeather();
+    };
+}
 #endif
