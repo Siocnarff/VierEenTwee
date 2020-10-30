@@ -18,7 +18,7 @@ namespace eng {
         bool transparent = false;
         int carIdGenerator = 0;
         Garage garage;
-        BlueprintStore blueprint;
+        BlueprintStore blueprintStore;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
         Department *department[5];

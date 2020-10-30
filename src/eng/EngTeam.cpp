@@ -62,9 +62,9 @@ void EngTeam::hireEmployees(int budget) {
     } else {
         humanResources = new ppl::HireProfessional();
     }
-    department[4] = new BodyDep();
-    department[3] = new MicroTimeTravelDep(department[4]);
-    department[2] = new ElectricDepartment(department[3]);
+    department[3] = new BodyDep();
+    department[4] = new MicroTimeTravelDep(department[3]);
+    department[2] = new ElectricDepartment(department[4]);
     department[1] = new EngineDep(department[2]);
     department[0] = new ChassisDep(department[1]);
     // Hire for all departments if hirelings sufficiently skilled (implied by budget >= 50)
@@ -73,9 +73,9 @@ void EngTeam::hireEmployees(int budget) {
     srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[3]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
+            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
         }
-        department[4]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
+        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
         department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]), transparent);
         department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]), transparent);
         department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]), transparent);
@@ -131,8 +131,13 @@ void EngTeam::improveCar(int id) {
     } else {
 		simulator.testComponents(car);
     }
-	for (int part = 0; part < 5; part++) {
-		if (car->components[part]) {
+	for (int num = 0; num < 5; num++) {
+		Component* component = car->components[num];
+		if (component) {
+			int currentQuality = component->getQualityLabel();
+			blueprintStore.setBlueprint(component->createBlueprint());
+			department[num]->update(component);
+
 			//store component design, change component and run simulation.
 			//if better put improved component in car else rebuild original.
 		}
