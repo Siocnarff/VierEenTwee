@@ -18,8 +18,6 @@ namespace log {
 
         virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
 
-        virtual void informStrategyChanged(rce::Strategy*) = 0;
-
     public:
         friend class Colleague;
     };

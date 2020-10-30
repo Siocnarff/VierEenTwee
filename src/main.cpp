@@ -3,91 +3,19 @@
 //
 
 #include <iostream>
-#include <factories/HireProfessional.h>
+#include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
-#include "log/races/RacesList.h"
-#include "log/Logistics.h"
 
 int ppl::Person::idCounter = 0;
 
-using namespace log;
-
-void testBasicIntegration() {
-    auto* a = new Logistics;
-    auto* engDept = new eng::EngTeam(a);
-    auto* racingDept = new rce::RacingDept(a);
-
-//    cout << "Created departments" << endl;
-//    cout << "-------------------" << endl;
-    a->registerNotifier(racingDept);
-//    cout << "Regestered RacingTeam" << endl;
-//    cout << "---------------------" << endl;
-
-    a->registerNotifier(engDept);
-
-    a->doYearPlanning();
-//    cout << "Year planning done" << endl;
-//    cout << "--------------------" << endl;
-    a->preSeasonPreparation();
-
-//    cout << "PreSeason prep done" << endl;
-//    cout << "--------------------" << endl;
-    a->raceSeason();
-    a->postSeasonDebrief();
-
-    delete a;
-    delete engDept;
-    delete racingDept;
-}
-
-void testIterator(){
-    std::string names[5] = {"malibu", "florence", "florida", "vermont","venice"};
-    int complexity[5] = {2, 0, 3, 1, 0};
-    bool european[5] = {true,false,true,true,false};
-    int laps[5] = {32,14,56,67,20};
-    RacesList* raceList = new RacesList;
-    for (int i = 0; i < 5; ++i) {
-        raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
-    }
-
-    Race* temp = raceList->getHeadRace();
-    while (temp!= NULL) {
-        std::cout << temp->getLocation() << std::endl;
-        temp = temp->nextRace();
-    }
-    std::cout << std::endl;
-
-    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        std::cout << t.currentItem()->getLocation() << std::endl;
-    }
-    std::cout << std::endl;
-
-    raceList->addRace(new Race("vantance", 0, 0, 16));
-    for (RaceIterator t = raceList->begin(); !(t==raceList->end()) ; ++t) {
-        std::cout << t.currentItem()->getLocation() << std::endl;
-    }
-
-}
-
-void testContainerState() {
-    Container* container = new Container();
-    std::cout << std::endl;
-
-    for (int i = 0; i < 4; ++i) {
-        std::cout << container->getState() << std::endl;
-        container->advanceState();
-    }
-
-    std::cout << "\nWacky Containers!" << std::endl;
-}
-
-
+using namespace eng;
 
 int main () {
-//    EngTeam engTeam;
-//    engTeam.hireEmployees(49);
+    EngTeam engTeam;
+    engTeam.toggleTransparency();
+    engTeam.hireEmployees(49);
 
     /*auto** factories = new ppl::HumanResources*[3];
     factories[0] = new ppl::KidnapStudent();
@@ -113,25 +41,4 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
-
-//    testBasicIntegration();
-
-    auto* a = new Logistics;
-    auto* racingDept = new rce::RacingDept(a);
-    auto* engDept = new eng::EngTeam(a);
-    //engDept->toggleTransparency();
-
-    a->registerNotifier(racingDept);
-
-    a->registerNotifier(engDept);
-
-    a->doYearPlanning();
-
-    a->toggleTransparency();
-   // a->raceSeason();
-
-//    testIterator();
-
-//    testContainerState();
-
 }

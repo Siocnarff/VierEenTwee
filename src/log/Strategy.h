@@ -8,28 +8,25 @@
 #include <string>
 #include <list>
 
+using namespace log;
 
-namespace rce {
+class Strategy {
+private:
+    RiskLevel riskLevel;
+    std::list<int> tyres;
+    std::string stratName;
+public:
+    Strategy* execute() {
+        return nullptr;
+    }
 
-    class Strategy {
-    private:
-        log::RiskLevel riskLevel;
-        std::list<int> tyres;
-        std::string stratName;
-    public:
-        Strategy *execute() {
-            return nullptr;
-        }
+    Strategy(int budget) {
 
-        Strategy(int budget) {
-            riskLevel = log::Aggressive;
-        }
+    }
 
-        log::RiskLevel getRiskLevel() {
-            return riskLevel;
-        }
-    };
-
-}
+    RiskLevel getRiskLevel() {
+        return riskLevel;
+    }
+};
 
 #endif //PREMODELLING_STRATEGY_H

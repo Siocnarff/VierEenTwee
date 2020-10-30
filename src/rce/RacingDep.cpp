@@ -1,70 +1,134 @@
 #include "RacingDep.h"
 
-using namespace rce;
-
 void RacingDep::HireEmployees(int b) 
 {
 	// TODO - implement RacingDep::HireWorker
 	throw "Not yet implemented";
 }
 
-CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
+CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int riskLevel) 
 {
-	// TODO - implement RacingDep::PlanSeasonStrategy
-	throw "Not yet implemented";
+	//safe ,moderate ,aggressive
+    if(strategy)
+    {
+        delete strategy;
+        strategy=NULL;
+    }
+	int* tyre=new int[3];
+	if(budget<25)
+	{
+		if(weather=="rainy")
+		{	tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+			strategy=new SafeStrategy(2,tyre,15);
+			return strategy->execute();
+		}
+		else
+		{
+			tyre[0]=2;
+			tyre[1]=3;
+			tyre[2]=0;
+            strategy=new ModerateStrategy(2,tyre,30);
+			return strategy->execute();
+		}
+	}
+	else if(budget>=25 && budget<50)
+	{
+		if(weather=="rainy")
+		{
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+            strategy=new ModerateStrategy(2,tyre,45);
+			return strategy->execute();
+		}
+		else 
+		{
+			tyre[0]=0;
+			tyre[1]=2;
+			tyre[2]=3;
+            strategy=new AggressiveStrategy(1,tyre,60);
+			return strategy->execute();
+		}
+	}
+	else
+	{
+		if(weather=="rainy")
+		{
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+            strategy=new ModerateStrategy(1,tyre,75);
+			return strategy->execute();
+		}
+		else
+		{
+			tyre[0]=2;
+			tyre[1]=2;
+			tyre[2]=1;
+            strategy=new AggressiveStrategy(2,tyre,90);
+			return strategy->execute();
+		}
+	}
 }
 
 void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
-	this->driver= driver;
-	this->weather= weather;
-	this->time= time;
-	this->trackDifficulty= trackDifficulty;
 
 	if(weather=="wet")
 	{
 		Simulator* wet=new SimulatorWetCondition();
+		wet->setDriver(driver);
+		wet->setWeather(weather);
+		wet->setDifficulty(trackDifficulty);
+		wet->setTime(time);
 		wet->SimulateWeather();
 	}
 	else if(weather=="hot")
 	{
 		Simulator* hot=new SimulatorHotCondition();
+		hot->setDriver(driver);
+		hot->setWeather(weather);
+		hot->setDifficulty(trackDifficulty);
+		hot->setTime(time);
 		hot->SimulateWeather();
 	}
 	else if(weather=="normal")
 	{
 		Simulator* normal=new SimulatorNormalCondition();
+		normal->setDriver(driver);
+		normal->setWeather(weather);
+		normal->setDifficulty(trackDifficulty);
+		normal->setTime(time);
 		normal->SimulateWeather();
 	}
 }
 
-void RacingDep::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
-    std::cout << "arrive at destination" << std::endl;
-    car  = c;
-    driver = d;
-    race = r;
-    container = con;
+void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, Race* r, Container* con)
+{
+	// TODO - implement RacingDep::preRaceArrival
+	throw "Not yet implemented";
 }
 
-int RacingDep::RacingWeekend() {
-    std::cout << "Let's start"<<std::endl;
-    notify(new eng::Car(0));
-    std::cout << "strat packing up" << std::endl;
-    notify(new log::Container);
-    std::cout << "smoke a cigarette" << std::endl;
-
-    return 5;
+int RacingDep::RacingWeekend() 
+{
+	// TODO - implement RacingDep::Race
+	throw "Not yet implemented";
 }
 
-log::Container* RacingDep::postRacePackUp() { //make container*
-    std::cout << container->getState();
-    container->unpack();
-    container->advanceState();
-    std::cout << container->getState();
-    return new Container;
+void RacingDep::postRacePackUp() 
+{
+	// TODO - implement RacingDep::postRacePackUp
+	throw "Not yet implemented";
+}
 
+void RacingDep::registerForSeason(Observer* logisticsDept) 
+{
+	// TODO - implement RacingDep::registerForSeason
+	throw "Not yet implemented";
 }
 
 Leaderboard* RacingDep::getResults() 
@@ -129,5 +193,3 @@ void RacingDep::SetCarAfterRace()
 	// TODO - implement RacingDep::SetCarAfterRace
 	throw "Not yet implemented";
 }
-
-RacingDep::RacingDep(log::Mediator *mediator) : Colleague(mediator) {}
