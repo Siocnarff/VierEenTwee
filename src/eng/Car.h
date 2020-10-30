@@ -31,7 +31,7 @@ namespace eng {
 
 		ppl::Driver* getDriver();
 
-		void removeDriver(ppl::Driver* driver);
+		static void removeDriver(ppl::Driver* driver);
 
 		void print();
 
@@ -41,7 +41,7 @@ namespace eng {
 
 		int getId() const;
 
-		void clone();
+		Car * clone();
 	};
 }
 

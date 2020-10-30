@@ -73,7 +73,6 @@ int Car::getId() const {
     return this->id;
 }
 
-void Car::clone() {
-    // TODO - implement Car::clone
-    throw "Not yet implemented";
+Car * Car::clone() {
+    return new Car(this);
 }
