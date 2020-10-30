@@ -118,7 +118,9 @@ void EngTeam::carArrivesAtFactory(Car *car) {
 
 void EngTeam::fixCar(int id) {
     if(department[0]){
-    	department[0]->fix(garage.retrieveCar(id), transparent);
+    	Car* car = garage.retrieveCar(id);
+    	department[0]->fix(car, transparent);
+    	garage.storeCar(car);
     }
 }
 

@@ -35,7 +35,7 @@ void Department::fix(Car *car, bool transparent) {
 		nextDepartment->fix(car, transparent);
 	} else {
 		if (transparent) {
-			std::cout << "There are no more departments, the car has been completely fixed." << std::endl;
+			std::cout << "There are no more departments, the car has been completely fixed and stored in garage." << std::endl;
 		}
 	}
 }
