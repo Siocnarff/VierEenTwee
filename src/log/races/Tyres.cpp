@@ -3,16 +3,3 @@
 //
 
 #include "Tyres.h"
-
-
-rce::Tyres::Tyres() {
-
-}
-
-rce::Tyres::~Tyres() {
-
-}
-
-rce::Tyres *rce::Tyres::getTyres(int) {
-    return nullptr;
-}

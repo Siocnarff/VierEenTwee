@@ -14,16 +14,13 @@
 #include "RacingDept.h"
 #include "../eng/EngTeam.h"
 
-/**
- * @author Berné
- */
 namespace log {
 
     class Logistics : public Mediator {
     public:
         Logistics();
 
-        void registerNotifier(Colleague *);
+        eng::EngTeam registerNotifier(Colleague *);
 
         void doYearPlanning();
 

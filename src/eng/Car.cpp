@@ -1,55 +1,78 @@
 #include <specialists/Driver.h>
+#include <iostream>
 #include "Car.h"
 
 using namespace eng;
 
+Car::Car(int identification) {
+    id = identification;
+}
+
+Car::Car(Car *car) {
+    id = car->id;
+    driver = car->driver;
+    damage = car->damage;
+    for (int i = 0; i < 5; ++i) {
+        components[i] = car->components[i]->clone();
+    }
+}
+
 int Car::getSpeed() const {
-	return this->speed;
+
 }
 
 int Car::getHandling() const {
-	return this->handling;
+
 }
 
-int Car::getDamage() {
-	// TODO - implement Car::getDamage
-	throw "Not yet implemented";
+int Car::getDamage() const {
+    return damage;
 }
 
-void Car::setDamage(int damage) {
-	// TODO - implement Car::setDamage
-	throw "Not yet implemented";
+void Car::setDamage(int carDamage) {
+    damage = carDamage;
 }
 
-ppl::Driver* Car::getDriver() {
-	return this->driver;
+ppl::Driver *Car::getDriver() {
+    return driver;
 }
 
-void Car::removeDriver(ppl::Driver* driver) {
-	// TODO - implement Car::removeDriver
-	throw "Not yet implemented";
+void Car::removeDriver(ppl::Driver *driver) {
+    driver = nullptr;
 }
 
 void Car::print() {
-	// TODO - implement Car::print
-	throw "Not yet implemented";
+    std::cout << "CAR STATS:\n"
+              << "    id: " << id << std::endl
+              << "    Driver: " << (driver ? driver->getName() : "No Driver") << std::endl
+              << "    Damage: " << damage << std::endl
+              << "    Components:" << std::endl;
+    for (auto &component : components) {
+        if (component) {
+            component->print();
+        }
+    }
+    std::cout << "    Speed: " << getSpeed() << std::endl
+              << "    Handling: " << getHandling() << std::endl
+              << "----\n";
 }
 
 int Car::getDriverXP() {
-	// TODO - implement Car::getDriverXP
-	throw "Not yet implemented";
+    if (driver) {
+        return driver->getXp();
+    } else {
+        return -1;
+    }
 }
 
 bool Car::driverInCar() {
-	// TODO - implement Car::driverInCar
-	throw "Not yet implemented";
+    return driver != nullptr;
 }
 
 int Car::getId() const {
-	return this->id;
+    return this->id;
 }
 
-void Car::clone() {
-	// TODO - implement Car::clone
-	throw "Not yet implemented";
+Car * Car::clone() {
+    return new Car(this);
 }

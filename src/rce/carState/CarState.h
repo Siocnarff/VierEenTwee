@@ -1,7 +1,5 @@
 #ifndef RACING_CARSTATE_H
 #define RACING_CARSTATE_H
-
-#include <rce/RaceWeekend.h>
 #include "../eng/Car.h"
 namespace racing{
 class CarState {

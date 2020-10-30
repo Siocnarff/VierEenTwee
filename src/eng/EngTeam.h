@@ -12,38 +12,42 @@
 #include "../log/Mediator.h"
 
 namespace eng {
-class EngTeam : public log::Colleague {
+    class EngTeam : public log::Colleague {
 
-	private:
-		int improvementBudget = 0;
-		Garage garage;
-		BlueprintStore blueprint;
-		WindTunnel windTunnel;
-		ComponentSimulator simulator;
-		log::Mediator* logisticsDep;
-        Department* department[5];
-        Risk* innovation;
-        bool verbose = true;
+    private:
+        bool transparent = false;
+        int carIdGenerator = 0;
+        Garage garage;
+        BlueprintStore blueprint;
+        WindTunnel windTunnel;
+        ComponentSimulator simulator;
+        log::Mediator *logisticsDep;
+        Department *department[5];
+        Risk *innovation;
 
-	public:
-		void hireEmployees(int budget) override;
+        void cashUpDeps(int cash);
 
-		void registerForSeason(log::Mediator* logisticsDep);
+        void print(const std::string& message) const;
 
-		int buildCar(int budget, log::RiskLevel riskLevel);
+    public:
+        void hireEmployees(int budget) override;
 
-		void carArrivesAtFactory(Car* car);
+        void registerForSeason(log::Mediator *mediator);
 
-		void fixCar(int id);
+        int buildCar(int budget);
 
-		void improveCar(int id);
+        void carArrivesAtFactory(Car *car);
 
-		Car* checkCarOutOfFactory(int id);
+        void fixCar(int id);
 
-		void setRiskLevel(Risk* riskLevel);
+        void improveCar(int id);
 
-		void toggleVerbose();
-	};
+        Car *checkCarOutOfFactory(int id);
+
+        void setRiskLevel(log::RiskLevel riskLevel);
+
+        void toggleTransparency();
+    };
 }
 
 #endif

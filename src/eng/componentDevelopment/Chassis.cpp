@@ -3,6 +3,11 @@
 using namespace eng;
 
 void Chassis::print() {
-	// TODO - implement Chassis::print
-	throw "Not yet implemented";
+    std::cout   << "        Chassis Quality: " << getQualityLabel() << std::endl;
+}
+
+Chassis::Chassis(Component *toClone) : Component(toClone) {}
+
+Component *Chassis::clone() {
+    return new Chassis(this);
 }

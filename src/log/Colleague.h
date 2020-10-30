@@ -13,7 +13,7 @@ namespace log {
 
     class Colleague {
     public:
-        virtual ~Colleague();
+        ~Colleague();
 
         void addObserver(Mediator *obs);
 

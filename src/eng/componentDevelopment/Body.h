@@ -5,9 +5,13 @@
 
 namespace eng {
 	class Body : public Component {
+    private:
+	    explicit Body(Component * toClone);
 
 	public:
 		void print() final;
+
+		Component* clone() final;
 	};
 }
 

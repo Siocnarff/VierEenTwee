@@ -13,12 +13,12 @@ include_directories(src/log/races)
 include_directories(src/log/transportation)
 include_directories(src/ppl)
 include_directories(src/ppl/factories)
-include_directories(src/ppl/specialists)
+#[[include_directories(src/ppl/specialists)
 include_directories(src/rce)
 include_directories(src/rce/carState)
 include_directories(src/rce/leaderboard)
 include_directories(src/rce/pitstop)
-include_directories(src/rce/simulator)
+include_directories(src/rce/simulator)]]
 
 add_executable(VierEenTwee
         src/main.cpp
@@ -112,7 +112,6 @@ add_executable(VierEenTwee
         src/log/Mediator.h
         src/log/RacingDept.cpp
         src/log/RacingDept.h
-        src/log/Strategy.h
         src/ppl/factories/HireAmateur.cpp
         src/ppl/factories/HireAmateur.h
         src/ppl/factories/HireProfessional.cpp

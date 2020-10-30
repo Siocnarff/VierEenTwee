@@ -1,9 +1,11 @@
 #include "CreateStrategy.h"
 
-CreateStrategy* CreateStrategy::execute() 
+using namespace rce;
+
+CreateStrategy* CreateStrategy::execute()
 {
 	// returns our final strategy// return this;
-	return NULL;
+	return this;
 }
 
 CreateStrategy::CreateStrategy() 
@@ -26,8 +28,26 @@ void CreateStrategy::SetPitstops(int p)
 	Pitstops=p;
 }
 
-// void CreateStrategy::SetTires() 
-// {
-// 	// TODO - implement CreateStrategy::SetTires
-// 	throw "Not yet implemented";
-// }
+ void CreateStrategy::SetTyres(int *t)
+ {
+ 	tyres=t;
+ }
+
+ void CreateStrategy::SetStratName(string s)
+ {
+     StratName=s;
+ }
+
+ int* CreateStrategy::getTyres()
+ {
+     return tyres;
+ }
+ int CreateStrategy::getPitstops()
+ {
+     return Pitstops;
+ }
+
+ string CreateStrategy::getStratName()
+ {
+     return StratName;
+ }

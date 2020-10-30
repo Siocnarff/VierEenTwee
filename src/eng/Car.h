@@ -8,27 +8,30 @@ namespace eng {
 	class Car {
 
 	private:
-		/**
-		 * ranges between 0 - 100
-		 */
-		int speed;
-		int handling;
-		ppl::Driver* driver;
-		int id;
-        Component** components;
+        /**
+         * ranges between 0 - 100
+         */
+        int damage = 0;
+        ppl::Driver* driver = nullptr;
+        int id = 0;
+        Component* components[5] = {nullptr};
 
 	public:
+	    explicit Car(int identification);
+
+	    explicit Car(Car *car);
+
 		int getSpeed() const;
 
 		int getHandling() const;
 
-		static int getDamage();
+		int getDamage() const;
 
-		void setDamage(int damage);
+		void setDamage(int carDamage);
 
 		ppl::Driver* getDriver();
 
-		void removeDriver(ppl::Driver* driver);
+		static void removeDriver(ppl::Driver* driver);
 
 		void print();
 
@@ -38,7 +41,7 @@ namespace eng {
 
 		int getId() const;
 
-		void clone();
+		Car * clone();
 	};
 }
 

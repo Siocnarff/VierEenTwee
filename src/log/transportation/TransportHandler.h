@@ -22,8 +22,6 @@ namespace log {
         void addAMethod(TransportHandler *transport);
 
         virtual void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr);
-
-        ~TransportHandler();
     };
 
 }
