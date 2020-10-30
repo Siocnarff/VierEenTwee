@@ -12,6 +12,8 @@
 
 using namespace eng;
 
+EngTeam::EngTeam(log::Mediator* mediator) : log::Colleague(mediator) {}
+
 void EngTeam::hireEmployees(int budget) {
     print("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
@@ -82,10 +84,6 @@ void EngTeam::hireEmployees(int budget) {
     }
 }
 
-void EngTeam::registerForSeason(log::Mediator *mediator) {
-    this->logisticsDep = mediator;
-}
-
 int EngTeam::buildCar(int budget) {
     cashUpDeps(budget);
     int id = carIdGenerator++;
@@ -99,12 +97,12 @@ void EngTeam::cashUpDeps(int cash) {
     }
 }
 
+
 void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
     for (auto &dep : department) {
         dep->setRiskLevel(riskLevel);
     }
 }
-
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);

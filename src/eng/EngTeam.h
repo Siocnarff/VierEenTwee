@@ -21,18 +21,17 @@ namespace eng {
         BlueprintStore blueprint;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
-        log::Mediator *logisticsDep;
         Department *department[5];
         Risk *innovation;
 
         void cashUpDeps(int cash);
 
-        void print(const std::string& message) const;
+        void print(const std::string &message) const;
 
     public:
-        void hireEmployees(int budget) override;
+        explicit EngTeam(log::Mediator *mediator);
 
-        void registerForSeason(log::Mediator *mediator);
+        void hireEmployees(int budget) override;
 
         int buildCar(int budget);
 
