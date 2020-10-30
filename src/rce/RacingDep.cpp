@@ -137,7 +137,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditi
     return nullptr;
 }
 
-void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, log::Container* con)
+void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, log::Race* r, log::Container* con)
 {
 	// TODO - implement RacingDep::preRaceArrival
 	//throw "Not yet implemented";
