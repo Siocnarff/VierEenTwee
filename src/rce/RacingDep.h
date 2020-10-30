@@ -1,28 +1,10 @@
 #ifndef RACINGDEP_H
 #define RACINGDEP_H
 
-#include "../rce/simulator/Simulator.h"
-#include "../rce/simulator/SimulatorHotCondition.h"
-#include "../rce/simulator/SimulatorNormalCondition.h"
-#include "../rce/simulator/SimulatorWetCondition.h"
 
-#include "../log/RacingDept.h"
-
-#include "../rce/RaceWeekend.h"
-
-#include "../ppl/specialists/Driver.h"
-
-#include "../eng/Car.h"
-
-//#include "../rce/leaderboard/Leaderboard.h"
-
-#include "../rce/strategy/CreateStrategy.h"
-#include "../rce/strategy/SafeStrategy.h"
-#include "../rce/strategy/ModerateStrategy.h"
-#include "../rce/strategy/AggressiveStrategy.h"
-
-#include <string>
-#include <list>
+#include <rce/strategy/CreateStrategy.h>
+#include <rce/leaderboard/Leaderboard.h>
+#include "PitCrew.h"
 
 namespace rce {
     class RacingDep : public log::Colleague {
@@ -36,7 +18,7 @@ namespace rce {
         log::Container *CarContainer;
         std::string TeamName;
         //std::list<ppl::Strategist *> Stategist;
-        //std::list<ppl::Pitcrew *> pitcrew;
+        std::list<PitCrew *> pitcrew;
         eng::Car *car;
 
 // / ppl::Driver array of size 2?
@@ -65,6 +47,8 @@ namespace rce {
 
         log::Container *postRacePackUp();
         //void postRacePackUp();// return the container with tires in
+
+
 
     // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
 

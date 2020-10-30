@@ -1,3 +1,15 @@
+#include <rce/strategy/AggressiveStrategy.h>
+#include <rce/strategy/ModerateStrategy.h>
+#include <rce/strategy/SafeStrategy.h>
+#include <ppl/specialists/Driver.h>
+#include <log/enums/WeatherConditions.h>
+#include <rce/simulator/Simulator.h>
+#include <rce/simulator/SimulatorWetCondition.h>
+#include <rce/simulator/SimulatorNormalCondition.h>
+#include <rce/simulator/SimulatorHotCondition.h>
+#include <eng/Car.h>
+#include <log/races/Race.h>
+#include <log/races/Container.h>
 #include "RacingDep.h"
 
 using namespace rce;
@@ -11,6 +23,8 @@ void RacingDep::hireEmployees(int b)
 //CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)
 rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget)
 {
+    //Net sodat die code nie aan log se kant so baie errors het nie
+    std::string weather = "";
 	//safe ,moderate ,aggressive
     if(strategy)
     {
@@ -77,10 +91,14 @@ rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget)
 }
 
 //void RacingDep::trainDriver(std::string weather, ppl::Driver* driver,int trackDifficulty,int time)
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditions)
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, log::WeatherConditions)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
+
+	//net sodat nie error gee nie.
+	std::string weather = "";
+	int trackDifficulty = -1;
 
 	if(weather=="wet")
 	{
@@ -125,17 +143,17 @@ void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, log::C
 	throw "Not yet implemented";
 }
 
-int RacingDep::RacingWeekend() 
+/*int RacingDep::RacingWeekend()
 {
 	// TODO - implement RacingDep::Race
 	throw "Not yet implemented";
-}
+}*/
 
-void RacingDep::postRacePackUp() 
+/*void RacingDep::postRacePackUp()
 {
 	// TODO - implement RacingDep::postRacePackUp
 	throw "Not yet implemented";
-}
+}*/
 
 /*void RacingDep::registerForSeason(log::Observer* logisticsDept)
 {
@@ -178,7 +196,7 @@ void RacingDep::setTeamName(std::string TeamName)
 	throw "Not yet implemented";
 }
 
-list<ppl::Person*> RacingDep::getStategist() 
+std::list<ppl::Person*> RacingDep::getStategist()
 {
 	// TODO - implement RacingDep::getStategist
 	throw "Not yet implemented";
@@ -192,12 +210,13 @@ void RacingDep::setStategist(std::list<ppl::Person*> Stategist)
 
 std::list<ppl::Person*> RacingDep::getPitcrew()
 {
-	return this->pitcrew;
+	//return this->pitcrew;
 }
 
 void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
 {
-	this->pitcrew = pitcrew;
+	//mens kan nie een list net aan 'n ander assign nie. Jy moet elementwise deurgaan
+    //this->pitcrew = pitcrew;
 }
 
 void RacingDep::SetCarAfterRace() 

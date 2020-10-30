@@ -10,7 +10,7 @@
 using namespace log;
 
 void Logistics::registerNotifier(Colleague *colleague) {
-    auto* temp = new RacingDept;
+    auto* temp = new rce::RacingDep;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));
     } else {
@@ -59,7 +59,8 @@ void Logistics::raceSeason() {
     //2 cars
     callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
     //
-    seasonPointTally += callRacingDept()->RacingWeekend();
+    throw "Implement for two cars";
+    //seasonPointTally += callRacingDept()->RacingWeekend();
     callRacingDept()->postRacePackUp(); //execute
 
 }
@@ -109,8 +110,8 @@ void Logistics::putRacesIntoCalender() {
     cout << "put races into calender" << endl;
 }
 
-RacingDept *Logistics::callRacingDept() {
-    return dynamic_cast<RacingDept*>(departments['r']);
+rce::RacingDep *Logistics::callRacingDept() {
+    return dynamic_cast<rce::RacingDep*>(departments['r']);
 }
 
 eng::EngTeam *Logistics::callEngDept() {

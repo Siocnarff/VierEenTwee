@@ -8,7 +8,6 @@
 #include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
-#include "log/RacingDept.h"
 
 int ppl::Person::idCounter = 0;
 
@@ -45,7 +44,7 @@ int main () {
     }*/
 //    testBasicIntegration();
 
-    auto *racingDept = new log::RacingDept();
+    /*auto *racingDept = new rce::RacingDep();
     auto *engTeam = new eng::EngTeam();
     auto *log = new log::Logistics;
 
@@ -56,7 +55,7 @@ int main () {
     log->toggleVerbose();
     log->doYearPlanning();
 
-    log->toggleVerbose();
+    log->toggleVerbose();*/
 // ERROR : STORE CAR NOT IMPLEMENTED
     //log->raceSeason();
 
@@ -67,3 +66,9 @@ int main () {
 //    testContainerState();
 
 }
+
+/*
+.idea/
+cmake-build-debug/
+src/.idea/
+*/

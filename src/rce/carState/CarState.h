@@ -1,10 +1,12 @@
 #ifndef RACING_CARSTATE_H
 #define RACING_CARSTATE_H
 
-#include <rce/RaceWeekend.h>
 #include "../eng/Car.h"
 
 namespace rce {
+
+    class RaceWeekend;
+
     class CarState {
 
     private:
@@ -12,7 +14,7 @@ namespace rce {
         int car;
 
     public:
-        RaceWeekend *race;
+        rce::RaceWeekend *race;
 
         CarState(RaceWeekend *r);
 

@@ -14,6 +14,7 @@
 #include <log/races/Race.h>
 #include <rce/carState/CarState.h>
 #include <log/races/Container.h>
+#include "PitCrew.h"
 
 namespace rce {
     class RaceWeekend {
@@ -24,7 +25,7 @@ namespace rce {
         ppl::Driver **driver;
         log::Race *raceConditions;
         log::Container *container;
-        std::list<Pitcrew *> pitcrew;
+        std::list<PitCrew *> pitcrew;
         std::string TeamName;
         log::WeatherConditions DayWeather;
         Leaderboard *team;
@@ -42,7 +43,7 @@ namespace rce {
 
     public:
         RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,
-                    list<Pitcrew *> p, log::Container *c);
+                    list<PitCrew *> p, log::Container *c);
 
         int RacingWeekend();
 
@@ -58,9 +59,9 @@ namespace rce {
 
         void setContainer(log::Container *container);
 
-        list<Pitcrew *> getPitcrew();
+        list<PitCrew *> getPitcrew();
 
-        void setPitcrew(std::list<Pitcrew *> pitcrew);
+        void setPitcrew(std::list<PitCrew *> pitcrew);
 
         void notifyCarState(int i);
 

@@ -11,8 +11,8 @@
 #include <races/RaceIterator.h>
 
 #include "Mediator.h"
-#include "RacingDept.h"
 #include "../eng/EngTeam.h"
+#include "rce/RacingDep.h"
 
 namespace log {
 
@@ -50,8 +50,7 @@ namespace log {
         void putRacesIntoCalender();
 
     private:
-        RacingDept *callRacingDept();
-
+        rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
         map<char, Colleague *> departments;
@@ -65,7 +64,7 @@ namespace log {
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
-        int seasonPointTally;
+        int* seasonPointTally[2];
         int budget;
 
         bool verbose = true;
