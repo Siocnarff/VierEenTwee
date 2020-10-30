@@ -18,11 +18,11 @@ Car::Car(Car *car) {
 }
 
 int Car::getSpeed() const {
-
+    throw "not yet implemented";
 }
 
 int Car::getHandling() const {
-
+    throw "not yet implemented";
 }
 
 int Car::getDamage() const {

@@ -1,7 +1,7 @@
 #include "DriverScore.h"
 
-namespace rce {
-    DriverScore(Leaderboard
+using namespace rce;
+/*    DriverScore(Leaderboard
     * tl,
     Leaderboard *dl
     ):
@@ -18,7 +18,15 @@ namespace rce {
 
         this->Notify();
 
+    }*/
+
+//Jammer Louis! Ek kon nie mooi sinmaak daarvan nie, so jy gaan probs hier 'n merge conflict hÊ
+
+    DriverScore::DriverScore(Leaderboard *tl, Leaderboard *dl) : Score(tl, dl) {
+        throw "not yet implemented";
+
     }
 
-}
-}
+    void DriverScore::SetDriverScore(std::string driverName, int Score, std::string TeamName, bool display) {
+        throw "not yet implemented";
+    }

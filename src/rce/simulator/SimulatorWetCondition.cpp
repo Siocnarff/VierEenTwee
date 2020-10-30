@@ -11,6 +11,6 @@ namespace rce {
     }
 
     SimulatorWetCondition::SimulatorWetCondition() {
-
+        throw "Not yet implemented";
     }
 }

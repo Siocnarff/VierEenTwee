@@ -29,6 +29,7 @@ namespace log {
         void preRaceArrival(eng::Car *, ppl::Driver *, Race *, Container *);
 
         int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+
         Container *postRacePackUp();
 
     private:

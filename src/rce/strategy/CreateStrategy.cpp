@@ -33,7 +33,7 @@ void CreateStrategy::SetPitstops(int p)
  	tyres=t;
  }
 
- void CreateStrategy::SetStratName(string s)
+ void CreateStrategy::SetStratName(std::string s)
  {
      StratName=s;
  }

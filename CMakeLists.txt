@@ -167,4 +167,4 @@ add_executable(VierEenTwee
 #        src/rce/RaceWeekend.h
 #        src/rce/RacingDep.cpp
 #        src/rce/RacingDep.h
-        src/main.cpp)
+        src/main.cpp src/rce/leaderboard/Leaderboard.h src/rce/pitstop/Tyres.cpp src/rce/pitstop/Tyres.h src/rce/RaceDaysIterator.cpp src/rce/RaceDaysIterator.h)

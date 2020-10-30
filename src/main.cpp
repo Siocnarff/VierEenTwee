@@ -57,7 +57,8 @@ int main () {
     log->doYearPlanning();
 
     log->toggleVerbose();
-    log->raceSeason();
+// ERROR : STORE CAR NOT IMPLEMENTED
+    //log->raceSeason();
 
 
 

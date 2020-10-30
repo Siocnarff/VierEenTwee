@@ -2,13 +2,14 @@
 
 using namespace rce;
 
-void RacingDep::HireEmployees(int b) 
+void RacingDep::hireEmployees(int b)
 {
 	// TODO - implement RacingDep::HireWorker
 	throw "Not yet implemented";
 }
 
-CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int riskLevel) 
+//CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)
+rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
     if(strategy)
@@ -75,7 +76,8 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,string weather,int risk
 	}
 }
 
-void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time) 
+//void RacingDep::trainDriver(std::string weather, ppl::Driver* driver,int trackDifficulty,int time)
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditions)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
@@ -109,7 +111,15 @@ void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficu
 	}
 }
 
-void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, Race* r, Container* con)
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::TrackComplexity) {
+    return nullptr;
+}
+
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity) {
+    return nullptr;
+}
+
+void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, log::Container* con)
 {
 	// TODO - implement RacingDep::preRaceArrival
 	throw "Not yet implemented";
@@ -127,11 +137,11 @@ void RacingDep::postRacePackUp()
 	throw "Not yet implemented";
 }
 
-void RacingDep::registerForSeason(Observer* logisticsDept) 
+/*void RacingDep::registerForSeason(log::Observer* logisticsDept)
 {
 	// TODO - implement RacingDep::registerForSeason
 	throw "Not yet implemented";
-}
+}*/
 
 Leaderboard* RacingDep::getResults() 
 {
@@ -139,7 +149,7 @@ Leaderboard* RacingDep::getResults()
 	throw "Not yet implemented";
 }
 
-Race* RacingDep::getRace() 
+log::Race* RacingDep::getRace()
 {
 	return this->race;
 }
@@ -156,13 +166,13 @@ int RacingDep::getResult()
 	throw "Not yet implemented";
 }
 
-string RacingDep::getTeamName() 
+std::string RacingDep::getTeamName()
 {
 	// TODO - implement RacingDep::getTeamName
 	throw "Not yet implemented";
 }
 
-void RacingDep::setTeamName(string TeamName) 
+void RacingDep::setTeamName(std::string TeamName)
 {
 	// TODO - implement RacingDep::setTeamName
 	throw "Not yet implemented";
@@ -174,18 +184,18 @@ list<ppl::Person*> RacingDep::getStategist()
 	throw "Not yet implemented";
 }
 
-void RacingDep::setStategist(list<ppl::Person*> Stategist) 
+void RacingDep::setStategist(std::list<ppl::Person*> Stategist)
 {
 	// TODO - implement RacingDep::setStategist
 	throw "Not yet implemented";
 }
 
-list<ppl::Person*> RacingDep::getPitcrew() 
+std::list<ppl::Person*> RacingDep::getPitcrew()
 {
 	return this->pitcrew;
 }
 
-void RacingDep::setPitcrew(list<ppl::Person*> pitcrew) 
+void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
 {
 	this->pitcrew = pitcrew;
 }
@@ -195,3 +205,7 @@ void RacingDep::SetCarAfterRace()
 	// TODO - implement RacingDep::SetCarAfterRace
 	throw "Not yet implemented";
 }
+
+
+
+

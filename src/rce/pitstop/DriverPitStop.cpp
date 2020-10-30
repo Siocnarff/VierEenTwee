@@ -2,13 +2,18 @@
 
 using namespace rce;
 
-void DriverPitStop::tyres(int t, int compounds) {
+/*void DriverPitStop::tyres(int t, int compounds) {
 	// TODO - implement DriverPitStop::tyres
 	throw "Not yet implemented";
-}
+}*/
 
 void DriverPitStop::setCar(Car* c) {
 	this->car = c;
+}
+
+void DriverPitStop::tyres(Tyres *t) {
+    // TODO - implement DriverPitStop::tyres
+    throw "Not yet implemented";
 }
 
 void DriverPitStop::race() {

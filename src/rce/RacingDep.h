@@ -25,34 +25,48 @@
 #include <list>
 
 namespace rce {
-    class RacingDep {
+    class RacingDep : public log::Colleague {
 
     private:
         int risklevel;
         int budget;
-        Race *race;
+        log::Race *race;
         int results;
         CreateStrategy *strategy;
         log::Container *CarContainer;
         std::string TeamName;
-        list<ppl::Strategist *> Stategist;
-        list<ppl::Pitcrew *> pitcrew;
+        //std::list<ppl::Strategist *> Stategist;
+        //std::list<ppl::Pitcrew *> pitcrew;
         eng::Car *car;
 
 // / ppl::Driver array of size 2?
 // / car array of size 2? 
 // / different strategies for each ppl::Driver and car?
     public:
-        void HireEmployees(int b);
 
-        CreateStrategy *PlanSeasonStrategy(int budget, string weather, int riskLevel);//weather
-        void trainDriver(string weather, ppl::Driver *driver, int trackDifficulty, int time);//weather and time
-        void preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con);
+        void hireEmployees(int budget) override;
 
-        int RacingWeekend();// why is it an int?
-        void postRacePackUp();// return the container with tires in
+        rce::CreateStrategy *PlanSeasonStrategy(int budget);
+        //NB NB weather is log::WeatherConditions
+        //CreateStrategy *PlanSeasonStrategy(int budget, std::string weather, int riskLevel);//weather
 
-        void registerForSeason(Observer *logisticsDept);// is it needed?
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+        //void trainDriver(std::string weather, ppl::Driver *driver, int trackDifficulty, int time);//weather and time
+
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::TrackComplexity);
+
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
+
+        void preRaceArrival(eng::Car *, ppl::Driver *, log::Race *, log::Container *);
+        //void preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con);
+
+        int* RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+        //int* RacingWeekend();// why is it an int? Because we want an array of int[2] giving back the weekend's points
+
+        log::Container *postRacePackUp();
+        //void postRacePackUp();// return the container with tires in
+
+    // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
 
         Leaderboard *getResults();
 
@@ -60,21 +74,21 @@ namespace rce {
 
         int getResult();// needed?
 
-        Race *getRace();
+        log::Race *getRace();
 
-        string getTeamName();
+        std::string getTeamName();
 
-        void setTeamName(string TeamName);
+        void setTeamName(std::string TeamName);
 
         void SetCarAfterRace();
 
-        list<ppl::Person *> getStategist();
+        std::list<ppl::Person *> getStategist();
 
-        void setStategist(list<ppl::Person *> Stategist);
+        void setStategist(std::list<ppl::Person *> Stategist);
 
-        list<ppl::Person *> getPitcrew();
+        std::list<ppl::Person *> getPitcrew();
 
-        void setPitcrew(list<ppl::Person *> pitcrew);
+        void setPitcrew(std::list<ppl::Person *> pitcrew);
     };
 }
 #endif
