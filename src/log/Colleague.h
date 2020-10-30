@@ -16,6 +16,8 @@ namespace log {
     public:
         explicit Colleague(Mediator* mediator);
 
+        Colleague();
+
         virtual ~Colleague();
 
         void addObserver(Mediator *obs);

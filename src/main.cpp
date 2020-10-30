@@ -116,10 +116,10 @@ int main () {
 
 //    testBasicIntegration();
 
-    auto* racingDept = new RacingDept();
-    auto* engDept = new eng::EngTeam();
-    //engDept->toggleTransparency();
     auto* a = new Logistics;
+    auto* racingDept = new rce::RacingDept(a);
+    auto* engDept = new eng::EngTeam(a);
+    //engDept->toggleTransparency();
 
     a->registerNotifier(racingDept);
 

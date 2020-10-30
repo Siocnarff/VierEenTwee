@@ -36,7 +36,7 @@ Logistics::Logistics() {
  * @status done
  */
 void Logistics::registerNotifier(Colleague *colleague) {
-    auto* temp = new RacingDept;
+    auto* temp = new rce::RacingDept(this);
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(std::pair<char,Colleague*>('r',colleague));
     } else {
@@ -110,9 +110,9 @@ void Logistics::doYearPlanning() {
     }
 
     //6. hire transportManager
-    transportManager = new Road();
-    transportManager->addAMethod(new Ship);
-    transportManager->addAMethod(new Fly);
+    transportManager = new Road(this);
+    transportManager->addAMethod(new Ship(this));
+    transportManager->addAMethod(new Fly(this));
 
 }
 
@@ -216,8 +216,8 @@ void Logistics::packContainers() {
 /**
  * @author Jo
  */
-RacingDept *Logistics::callRacingDept() {
-    return dynamic_cast<RacingDept*>(departments['r']);
+rce::RacingDept *Logistics::callRacingDept() {
+    return dynamic_cast<rce::RacingDept*>(departments['r']);
 }
 
 /**
