@@ -9,8 +9,8 @@ void RacingDept::hireEmployees(int budget) {
 
 }
 
-rce::Strategy *RacingDept::PlanSeasonStrategy(int budget) {
-    return new rce::Strategy(budget);
+Strategy *RacingDept::PlanSeasonStrategy(int budget) {
+    return new Strategy(budget);
 }
 
 
