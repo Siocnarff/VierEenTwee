@@ -67,7 +67,19 @@ Race *Race::nextRace() {
 Race *Race::prevRace() {
     return prev;
 }
+int Race::getNumLaps() {
+    return numLaps;
+}
 
+/*std::ostream &log::operator<<(std::ostream &os, const Race &rc) {
+    os << rc.location << '/nEurope: ' << rc.isInEurope << '/nNumLaps: ' << rc.numLaps << std::endl;
+    return os;
+}*/
+
+/*std::ostream& operator<<(std::ostream& stream, log::Race rc) {
+    stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
+    return stream;
+}*/
 
 
 

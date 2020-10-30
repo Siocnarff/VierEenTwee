@@ -7,10 +7,10 @@
 
 #include <enums/WeatherConditions.h>
 #include <enums/TrackComplexity.h>
+#include <rce/strategy/CreateStrategy.h>
 #include "Car.h"
 #include "races/Race.h"
 #include "../../ppl/specialists/Driver.h"
-#include "Strategy.h"
 #include "Colleague.h"
 
 namespace log {
@@ -18,7 +18,7 @@ namespace log {
     public:
         void hireEmployees(int budget) override;
 
-        Strategy *PlanSeasonStrategy(int budget);
+        rce::CreateStrategy *PlanSeasonStrategy(int budget);
 
         ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
 

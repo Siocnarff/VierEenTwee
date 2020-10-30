@@ -8,15 +8,16 @@
 #include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
+#include "log/RacingDept.h"
 
 int ppl::Person::idCounter = 0;
 
 using namespace eng;
 
 int main () {
-    EngTeam engTeam;
+    /*EngTeam engTeam;
     engTeam.toggleTransparency();
-    engTeam.hireEmployees(49);
+    engTeam.hireEmployees(49);*/
 
     /*auto** factories = new ppl::HumanResources*[3];
     factories[0] = new ppl::KidnapStudent();
@@ -42,4 +43,26 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
+//    testBasicIntegration();
+
+    auto *racingDept = new log::RacingDept();
+    auto *engTeam = new eng::EngTeam();
+    auto *log = new log::Logistics;
+
+    log->registerNotifier(racingDept);
+    log->registerNotifier(engTeam);
+
+    engTeam->toggleTransparency();
+    log->toggleVerbose();
+    log->doYearPlanning();
+
+    log->toggleVerbose();
+    log->raceSeason();
+
+
+
+//    testIterator();
+
+//    testContainerState();
+
 }

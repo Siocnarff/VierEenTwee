@@ -17,6 +17,7 @@ namespace log {
         Race *next;
         Race *prev;
         //WeatherConditions raceDayWeather;
+        int numLaps;
     public:
         Race();
 
@@ -49,6 +50,7 @@ namespace log {
          */
         WeatherConditions getRaceDayWeather();
 
+        int getNumLaps();
     };
 }
 

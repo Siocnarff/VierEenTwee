@@ -9,7 +9,7 @@
 
 using namespace log;
 
-void Logistics::registerNotifier(Colleague *colleague) {
+eng::EngTeam Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
         departments.insert(pair<char,Colleague*>('r',colleague));

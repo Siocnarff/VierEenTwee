@@ -1,5 +1,5 @@
 #include "AggressiveStrategy.h"
-
+using namespace rce;
 CreateStrategy* AggressiveStrategy::execute() 
 {
 	return this;
