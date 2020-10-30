@@ -79,20 +79,6 @@ void EngTeam::hireEmployees(int budget) {
     }
 }
 
-int EngTeam::buildCar(int budget, log::RiskLevel riskLevel) {
-    briefDepartments(budget, riskLevel);
-    int id = carIdGenerator++;
-    department[0]->build(new Car(id));
-    return id;
-}
-
-void EngTeam::briefDepartments(int cash, log::RiskLevel riskLevel) {
-    for (auto & dep : department) {
-        dep->setRiskLevel(riskLevel);
-        dep->topUpBudget(cash);
-    }
-}
-
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
 }
@@ -112,9 +98,7 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
     throw "Not yet implemented";
 }
 
-void EngTeam::setRiskLevel(Risk *riskLevel) {
-    innovation = riskLevel;
-}
+
 
 void EngTeam::toggleTransparency() {
     transparent = !transparent;
