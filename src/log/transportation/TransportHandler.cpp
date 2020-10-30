@@ -30,3 +30,5 @@ void TransportHandler::transport(Race *fromLocation, Race *destination, eng::Car
 TransportHandler::~TransportHandler() {
     delete nextTransportationMethod;
 }
+
+TransportHandler::TransportHandler(Mediator *mediator) : Colleague(mediator) {}

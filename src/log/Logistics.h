@@ -55,7 +55,7 @@ namespace log {
         void putRacesIntoCalender();
 
     private:
-        RacingDept *callRacingDept();
+        rce::RacingDept *callRacingDept();
 
         eng::EngTeam *callEngDept();
 
@@ -68,7 +68,7 @@ namespace log {
         std::vector<int> carsInSeasonIDs;
         std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
-        Strategy *currentTeamStrategy;
+        rce::Strategy *currentTeamStrategy;
 
         int seasonPointTally;
         int budget;

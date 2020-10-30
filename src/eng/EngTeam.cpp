@@ -79,10 +79,6 @@ void EngTeam::hireEmployees(int budget) {
     }
 }
 
-void EngTeam::registerForSeason(log::Mediator *mediator) {
-    this->logisticsDep = mediator;
-}
-
 int EngTeam::buildCar(int budget, log::RiskLevel riskLevel) {
     briefDepartments(budget, riskLevel);
     int id = carIdGenerator++;
@@ -123,3 +119,5 @@ void EngTeam::setRiskLevel(Risk *riskLevel) {
 void EngTeam::toggleTransparency() {
     transparent = !transparent;
 }
+
+EngTeam::EngTeam(log::Mediator *mediator) : Colleague(mediator) {}

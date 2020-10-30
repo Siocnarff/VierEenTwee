@@ -6,52 +6,66 @@
 #include "SimulatorNormalCondition.h"
 #include "SimulatorWetCondition.h"
 
-#include "CreateStrategy.h"
 #include "Driver.h"
 
 #include <string>
 #include <list>
-class RacingDep 
-{
+#include <log/races/Race.h>
+#include <log/Colleague.h>
 
-private:
-	int risklevel;
-	int budget;
-	Race* race;
-	int results;
-	CreateStrategy* strategy;
-	Container* CarContainer;
-	string TeamName;
-	list<ppl::Person*> Stategist;
-	list<ppl::Person*> pitcrew;
-	Car* car;
-	
+namespace rce {
+    class RacingDep : public log::Colleague {
+
+    private:
+        int riskLevel;
+        int budget;
+        log::Race *race;
+        int results;
+        CreateStrategy *strategy;
+        log::Container *CarContainer;
+        string TeamName;
+        list<ppl::Person *> Stategist;
+        list<ppl::Person *> pitcrew;
+        eng::Car *car;
+
 /// ppl::Driver array of size 2?
-/// car array of size 2? 
+/// car array of size 2?
 /// different strategies for each ppl::Driver and car?
-public:
-	void HireEmployees(int b);
-	CreateStrategy* PlanSeasonStrategy(int budget);//weather
-	void trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time);//weather and time 
-	void preRaceArrival(Car* c, ppl::Driver* d, Race* r, Container* con);
-	int RacingWeekend();// why is it an int?
-	void postRacePackUp();// return the container with tires in
-	
-	void registerForSeason(Observer* logisticsDept);// is it needed?
-	
-	Leaderboard* getResults();
-	void setResult(int result);
-	int getResult();
+    public:
+        RacingDep(log::Mediator* mediator);
 
-	Race* getRace();
-	string getTeamName();
-	void setTeamName(string TeamName);
-	void SetCarAfterRace();
+        void HireEmployees(int b);
 
-	list<ppl::Person*> getStategist();
-	void setStategist(list<ppl::Person*> Stategist);
-	list<ppl::Person*> getPitcrew();
-	void setPitcrew(list<ppl::Person*> pitcrew);
-};
+        CreateStrategy *PlanSeasonStrategy(int budget);//weather
+        void trainDriver(string weather, ppl::Driver *driver, int trackDifficulty, int time);//weather and time
+        void preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con);
+
+        int RacingWeekend();// why is it an int?
+        log::Container *postRacePackUp();// return the container with tires in
+
+        Leaderboard *getResults();
+
+        void setResult(int result);
+
+        int getResult();
+
+        log::Race *getRace();
+
+        string getTeamName();
+
+        void setTeamName(string TeamName);
+
+        void SetCarAfterRace();
+
+        list<ppl::Person *> getStategist();
+
+        void setStategist(list<ppl::Person *> Stategist);
+
+        list<ppl::Person *> getPitcrew();
+
+        void setPitcrew(list<ppl::Person *> pitcrew);
+    };
+}
+
 
 #endif

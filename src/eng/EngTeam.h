@@ -28,9 +28,9 @@ namespace eng {
         void briefDepartments(int cash, log::RiskLevel riskLevel);
 
     public:
-        void hireEmployees(int budget) override;
+        explicit EngTeam(log::Mediator* mediator);
 
-        void registerForSeason(log::Mediator *mediator);
+        void hireEmployees(int budget) override;
 
         int buildCar(int budget, log::RiskLevel riskLevel);
 

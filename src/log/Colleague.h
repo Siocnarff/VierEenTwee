@@ -14,6 +14,10 @@ namespace log {
 
     class Colleague {
     public:
+        explicit Colleague(Mediator* mediator);
+
+        Colleague();
+
         virtual ~Colleague();
 
         void addObserver(Mediator *obs);
@@ -33,7 +37,7 @@ namespace log {
         void notify(log::RiskLevel*);
 
     private:
-        Mediator *observer;
+        Mediator *logisticsDep;
     };
 
 }

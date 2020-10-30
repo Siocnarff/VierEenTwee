@@ -29,7 +29,7 @@ namespace eng {
 
 		ppl::Driver* getDriver();
 
-		void removeDriver(ppl::Driver* driver);
+		static void removeDriver(ppl::Driver* driver);
 
 		void print();
 

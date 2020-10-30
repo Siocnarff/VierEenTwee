@@ -13,9 +13,9 @@ int ppl::Person::idCounter = 0;
 using namespace log;
 
 void testBasicIntegration() {
-    RacingDept* racingDept = new RacingDept();
-    eng::EngTeam* engDept = new eng::EngTeam();
-    Logistics* a = new Logistics;
+    auto* a = new Logistics;
+    auto* engDept = new eng::EngTeam(a);
+    auto* racingDept = new rce::RacingDept(a);
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;
@@ -114,10 +114,10 @@ int main () {
 
 //    testBasicIntegration();
 
-    auto* racingDept = new RacingDept();
-    auto* engDept = new eng::EngTeam();
-    //engDept->toggleTransparency();
     auto* a = new Logistics;
+    auto* racingDept = new rce::RacingDept(a);
+    auto* engDept = new eng::EngTeam(a);
+    //engDept->toggleTransparency();
 
     a->registerNotifier(racingDept);
 

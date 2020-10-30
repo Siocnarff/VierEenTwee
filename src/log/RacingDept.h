@@ -13,24 +13,26 @@
 #include "Strategy.h"
 #include "Colleague.h"
 
+namespace rce {
+    class RacingDept : public log::Colleague {
+    public:
+        explicit RacingDept(log::Mediator* mediator);
+        void hireEmployees(int budget) override;
+        Strategy* PlanSeasonStrategy(int budget);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, log::TrackComplexity);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
+        void preRaceArrival(eng::Car*, ppl::Driver*, log::Race*, log::Container*);
+        int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+        log::Container* postRacePackUp();
 
-class RacingDept : public log::Colleague {
-public:
-    void hireEmployees(int budget) override;
-    Strategy* PlanSeasonStrategy(int budget);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, TrackComplexity);
-    ppl::Driver* trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
-    void preRaceArrival(eng::Car*, ppl::Driver*, Race*, Container*);
-    int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-    Container* postRacePackUp();
+    private:
+        eng::Car* car;
+        ppl::Driver* driver;
+        log::Container* container;
+        log::Race* race;
+    };
+}
 
-private:
-    eng::Car* car;
-    ppl::Driver* driver;
-    Container* container;
-    Race* race;
-
-};
 
 #endif //PREMODELLING_RACINGDEPT_H
