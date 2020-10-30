@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <factories/HireProfessional.h>
+#include <factories/HireAmateur.h>
+#include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "log/races/RacesList.h"
 #include "log/Logistics.h"
@@ -13,9 +15,9 @@ int ppl::Person::idCounter = 0;
 using namespace log;
 
 void testBasicIntegration() {
-    auto* racingDept = new RacingDept();
-    auto* engDept = new eng::EngTeam();
     auto* a = new Logistics;
+    auto* engDept = new eng::EngTeam(a);
+    auto* racingDept = new rce::RacingDept(a);
 
 //    cout << "Created departments" << endl;
 //    cout << "-------------------" << endl;
@@ -45,7 +47,7 @@ void testIterator(){
     int complexity[5] = {2, 0, 3, 1, 0};
     bool european[5] = {true,false,true,true,false};
     int laps[5] = {32,14,56,67,20};
-    log::RacesList* raceList = new RacesList;
+    RacesList* raceList = new RacesList;
     for (int i = 0; i < 5; ++i) {
         raceList->addRace(new Race(names[i], complexity[i], laps[i], european[i]));
     }
@@ -114,10 +116,10 @@ int main () {
 
 //    testBasicIntegration();
 
-    auto* racingDept = new RacingDept();
-    auto* engDept = new eng::EngTeam();
-    //engDept->toggleTransparency();
     auto* a = new Logistics;
+    auto* racingDept = new rce::RacingDept(a);
+    auto* engDept = new eng::EngTeam(a);
+    //engDept->toggleTransparency();
 
     a->registerNotifier(racingDept);
 
@@ -125,6 +127,7 @@ int main () {
 
     a->doYearPlanning();
 
+    a->toggleTransparency();
    // a->raceSeason();
 
 //    testIterator();

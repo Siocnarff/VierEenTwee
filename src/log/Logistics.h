@@ -55,7 +55,7 @@ namespace log {
         void putRacesIntoCalender();
 
     private:
-        RacingDept *callRacingDept();
+        rce::RacingDept *callRacingDept();
 
         eng::EngTeam *callEngDept();
 

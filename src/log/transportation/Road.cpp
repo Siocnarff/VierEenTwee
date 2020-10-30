@@ -18,3 +18,5 @@ void Road::transport(Race *fromLocation, Race *destination, eng::Car *car) {
             TransportHandler::transport(fromLocation, destination, car);
         }
 }
+
+Road::Road(Mediator *mediator) : TransportHandler(mediator) {}

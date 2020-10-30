@@ -18,3 +18,5 @@ void Ship::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     }
 }
 
+Ship::Ship(Mediator *mediator) : TransportHandler(mediator) {}
+
