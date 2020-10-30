@@ -1,12 +1,14 @@
 #include "RacingDep.h"
 
+using namespace rce;
+
 void RacingDep::HireEmployees(int b) 
 {
 	// TODO - implement RacingDep::HireWorker
 	throw "Not yet implemented";
 }
 
-CreateStrategy* RacingDep::PlanSeasonStrategy(int budget) 
+CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 {
 	// TODO - implement RacingDep::PlanSeasonStrategy
 	throw "Not yet implemented";
@@ -16,10 +18,10 @@ void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficu
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
-	this->ppl::Driver=driver;
-	this->weather=weather;
-	this->time=time;
-	this->trackDifficulty=trackDifficulty;
+	this->driver= driver;
+	this->weather= weather;
+	this->time= time;
+	this->trackDifficulty= trackDifficulty;
 
 	if(weather=="wet")
 	{
@@ -38,22 +40,32 @@ void RacingDep::trainDriver(string weather, ppl::Driver* driver,int trackDifficu
 	}
 }
 
-void RacingDep::preRaceArrival(Car* c, ppl::Driver* d, Race* r, Container* con) 
-{
-	// TODO - implement RacingDep::preRaceArrival
-	throw "Not yet implemented";
+void RacingDep::preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con) {
+    std::cout << "arrive at destination" << std::endl;
+    car  = c;
+    driver = d;
+    race = r;
+    container = con;
 }
 
-int RacingDep::RacingWeekend() 
-{
-	// TODO - implement RacingDep::Race
-	throw "Not yet implemented";
+int RacingDep::RacingWeekend() {
+    std::cout << "Let's start"<<std::endl;
+    notify(new eng::Car(0));
+    std::cout << "strat packing up" << std::endl;
+    notify(new Container);
+    std::cout << "smoke a cigarette" << std::endl;
+
+    return 5;
 }
 
-void RacingDep::postRacePackUp() 
-{
-	// TODO - implement RacingDep::postRacePackUp
-	throw "Not yet implemented";
+Container* RacingDep::postRacePackUp() { //make container*
+    std::cout << container->getState();
+    container->unpack();
+    container->advanceState();
+    std::cout << container->getState();
+    return new Container;
+
+
 }
 
 void RacingDep::registerForSeason(Observer* logisticsDept) 
