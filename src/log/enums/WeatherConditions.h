@@ -5,7 +5,7 @@
 #ifndef SRC_WEATHERCONDITIONS_H
 #define SRC_WEATHERCONDITIONS_H
 
-namespace log {
+namespace lg {
     enum WeatherConditions {
         Wet, Dry, Rainy
         //Hot, Normal, Rainy

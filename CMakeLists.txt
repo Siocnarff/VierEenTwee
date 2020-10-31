@@ -171,4 +171,6 @@ add_executable(VierEenTwee
         src/rce/strategy/ModerateStrategy.h
         src/rce/strategy/SafeStrategy.cpp
         src/rce/strategy/SafeStrategy.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
         )

@@ -12,6 +12,7 @@
 #include "pr/Doc.h"
 
 int ppl::Person::idCounter = 0;
+int pr::Doc::transparency = 0;
 
 void testBasicIntegration() {
     pr::Doc::setTransparency(1);

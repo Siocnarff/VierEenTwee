@@ -8,7 +8,7 @@
 #include "Iterator.h"
 #include "Race.h"
 
-namespace log {
+namespace lg {
     class RacesList;
 
     class RaceIterator : public Iterator {

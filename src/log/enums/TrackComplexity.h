@@ -5,7 +5,7 @@
 #ifndef SRC_TRACKCOMPLEXITY_H
 #define SRC_TRACKCOMPLEXITY_H
 
-namespace log {
+namespace lg {
     enum TrackComplexity {
         Easy, Average, Difficult, Extreme
     };

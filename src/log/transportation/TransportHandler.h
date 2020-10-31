@@ -11,7 +11,7 @@ using namespace std;
 
 #include "Colleague.h"
 
-namespace log {
+namespace lg {
 
     class TransportHandler : public Colleague {
     private:

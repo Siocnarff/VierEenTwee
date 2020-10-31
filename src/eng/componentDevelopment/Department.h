@@ -34,7 +34,7 @@ namespace eng {
 
         void addSpecialist(ppl::Person *specialist);
 
-        void setRiskLevel(log::RiskLevel level);
+        void setRiskLevel(lg::RiskLevel level);
 
         virtual void build(Car *car);
 

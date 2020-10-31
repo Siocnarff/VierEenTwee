@@ -16,7 +16,7 @@
 #include <log/races/TyreBox.h>
 
 
-using namespace log;
+using namespace lg;
 
 /**
  * @author Jo

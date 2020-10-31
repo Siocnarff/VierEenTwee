@@ -5,7 +5,7 @@
 #include <enums/TrackComplexity.h>
 #include <enums/WeatherConditions.h>
 #include "Race.h"
-using namespace log;
+using namespace lg;
 
 Race::Race() {
     location = "outer space";

@@ -7,12 +7,12 @@
 
 using namespace eng;
 
-void Department::setRiskLevel(log::RiskLevel level) {
-    if (level == log::Safe) {
+void Department::setRiskLevel(lg::RiskLevel level) {
+    if (level == lg::Safe) {
         riskLevel = new Safe();
-    } else if (level == log::Moderate) {
+    } else if (level == lg::Moderate) {
         riskLevel = new Moderate();
-    } else if (level == log::Aggressive) {
+    } else if (level == lg::Aggressive) {
         riskLevel = new Aggressive();
     }
 }
