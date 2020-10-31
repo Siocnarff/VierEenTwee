@@ -7,7 +7,7 @@
 
 #include "ContainerState.h"
 
-namespace log{
+namespace lg{
 
     class InShippingState : public ContainerState {
     public:

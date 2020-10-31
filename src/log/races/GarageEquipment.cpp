@@ -4,7 +4,7 @@
 
 #include "GarageEquipment.h"
 
-using namespace log;
+using namespace lg;
 
 GarageEquipment::GarageEquipment(std::list<std::string> insides) {
     if (insides.size() == 0) {

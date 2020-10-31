@@ -1,7 +1,7 @@
 #ifndef ENG_RISKLEVEL_H
 #define ENG_RISKLEVEL_H
 
-namespace log {
+namespace lg {
 	enum RiskLevel {
 		Safe, 
 		Moderate, 

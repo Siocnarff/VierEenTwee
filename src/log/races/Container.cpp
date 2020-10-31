@@ -5,7 +5,7 @@
 #include "Container.h"
 #include "BeingPackedState.h"
 #include <iostream>
-using namespace log;
+using namespace lg;
 
 Container::Container() {
     this->containerCurrentState = new BeingPackedState();

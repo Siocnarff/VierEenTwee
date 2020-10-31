@@ -5,7 +5,7 @@
 #include "ArrivedState.h"
 #include "BeingPackedState.h"
 
-using namespace log;
+using namespace lg;
 
 void ArrivedState::nextState(Container *container) {
     container->setState(new BeingPackedState());

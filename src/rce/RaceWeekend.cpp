@@ -279,7 +279,7 @@ void RaceWeekend::setScore(int score) {
 	this->score[i] = score;
 }
 
-RaceWeekend::RaceWeekend(eng::Car** cars, people::Driver** drivers, log::Race* r, strategy::CreateStategy* s, list<Pitcrew*> p, log::Container* c) {
+RaceWeekend::RaceWeekend(eng::Car** cars, people::Driver** drivers, lg::Race* r, strategy::CreateStategy* s, list<Pitcrew*> p, lg::Container* c) {
 	car = new Car*[2];
 	driver = new Driver*[2];
 	CState = new CarState*[2];

@@ -14,7 +14,7 @@
 #include "RacingDept.h"
 #include "../eng/EngTeam.h"
 
-namespace log {
+namespace lg {
 
     class Logistics : public Mediator {
     public:

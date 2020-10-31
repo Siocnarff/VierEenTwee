@@ -32,7 +32,7 @@ private:
 	Race* race;
 	int results;
 	CreateStrategy* strategy;
-	log::Container* CarContainer;
+	lg::Container* CarContainer;
 	std::string TeamName;
 	list<ppl::Strategist*> Stategist;
 	list<ppl::Pitcrew*> pitcrew;

@@ -8,7 +8,7 @@
 #include "Container.h"
 #include <string>
 
-namespace log {
+namespace lg {
 
     class Container;
 

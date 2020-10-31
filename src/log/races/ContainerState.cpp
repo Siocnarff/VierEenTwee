@@ -4,7 +4,7 @@
 
 #include "ContainerState.h"
 
-using namespace log;
+using namespace lg;
 ContainerState::~ContainerState() = default;
 
 

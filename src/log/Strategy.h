@@ -8,7 +8,7 @@
 #include <string>
 #include <list>
 
-using namespace log;
+using namespace lg;
 
 class Strategy {
 private:

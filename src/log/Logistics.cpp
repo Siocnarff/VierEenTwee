@@ -7,7 +7,7 @@
 #include "transportation/Road.h"
 #include "Logistics.h"
 
-using namespace log;
+using namespace lg;
 
 void Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;

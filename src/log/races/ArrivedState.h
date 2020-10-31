@@ -9,7 +9,7 @@
 #include "Container.h"
 
 
-namespace log {
+namespace lg {
 
     class ArrivedState : public ContainerState {
     public:

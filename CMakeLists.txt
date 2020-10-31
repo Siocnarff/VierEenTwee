@@ -131,4 +131,6 @@ add_executable(VierEenTwee
         src/ppl/HumanResources.h
         src/ppl/Person.cpp
         src/ppl/Person.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
 )

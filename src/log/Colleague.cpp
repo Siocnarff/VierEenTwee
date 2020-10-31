@@ -4,7 +4,7 @@
 
 #include "Colleague.h"
 #include "Mediator.h"
-using namespace log;
+using namespace lg;
 
 Colleague::~Colleague() = default;
 

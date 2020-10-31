@@ -13,14 +13,14 @@
 #include "Strategy.h"
 #include "Colleague.h"
 
-namespace log {
-    class RacingDept : public log::Colleague {
+namespace lg {
+    class RacingDept : public lg::Colleague {
     public:
         void hireEmployees(int budget) override;
 
         Strategy *PlanSeasonStrategy(int budget);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
 
         ppl::Driver *trainDriver(ppl::Driver *, int time, TrackComplexity);
 

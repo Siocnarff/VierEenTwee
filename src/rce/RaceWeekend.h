@@ -8,7 +8,7 @@
 #include "../people/Driver.h"
 #include "../eng/Car.h"
 //#include "../people/Pitcrew.h"
-//#include "../log/Race.h"
+//#include "../lg/Race.h"
 #include "../racing/strategy/CreateStrategy.h"
 #include "../racing/Leaderboard.h"
 #include "WeatherConditions.h"
@@ -41,7 +41,7 @@ private:
 	
 
 public:
-	RaceWeekend(eng::Car* cars, people::Driver* drivers, log::Race* r, strategy::CreateStategy* s, list<people::Pitcrew*> p, log::Container* c);
+	RaceWeekend(eng::Car* cars, people::Driver* drivers, lg::Race* r, strategy::CreateStategy* s, list<people::Pitcrew*> p, lg::Container* c);
 
 	int RacingWeekend();
 
@@ -53,9 +53,9 @@ public:
 
 	void setDriver(people::Driver* driver, int i);
 
-	log::Container* getContainer();
+	lg::Container* getContainer();
 
-	void setContainer(log::Container* container);
+	void setContainer(lg::Container* container);
 
 	list<people::Pitcrew*> getPitcrew();
 
@@ -71,9 +71,9 @@ public:
 
 	void setScore(int score, int i);
 
-	log::WeatherConditions* getDayWeather();
+	lg::WeatherConditions* getDayWeather();
 
-	void setDayWeather(log::WeatherConditions* DayWeather);
+	void setDayWeather(lg::WeatherConditions* DayWeather);
 
 	racing::CarState* getCState(int i);
 

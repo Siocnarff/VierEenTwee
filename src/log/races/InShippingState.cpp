@@ -5,7 +5,7 @@
 #include "InShippingState.h"
 #include "ArrivedState.h"
 
-using namespace log;
+using namespace lg;
 
 void InShippingState::nextState(Container *container) {
     container->setState(new ArrivedState());
