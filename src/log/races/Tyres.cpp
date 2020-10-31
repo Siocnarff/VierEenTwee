@@ -33,7 +33,7 @@ rce::Tyres::~Tyres() {
 }
 
 std::string rce::Tyres::getCompound() {
-    return tyreCompound;
+    return tyreCompoundString;
 }
 
 rce::Tyres *rce::Tyres::getTyres(int) {
@@ -59,7 +59,7 @@ void rce::Tyres::print() {
         }
     }
     else {
-        std::cout << "Tyre compound: " << tyreCompound << std::endl;
+        std::cout << "Tyre compound: " << tyreCompoundString << std::endl;
         std::cout << "Tyre thread: " << std::endl << std::endl;
 
     }

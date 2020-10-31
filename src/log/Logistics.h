@@ -43,9 +43,9 @@ namespace log {
 
         Container *getNextNonEuropean();
 
-        void packContainers(int);
+        void packContainers();
 
-        Container* packSingleContainer(int);
+        Container* packSingleContainer();
 
         void SimulateEvent(Race *);
 

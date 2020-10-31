@@ -11,6 +11,8 @@ void Box::addElement(Container *c) {
     elements.push_back(c);
 }
 
+void Box::pack() {}
+
 
 void Box::unpack() {
     Container::unpack();

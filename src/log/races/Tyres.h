@@ -32,7 +32,7 @@ namespace rce {
 
         void reduceThread();
 
-        int getCompound();
+        std::string getCompound();
 
         void print();
     };

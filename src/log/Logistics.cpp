@@ -13,7 +13,7 @@
 #include <log/races/Box.h>
 #include <log/races/GarageEquipment.h>
 #include <log/races/CateringEquipment.h>
-#include <log/races/TyreBox.h>
+
 
 
 using namespace log;
@@ -53,7 +53,7 @@ void Logistics::preSeasonPreparation() {
 
     int tyrecompound = 2;
 
-    packContainers(tyrecompound);
+    packContainers();
 
     //moet meer spesifiek wees hierso.
     //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
@@ -120,26 +120,24 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
-void Logistics::packContainers(int tyreCompound) {
+void Logistics::packContainers() {
 
     //Need to create container objects to match to races
     //Test by packing a single container:
 
-    Container *container = packSingleContainer(tyreCompound);
+    Container *container = packSingleContainer();
 
     cout << "Packed all containers" << endl;
 
 }
 
-Container* Logistics::packSingleContainer(int tyreCompound) {
+Container* Logistics::packSingleContainer() {
     Box* box = new Box();
     GarageEquipment* garageEquip = new GarageEquipment();
     CateringEquipment* cateringEquip = new CateringEquipment();
-    TyreBox* tyreBox = new TyreBox(tyreCompound);
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
-    box->addElement(tyreBox);
 
     cout << "Packed a container" << endl;
 
