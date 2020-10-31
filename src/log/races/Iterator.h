@@ -5,7 +5,7 @@
 #ifndef LOGISTICS_ITERATOR_H
 #define LOGISTICS_ITERATOR_H
 
-namespace log {
+namespace lg {
     class Race;
 
     class Iterator {

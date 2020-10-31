@@ -8,7 +8,7 @@
 #include "Container.h"
 #include "Tyres.h"
 
-namespace log {
+namespace lg {
     class TyreBox : public Container {
     public:
         TyreBox(int tyreCompound);

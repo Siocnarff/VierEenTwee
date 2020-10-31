@@ -8,7 +8,7 @@
 #include "Container.h"
 #include <list>
 
-namespace log {
+namespace lg {
     class Box : public Container {
     private:
         std::list<Container *> elements;

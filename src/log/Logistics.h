@@ -13,7 +13,7 @@
 #include "../eng/EngTeam.h"
 #include "rce/RacingDep.h"
 
-namespace log {
+namespace lg {
 
     class Logistics : public Mediator {
     public:

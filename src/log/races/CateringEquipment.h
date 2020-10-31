@@ -7,7 +7,7 @@
 
 #include "Container.h"
 
-namespace log {
+namespace lg {
     class CateringEquipment : public Container {
     private:
         std::list <std::string> contents;

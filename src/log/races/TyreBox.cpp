@@ -4,7 +4,7 @@
 
 #include "TyreBox.h"
 
-using namespace log;
+using namespace lg;
 
 TyreBox::TyreBox(int tyreCompound) {
     tyres = new rce::Tyres(tyreCompound);

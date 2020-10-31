@@ -7,7 +7,7 @@
 
 #include "Car.h"
 
-namespace log {
+namespace lg {
 
     class Mediator {
     protected:

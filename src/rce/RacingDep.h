@@ -8,15 +8,15 @@
 #include "PitCrew.h"
 
 namespace rce {
-    class RacingDep : public log::Colleague {
+    class RacingDep : public lg::Colleague {
 
     private:
         int risklevel;
         int budget;
-        log::Race *race;
+        lg::Race *race;
         int results;
         CreateStrategy *strategy;
-        log::Container *CarContainer;
+        lg::Container *CarContainer;
         std::string TeamName;
         //std::list<ppl::Strategist *> Stategist;
         std::list<PitCrew *> pitcrew;
@@ -32,23 +32,23 @@ namespace rce {
         void hireEmployees(int budget) override;
 
         rce::CreateStrategy *PlanSeasonStrategy(int budget);
-        //NB NB weather is log::WeatherConditions
+        //NB NB weather is lg::WeatherConditions
         //CreateStrategy *PlanSeasonStrategy(int budget, std::string weather, int riskLevel);//weather
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
         //void trainDriver(std::string weather, ppl::Driver *driver, int trackDifficulty, int time);//weather and time
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, log::TrackComplexity);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::TrackComplexity);
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions, lg::TrackComplexity);
 
-        void preRaceArrival(eng::Car **, ppl::Driver **, log::Race *, log::Container *);
-        //void preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, log::Container *con);
+        void preRaceArrival(eng::Car **, ppl::Driver **, lg::Race *, lg::Container *);
+        //void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
 
         int* RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
         //int* RacingWeekend();// why is it an int? Because we want an array of int[2] giving back the weekend's points
 
-        log::Container *postRacePackUp();
+        lg::Container *postRacePackUp();
         //void postRacePackUp();// return the container with tires in
 
         ~RacingDep() override;
@@ -64,7 +64,7 @@ namespace rce {
 
         int getResult();// needed?
 
-        log::Race *getRace();
+        lg::Race *getRace();
 
         std::string getTeamName();
 
