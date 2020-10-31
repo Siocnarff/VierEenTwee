@@ -73,12 +73,12 @@ void EngTeam::hireEmployees(int budget) {
     srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
+            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
-        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
-        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]), transparent);
-        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]), transparent);
-        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]), transparent);
+        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
+        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]));
+        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
+        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
 }
 
@@ -133,7 +133,7 @@ void EngTeam::improveCar(int id) {
     if (/*using wind tunnel*/) {
     	windTunnel.testCar(car);
     } else {
-		simulator.testComponents(car, transparent);
+		simulator.testComponents(car);
     }
 	for (int num = 0; num < 5; num++) {
 		Component* component = car->components[num];
@@ -141,7 +141,7 @@ void EngTeam::improveCar(int id) {
 			int currentQuality = component->getQualityLabel();
 			blueprintStore.setBlueprint(component->createBlueprint());
 			department[num]->update(component);
-			simulator.testComponent(component, transparent);
+			simulator.testComponent(component);
 			int changedQuality = component->getQualityLabel();
 			if (currentQuality > changedQuality) {
 				component->rebuildComponent(blueprintStore.getBlueprint());

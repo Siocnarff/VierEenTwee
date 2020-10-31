@@ -21,7 +21,7 @@ void EngineDep::fix(Car *car) {
         pr::Doc::detail(departmentName);
         pr::Doc::detail(" is tuning the engine which was at ");
         pr::Doc::detail(std::to_string(100 - damage));
-        pr::Doc::detail("% power.\n")
+        pr::Doc::detail("% power.\n");
     }
     Department::fix(car);
 }
