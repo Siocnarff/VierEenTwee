@@ -16,10 +16,12 @@ void EngineDep::build(Car* car) {
 void EngineDep::fix(Car *car) {
 	int damage = fixComponent(car, 1);
     if (damage == 0) {
-        pr::Doc::detail("Engine still running at full power, sending car to next department.");
-        std::cout << "Engine still running at full power, sending car to next department." << std::endl;
+        pr::Doc::detail("Engine still running at full power, sending car to next department.\n");
     } else {
-        std::cout << departmentName << " is tuning the engine which was at " << 100 - damage << "% power." << std::endl;
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" is tuning the engine which was at ");
+        pr::Doc::detail(std::to_string(100 - damage));
+        pr::Doc::detail("% power.\n")
     }
     Department::fix(car);
 }
