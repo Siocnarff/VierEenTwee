@@ -6,8 +6,8 @@ class Colleague {
 private:
     Logistics* observeringLogisticsDept;
 public:
-    virtual void registerForSeason(Logistics* observer) {
-        observeringLogisticsDept = observer;
+    virtual void registerForSeason(Logistics* logistcsDep) {
+        observeringLogisticsDept = logistcsDep;
     };
     virtual void notify(auto*) ;
     //virtual void notify(Car*, TyresCompounds ); //pre-Season strategy planned

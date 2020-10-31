@@ -1,5 +1,7 @@
 #include "ModerateStrategy.h"
 
+using namespace rce;
+
 CreateStrategy* ModerateStrategy::execute() 
 {
 	return this;
@@ -7,7 +9,7 @@ CreateStrategy* ModerateStrategy::execute()
 
 ModerateStrategy::ModerateStrategy(int p,int* t,int risk) 
 {
-	cout<<"The startegists have decided to implement a moderate strategy"<<endl;
+	std::cout<<"The strategists have decided to implement a moderate strategy"<<std::endl;
     SetPitstops(p);
     SetTyres(t);
     SetRiskLevel(risk);

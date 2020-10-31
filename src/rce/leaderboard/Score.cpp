@@ -1,41 +1,46 @@
 #include "Score.h"
+
+using namespace rce;
+
 Score::Score(Leaderboard* driverlead,Leaderboard* Teamlead)
 {
 	this->driverlead = driverlead;
 	this->Teamlead = Teamlead;
 }
 void Score::Notify() {
+/*
 	driverlead->UpdateDriverLeaderBoard(driverName,Score);
 	Teamlead->UpdateLeaderBoard(TeamName,driverName, Score);
-	
+*/
+
 }
 
 int Score::getscore()
 {
-	return this score;
+	return this->score;
 }
 	
 void setscore(int s)
 {
-	this->score = s;
+//	this->score = s;
 }
 	
 std::string getdriverName()
 {
-	return this->driverName;
+//	return this->driverName;
 }
 
 std::string getTeamName()
 {
-	return this->TeamName;
+//	return this->TeamName;
 }
 
 void setdriverName(std::string Name)
 {
-	this->driverName = Name;
+//	this->driverName = Name;
 }
 
 void setTeamName(std::string Name)
 {
-	this->TeamName = Name;
+//	this->TeamName = Name;
 }

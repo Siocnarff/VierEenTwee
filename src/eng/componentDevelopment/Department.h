@@ -7,32 +7,44 @@
 #include "../Car.h"
 #include "Component.h"
 
-namespace eng {
-	class Department {
 
-	private:
-		Department* nextDepartment;
-		Risk* riskLevel;
-		int budget = 0;
-		std::vector<ppl::Person*> specialists;
+
+namespace eng {
+    class Car;
+    class Department {
+
+    private:
+        Department *nextDepartment;
+        Risk *riskLevel;
+        int budget = 0;
+        std::vector<ppl::Person *> specialists;
 
     protected:
         std::string departmentName;
 
-	public:
-	    explicit Department(Department* next);
+        void buildComponentIntoCar(Car *car, Component *comp);
 
-	    void addSpecialist(ppl::Person *specialist, bool printResults = false);
+        int fixComponent(Car *, int);
 
-		void setRiskLevel(log::RiskLevel level);
+        int specialistsDesignComponent();
 
-		void build(Car* car);
+    public:
 
-		void fix(Car* car);
+        explicit Department(Department *next);
 
-		virtual void update(Component* component) = 0;
+        void addSpecialist(ppl::Person *specialist);
+
+        void setRiskLevel(log::RiskLevel level);
+
+        virtual void build(Car *car);
+
+        virtual void fix(Car *car);
+
+        virtual void update(Component *component) = 0;
 
         void topUpBudget(int cash);
+
+        bool haveSpecialists();
     };
 }
 

@@ -2,20 +2,15 @@
 // Created by jo-anne on 2020/10/22.
 //
 
-#include "races/Tyres.h"
 #include "Box.h"
 using namespace log;
+
+Box::Box() {}
 
 void Box::addElement(Container *c) {
     elements.push_back(c);
 }
 
-Container *Box::removeElement() {
-    Container* temp = elements.back();
-    elements.pop_back();
-    return temp;
-
-}
 
 rce::Tyres * Box::unpack() {
     Container::unpack();
@@ -24,7 +19,7 @@ rce::Tyres * Box::unpack() {
         (*it)->unpack();
     }
     //Moet verander word en reg-geimplementeer word
-    return new rce::Tyres;
+    return nullptr;
 }
 
 Box::~Box() {

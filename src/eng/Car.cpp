@@ -1,27 +1,49 @@
 #include <specialists/Driver.h>
+#include <iostream>
+#include <pr/Doc.h>
 #include "Car.h"
 
 using namespace eng;
 
-Car::Car(int identification) {
+eng::Car::Car(int identification) {
     id = identification;
-    driver = nullptr;
-    damage = 0;
-    components = nullptr;
+}
+
+Car::Car(Car *car) {
+    id = car->id;
+    driver = car->driver;
+    damage = car->damage;
+    for (int i = 0; i < 5; ++i) {
+        components[i] = car->components[i]->clone();
+    }
 }
 
 int Car::getSpeed() const {
-    if (components) {
-        return 1;
-    }
-    return 0;
+	int speed = 0;
+	if (components[1]) {
+		speed += components[1]->quality / 3;
+	}
+	if (components[3]) {
+		speed += components[3]->quality / 3;
+	}
+	if (components[4]) {
+		speed += components[4]->quality / 3;
+	}
+	return speed;
 }
 
 int Car::getHandling() const {
-    if (components) {
-        return 1;
-    }
-    return 0;
+	int handling = 0;
+	if (components[0]) {
+		handling += components[1]->quality / 3;
+	}
+	if (components[2]) {
+		handling += components[3]->quality / 3;
+	}
+	if (components[3]) {
+		handling += components[4]->quality / 3;
+	}
+	return handling;
 }
 
 int Car::getDamage() const {
@@ -41,8 +63,20 @@ void Car::removeDriver(ppl::Driver *driver) {
 }
 
 void Car::print() {
-    // TODO - implement Car::print
-    throw "Not yet implemented";
+    pr::Doc::summary("CAR INFO: id=" + std::to_string(id));
+    pr::Doc::summary(std::to_string(id));
+    pr::Doc::summary(" Driver=" + (driver ? driver->getName() : "None") + "\n");
+    pr::Doc::detail("  Detail:");
+    pr::Doc::detail(" Damage=" + std::to_string(damage));
+    pr::Doc::detail(" Speed=" + std::to_string(getSpeed()));
+    pr::Doc::detail(" Handling=" + std::to_string(getHandling()) + "\n");
+    pr::Doc::detail("    Components:\n");
+    for (auto &component : components) {
+        if (component) {
+            component->print();
+        }
+    }
+    pr::Doc::summary("----\n");
 }
 
 int Car::getDriverXP() {
@@ -61,7 +95,12 @@ int Car::getId() const {
     return this->id;
 }
 
-void Car::clone() {
-    // TODO - implement Car::clone
-    throw "Not yet implemented";
+Car *Car::clone() {
+    return new Car(this);
+}
+
+Car *Car::clone(int idOfNew) {
+    Car *newCar = new Car(this);
+    newCar->id = idOfNew;
+    return newCar;
 }

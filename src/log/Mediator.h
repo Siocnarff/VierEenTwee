@@ -15,9 +15,7 @@ namespace log {
 
         virtual void containerHasBeenPacked(Container *) = 0;
 
-        virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
-
-        virtual void informStrategyChanged(rce::Strategy*) = 0;
+        //virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
 
     public:
         friend class Colleague;

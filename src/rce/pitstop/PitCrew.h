@@ -1,15 +1,16 @@
 #ifndef RACING_PITCREW_H
 #define RACING_PITCREW_H
-namespace racing{
-class PitCrew {
 
+#include <rce/RaceDaysIterator.h>
 
-public:
-	PitCrew();
+namespace rce {
+    class PitCrew {
+    public:
+        PitCrew();
 
-	void setCar(RaceDaysIterator* c);
+        void setCar(RaceDaysIterator *c);
 
-	virtual void changetyres() = 0;
-};
+        virtual void changetyres() = 0;
+    };
 }
 #endif

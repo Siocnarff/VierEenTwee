@@ -2,6 +2,7 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include <iostream>
 #include "RacesList.h"
 
 using namespace log;
@@ -12,7 +13,6 @@ using namespace log;
 
 RacesList::RacesList() {
     headRace = nullptr;
-    numRaces = 0;
 }
 
 //IS DONE?
@@ -24,11 +24,14 @@ void RacesList::addRace(Race *race) {
         while (temp->nextRace() != nullptr) {
             temp = temp->nextRace();
         }
-        temp->setNextRace(race); //temp.next = race and race.prev = temp
-        //race->setPrevRace(temp); //race.prev = temp and temp.next = race
+        temp->setNextRace(race);
+        race->setPrevRace(temp);
     }
-    ++numRaces;
 }
+
+/*Race *RacesList::removeRace() {
+    return nullptr;
+}*/
 
 bool RacesList::isEmpty() {
     return (headRace== nullptr);
@@ -51,14 +54,6 @@ Race *RacesList::getHeadRace() const {
     return headRace;
 }
 
-/**
- * @return numRaces
- * @author Berné
- */
-int RacesList::getNumRaces() {
-    return numRaces;
-}
-
 void RacesList::printList() {
     Race* temp = headRace;
     if (isEmpty()) {
@@ -74,7 +69,9 @@ void RacesList::printList() {
 
 }
 
-/*Race *RacesList::removeRace() {
-    return nullptr;
-}*/
+int RacesList::getNumRaces() {
+    return numRaces;
+}
+
+
 

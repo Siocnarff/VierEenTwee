@@ -3,21 +3,28 @@
 
 #include <componentDevelopment/Component.h>
 #include "../../ppl/specialists/Driver.h"
+#include "Department.h"
+
 
 namespace eng {
 	class Car {
+	friend class Department;
+	friend class EngTeam;
+	friend class ComponentSimulator;
 
 	private:
         /**
          * ranges between 0 - 100
          */
-        int damage;
-        ppl::Driver* driver;
-        int id;
-        Component** components;
+        int damage = 0;
+        ppl::Driver* driver = nullptr;
+        int id = 0;
+        Component* components[5] = {nullptr};
 
 	public:
 	    explicit Car(int identification);
+
+	    explicit Car(Car *car);
 
 		int getSpeed() const;
 
@@ -29,7 +36,7 @@ namespace eng {
 
 		ppl::Driver* getDriver();
 
-		void removeDriver(ppl::Driver* driver);
+		static void removeDriver(ppl::Driver* driver);
 
 		void print();
 
@@ -39,8 +46,10 @@ namespace eng {
 
 		int getId() const;
 
-		void clone();
-	};
+		Car * clone();
+
+        Car *clone(int idOfNew);
+    };
 }
 
 #endif

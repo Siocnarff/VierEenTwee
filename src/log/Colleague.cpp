@@ -9,21 +9,23 @@ using namespace log;
 Colleague::~Colleague() = default;
 
 void Colleague::addObserver(Mediator *obs) {
-    observer = obs;
+    logisticsDept = obs;
 }
 
 void Colleague::notify(eng::Car *car) {
-    observer->sendCarToFactory(car);
+    logisticsDept->sendCarToFactory(car);
 }
 
 void Colleague::notify(Container *container) {
-    observer->containerHasBeenPacked(container);
+    logisticsDept->containerHasBeenPacked(container);
 }
 
 void Colleague::notify(bool isEuropeanRace) {
-    observer->requestContainerStateChange(isEuropeanRace);
-}
+    //logisticsDept->requestContainerStateChange(isEuropeanRace);
+    if (isEuropeanRace) {
+        std::cout << "Transportation in Europe\n";
+    } else {
+        std::cout << "Transportation outside of Europe\n";
+    }
 
-void Colleague::notify(rce::Strategy *s) {
-    observer->informStrategyChanged(s);
 }

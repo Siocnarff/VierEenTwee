@@ -5,9 +5,8 @@
 #ifndef PREMODELLING_SUBJECT_H
 #define PREMODELLING_SUBJECT_H
 
-#include <log/racing/Container.h>
 #include "Car.h"
-#include "Strategy.h"
+#include "races/Container.h"
 //#include <iostream> //both eng- and racing- need it
 namespace log {
     class Mediator;
@@ -24,16 +23,10 @@ namespace log {
 
         void notify(bool isEuropeanRace);
 
-        void notify(rce::Strategy*);
-
-        void notify(int* tyreCompoundOrder); // list of 3
-
         virtual void hireEmployees(int) = 0;
 
-        void notify(log::RiskLevel*);
-
-    private:
-        Mediator *observer;
+    protected:
+        Mediator *logisticsDept;
     };
 
 }

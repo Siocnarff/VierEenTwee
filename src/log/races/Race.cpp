@@ -11,7 +11,6 @@ Race::Race() {
     location = "outer space";
     complexity = Difficult;
     isInEurope = false;
-    numLaps = 777;
     next = nullptr;
     prev = nullptr;
 }
@@ -44,7 +43,6 @@ TrackComplexity Race::computeTrackComplexity(int comp) {
             return Easy;
     }
 }
-
 
 bool Race::isRaceEuropean() {
     return isInEurope;
@@ -82,7 +80,7 @@ void Race::setNextRace(Race *race) {
 
 void Race::setPrevRace(Race *race) {
     this->prev = race;
-    race->next = this->prev;
+    race->next = this;
 }
 
 Race *Race::nextRace() {
@@ -92,7 +90,6 @@ Race *Race::nextRace() {
 Race *Race::prevRace() {
     return prev;
 }
-
 int Race::getNumLaps() {
     return numLaps;
 }
@@ -102,11 +99,10 @@ int Race::getNumLaps() {
     return os;
 }*/
 
-std::ostream& operator<<(std::ostream& stream, log::Race rc) {
-    stream << rc.getLocation() << '/nEurope: ' << rc.isRaceEuropean() << '/nNumLaps: ' << rc.getNumLaps() << std::endl;
+/*std::ostream& operator<<(std::ostream& stream, log::Race rc) {
+    stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
     return stream;
-}
-
+}*/
 
 
 

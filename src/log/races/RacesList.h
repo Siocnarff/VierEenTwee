@@ -18,6 +18,7 @@ namespace log {
 //    RaceIterator createIterator() override;
         RacesList();
 
+        //RaceIterator createIterator();
         void addRace(Race *);
 
         //Race* removeRace();
