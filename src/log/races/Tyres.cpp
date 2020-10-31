@@ -6,61 +6,76 @@
 #include "Tyres.h"
 
 
-rce::Tyres::Tyres(int compound) {
-    this->tyreCompoundInt = compound;
-    if (compound ==0) {
-        this->tyreCompoundString = "Soft Tyres";
+rce::Tyres::Tyres(int tyreOrder[2]) {
+    for (int x = 0; x < 3; x++) {
+        if (tyreOrder[x] > 0) {
+            std::cout << "no.: " << tyreOrder[x] << std::endl;
+            for (int comp = 0; comp < tyreOrder[x]; comp++) {
+                switch (x) {
+                    case 0:
+                        softTyres.push_back(new SetOfTyres(x));
+                        break;
+                    case 1:
+                        mediumTyres.push_back(new SetOfTyres(x));
+                        break;
+                    case 2:
+                        hardTyres.push_back(new SetOfTyres(x));
+                        break;
+                }
+            }
+        }
     }
-    else if(compound == 1) {
-        this->tyreCompoundString = "Medium Tyres";
-    }
-    else if (compound == 2) {
-        this->tyreCompoundString = "Hard Tyres";
-    }
-    this->thread = 100;
-    std::cout << "Ordered " << this->tyreCompoundString << std::endl;
 }
 
 rce::Tyres::~Tyres() {
-    if (!tyreSetList.empty()) {
-        for (std::list<Tyres*>::iterator it = tyreSetList.begin(); it != tyreSetList.end(); ++it) {
+    if (!softTyres.empty()) {
+        for (std::_List_iterator<SetOfTyres *> it = softTyres.begin(); it != softTyres.end(); ++it) {
             delete *it;
         }
     }
-    if (tyreSetList.empty()) {
-        std::cout << "Cleared List" << std::endl;
-    }
-}
-
-std::string rce::Tyres::getCompound() {
-    return tyreCompoundString;
-}
-
-rce::Tyres *rce::Tyres::getTyres(int) {
-    return nullptr;
-}
-
-int rce::Tyres::getThread() {
-    return this->thread;
-}
-
-void rce::Tyres::reduceThread() {
-    if (thread > 0) {
-        thread = thread-5;
-    }
-}
-
-void rce::Tyres::print() {
-    if (!tyreSetList.empty()) {
-        int setNum = 1;
-        for (std::list<Tyres*>::iterator it = tyreSetList.begin(); it != tyreSetList.end(); ++it) {
-            std::cout << "Tyre set #" << setNum++ << std::endl;
-            (*it)->print();
+    if (!mediumTyres.empty()) {
+        for (std::_List_iterator<SetOfTyres *> it = mediumTyres.begin(); it != mediumTyres.end(); ++it) {
+            delete *it;
         }
     }
-    else {
-        std::cout << "Tyre compound: " << tyreCompoundString << std::endl;
-        std::cout << "Tyre thread: " << std::endl << std::endl;
-
+    if (!hardTyres.empty()) {
+        for (std::_List_iterator<SetOfTyres *> it = hardTyres.begin(); it != hardTyres.end(); ++it) {
+            delete *it;
+        }
     }
+    std::cout << "Tyres recycled" << std::endl;
+
+}
+
+SetOfTyres *rce::Tyres::getTyres(int) {
+
+}
+
+void rce::Tyres::printStats() {
+    std::cout << "---------------------------" << std::endl;
+    std::cout << "Tyres condition: " << std::endl;
+
+    if (!softTyres.empty()) {
+        std::cout << "   Soft Tyres:" << std::endl;
+        int setNum = 1;
+        for (std::_List_iterator<SetOfTyres *> it = softTyres.begin(); it != softTyres.end(); ++it) {
+            std::cout << "     Tyre set #" << setNum++ << " thread: "<< (*it)->getThread() << std::endl;
+        }
+    }
+    if (!mediumTyres.empty()) {
+        std::cout << "   Medium Tyres:" << std::endl;
+        int setNum = 1;
+        for (std::_List_iterator<SetOfTyres *> it = mediumTyres.begin(); it != mediumTyres.end(); ++it) {
+            std::cout << "     Tyre set #" << setNum++ << " thread: " << (*it)->getThread() << std::endl;
+        }
+    }
+    if (!hardTyres.empty()) {
+        std::cout << "   Hard Tyres:" << std::endl;
+        int setNum = 1;
+        for (std::_List_iterator<SetOfTyres *> it = hardTyres.begin(); it != hardTyres.end(); ++it) {
+            std::cout << "     Tyre set #" << setNum++ << " thread: "<< (*it)->getThread() << std::endl;
+        }
+    }
+
+    std::cout << std::endl << "--------------------------" << std::endl;
 }

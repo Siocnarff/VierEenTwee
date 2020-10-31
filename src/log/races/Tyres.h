@@ -7,34 +7,31 @@
 
 #include <list>
 #include <string>
+#include "SetOfTyres.h"
 
 namespace rce {
     class Tyres {
     private:
-        std::list<Tyres*> tyreSetList;
+        std::list<SetOfTyres*> softTyres;
 
-        int thread;
+        std::list<SetOfTyres*> mediumTyres;
 
-        int tyreCompoundInt;
+        std::list<SetOfTyres*> hardTyres;
 
-        std::string tyreCompoundString;
+
     public:
 
-        Tyres(int);
+        Tyres(int[]);
 
         Tyres();
 
         ~Tyres();
 
-        Tyres* getTyres(int);
-
-        int getThread();
-
-        void reduceThread();
+        SetOfTyres* getTyres(int);
 
         std::string getCompound();
 
-        void print();
+        void printStats();
     };
 }
 

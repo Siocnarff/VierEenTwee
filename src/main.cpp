@@ -81,6 +81,17 @@ void testContainerPacking() {
 }
 
 
+void testTyres() {
+    int arr[3] = {2,1,2};
+
+    auto* tyres = new rce::Tyres(arr);
+
+    tyres->printStats();
+
+    delete tyres;
+
+}
+
 
 int main () {
     /*EngTeam engTeam;
@@ -113,21 +124,24 @@ int main () {
     }*/
 //    testBasicIntegration();
 
-//    auto *racingDept = new log::RacingDept();
-//    auto *engTeam = new eng::EngTeam();
-//    auto *log = new log::Logistics;
-//
-//    log->registerNotifier(racingDept);
-//    log->registerNotifier(engTeam);
-//
-//    engTeam->toggleTransparency();
-//    log->toggleVerbose();
-//    log->doYearPlanning();
-//
-//    log->toggleVerbose();
-//    log->raceSeason();
+   /* auto *racingDept = new log::RacingDept();
+    auto *engTeam = new eng::EngTeam();
+    auto *log = new log::Logistics;
 
-    testContainerPacking();
+    log->registerNotifier(racingDept);
+    log->registerNotifier(engTeam);
+
+    engTeam->toggleTransparency();
+    log->toggleVerbose();
+    log->doYearPlanning();
+
+    log->toggleVerbose();
+    log->raceSeason();
+    */
+
+  //  testContainerPacking();
+
+    testTyres();
 
 //    testIterator();
 
