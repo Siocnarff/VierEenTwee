@@ -25,7 +25,7 @@ Department::Department(Department *next) {
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
     pr::Doc::summary(departmentName + " hired a new specialist\n");
-    specialist->getResume();
+    pr::Doc::detail(specialist->getResume());
 }
 
 void Department::fix(Car *car) {
