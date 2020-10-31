@@ -1,6 +1,7 @@
 #include "BodyDep.h"
 
 #include <utility>
+#include <pr/Doc.h>
 #include "../Car.h"
 #include "Body.h"
 
@@ -15,13 +16,14 @@ void BodyDep::build(Car* car) {
 
 void BodyDep::fix(Car *car) {
 	int damage = fixComponent(car, 3);
-	if (transparent) {
-		if (damage == 0) {
-			std::cout << "Body is still nice and streamlined, sending car to next department." << std::endl;
-		} else {
-			std::cout << departmentName << " is ironing out all the wrinkles which made up about " << damage << "% of the surface." << std::endl;
-		}
-	}
+    if (damage == 0) {
+        pr::Doc::detail("Body is still nice and streamlined, sending car to next department.\n");
+    } else {
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" is ironing out all the wrinkles which made up about ");
+        pr::Doc::detail(std::to_string(damage));
+        pr::Doc::detail("% of the surface.\n");
+    }
     Department::fix(car);
 }
 

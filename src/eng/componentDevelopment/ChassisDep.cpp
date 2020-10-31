@@ -1,3 +1,4 @@
+#include <pr/Doc.h>
 #include "ChassisDep.h"
 #include "Chassis.h"
 
@@ -12,13 +13,14 @@ void ChassisDep::build(Car* car) {
 
 void ChassisDep::fix(Car *car) {
 	int damage = fixComponent(car, 0);
-	if (transparent) {
-		if (damage == 0) {
-			std::cout << "Chassis was not damaged, sending car to next department." << std::endl;
-		} else {
-			std::cout << departmentName << " is fixing the chassis which was at " << damage << "% damage." << std::endl;
-		}
-	}
+    if (damage == 0) {
+        pr::Doc::detail("Chassis was not damaged, sending car to next department.\n");
+    } else {
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" is fixing the chassis which was at ");
+        pr::Doc::detail(std::to_string(damage));
+        pr::Doc::detail("% damage.\n");
+    }
     Department::fix(car);
 }
 
