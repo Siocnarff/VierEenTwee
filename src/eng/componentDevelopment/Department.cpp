@@ -70,11 +70,11 @@ int Department::specialistsDesignComponent() {
     int teamSize = specialists.size();
     int totalSkill = 0;
     for (ppl::Person *specialist: specialists) {
-        if(specialist->getSkillLevel() > best) {
+        if (specialist->getSkillLevel() > best) {
             best = specialist->getSkillLevel();
         }
         totalSkill += specialist->getSkillLevel();
     }
-    double average = double(totalSkill)/double(teamSize);
-    return int(average * 0.2 + double(best) * 0.8);
+    double average = double(totalSkill) / double(teamSize);
+    return (int(average * 0.2 + double(best) * 0.8) + riskLevel->trySomethingNew()) % 100;
 }
