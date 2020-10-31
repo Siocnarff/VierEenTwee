@@ -141,7 +141,7 @@ void Logistics::sendCarToFactory(eng::Car *car) {
     cout << "send car to factory" << endl;
     transportManager->transport(new Race, new Race, car);
     callEngDept()->carArrivesAtFactory(car);
-    callEngDept()->improveCar(car->getId());
+    callEngDept()->improveCar(car->getId(), false);
 }
 
 void Logistics::containerHasBeenPacked(Container *) {

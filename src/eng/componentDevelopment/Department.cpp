@@ -25,7 +25,7 @@ Department::Department(Department *next) {
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
     pr::Doc::summary(departmentName + " hired a new specialist\n");
-    specialist->getResume();
+    pr::Doc::detail(specialist->getResume());
 }
 
 void Department::fix(Car *car) {
@@ -70,11 +70,11 @@ int Department::specialistsDesignComponent() {
     int teamSize = specialists.size();
     int totalSkill = 0;
     for (ppl::Person *specialist: specialists) {
-        if(specialist->getSkillLevel() > best) {
+        if (specialist->getSkillLevel() > best) {
             best = specialist->getSkillLevel();
         }
         totalSkill += specialist->getSkillLevel();
     }
-    double average = double(totalSkill)/double(teamSize);
-    return int(average * 0.2 + double(best) * 0.8);
+    double average = double(totalSkill) / double(teamSize);
+    return (int(average * 0.2 + double(best) * 0.8) + riskLevel->trySomethingNew()) % 100;
 }

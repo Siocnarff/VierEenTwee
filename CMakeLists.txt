@@ -22,6 +22,10 @@ include_directories(src/rce/simulator)
 
 add_executable(VierEenTwee
         src/main.cpp
+        src/eng/Car.cpp
+        src/eng/Car.h
+        src/eng/EngTeam.cpp
+        src/eng/EngTeam.h
         src/eng/buildings/BlueprintStore.cpp
         src/eng/buildings/BlueprintStore.h
         src/eng/buildings/ComponentSimulator.cpp
@@ -63,10 +67,6 @@ add_executable(VierEenTwee
         src/eng/componentDevelopment/Risk.h
         src/eng/componentDevelopment/Safe.cpp
         src/eng/componentDevelopment/Safe.h
-        src/eng/Car.cpp
-        src/eng/Car.h
-        src/eng/EngTeam.cpp
-        src/eng/EngTeam.h
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h

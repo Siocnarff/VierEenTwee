@@ -1,3 +1,4 @@
+#include <pr/Doc.h>
 #include "ElectricDepartment.h"
 #include "ElectricHarness.h"
 
@@ -12,12 +13,13 @@ void ElectricDepartment::build(Car* car) {
 
 void ElectricDepartment::fix(Car *car) {
 	int damage = fixComponent(car, 2);
-	if (transparent) {
-		if (damage == 0) {
-			std::cout << "All the shocks came from the correct wires, sending car to next department." << std::endl;
-		} else {
-			std::cout << departmentName << " is rewiring the harness which took " << damage << "% damage." << std::endl;
-		}
+	if (damage == 0) {
+		pr::Doc::detail("All the shocks came from the correct wires, sending car to next department.\n");
+	} else {
+		pr::Doc::detail(departmentName);
+		pr::Doc::detail(" is rewiring the harness which took ");
+		pr::Doc::detail(std::to_string(damage));
+		pr::Doc::detail("% damage.\n");
 	}
     Department::fix(car);
 }

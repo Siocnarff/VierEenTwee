@@ -1,10 +1,11 @@
 #include <specialists/Driver.h>
 #include <iostream>
+#include <pr/Doc.h>
 #include "Car.h"
 
 using namespace eng;
 
-Car::Car(int identification) {
+eng::Car::Car(int identification) {
     id = identification;
 }
 
@@ -62,19 +63,20 @@ void Car::removeDriver(ppl::Driver *driver) {
 }
 
 void Car::print() {
-    std::cout << "CAR STATS:\n"
-              << "    id: " << id << std::endl
-              << "    Driver: " << (driver ? driver->getName() : "No Driver") << std::endl
-              << "    Damage: " << damage << std::endl
-              << "    Components:" << std::endl;
+    pr::Doc::summary("CAR INFO: id=" + std::to_string(id));
+    pr::Doc::summary(std::to_string(id));
+    pr::Doc::summary(" Driver=" + (driver ? driver->getName() : "None") + "\n");
+    pr::Doc::detail("  Detail:");
+    pr::Doc::detail(" Damage=" + std::to_string(damage));
+    pr::Doc::detail(" Speed=" + std::to_string(getSpeed()));
+    pr::Doc::detail(" Handling=" + std::to_string(getHandling()) + "\n");
+    pr::Doc::detail("    Components:\n");
     for (auto &component : components) {
         if (component) {
             component->print();
         }
     }
-    std::cout << "    Speed: " << getSpeed() << std::endl
-              << "    Handling: " << getHandling() << std::endl
-              << "----\n";
+    pr::Doc::summary("----\n");
 }
 
 int Car::getDriverXP() {
