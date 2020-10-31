@@ -73,12 +73,12 @@ void EngTeam::hireEmployees(int budget) {
     srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[3]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
+            department[3]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
-        department[4]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
-        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]), transparent);
-        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]), transparent);
-        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]), transparent);
+        department[4]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
+        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]));
+        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
+        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
 }
 
@@ -123,7 +123,7 @@ void EngTeam::carArrivesAtFactory(Car *car) {
 void EngTeam::fixCar(int id) {
     if (department[0]) {
         Car *car = garage.retrieveCar(id);
-        department[0]->fix(car, transparent);
+        department[0]->fix(car);
         garage.storeCar(car);
     }
 }
@@ -136,14 +136,4 @@ void EngTeam::improveCar(int id) {
 Car *EngTeam::checkCarOutOfFactory(int id) {
     // TODO - implement EngTeam::checkCarOutOfFactory
     throw "Not yet implemented";
-}
-
-void EngTeam::toggleTransparency() {
-    transparent = !transparent;
-}
-
-void EngTeam::print(const std::string &message) const {
-    if (transparent) {
-        std::cout << message << std::endl;
-    }
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <pr/Doc.h>
 #include "Department.h"
 #include "Safe.h"
 #include "Moderate.h"
@@ -21,23 +22,17 @@ Department::Department(Department *next) {
     nextDepartment = next;
 }
 
-void Department::addSpecialist(ppl::Person *specialist, bool printResults) {
+void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
-    if (printResults) {
-        std::cout << departmentName << " hired a new specialist:\n";
-        specialist->printResume();
-        std::cout << std::endl;
-    }
+    pr::Doc::summary(departmentName + " hired a new specialist\n");
+    specialist->getResume();
 }
 
-void Department::fix(Car *car, bool transparent) {
+void Department::fix(Car *car) {
     if (nextDepartment) {
-        nextDepartment->fix(car, transparent);
+        nextDepartment->fix(car);
     } else {
-        if (transparent) {
-            std::cout << "There are no more departments, the car has been completely fixed and stored in garage."
-                      << std::endl;
-        }
+        pr::Doc::summary("There are no more departments, the car has been completely fixed and stored in garage.");
     }
 }
 
@@ -59,7 +54,7 @@ void Department::build(Car *car) {
     if (nextDepartment) {
         nextDepartment->build(car);
     } else {
-        std::cout << "Car has been build" << std::endl;
+        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been build");
     }
 }
 

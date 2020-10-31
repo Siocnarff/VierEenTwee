@@ -1,3 +1,4 @@
+#include <pr/Doc.h>
 #include "EngineDep.h"
 #include "../Car.h"
 #include "Component.h"
@@ -12,16 +13,15 @@ void EngineDep::build(Car* car) {
     Department::build(car);
 }
 
-void EngineDep::fix(Car* car, bool transparent) {
+void EngineDep::fix(Car *car) {
 	int damage = fixComponent(car, 1);
-	if (transparent) {
-		if (damage == 0) {
-			std::cout << "Engine still running at full power, sending car to next department." << std::endl;
-		} else {
-			std::cout << departmentName << " is tuning the engine which was at " << 100 - damage << "% power." << std::endl;
-		}
-	}
-	Department::fix(car, transparent);
+    if (damage == 0) {
+        pr::Doc::detail("Engine still running at full power, sending car to next department.");
+        std::cout << "Engine still running at full power, sending car to next department." << std::endl;
+    } else {
+        std::cout << departmentName << " is tuning the engine which was at " << 100 - damage << "% power." << std::endl;
+    }
+    Department::fix(car);
 }
 
 void EngineDep::update(Component* component) {

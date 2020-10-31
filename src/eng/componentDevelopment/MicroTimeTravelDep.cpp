@@ -12,7 +12,7 @@ void MicroTimeTravelDep::build(Car* car) {
     Department::build(car);
 }
 
-void MicroTimeTravelDep::fix(Car* car, bool transparent) {
+void MicroTimeTravelDep::fix(Car *car) {
 	if (haveSpecialists()){
 		int damage = fixComponent(car, 4);
 		if (transparent) {
@@ -22,7 +22,7 @@ void MicroTimeTravelDep::fix(Car* car, bool transparent) {
 				std::cout << departmentName << " is playing with the Micro Initiation Plutonium Hammer in hope that it will work which was at " << damage << "% damage." << std::endl;
 			}
 		}
-		Department::fix(car, transparent);
+        Department::fix(car);
 	} else {
 		if (transparent) {
 			std::cout << departmentName << " does not have any employees and does nothing." << std::endl;

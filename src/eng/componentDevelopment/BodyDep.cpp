@@ -13,7 +13,7 @@ void BodyDep::build(Car* car) {
 	Department::build(car);
 }
 
-void BodyDep::fix(Car* car, bool transparent) {
+void BodyDep::fix(Car *car) {
 	int damage = fixComponent(car, 3);
 	if (transparent) {
 		if (damage == 0) {
@@ -22,7 +22,7 @@ void BodyDep::fix(Car* car, bool transparent) {
 			std::cout << departmentName << " is ironing out all the wrinkles which made up about " << damage << "% of the surface." << std::endl;
 		}
 	}
-	Department::fix(car, transparent);
+    Department::fix(car);
 }
 
 void BodyDep::update(Component* component) {

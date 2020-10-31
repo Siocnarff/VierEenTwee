@@ -14,7 +14,7 @@ namespace eng {
 
         void build(Car* car) override;
 
-		void fix(Car* car, bool transparent) override;
+		void fix(Car *car) override;
 
 		void update(Component* component) final;
 	};

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
+#include <pr/Doc.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 
@@ -13,6 +14,8 @@ int ppl::Person::idCounter = 0;
 using namespace eng;
 
 int main () {
+    pr::Doc::setTransparency(1);
+
     EngTeam engTeam;
     engTeam.toggleTransparency();
     engTeam.hireEmployees(49);

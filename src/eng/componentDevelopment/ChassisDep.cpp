@@ -10,7 +10,7 @@ void ChassisDep::build(Car* car) {
     Department::build(car);
 }
 
-void ChassisDep::fix(Car* car, bool transparent) {
+void ChassisDep::fix(Car *car) {
 	int damage = fixComponent(car, 0);
 	if (transparent) {
 		if (damage == 0) {
@@ -19,7 +19,7 @@ void ChassisDep::fix(Car* car, bool transparent) {
 			std::cout << departmentName << " is fixing the chassis which was at " << damage << "% damage." << std::endl;
 		}
 	}
-	Department::fix(car, transparent);
+    Department::fix(car);
 }
 
 void ChassisDep::update(Component* component) {

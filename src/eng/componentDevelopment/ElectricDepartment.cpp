@@ -10,7 +10,7 @@ void ElectricDepartment::build(Car* car) {
     Department::build(car);
 }
 
-void ElectricDepartment::fix(Car* car, bool transparent) {
+void ElectricDepartment::fix(Car *car) {
 	int damage = fixComponent(car, 2);
 	if (transparent) {
 		if (damage == 0) {
@@ -19,7 +19,7 @@ void ElectricDepartment::fix(Car* car, bool transparent) {
 			std::cout << departmentName << " is rewiring the harness which took " << damage << "% damage." << std::endl;
 		}
 	}
-	Department::fix(car, transparent);
+    Department::fix(car);
 }
 
 void ElectricDepartment::update(Component* component) {
