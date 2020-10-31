@@ -4,6 +4,7 @@
 #include "Blueprint.h"
 #include <iostream>
 #include <vector>
+#include "../../pr/Doc.h"
 
 namespace eng {
 	class Component {
