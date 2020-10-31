@@ -12,7 +12,7 @@ namespace eng {
 	public:
         explicit ChassisDep(Department *next = nullptr);
 
-        void build(Car* car);
+        void build(Car* car) override;
 
 		void fix(Car* car, bool transparent) override;
 
