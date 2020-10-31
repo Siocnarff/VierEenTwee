@@ -11,40 +11,17 @@ Race::Race() {
     location = "outer space";
     complexity = Difficult;
     isInEurope = false;
-    numLaps = 777;
     next = nullptr;
     prev = nullptr;
 }
 
-Race::Race(std::string loc, int comp, bool eur, int laps, Race *nextR, Race* prevR) {
+Race::Race(std::string loc, TrackComplexity comp, bool eur, Race *nextR, Race* prevR) {
     location = loc;
-    complexity = computeTrackComplexity(comp);
+    complexity = comp;
     isInEurope = eur;
-    numLaps = laps;
     next = nextR;
     prev = prevR;
 }
-
-/**
- * @author Berné
- * @param comp: trackComplexity
- * @return enum type
- */
-TrackComplexity Race::computeTrackComplexity(int comp) {
-    switch (comp) {
-        case 0:
-            return Easy;
-        case 1:
-            return Average;
-        case 2:
-            return Difficult;
-        case 3:
-            return Extreme;
-        default:                //net sodat Clion nie die heeltyd kla nie.
-            return Easy;
-    }
-}
-
 
 bool Race::isRaceEuropean() {
     return isInEurope;
@@ -76,13 +53,11 @@ WeatherConditions Race::getRaceDayWeather() {
 }
 
 void Race::setNextRace(Race *race) {
-    this->next = race;
-    race->prev = this;
+    next = race;
 }
 
 void Race::setPrevRace(Race *race) {
-    this->prev = race;
-    race->next = this->prev;
+    prev = race;
 }
 
 Race *Race::nextRace() {
@@ -92,7 +67,6 @@ Race *Race::nextRace() {
 Race *Race::prevRace() {
     return prev;
 }
-
 int Race::getNumLaps() {
     return numLaps;
 }
@@ -102,11 +76,10 @@ int Race::getNumLaps() {
     return os;
 }*/
 
-std::ostream& operator<<(std::ostream& stream, log::Race rc) {
-    stream << rc.getLocation() << '/nEurope: ' << rc.isRaceEuropean() << '/nNumLaps: ' << rc.getNumLaps() << std::endl;
+/*std::ostream& operator<<(std::ostream& stream, log::Race rc) {
+    stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
     return stream;
-}
-
+}*/
 
 
 

@@ -1,5 +1,7 @@
 #include "SafeStrategy.h"
+
 using namespace rce;
+
 CreateStrategy* SafeStrategy::execute() 
 {
 	return this;

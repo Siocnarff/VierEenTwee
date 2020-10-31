@@ -1,5 +1,7 @@
 #include "ModerateStrategy.h"
+
 using namespace rce;
+
 CreateStrategy* ModerateStrategy::execute() 
 {
 	return this;

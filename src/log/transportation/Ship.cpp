@@ -10,8 +10,8 @@ void Ship::transport(Race *fromLocation, Race *destination, eng::Car *car) {
         //ship and change state etc
         notify(destination->isRaceEuropean());
         //requestContainerChangeState(destination->isRaceEuropean());
-        std::cout << "Container in transport via SHIP" << std::endl;
-        std::cout << "From: " << fromLocation->getLocation() << " to " << destination->getLocation() << std::endl;
+        cout << "Container in transport via SHIP" << endl;
+        cout << "From: " << fromLocation->getLocation() << " to " << destination->getLocation() << endl;
     }
     else {
         TransportHandler::transport(fromLocation, destination, car);

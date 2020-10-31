@@ -82,10 +82,6 @@ void EngTeam::hireEmployees(int budget) {
     }
 }
 
-void EngTeam::registerForSeason(log::Mediator *mediator) {
-    this->logisticsDep = mediator;
-}
-
 int EngTeam::buildCar(int budget) {
     cashUpDeps(budget);
     int id = carIdGenerator++;
@@ -99,12 +95,12 @@ void EngTeam::cashUpDeps(int cash) {
     }
 }
 
+
 void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
     for (auto &dep : department) {
         dep->setRiskLevel(riskLevel);
     }
 }
-
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
@@ -133,4 +129,8 @@ void EngTeam::print(const std::string &message) const {
     if (transparent) {
         std::cout << message << std::endl;
     }
+}
+
+void EngTeam::registerForSeason(log::Mediator* mediator) {
+    logistcsDep = mediator;
 }

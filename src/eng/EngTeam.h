@@ -21,18 +21,17 @@ namespace eng {
         BlueprintStore blueprint;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
-        log::Mediator *logisticsDep;
         Department *department[5];
         Risk *innovation;
 
         void cashUpDeps(int cash);
 
-        void print(const std::string &message) const;
+        void print(const std::string& message) const;
 
     public:
         void hireEmployees(int budget) override;
 
-        void registerForSeason(log::Mediator *mediator);
+        void registerForSeason(log::Mediator* mediator);
 
         int buildCar(int budget);
 
@@ -42,9 +41,9 @@ namespace eng {
 
         void improveCar(int id);
 
-		void setRiskLevel(log::RiskLevel riskLevel);
-
         Car *checkCarOutOfFactory(int id);
+
+        void setRiskLevel(log::RiskLevel riskLevel);
 
         void toggleTransparency();
     };

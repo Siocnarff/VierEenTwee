@@ -10,7 +10,9 @@ namespace rce {
     class CreateStrategy {
 
     private:
+
         log::RiskLevel risklevel;
+
         int *tyres = new int[3];// 3 compounds in pairs and a wet compound [soft,meduim,hard]//only 5 pairs per weekend
         int Pitstops;//added
         std::string StratName;

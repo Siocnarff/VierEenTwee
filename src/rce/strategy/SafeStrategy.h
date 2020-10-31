@@ -2,9 +2,11 @@
 #define SAFESTRATEGY_H
 
 #include "CreateStrategy.h"
-namespace rce {
 
-    class SafeStrategy : public CreateStrategy {
+
+namespace rce {
+    class SafeStrategy : public CreateStrategy
+   {
     public:
         CreateStrategy *execute();
 

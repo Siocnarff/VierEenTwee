@@ -9,12 +9,12 @@
 
 using namespace log;
 
-void Logistics::registerNotifier(Colleague *colleague) {
+eng::EngTeam Logistics::registerNotifier(Colleague *colleague) {
     auto* temp = new RacingDept;
     if (typeid(*temp) == typeid(*colleague)){
-        departments.insert(std::pair<char,Colleague*>('r',colleague));
+        departments.insert(pair<char,Colleague*>('r',colleague));
     } else {
-        departments.insert(std::pair<char,Colleague*>('e',colleague));
+        departments.insert(pair<char,Colleague*>('e',colleague));
     }
     colleague->addObserver(this);
 
@@ -73,14 +73,14 @@ void Logistics::postSeasonDebrief() {
 }
 
 void Logistics::sendCarToFactory(eng::Car *car) {
-    std::cout << "send car to factory" << std::endl;
+    cout << "send car to factory" << endl;
     transportManager->transport(new Race, new Race, car);
     callEngDept()->carArrivesAtFactory(car);
     callEngDept()->improveCar(car->getId());
 }
 
 void Logistics::containerHasBeenPacked(Container *) {
-    std::cout << "fly container" << std::endl;
+    cout << "fly container" << endl;
 }
 
 void Logistics::requestContainerStateChange(bool isEuropeanRace) {
@@ -98,15 +98,15 @@ Container *Logistics::getNextNonEuropean() {
 }
 
 void Logistics::packContainers() {
-    std::cout << "pack containers" << std::endl;
+    cout << "pack containers" << endl;
 }
 
-void Logistics::simulateEvent(Race *) {
+void Logistics::SimulateEvent(Race *) {
     //callRacingDept;
 }
 
 void Logistics::putRacesIntoCalender() {
-    std::cout << "put races into calender" << std::endl;
+    cout << "put races into calender" << endl;
 }
 
 RacingDept *Logistics::callRacingDept() {
@@ -124,9 +124,5 @@ Logistics::Logistics() {
     transportManager = new Fly();
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Road);
-}
-
-void Logistics::informStrategyChanged(rce::Strategy *) {
-//TODO: implement this
 }
 

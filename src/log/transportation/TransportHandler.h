@@ -7,6 +7,8 @@
 #include <iostream>
 #include <races/Race.h>
 
+using namespace std;
+
 #include "Colleague.h"
 
 namespace log {
@@ -19,14 +21,7 @@ namespace log {
 
         void addAMethod(TransportHandler *transport);
 
-        /**
-         * @param fromLocation: Race object to get location and europeanness
-         * @param destination
-         * @param car
-         */
-        virtual void transport(Race* fromLocation, Race *destination, eng::Car *car = nullptr);
-
-        ~TransportHandler();
+        virtual void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr);
     };
 
 }

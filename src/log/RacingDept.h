@@ -7,36 +7,37 @@
 
 #include <enums/WeatherConditions.h>
 #include <enums/TrackComplexity.h>
+#include <rce/strategy/CreateStrategy.h>
 #include "Car.h"
 #include "races/Race.h"
-#include "Driver.h"
-#include "Strategy.h"
+#include "../../ppl/specialists/Driver.h"
 #include "Colleague.h"
 
+namespace log {
+    class RacingDept : public log::Colleague {
+    public:
+        void hireEmployees(int budget) override;
 
-class RacingDept : public log::Colleague {
-public:
-    void hireEmployees(int budget) override;
+        rce::CreateStrategy *PlanSeasonStrategy(int budget);
 
-    rce::Strategy *PlanSeasonStrategy(int budget);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
 
-    ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, TrackComplexity);
 
-    ppl::Driver *trainDriver(ppl::Driver *, int time, log::TrackComplexity);
+        ppl::Driver *trainDriver(ppl::Driver *, int time, WeatherConditions, TrackComplexity);
 
-    ppl::Driver *trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity);
+        void preRaceArrival(eng::Car *, ppl::Driver *, Race *, Container *);
 
-    void preRaceArrival(eng::Car *, ppl::Driver *, log::Race *, log::Container *);
+        int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+        Container *postRacePackUp();
 
-    int RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-    log::Container *postRacePackUp();
+    private:
+        eng::Car *car;
+        ppl::Driver *driver;
+        Container *container;
+        Race *race;
 
-private:
-    eng::Car *car;
-    ppl::Driver *driver;
-    log::Container *container;
-    log::Race *race;
-
-};
+    };
+}
 
 #endif //PREMODELLING_RACINGDEPT_H
