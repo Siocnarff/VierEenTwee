@@ -173,7 +173,7 @@ Logistics::Logistics() {
 }
 
 
-/*
+/**
  * @author Jo
  */
 void Logistics::toggleVerbose() {

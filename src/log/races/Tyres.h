@@ -11,11 +11,13 @@
 namespace rce {
     class Tyres {
     private:
-        std::list<Tyres*> tyres;
+        std::list<Tyres*> tyreSetList;
 
         int thread;
 
-        std::string tyreCompound;
+        int tyreCompoundInt;
+
+        std::string tyreCompoundString;
     public:
 
         Tyres(int);
@@ -29,6 +31,10 @@ namespace rce {
         int getThread();
 
         void reduceThread();
+
+        int getCompound();
+
+        void print();
     };
 }
 

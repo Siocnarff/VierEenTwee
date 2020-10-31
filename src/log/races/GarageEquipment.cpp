@@ -18,11 +18,10 @@ GarageEquipment::GarageEquipment(std::list <std::string> insides) {
     }
 }
 
-rce::Tyres * GarageEquipment::unpack() {
+void GarageEquipment::unpack() {
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
         std::cout << "-" << (*it) << std::endl;
     }
-    return nullptr;
 }
 
 GarageEquipment::~GarageEquipment() = default;

@@ -17,7 +17,9 @@ namespace log {
 
         void addElement(Container *) override;
 
-        rce::Tyres * unpack() override;
+       void unpack() override;
+
+       void pack() override;
 
         ~Box() override;
     };

@@ -13,25 +13,34 @@ Container::~Container() {
 
 }
 
-rce::Tyres * Container::unpack() {
+void Container::unpack() {
+    //Unpack gaan net werk in die hoof container. Dit moenie geroep word later nie.
 
+    //Print alles uit
+
+    //Gaan soek die container wat 'n tyreBox is om dit te return . . . tyre variable to return? Ja. Okay.
 
     std::cout << "CONTAINER UNPACK BY printing out contents and returning the tyres in the container" << std::endl;
-    return nullptr;
 
 }
 
+/**
+ *@author Marike
+ * @param usedTyres
+ */
 void Container::pack() {
-    //nodig om dit te roep? ek dink nie meer so nie
 
-
+    //Pack container up and put in the "used" tyres.
 
     std::cout << "print out contents" << std::endl;
-    //some other stuff
 
 }
 
 void Container::addElement(Container * newContainer) {
     std::cout << "Pack box into main container" << std::endl;
+}
+
+void Container::print() {
+    std::cout << "The container is currently empty" << std::endl;
 }
 
