@@ -15,9 +15,7 @@ using namespace eng;
 
 int main () {
     pr::Doc::setTransparency(1);
-
     EngTeam engTeam;
-    engTeam.toggleTransparency();
     engTeam.hireEmployees(49);
 
     /*auto** factories = new ppl::HumanResources*[3];
