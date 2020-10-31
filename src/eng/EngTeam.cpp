@@ -132,5 +132,5 @@ void EngTeam::print(const std::string &message) const {
 }
 
 void EngTeam::registerForSeason(log::Mediator* mediator) {
-    logistcsDep = mediator;
+    logisticsDept = mediator;
 }

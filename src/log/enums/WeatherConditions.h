@@ -8,6 +8,7 @@
 namespace log {
     enum WeatherConditions {
         Wet, Dry, Rainy
+        //Hot, Normal, Rainy
     };
 }
 

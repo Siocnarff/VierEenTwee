@@ -5,39 +5,29 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
-#include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
+#include <log/Logistics.h>
 #include "eng/EngTeam.h"
-#include "log/RacingDept.h"
+#include "rce/RacingDep.h"
 
 int ppl::Person::idCounter = 0;
 
 void testBasicIntegration() {
     auto* a = new log::Logistics();
-    auto* engDept = new eng::EngTeam;
-    auto* racingDept = new rce::RacingDept;
-
-//    cout << "Created departments" << endl;
-//    cout << "-------------------" << endl;
+    auto* engDept = new eng::EngTeam();
+//    auto* racingDept = new rce::RacingDep();
+/*
     a->registerNotifier(racingDept);
-//    cout << "Regestered RacingTeam" << endl;
-//    cout << "---------------------" << endl;
-
     a->registerNotifier(engDept);
-
     a->doYearPlanning();
-//    cout << "Year planning done" << endl;
-//    cout << "--------------------" << endl;
     a->preSeasonPreparation();
-
-//    cout << "PreSeason prep done" << endl;
-//    cout << "--------------------" << endl;
     a->raceSeason();
     a->postSeasonDebrief();
+*/
 
     delete a;
     delete engDept;
-    delete racingDept;
+//    delete racingDept;
 }
 
 void testIterator(){
@@ -122,7 +112,22 @@ int main () {
         people[i]->printResume();
         std::cout << std::endl;
     }*/
-//    testBasicIntegration();
+    testBasicIntegration();
+
+    /*auto *racingDept = new rce::RacingDep();
+    auto *engTeam = new eng::EngTeam();
+    auto *log = new log::Logistics;
+
+    log->registerNotifier(racingDept);
+    log->registerNotifier(engTeam);
+
+    engTeam->toggleTransparency();
+    log->toggleVerbose();
+    log->doYearPlanning();
+
+    log->toggleVerbose();*/
+// ERROR : STORE CAR NOT IMPLEMENTED
+    //log->raceSeason();
 
    /* auto *racingDept = new log::RacingDept();
     auto *engTeam = new eng::EngTeam();
@@ -148,3 +153,11 @@ int main () {
 //    testContainerState();
 
 }
+
+/*
+.idea/
+cmake-build-debug/
+src/.idea/
+*/
+
+//src/rce/RacingDep.h src/rce/carState/CarStateFullHP.cpp src/rce/leaderboard/Score.cpp src/rce/pitstop/DriverPitStop.cpp src/rce/pitstop/DriverPitStop.h src/rce/pitstop/Tyres.cpp src/rce/pitstop/Tyres.h rc/rce/strategy/CreateStrategy.cpp src/rce/strategy/CreateStrategy.h src/rce/strategy/ModerateStrategy.cpp src/rce/strategy/ModerateStrategy.h src/rce/strategy/SafeStrategy.h

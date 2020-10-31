@@ -3,18 +3,19 @@
 //#include "../eng/Car.h"
 //#include "Tires.h"
 #include "RaceWeekend.h"
+#include "Pitstop.h"
 
 namespace rce {
-    class DriverPitStop : public racing::Pitstop {
+    class DriverPitStop : public Pitstop {
 
     public:
         eng::Car *car;
 
-        void tyres(racing::Tires *t);
+        void tyres(Tyres *t);
 
         void setCar(eng::Car *car);
 
-        //void race();
+        void race();
     };
 }
 #endif

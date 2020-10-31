@@ -2,6 +2,7 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include <iostream>
 #include "RacesList.h"
 
 using namespace log;
@@ -51,6 +52,25 @@ RaceIterator RacesList::end() {
 
 Race *RacesList::getHeadRace() const {
     return headRace;
+}
+
+void RacesList::printList() {
+    Race* temp = headRace;
+    if (isEmpty()) {
+        return;
+    }
+    else {
+        while (temp != nullptr) {
+            //std::cout << temp;
+            std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:" << temp->getRaceDayWeather() << std::endl;
+            temp = temp->nextRace();
+        }
+    }
+
+}
+
+int RacesList::getNumRaces() {
+    return numRaces;
 }
 
 

@@ -1,4 +1,5 @@
 #include "CarState.h"
+#include "RaceWeekend.h"
 
 using namespace rce;
 

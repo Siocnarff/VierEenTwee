@@ -1,85 +1,86 @@
 #ifndef RACING_RACEWEEKEND_H
 #define RACING_RACEWEEKEND_H
-#include "../racing/CarState.h"
-#include "../racing/CarStateBroken.h"
-#include "../racing/CarStateDamaged.h"
-#include "../racing/CarStateFullHP.h"
+
 //#include "DriverPitStop.h"
-#include "../people/Driver.h"
 #include "../eng/Car.h"
 //#include "../people/Pitcrew.h"
 //#include "../log/Race.h"
-#include "../racing/strategy/CreateStrategy.h"
-#include "../racing/Leaderboard.h"
+#include "strategy/CreateStrategy.h"
+#include "leaderboard/Leaderboard.h"
 #include "WeatherConditions.h"
 #include "TrackComplexity.h"
 #include "Leaderboard.h"
 #include <string>
-namespace rce{
-class RaceWeekend {
+#include <log/races/Race.h>
+#include <rce/carState/CarState.h>
+#include <log/races/Container.h>
+#include "PitCrew.h"
 
-private:
-	CreateStrategy* strategy;
-	Car** car;
-	Driver** driver;
-	Race* raceConditions;
-	Container* container;
-	list<Pitcrew*> pitcrew;
-	std::string TeamName;
-	WeatherConditions DayWeather;
-	Leaderboard * team;
-	Leaderboard * driver;
-	CarState** CState;
-	TrackComplexity TC;
-	int time[2];
-	int score[2];
-	int speed;
-	int handling;
-	int xp;
-	bool hometrack;
-	int trackID;
-	
+namespace rce {
+    class RaceWeekend {
 
-public:
-	RaceWeekend(eng::Car* cars, people::Driver* drivers, log::Race* r, strategy::CreateStategy* s, list<people::Pitcrew*> p, log::Container* c);
+    private:
+        CreateStrategy *strategy;
+        eng::Car **car;
+        ppl::Driver **driver;
+        log::Race *raceConditions;
+        log::Container *container;
+        std::list<PitCrew *> pitcrew;
+        std::string TeamName;
+        log::WeatherConditions DayWeather;
+        Leaderboard *team;
+        //Leaderboard *driver;
+        CarState **CState;
+        log::TrackComplexity TC;
+        int time[2];
+        int score[2];
+        int speed;
+        int handling;
+        int xp;
+        bool hometrack;
+        int trackID;
 
-	int RacingWeekend();
 
-	eng::Car* getCar(int i);
+    public:
+        RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,std::list<PitCrew *> p, log::Container *c);
 
-	void setCar(eng::Car* car, int i);
+        int RacingWeekend();
 
-	Driver* getDriver(int i);
+        eng::Car *getCar(int i);
 
-	void setDriver(people::Driver* driver, int i);
+        void setCar(eng::Car *car, int i);
 
-	log::Container* getContainer();
+        ppl::Driver *getDriver(int i);
 
-	void setContainer(log::Container* container);
+        void setDriver(ppl::Driver *driver, int i);
 
-	list<people::Pitcrew*> getPitcrew();
+        log::Container *getContainer();
 
-	void setPitcrew(list<people::Pitcrew*> pitcrew);
+        void setContainer(log::Container *container);
 
-	void notifyCarState(int i);
+        std::list<PitCrew *> getPitcrew();
 
-	int getTime(int i);
+        void setPitcrew(std::list<PitCrew *> pitcrew);
 
-	void setTime(int time, int i);
+        void notifyCarState(int i);
 
-	int getScore(int i);
+        int getTime(int i);
 
-	void setScore(int score, int i);
+        void setTime(int time, int i);
 
-	log::WeatherConditions* getDayWeather();
+        int getScore(int i);
 
-	void setDayWeather(log::WeatherConditions* DayWeather);
+        void setScore(int score, int i);
 
-	racing::CarState* getCState(int i);
+        log::WeatherConditions getDayWeather();
 
-	void setCState(racing::CarState* CState, int i);
-	
-	void deel_Damage(int i, int d);
-};
+        void setDayWeather(log::WeatherConditions *DayWeather);
+
+        rce::CarState *getCState(int i);
+
+        void setCState(rce::CarState *CState, int i);
+
+        void deel_Damage(int i, int d);
+    };
 }
 #endif

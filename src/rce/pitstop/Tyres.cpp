@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Tyres.h"
 
+using namespace rce;
 
 rce::Tyres::Tyres(int tyreOrder[2]) {
     for (int x = 0; x < 3; x++) {

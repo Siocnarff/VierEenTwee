@@ -11,8 +11,8 @@
 #include <races/RaceIterator.h>
 
 #include "Mediator.h"
-#include "RacingDept.h"
 #include "../eng/EngTeam.h"
+#include "rce/RacingDep.h"
 
 namespace log {
 
@@ -37,7 +37,7 @@ namespace log {
 
         void containerHasBeenPacked(Container *) override;
 
-        void requestContainerStateChange(bool isEuropeanRace) override;
+        //void requestContainerStateChange(bool isEuropeanRace) override;
 
         Container *getEuropeanContainer();
 
@@ -47,13 +47,14 @@ namespace log {
 
         Container* packSingleContainer();
 
-        void SimulateEvent(Race *);
+        void simulateEvent(Race *);
 
         void putRacesIntoCalender();
 
-    private:
-        rce::RacingDept *callRacingDept();
+        void orderTyres(int *tyreOrder) override;
 
+    private:
+        rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
         map<char, Colleague *> departments;
@@ -67,7 +68,7 @@ namespace log {
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
-        int seasonPointTally;
+        int seasonPointTally[2];
         int budget;
 
         bool verbose = true;

@@ -3,21 +3,25 @@
 //#include "../eng/Car.h"
 //#include "Pitcrew.h"
 //#include "Tires.h"
-#include "../people/Pitcrew.h"
+
+#include "PitCrew.h"
+#include "Tyres.h"
+#include <eng/Car.h>
+#include <list>
 
 namespace rce {
     class Pitstop {
 
     private:
-        list<people::Pitcrew *> pitcrew;
-        racing::Tires *tires;
+        std::list<PitCrew *> pitcrew;
+        Tyres *tires;
 
     public:
-        void addCrew(list<people::Pitcrew *> p);
+        void addCrew(std::list<PitCrew *> p);
 
-        void detachCrew(list<people::Pitcrew *> p);
+        void detachCrew(std::list<PitCrew *> p);
 
-        void tyres(racing::Tires *t);
+        void tyres(Tyres *t);
 
         void notify();
 

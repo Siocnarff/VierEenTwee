@@ -30,8 +30,13 @@ namespace log {
 
         RaceIterator end();
 
+        int getNumRaces();
+
+        void printList();
+
     private:
         Race *headRace; //ie. head
+        int numRaces;
     };
 
 }

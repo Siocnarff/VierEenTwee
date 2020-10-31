@@ -6,7 +6,7 @@
 namespace rce {
     class SafeStrategy : public CreateStrategy {
     public:
-        CreateStrategy *execute();
+        CreateStrategy *execute() override;
 
         SafeStrategy(int p, int *t, int risk);
     };
