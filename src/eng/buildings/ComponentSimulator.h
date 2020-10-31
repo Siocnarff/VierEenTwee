@@ -8,9 +8,9 @@ namespace eng {
 	class ComponentSimulator {
 
 	public:
-		void testComponent(Component* component);
+		void testComponent(Component* component, bool transparent);
 
-		void testComponents(Car* car);
+		void testComponents(Car* car, bool transparent);
 	};
 }
 

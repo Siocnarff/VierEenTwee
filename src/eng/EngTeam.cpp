@@ -129,7 +129,7 @@ void EngTeam::improveCar(int id) {
     if (/*using wind tunnel*/) {
     	windTunnel.testCar(car);
     } else {
-		simulator.testComponents(car);
+		simulator.testComponents(car, transparent);
     }
 	for (int num = 0; num < 5; num++) {
 		Component* component = car->components[num];
@@ -137,11 +137,12 @@ void EngTeam::improveCar(int id) {
 			int currentQuality = component->getQualityLabel();
 			blueprintStore.setBlueprint(component->createBlueprint());
 			department[num]->update(component);
-			simulator.testComponent(component);
+			simulator.testComponent(component, transparent);
 			int changedQuality = component->getQualityLabel();
-
-			//store component design, change component and run simulation.
-			//if better put improved component in car else rebuild original.
+			if (currentQuality > changedQuality) {
+				component->rebuildComponent(blueprintStore.getBlueprint());
+			}
+			car->components[num] = component;
 		}
 	}
 }
