@@ -1,12 +1,15 @@
 #include "MicroTimeTravelDep.h"
 #include "../Car.h"
 #include "Component.h"
+#include "MicroInitiationPlutoniumHammer.h"
 
 using namespace eng;
 
 void MicroTimeTravelDep::build(Car* car) {
-	// TODO - implement MicroTimeTravelDep::build
-	throw "Not yet implemented";
+    if (haveSpecialists()) {
+        buildComponentIntoCar(car, new MicroInitiationPlutoniumHammer(specialistsDesignComponent()));
+    }
+    Department::build(car);
 }
 
 void MicroTimeTravelDep::fix(Car* car, bool transparent) {

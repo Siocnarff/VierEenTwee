@@ -19,6 +19,8 @@ namespace eng {
     protected:
         explicit Component(Component* component);
 
+        explicit Component(int quality);
+
     public:
 		int getQualityLabel();
 
@@ -31,6 +33,8 @@ namespace eng {
 		void rebuildComponent(Blueprint* plan);
 
         virtual Component *clone() = 0;
+
+        virtual int getId() = 0;
     };
 }
 

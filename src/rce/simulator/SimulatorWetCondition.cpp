@@ -1,3 +1,4 @@
+#include <ppl/specialists/Driver.h>
 #include "SimulatorWetCondition.h"
 
 void SimulatorWetCondition::SimulateWeather() 

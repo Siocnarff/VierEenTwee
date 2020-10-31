@@ -93,6 +93,12 @@ int Car::getId() const {
     return this->id;
 }
 
-Car * Car::clone() {
+Car *Car::clone() {
     return new Car(this);
+}
+
+Car *Car::clone(int idOfNew) {
+    Car *newCar = new Car(this);
+    newCar->id = idOfNew;
+    return newCar;
 }

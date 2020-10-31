@@ -1,12 +1,15 @@
 #include "EngineDep.h"
 #include "../Car.h"
 #include "Component.h"
+#include "Engine.h"
 
 using namespace eng;
 
 void EngineDep::build(Car* car) {
-	// TODO - implement EngineDep::build
-	throw "Not yet implemented";
+    if (haveSpecialists()) {
+        buildComponentIntoCar(car, new Engine(specialistsDesignComponent()));
+    }
+    Department::build(car);
 }
 
 void EngineDep::fix(Car* car, bool transparent) {

@@ -9,7 +9,7 @@ namespace eng {
 	public:
         explicit ElectricDepartment(Department *next = nullptr);
 
-        void build(Car* car);
+        void build(Car* car) override;
 
 		void fix(Car* car, bool transparent) override;
 

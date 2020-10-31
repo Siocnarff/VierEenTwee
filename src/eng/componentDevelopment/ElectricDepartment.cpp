@@ -1,10 +1,13 @@
 #include "ElectricDepartment.h"
+#include "ElectricHarness.h"
 
 using namespace eng;
 
 void ElectricDepartment::build(Car* car) {
-	// TODO - implement ElectricDepartment::build
-	throw "Not yet implemented";
+    if (haveSpecialists()) {
+        buildComponentIntoCar(car, new ElectricHarness(specialistsDesignComponent()));
+    }
+    Department::build(car);
 }
 
 void ElectricDepartment::fix(Car* car, bool transparent) {

@@ -1,10 +1,13 @@
 #include "ChassisDep.h"
+#include "Chassis.h"
 
 using namespace eng;
 
 void ChassisDep::build(Car* car) {
-	// TODO - implement ChassisDep::build
-	throw "Not yet implemented";
+    if (haveSpecialists()) {
+        buildComponentIntoCar(car, new Chassis(specialistsDesignComponent()));
+    }
+    Department::build(car);
 }
 
 void ChassisDep::fix(Car* car, bool transparent) {

@@ -25,6 +25,10 @@ void Component::rebuildComponent(Blueprint* plan) {
 }
 
 Component::Component(Component *component) {
-    quality = component->quality;
     qualityLabel = component->qualityLabel;
+    quality = component->quality;
+}
+
+Component::Component(int quality) {
+    this->quality = quality;
 }
