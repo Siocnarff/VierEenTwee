@@ -36,7 +36,7 @@ namespace eng {
 
         void fixCar(int id);
 
-        void improveCar(int id);
+        void improveCar(int id, bool usingWindTunnel);
 
         Car *checkCarOutOfFactory(int id);
 

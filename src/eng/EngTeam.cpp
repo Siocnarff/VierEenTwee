@@ -129,9 +129,9 @@ void EngTeam::fixCar(int id) {
     }
 }
 
-void EngTeam::improveCar(int id) {
+void EngTeam::improveCar(int id, bool usingWindTunnel) {
 	Car* car = garage.retrieveCar(id);
-    if (/*using wind tunnel*/) {
+    if (usingWindTunnel) {
     	windTunnel.testCar(car);
     } else {
 		simulator.testComponents(car);
