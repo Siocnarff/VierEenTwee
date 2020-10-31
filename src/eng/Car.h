@@ -9,6 +9,7 @@ namespace eng {
 	class Car {
 	friend class Department;
 	friend class EngTeam;
+	friend class ComponentSimulator;
 
 	private:
         /**
