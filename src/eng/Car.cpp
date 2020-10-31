@@ -18,11 +18,31 @@ Car::Car(Car *car) {
 }
 
 int Car::getSpeed() const {
-
+	int speed = 0;
+	if (components[1]) {
+		speed += components[1]->quality / 3;
+	}
+	if (components[3]) {
+		speed += components[3]->quality / 3;
+	}
+	if (components[4]) {
+		speed += components[4]->quality / 3;
+	}
+	return speed;
 }
 
 int Car::getHandling() const {
-
+	int handling = 0;
+	if (components[0]) {
+		handling += components[1]->quality / 3;
+	}
+	if (components[2]) {
+		handling += components[3]->quality / 3;
+	}
+	if (components[3]) {
+		handling += components[4]->quality / 3;
+	}
+	return handling;
 }
 
 int Car::getDamage() const {

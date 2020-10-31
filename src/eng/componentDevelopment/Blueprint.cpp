@@ -4,11 +4,9 @@
 using namespace eng;
 
 std::vector<int> Blueprint::getState() {
-	// TODO - implement Blueprint::getState
-	throw "Not yet implemented";
+	return state;
 }
 
 void Blueprint::setState(std::vector<int> state) {
-	// TODO - implement Blueprint::setState
-	throw "Not yet implemented";
+	this->state = state;
 }

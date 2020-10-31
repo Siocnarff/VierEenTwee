@@ -17,7 +17,7 @@ namespace eng {
     private:
         int carIdGenerator = 0;
         Garage garage;
-        BlueprintStore blueprint;
+        BlueprintStore blueprintStore;
         WindTunnel windTunnel;
         ComponentSimulator simulator;
         Department *department[5];
