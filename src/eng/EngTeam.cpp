@@ -87,13 +87,17 @@ void EngTeam::registerForSeason(log::Mediator *mediator) {
 }
 
 int EngTeam::buildCar(int budget) {
-    Car* prototype = garage.getPrototype();
-    cashUpDeps(prototype ? budget : budget - 50);
-    if (prototype) {
-
-    }
     int id = carIdGenerator++;
-    department[0]->build(new Car(id));
+    Car *prototype = garage.getPrototype();
+    cashUpDeps(prototype ? budget : budget - 50);
+    Car *car;
+    if (prototype) {
+        car = prototype->clone(id);
+    } else {
+        car = new Car(id);
+        department[0]->build(car);
+    }
+    garage.storeCar(car);
     return id;
 }
 
@@ -117,10 +121,10 @@ void EngTeam::carArrivesAtFactory(Car *car) {
 }
 
 void EngTeam::fixCar(int id) {
-    if(department[0]){
-    	Car* car = garage.retrieveCar(id);
-    	department[0]->fix(car, transparent);
-    	garage.storeCar(car);
+    if (department[0]) {
+        Car *car = garage.retrieveCar(id);
+        department[0]->fix(car, transparent);
+        garage.storeCar(car);
     }
 }
 

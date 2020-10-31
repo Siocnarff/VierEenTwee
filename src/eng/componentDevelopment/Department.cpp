@@ -53,3 +53,15 @@ int Department::fixComponent(Car *car, int id) {
 bool Department::haveSpecialists() {
 	return !specialists.empty();
 }
+
+void Department::build(Car *car) {
+    if (nextDepartment) {
+        nextDepartment->build(car);
+    } else {
+        std::cout << "Car has been build" << std::endl;
+    }
+}
+
+void Department::buildComponentIntoCar(Car *car, Component *comp) {
+    car->components[comp->getId()] = comp;
+}

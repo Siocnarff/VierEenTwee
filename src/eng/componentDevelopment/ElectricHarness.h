@@ -12,6 +12,8 @@ namespace eng {
         void print() final;
 
         Component* clone() final;
+
+        int getId() final;
 	};
 }
 

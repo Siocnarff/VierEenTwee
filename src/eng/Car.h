@@ -44,7 +44,9 @@ namespace eng {
 		int getId() const;
 
 		Car * clone();
-	};
+
+        Car *clone(int idOfNew);
+    };
 }
 
 #endif

@@ -11,3 +11,7 @@ Engine::Engine(Component *toClone) : Component(toClone) {}
 Component *Engine::clone() {
     return new Engine(this);
 }
+
+int Engine::getId() {
+    return 1;
+}

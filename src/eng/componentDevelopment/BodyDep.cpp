@@ -2,12 +2,15 @@
 
 #include <utility>
 #include "../Car.h"
+#include "Body.h"
 
 using namespace eng;
 
 void BodyDep::build(Car* car) {
-	// TODO - implement BodyDep::build
-	throw "Not yet implemented";
+	if (haveSpecialists()) {
+        buildComponentIntoCar(car, new Body())
+	}
+	Department::build(car);
 }
 
 void BodyDep::fix(Car* car, bool transparent) {
