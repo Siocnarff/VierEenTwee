@@ -53,23 +53,18 @@ void Logistics::registerNotifier(Colleague *colleague) {
 void Logistics::doYearPlanning() {
     //1. getBudget from "Sponsors"
     budget = abs(rand() % 100 + 1);
-
-    //2. Hire for all departments
+    //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
-
     //3. putRacesIntoCalender();
     putRacesIntoCalender();
-
     //4. hire driver
     driver = new ppl::Driver("Fluffy McAllen", 0, 0);
-
     //5. Set home tracks
     for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //interval [1,5]
         driver->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
     }
-
     //6. hire transportManager
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
@@ -79,13 +74,14 @@ void Logistics::doYearPlanning() {
 
 
 void Logistics::preSeasonPreparation() {
+    // 1. Get strategy
+    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
+    // 1.1 Notified about tyres
 
+    // 1.2 Instantiate tyres
+    // x x x
+    std::cout << "Tyre Order has arrived" << endl;
 
-
-    //    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
-    /*depts[0] -> planSeasonStrategy(); //of wil ons chain gebruik hierso
-    as genotify word, sal ons binne notify() die bande bestel;
-    print: tyres arrived*/
 
     //Pack containers right after tyre compound received
 
@@ -96,7 +92,7 @@ void Logistics::preSeasonPreparation() {
     //moet meer spesifiek wees hierso.
     //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
     //Dalk kan ons dit volgens riskLevel doen
-    callRacingDept()->trainDriver(new ppl::Driver("s",0,0), 15, Rainy, Average );
+    callRacingDept()->trainDriver(new ppl::Driver("s", 0, 0), 15, Rainy, Average);
 
     //order stuff
 
@@ -112,7 +108,7 @@ void Logistics::preSeasonPreparation() {
 
 
 void Logistics::raceSeason() {
-    for (RaceIterator t = racingCalendar->begin(); !(t==racingCalendar->end()) ; ++t) {
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         //std::cout << t.currentItem()->getLocation() << std::endl;
         simulateEvent(t.currentItem());
     }
@@ -148,10 +144,6 @@ void Logistics::containerHasBeenPacked(Container *) {
     cout << "fly container" << endl;
 }
 
-/*void Logistics::requestContainerStateChange(bool isEuropeanRace) {
-
-}*/
-
 Container *Logistics::getEuropeanContainer() {
     return europeanContainer;
 }
@@ -162,18 +154,46 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
-void Logistics::packContainers(int tyreCompound) {
+void Logistics::packContainers(int *tyreCompoundOrder) {
 
-    //Need to create container objects to match to races
-    //Test by packing a single container:
+    //As ons werk sonder tyres wat moet in
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        //std::cout << t.currentItem()->getLocation() << std::endl;
+        if (!t.currentItem()->isRaceEuropean()) {
+            nonEuropeanContainers.push_back(packSingleContainer(false));
+        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
+            europeanContainer = packSingleContainer(true);
+        } else
+            (//do nothing
+            )
+    }
 
-    Container *container = packSingleContainer(tyreCompound);
+    //As ons werk met tyres wat moet in
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        //std::cout << t.currentItem()->getLocation() << std::endl;
+        if (!t.currentItem()->isRaceEuropean()) {
+            nonEuropeanContainers.push_back(packSingleContainer(tyreCompoundOrder));
+        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
+            europeanContainer = packSingleContainer(tyreCompoundOrder);
+        } else
+            (//do nothing
+            )
+    }
+
+    //As ons besluit om te pak voor 'n resies elke keer dan is hierdie hele deel van die kode onnuttig.
+
+
+
+
+    /*Need to create container objects to match to races
+    Test by packing a single container:
+    Container *container = packSingleContainer(tyreCompound);*/
 
     cout << "Packed all containers" << endl;
 
 }
 
-Container *Logistics::packSingleContainer(int tyreCompound) {
+Container *Logistics::packSingleContainer(int *tyreCompound) {
     Box *box = new Box();
     auto *garageEquip = new GarageEquipment();
     auto *cateringEquip = new CateringEquipment();
@@ -189,34 +209,38 @@ Container *Logistics::packSingleContainer(int tyreCompound) {
 
 }
 
+/**
+ * @author Jo
+ * @param race
+ */
 void Logistics::simulateEvent(Race *r) {
-    //get car
-    eng::Car* carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
-    //transport car
+    //1. get car
+    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
+    //2. transport car
     transportManager->transport(nullptr, r, carInTransport);
 
-    //get correct container and pre-race arrival
-/*
+    //3. get correct container and pre-race arrival
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
-    }
-    else {
+    } else {
         callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
     }
-*/
-    //racing weekend finishes and get points
-/*
-    int* temp = callRacingDept()->RacingWeekend();
-    seasonPointTally[0]+= temp[0];
-    seasonPointTally[1]+= temp[1];
-*/
-    //finish the packup
-//    Container* tCont = callRacingDept()->postRacePackUp(); //execute
+    //4. racing weekend finishes and get points
+    int *temp = callRacingDept()->RacingWeekend();
+    seasonPointTally[0] += temp[0];
+    seasonPointTally[1] += temp[1];
+    //5. finish the packup
+    Container *tCont = callRacingDept()->postRacePackUp(); //execute
+    if (!r->isRaceEuropean()) {
+        delete tCont; //nonEuropeanContainer won't be used again
+    } //else stay with the container
+
 }
 
 /**
  * @author Jo
  * @status nearly there
+ * @ERROR hard-coded file path
  */
 void Logistics::putRacesIntoCalender() {
     // TODO : File path hard-coded. Needs to change
@@ -254,11 +278,20 @@ void Logistics::putRacesIntoCalender() {
 
 }
 
+/**
+ * @author Jo
+ * @return RacingDept Instance
+ * @status Done
+ */
 rce::RacingDep *Logistics::callRacingDept() {
     return dynamic_cast<rce::RacingDep *>(departments['r']);
-    //return nullptr;
 }
 
+/**
+ * @author Jo
+ * @return EngTeam Instance
+ * @status Done
+ */
 eng::EngTeam *Logistics::callEngDept() {
     return dynamic_cast<eng::EngTeam *>(departments['e']);
 }
@@ -266,8 +299,40 @@ eng::EngTeam *Logistics::callEngDept() {
 
 /**
  * @author Jo
+ * @details console output or not
+ * @status In Progress
  */
 void Logistics::toggleVerbose() {
     verbose = !verbose;
+}
+
+void Logistics::orderTyres(int *tyreOrder) {
+    if (!verbose) {
+        std::cout << "Tedious paperwork to complete tyre order" << std::endl;
+    }
+    if (tyreOrder[0] != 0) {
+        if (verbose) {
+            std::cout << "Ordering " << tyreOrder[0] << "pair(s) of Soft Compound Tyres" << std::endl;
+        }
+    }
+
+    if (tyreOrder[1] != 0) {
+        if (verbose) {
+            std::cout << "Ordering " << tyreOrder[1] << "pair(s) of Medium Compound Tyres" <<
+                      std::endl;
+        }
+    }
+    if (tyreOrder[2] != 0) {
+        if (verbose) {
+            std::cout << "Ordering " << tyreOrder[2] << "pair(s) of Hard Compound Tyres" <<
+                      std::endl;
+        }
+    }
+
+
+//instantiate tyres or leave for later
+
+
+
 }
 
