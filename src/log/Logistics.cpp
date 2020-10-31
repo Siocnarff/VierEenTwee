@@ -15,11 +15,11 @@
 #include <log/races/CateringEquipment.h>
 #include <log/races/TyreBox.h>
 
-
 using namespace log;
 
 /**
  * @author Jo
+ * @status Done and dusted!
  */
 Logistics::Logistics() {
     driver = nullptr;
@@ -33,6 +33,10 @@ Logistics::Logistics() {
     budget = -1;
 }
 
+/**
+ * @status completed
+ * @param colleague
+ */
 void Logistics::registerNotifier(Colleague *colleague) {
     auto *temp = new eng::EngTeam;
     if (typeid(*temp) == typeid(*colleague)) {
@@ -48,7 +52,7 @@ void Logistics::registerNotifier(Colleague *colleague) {
 
 /**
  * @author Jo
- * @status done!
+ * @status finished
  */
 void Logistics::doYearPlanning() {
     //1. getBudget from "Sponsors"
@@ -72,7 +76,7 @@ void Logistics::doYearPlanning() {
 
 }
 
-
+//IN THE WORKS
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
@@ -84,9 +88,7 @@ void Logistics::preSeasonPreparation() {
 
 
     //Pack containers right after tyre compound received
-
     int tyrecompound = 2;
-
     packContainers(tyrecompound);
 
     //moet meer spesifiek wees hierso.
@@ -103,137 +105,6 @@ void Logistics::preSeasonPreparation() {
     testCar();
     getRaceIterator();
    */
-
-}
-
-
-void Logistics::raceSeason() {
-    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
-        //std::cout << t.currentItem()->getLocation() << std::endl;
-        simulateEvent(t.currentItem());
-    }
-    std::cout << std::endl;
-
-    //2 cars
-    //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
-//    callRacingDept()->preRaceArrival(new eng::Car(2), driver, new Race, new Box);
-
-    //
-    throw "Implement for two cars";
-    //seasonPointTally += callRacingDept()->RacingWeekend();
-    callRacingDept()->postRacePackUp(); //execute
-
-}
-
-void Logistics::postSeasonDebrief() {
-//maybe do some analysis?
-    //start building a new car
-    //let driver take holiday
-    //let transportHandler take holiday
-
-}
-
-void Logistics::sendCarToFactory(eng::Car *car) {
-    cout << "send car to factory" << endl;
-    transportManager->transport(new Race, new Race, car);
-    callEngDept()->carArrivesAtFactory(car);
-    callEngDept()->improveCar(car->getId());
-}
-
-void Logistics::containerHasBeenPacked(Container *) {
-    cout << "fly container" << endl;
-}
-
-Container *Logistics::getEuropeanContainer() {
-    return europeanContainer;
-}
-
-Container *Logistics::getNextNonEuropean() {
-    Container *back = nonEuropeanContainers.back();
-    nonEuropeanContainers.pop_back();
-    return back;
-}
-
-void Logistics::packContainers(int *tyreCompoundOrder) {
-
-    //As ons werk sonder tyres wat moet in
-    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
-        //std::cout << t.currentItem()->getLocation() << std::endl;
-        if (!t.currentItem()->isRaceEuropean()) {
-            nonEuropeanContainers.push_back(packSingleContainer(false));
-        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
-            europeanContainer = packSingleContainer(true);
-        } else
-            (//do nothing
-            )
-    }
-
-    //As ons werk met tyres wat moet in
-    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
-        //std::cout << t.currentItem()->getLocation() << std::endl;
-        if (!t.currentItem()->isRaceEuropean()) {
-            nonEuropeanContainers.push_back(packSingleContainer(tyreCompoundOrder));
-        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
-            europeanContainer = packSingleContainer(tyreCompoundOrder);
-        } else
-            (//do nothing
-            )
-    }
-
-    //As ons besluit om te pak voor 'n resies elke keer dan is hierdie hele deel van die kode onnuttig.
-
-
-
-
-    /*Need to create container objects to match to races
-    Test by packing a single container:
-    Container *container = packSingleContainer(tyreCompound);*/
-
-    cout << "Packed all containers" << endl;
-
-}
-
-Container *Logistics::packSingleContainer(int *tyreCompound) {
-    Box *box = new Box();
-    auto *garageEquip = new GarageEquipment();
-    auto *cateringEquip = new CateringEquipment();
-    auto *tyreBox = new TyreBox(tyreCompound);
-
-    box->addElement(garageEquip);
-    box->addElement(cateringEquip);
-    box->addElement(tyreBox);
-
-    cout << "Packed a container" << endl;
-
-    return box;
-
-}
-
-/**
- * @author Jo
- * @param race
- */
-void Logistics::simulateEvent(Race *r) {
-    //1. get car
-    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
-    //2. transport car
-    transportManager->transport(nullptr, r, carInTransport);
-
-    //3. get correct container and pre-race arrival
-    if (r->isRaceEuropean()) {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
-    } else {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
-    }
-    //4. racing weekend finishes and get points
-    int *temp = callRacingDept()->RacingWeekend();
-    seasonPointTally[0] += temp[0];
-    seasonPointTally[1] += temp[1];
-    //5. finish the packup
-    Container *tCont = callRacingDept()->postRacePackUp(); //execute
-    if (!r->isRaceEuropean()) {
-        delete tCont; //nonEuropeanContainer won't be used again
-    } //else stay with the container
 
 }
 
@@ -278,10 +149,87 @@ void Logistics::putRacesIntoCalender() {
 
 }
 
+//JUST FINISH THE FINAL CELEBRATION
+void Logistics::raceSeason() {
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        simulateEvent(t.currentItem());
+    }
+    std::cout << std::endl;
+
+    callRacingDept()->getResults()
+
+    //2 cars
+    //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
+//    callRacingDept()->preRaceArrival(new eng::Car(2), driver, new Race, new Box);
+
+    //
+    throw "Implement for two cars";
+    //seasonPointTally += callRacingDept()->RacingWeekend();
+    callRacingDept()->postRacePackUp(); //execute
+
+}
+
+/**
+ * @author Jo
+ * @param race
+ */
+void Logistics::simulateEvent(Race *r) {
+    //1. get car
+    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
+    //2. transport car
+    transportManager->transport(nullptr, r, carInTransport);
+
+    //3. get correct container and pre-race arrival
+    if (r->isRaceEuropean()) {
+        callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
+    } else {
+        callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
+    }
+    //4. racing weekend finishes and get points
+    int *temp = callRacingDept()->RacingWeekend();
+    seasonPointTally[0] += temp[0];
+    seasonPointTally[1] += temp[1];
+    //5. finish the packup
+    Container *tCont = callRacingDept()->postRacePackUp(); //execute
+    if (!r->isRaceEuropean()) {
+        delete tCont; //nonEuropeanContainer won't be used again
+    } //else stay with the container
+
+}
+
+//NOT STARTED
+void Logistics::postSeasonDebrief() {
+    //start building a new car
+    //let driver take holiday
+    //let transportHandler take holiday
+
+}
+
+
+
+//===================== HELPER FUNCTIONS==================================
+
+/**
+ * @status done
+ */
+Container *Logistics::getEuropeanContainer() {
+    return europeanContainer;
+}
+
+/**
+ * @status fini
+ * @return
+ */
+Container *Logistics::getNextNonEuropean() {
+    Container *back = nonEuropeanContainers.back();
+    nonEuropeanContainers.pop_back();
+    return back;
+}
+
 /**
  * @author Jo
  * @return RacingDept Instance
- * @status Done
+ * @status definitely done
  */
 rce::RacingDep *Logistics::callRacingDept() {
     return dynamic_cast<rce::RacingDep *>(departments['r']);
@@ -290,22 +238,38 @@ rce::RacingDep *Logistics::callRacingDept() {
 /**
  * @author Jo
  * @return EngTeam Instance
- * @status Done
+ * @status absolutely done
  */
 eng::EngTeam *Logistics::callEngDept() {
     return dynamic_cast<eng::EngTeam *>(departments['e']);
 }
 
-
 /**
  * @author Jo
  * @details console output or not
- * @status In Progress
+ * @status if it works it should be done
  */
 void Logistics::toggleVerbose() {
     verbose = !verbose;
 }
 
+
+// =========================== MEDIATOR ===========================
+
+//DONE
+void Logistics::sendCarToFactory(eng::Car *car) {
+    cout << "send car to factory" << endl;
+    transportManager->transport(new Race, new Race, car);
+    callEngDept()->carArrivesAtFactory(car);
+    callEngDept()->improveCar(car->getId());
+}
+
+//NOT STARTED - should transport container here
+void Logistics::containerHasBeenPacked(Container *) {
+    cout << "fly container" << endl;
+}
+
+//IN THE WORKS - DECIDE WHETHER TO INSTANTIATE OR NOT
 void Logistics::orderTyres(int *tyreOrder) {
     if (!verbose) {
         std::cout << "Tedious paperwork to complete tyre order" << std::endl;
