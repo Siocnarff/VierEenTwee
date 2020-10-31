@@ -9,6 +9,8 @@ namespace eng {
         explicit ElectricHarness(Component * toClone);
 
     public:
+        explicit ElectricHarness(int quality);
+
         void print() final;
 
         Component* clone() final;

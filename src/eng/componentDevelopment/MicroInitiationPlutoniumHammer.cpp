@@ -14,3 +14,7 @@ Component *MicroInitiationPlutoniumHammer::clone() {
 int MicroInitiationPlutoniumHammer::getId() {
     return 4;
 }
+
+MicroInitiationPlutoniumHammer::MicroInitiationPlutoniumHammer(int quality) : Component(quality) {
+
+}

@@ -23,6 +23,8 @@ namespace eng {
 
         int fixComponent(Car *, int);
 
+        int specialistsDesignComponent();
+
     public:
 
         explicit Department(Department *next);

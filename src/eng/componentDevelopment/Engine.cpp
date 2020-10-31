@@ -15,3 +15,7 @@ Component *Engine::clone() {
 int Engine::getId() {
     return 1;
 }
+
+Engine::Engine(int quality) : Component(quality) {
+
+}

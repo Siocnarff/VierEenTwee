@@ -15,3 +15,7 @@ Component *Chassis::clone() {
 int Chassis::getId() {
     return 0;
 }
+
+Chassis::Chassis(int quality) : Component(quality) {
+
+}

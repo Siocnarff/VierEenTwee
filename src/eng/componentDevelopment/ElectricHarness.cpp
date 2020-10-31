@@ -15,3 +15,7 @@ Component *ElectricHarness::clone() {
 int ElectricHarness::getId() {
     return 2;
 }
+
+ElectricHarness::ElectricHarness(int quality) : Component(quality) {
+
+}

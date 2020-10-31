@@ -16,6 +16,8 @@ namespace eng {
     protected:
         explicit Component(Component* component);
 
+        explicit Component(int quality);
+
     public:
 		int getQualityLabel();
 

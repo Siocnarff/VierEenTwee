@@ -31,13 +31,14 @@ void Department::addSpecialist(ppl::Person *specialist, bool printResults) {
 }
 
 void Department::fix(Car *car, bool transparent) {
-	if (nextDepartment) {
-		nextDepartment->fix(car, transparent);
-	} else {
-		if (transparent) {
-			std::cout << "There are no more departments, the car has been completely fixed and stored in garage." << std::endl;
-		}
-	}
+    if (nextDepartment) {
+        nextDepartment->fix(car, transparent);
+    } else {
+        if (transparent) {
+            std::cout << "There are no more departments, the car has been completely fixed and stored in garage."
+                      << std::endl;
+        }
+    }
 }
 
 void Department::topUpBudget(int cash) {
@@ -45,13 +46,13 @@ void Department::topUpBudget(int cash) {
 }
 
 int Department::fixComponent(Car *car, int id) {
-	int damage = car->components[id]->damage;
-	car->components[id]->damage = 0;
-	return damage;
+    int damage = car->components[id]->damage;
+    car->components[id]->damage = 0;
+    return damage;
 }
 
 bool Department::haveSpecialists() {
-	return !specialists.empty();
+    return !specialists.empty();
 }
 
 void Department::build(Car *car) {
@@ -64,4 +65,21 @@ void Department::build(Car *car) {
 
 void Department::buildComponentIntoCar(Car *car, Component *comp) {
     car->components[comp->getId()] = comp;
+}
+
+int Department::specialistsDesignComponent() {
+    if (!haveSpecialists()) {
+        return 0;
+    }
+    int best = -1;
+    int teamSize = specialists.size();
+    int totalSkill = 0;
+    for (ppl::Person *specialist: specialists) {
+        if(specialist->getSkillLevel() > best) {
+            best = specialist->getSkillLevel();
+        }
+        totalSkill += specialist->getSkillLevel();
+    }
+    double average = double(totalSkill)/double(teamSize);
+    return int(average * 0.2 + double(best) * 0.8);
 }

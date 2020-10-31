@@ -15,3 +15,7 @@ Body::Body(Component *toClone) : Component(toClone) {}
 int Body::getId() {
     return 3;
 }
+
+Body::Body(int quality) : Component(quality) {
+
+}

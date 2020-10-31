@@ -8,7 +8,7 @@ using namespace eng;
 
 void BodyDep::build(Car* car) {
 	if (haveSpecialists()) {
-        buildComponentIntoCar(car, new Body())
+        buildComponentIntoCar(car, new Body(specialistsDesignComponent()));
 	}
 	Department::build(car);
 }
