@@ -9,11 +9,12 @@
 #include <componentDevelopment/ChassisDep.h>
 #include "EngTeam.h"
 #include <chrono>
+#include <pr/Doc.h>
 
 using namespace eng;
 
 void EngTeam::hireEmployees(int budget) {
-    print("Engineering team is hiring new employees...");
+    pr::Doc::summary("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -73,12 +74,12 @@ void EngTeam::hireEmployees(int budget) {
     srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
+            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
-        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
-        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]), transparent);
-        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]), transparent);
-        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]), transparent);
+        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
+        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]));
+        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
+        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
 }
 
