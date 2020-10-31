@@ -224,8 +224,8 @@ void Logistics::putRacesIntoCalender() {
 
     try {
         std::ifstream infile;
-        infile.open("/home/jo-anne/Documents/VierEenTwee/src/log/races/raceData.txt");
-        //infile.open("src/log/races/raceData.txt");
+        infile.open("/home/jo-anne/Documents/VierEenTwee/src/lg/races/raceData.txt");
+        //infile.open("src/lg/races/raceData.txt");
         int numRaces;
         infile >> numRaces;
 

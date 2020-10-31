@@ -66,10 +66,10 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 }//end of xp if
-                log::RiskLevel rl = strategy->getRiskLevel();
+                lg::RiskLevel rl = strategy->getRiskLevel();
                 int dam;
                 int randval;
-                if (rl == log::Aggressive) {
+                if (rl == lg::Aggressive) {
                     randval = rand() % 10 + 1;
                     if (randval >= 7) {
                         dam = rand() % 60 + 30;
@@ -83,7 +83,7 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 } else {
-                    if (rl == log::Moderate) {
+                    if (rl == lg::Moderate) {
                         randval = rand() % 10 + 1;
                         if (randval >= 8) {
                             dam = rand() % 50 + 20;
@@ -97,7 +97,7 @@ int RaceWeekend::RacingWeekend() {
                             }
                         }
                     } else {
-                        if (rl == log::Safe) {
+                        if (rl == lg::Safe) {
                             randval = rand() % 10 + 1;
                             if (randval >= 8) {
                                 dam = rand() % 40 + 10;
@@ -113,13 +113,13 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 }
-                if (DayWeather == log::Wet) {
+                if (DayWeather == lg::Wet) {
                     time[n] += rand() % 10 + 1;
                 } else {
-                    if (DayWeather == log::Dry) {
+                    if (DayWeather == lg::Dry) {
                         time[n] += rand() % 5 + 0;
                     } else {
-                        if (DayWeather == log::Rainy) {
+                        if (DayWeather == lg::Rainy) {
                             time[n] += rand() % 15 + 1;
                         }
                     }
@@ -169,11 +169,11 @@ void RaceWeekend::setDriver(ppl::Driver *driver, int i) {
     this->driver[i] = driver;
 }
 
-log::Container *RaceWeekend::getContainer() {
+lg::Container *RaceWeekend::getContainer() {
     return this->container;
 }
 
-void RaceWeekend::setContainer(log::Container *container) {
+void RaceWeekend::setContainer(lg::Container *container) {
     this->container = container;
 }
 
@@ -207,8 +207,8 @@ int RaceWeekend::getScore(int i) {
     throw "i not declared";
 }*/
 
-RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,
-                         std::list<PitCrew *> p, log::Container *c) {
+RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, lg::Race *r, CreateStrategy *s,
+                         std::list<PitCrew *> p, lg::Container *c) {
     car = new eng::Car *[2];
     driver = new ppl::Driver *[2];
     CState = new CarState *[2];
@@ -227,7 +227,7 @@ RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, Cre
 
 }
 
-log::WeatherConditions RaceWeekend::getDayWeather() {
+lg::WeatherConditions RaceWeekend::getDayWeather() {
     return this->DayWeather;
 }
 
@@ -245,8 +245,8 @@ void RaceWeekend::deel_Damage(int i, int d) {
 }
 
 /*
-RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s, std::list<PitCrew *> p,
-                         log::Container *c) {
+RaceWeekend::RaceWeekend(eng::Car *cars, ppl::Driver *drivers, lg::Race *r, CreateStrategy *s, std::list<PitCrew *> p,
+                         lg::Container *c) {
 
 }
 */
@@ -267,6 +267,6 @@ void RaceWeekend::setScore(int score, int i) {
 
 }
 
-void RaceWeekend::setDayWeather(log::WeatherConditions *DayWeather) {
+void RaceWeekend::setDayWeather(lg::WeatherConditions *DayWeather) {
 
 }

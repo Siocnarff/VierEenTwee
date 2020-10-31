@@ -84,7 +84,7 @@ void EngTeam::hireEmployees(int budget) {
 }
 
 void EngTeam::registerForSeason(lg::Mediator *mediator) {
-    logisticsDep = mediator;
+    logisticsDept = mediator;
 }
 
 int EngTeam::buildCar(int budget) {

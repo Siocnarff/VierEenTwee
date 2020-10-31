@@ -16,7 +16,7 @@ int pr::Doc::transparency = 0;
 
 void testBasicIntegration() {
     pr::Doc::setTransparency(1);
-    auto* a = new log::Logistics();
+    auto* a = new lg::Logistics();
     auto* engDept = new eng::EngTeam();
 //    auto* racingDept = new rce::RacingDep();
 /*
@@ -63,7 +63,7 @@ void testIterator(){
 }
 
 void testContainerPacking() {
-    auto* a = new log::Logistics();
+    auto* a = new lg::Logistics();
 
     a->preSeasonPreparation();
 
@@ -108,32 +108,32 @@ int main () {
 
     /*auto *racingDept = new rce::RacingDep();
     auto *engTeam = new eng::EngTeam();
-    auto *log = new log::Logistics;
+    auto *lg = new lg::Logistics;
 
-    log->registerNotifier(racingDept);
-    log->registerNotifier(engTeam);
+    lg->registerNotifier(racingDept);
+    lg->registerNotifier(engTeam);
 
     engTeam->toggleTransparency();
-    log->toggleVerbose();
-    log->doYearPlanning();
+    lg->toggleVerbose();
+    lg->doYearPlanning();
 
-    log->toggleVerbose();*/
+    lg->toggleVerbose();*/
 // ERROR : STORE CAR NOT IMPLEMENTED
-    //log->raceSeason();
+    //lg->raceSeason();
 
-//    auto *racingDept = new log::RacingDept();
+//    auto *racingDept = new lg::RacingDept();
 //    auto *engTeam = new eng::EngTeam();
-//    auto *log = new log::Logistics;
+//    auto *lg = new lg::Logistics;
 //
-//    log->registerNotifier(racingDept);
-//    log->registerNotifier(engTeam);
+//    lg->registerNotifier(racingDept);
+//    lg->registerNotifier(engTeam);
 //
 //    engTeam->toggleTransparency();
-//    log->toggleVerbose();
-//    log->doYearPlanning();
+//    lg->toggleVerbose();
+//    lg->doYearPlanning();
 //
-//    log->toggleVerbose();
-//    log->raceSeason();
+//    lg->toggleVerbose();
+//    lg->raceSeason();
 
     testContainerPacking();
 
