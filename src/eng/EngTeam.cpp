@@ -9,11 +9,12 @@
 #include <componentDevelopment/ChassisDep.h>
 #include "EngTeam.h"
 #include <chrono>
+#include <pr/Doc.h>
 
 using namespace eng;
 
 void EngTeam::hireEmployees(int budget) {
-    print("Engineering team is hiring new employees...");
+    pr::Doc::summary("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",

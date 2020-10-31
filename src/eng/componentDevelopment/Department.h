@@ -7,7 +7,10 @@
 #include "../Car.h"
 #include "Component.h"
 
+
+
 namespace eng {
+    class Car;
     class Department {
 
     private:
