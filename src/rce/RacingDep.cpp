@@ -241,6 +241,11 @@ RacingDep::RacingDep() {
     std::cout << "Constructor" << std::endl;
 }
 
+int *RacingDep::getFinalResults() {
+    //return array {score1,postition1,score2, postion2}
+    throw "Not yet implemented";
+}
+
 
 
 

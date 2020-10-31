@@ -53,6 +53,8 @@ namespace rce {
 
         ~RacingDep() override;
 
+        int* getFinalResults();
+
 
     // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
 
