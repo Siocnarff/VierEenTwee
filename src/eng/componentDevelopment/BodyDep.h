@@ -11,9 +11,9 @@ namespace eng {
 	public:
         explicit BodyDep(Department* next = nullptr);
 
-		void build(Car* car);
+		void build(Car* car) override;
 
-		void fix(Car* car);
+		void fix(Car *car) override;
 
 		void update(Component* component) final;
 	};

@@ -1,15 +1,25 @@
 #include "ElectricDepartment.h"
+#include "ElectricHarness.h"
 
 using namespace eng;
 
 void ElectricDepartment::build(Car* car) {
-	// TODO - implement ElectricDepartment::build
-	throw "Not yet implemented";
+    if (haveSpecialists()) {
+        buildComponentIntoCar(car, new ElectricHarness(specialistsDesignComponent()));
+    }
+    Department::build(car);
 }
 
-void ElectricDepartment::fix(Car* car) {
-	// TODO - implement ElectricDepartment::fix
-	throw "Not yet implemented";
+void ElectricDepartment::fix(Car *car) {
+	int damage = fixComponent(car, 2);
+	if (transparent) {
+		if (damage == 0) {
+			std::cout << "All the shocks came from the correct wires, sending car to next department." << std::endl;
+		} else {
+			std::cout << departmentName << " is rewiring the harness which took " << damage << "% damage." << std::endl;
+		}
+	}
+    Department::fix(car);
 }
 
 void ElectricDepartment::update(Component* component) {

@@ -3,9 +3,13 @@
 
 #include <componentDevelopment/Component.h>
 #include "../../ppl/specialists/Driver.h"
+#include "Department.h"
 
 namespace eng {
 	class Car {
+	friend class Department;
+	friend class EngTeam;
+	friend class ComponentSimulator;
 
 	private:
         /**
@@ -42,7 +46,9 @@ namespace eng {
 		int getId() const;
 
 		Car * clone();
-	};
+
+        Car *clone(int idOfNew);
+    };
 }
 
 #endif

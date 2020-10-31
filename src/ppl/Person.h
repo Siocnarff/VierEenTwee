@@ -26,7 +26,7 @@ namespace ppl {
 
 		int getSkillLevel() const;
 
-		void printResume();
+		std::string getResume();
 
 		int getId() const;
 
