@@ -226,13 +226,23 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
+/**
+ * @author Jo
+ * @status : Check and test (should be done)
+ */
 void Logistics::packContainers() {
 
-    //Need to create container objects to match to races
-    //Test by packing a single container:
-
-    Container *container = packSingleContainer();
-
+    //1. Sonder tyres wat moet in
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        //std::cout << t.currentItem()->getLocation() << std::endl;
+        if (!t.currentItem()->isRaceEuropean()) {
+            nonEuropeanContainers.push_back(packSingleContainer());
+        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
+            europeanContainer = packSingleContainer();
+        } else {
+            //do nothing
+        }
+    }
     cout << "Packed all containers" << endl;
 
 }
