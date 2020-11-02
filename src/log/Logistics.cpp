@@ -232,9 +232,7 @@ void Logistics::putRacesIntoCalender() {
         std::cout << "There was a file-reading error !\n";
     }
 
-    if (verbose) {
-        racingCalendar->printList();
-    }
+    racingCalendar->printList();
 
 }
 
