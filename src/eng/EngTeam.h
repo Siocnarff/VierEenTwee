@@ -18,7 +18,7 @@ namespace eng {
         static int carIdGenerator;
         Garage garage;
         BlueprintStore blueprintStore{};
-        WindTunnel *windTunnel;
+        WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
         Department *department[5]{nullptr};
 
