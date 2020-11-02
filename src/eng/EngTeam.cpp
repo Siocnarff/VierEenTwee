@@ -112,7 +112,9 @@ int EngTeam::buildCar(int budget) {
         car = new Car(id);
         department[0]->build(car);
     }
+	windTunnel.testCar(car);
     garage.storeCar(car);
+    car->print();
     for (int i = 0; i < 50; ++i) {
         improveCar(id, true);
     }
@@ -163,8 +165,6 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 			int changedQuality = component->getQualityLabel();
 			if (currentQuality > changedQuality) {
 				component->rebuildComponent(blueprintStore.getBlueprint());
-			}else{
-			    std::cout << "Here" << std::endl;
 			}
 		}
 	}

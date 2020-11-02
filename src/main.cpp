@@ -16,12 +16,12 @@ int main() {
 
     auto* e = new eng::EngTeam();
 
-    e->hireEmployees(50);
+    e->hireEmployees(10);
 
     e->setRiskLevel(lg::Aggressive);
 
 
-    int id = e->buildCar(50);
+    int id = e->buildCar(10);
 
     //pr::Doc::setTransparency(1);
 

@@ -16,10 +16,11 @@ namespace eng {
     private:
         Department *nextDepartment;
         Risk *riskLevel;
-        int budget = 0;
         std::vector<ppl::Person *> specialists;
 
     protected:
+
+		int budget = 0;
 
         std::string departmentName;
 
