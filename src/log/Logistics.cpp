@@ -81,9 +81,13 @@ void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
     // 1.1 Notified about tyres
+    //     Receive array on tyre specs
+
+    int arr[3] = {3,2,0};
 
     // 1.2 Instantiate tyres
-    // x x x
+    rce::Tyres tyres = rce::Tyres(arr);
+    tyres.printStats();
     std::cout << "Tyre Order has arrived" << endl;
 
 
@@ -230,7 +234,7 @@ Container *Logistics::getNextNonEuropean() {
 
 void Logistics::packContainers() {
 
-    //Need to create container objects to match to races
+    //Need to create container objects to match to races - lots of
     //Test by packing a single container:
 
     Container *container = packSingleContainer();
