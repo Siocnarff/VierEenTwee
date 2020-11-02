@@ -25,8 +25,9 @@ void ChassisDep::fix(Car *car) {
 }
 
 void ChassisDep::update(Component* component) {
-	// TODO - implement ChassisDep::update
-	throw "Not yet implemented";
+	pr::Doc::detail(departmentName);
+	pr::Doc::detail(" is improving the chassis.\n");
+	Department::specialistsImproveComponent(component);
 }
 
 ChassisDep::ChassisDep(Department *next) : Department(next) {

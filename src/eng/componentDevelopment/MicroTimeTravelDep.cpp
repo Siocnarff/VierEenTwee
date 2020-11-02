@@ -32,8 +32,9 @@ void MicroTimeTravelDep::fix(Car *car) {
 }
 
 void MicroTimeTravelDep::update(Component* component) {
-	// TODO - implement MicroTimeTravelDep::update
-	throw "Not yet implemented";
+	pr::Doc::detail(departmentName);
+	pr::Doc::detail(" is replacing and improving the flux capacitor within the Micro Initiation Plutonium Hammer hoping it will improve performance.\n");
+	Department::specialistsImproveComponent(component);
 }
 
 MicroTimeTravelDep::MicroTimeTravelDep(Department *next) : Department(next) {
