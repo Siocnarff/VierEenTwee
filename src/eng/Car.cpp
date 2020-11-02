@@ -16,7 +16,7 @@ Car::Car(Car *car) {
     driver = car->driver;
     damage = car->damage;
     for (int i = 0; i < 5; ++i) {
-    	if (components[i]) {
+    	if (car->components[i]) {
 			components[i] = car->components[i]->clone();
 		} else {
     		components[i] = nullptr;
@@ -76,7 +76,7 @@ void Car::removeDriver(ppl::Driver *driver) {
 }
 
 void Car::print() {
-    pr::Doc::summary("CAR INFO: id=" + std::to_string(id));
+    pr::Doc::summary("CAR INFO: id=");
     pr::Doc::summary(std::to_string(id));
     pr::Doc::summary(" Driver=" + (driver ? driver->getName() : "None") + "\n");
     pr::Doc::detail("  Detail:");

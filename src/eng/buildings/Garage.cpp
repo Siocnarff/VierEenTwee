@@ -37,9 +37,7 @@ Car *Garage::getPrototype() {
         }
     }
     if (idOfBest != -1) {
-        Car * target = car[idOfBest];
-        car[idOfBest] = nullptr;
-        return target;
+        return car[idOfBest];
     }
     return nullptr;
 }

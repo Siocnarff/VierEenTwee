@@ -25,13 +25,13 @@ int main() {
 
     //pr::Doc::setTransparency(1);
     int id2 = e->buildCar(10);
-    eng::Car* car2 = e->checkCarOutOfFactory(id2);
-
     eng::Car* car = e->checkCarOutOfFactory(id);
-
     car->print();
 
+    eng::Car* car2 = e->checkCarOutOfFactory(id2);
     car2->print();
+
+
 
 
 

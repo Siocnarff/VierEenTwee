@@ -27,6 +27,7 @@ void Component::rebuildComponent(Blueprint* plan) {
 Component::Component(Component *component) {
     qualityLabel = component->qualityLabel;
     quality = component->quality;
+    damage = component->damage;
 }
 
 Component::Component(int quality) {
