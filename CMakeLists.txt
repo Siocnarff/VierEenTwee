@@ -1,0 +1,180 @@
+cmake_minimum_required(VERSION 3.10)
+project(VierEenTwee)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(src/eng)
+include_directories(src/eng/buildings)
+include_directories(src/eng/componentDevelopment)
+include_directories(src/log)
+include_directories(src/log/enums)
+include_directories(src/log/races)
+include_directories(src/log/transportation)
+include_directories(src/ppl)
+include_directories(src/ppl/factories)
+include_directories(src/ppl/specialists)
+include_directories(src/pr)
+include_directories(src/rce)
+include_directories(src/rce/carState)
+include_directories(src/rce/leaderboard)
+include_directories(src/rce/pitstop)
+include_directories(src/rce/simulator)
+include_directories(src/rce/strategy)
+
+add_executable(VierEenTwee
+        src/eng/buildings/BlueprintStore.cpp
+        src/eng/buildings/BlueprintStore.h
+        src/eng/buildings/ComponentSimulator.cpp
+        src/eng/buildings/ComponentSimulator.h
+        src/eng/buildings/Garage.cpp
+        src/eng/buildings/Garage.h
+        src/eng/buildings/WindTunnel.cpp
+        src/eng/buildings/WindTunnel.h
+        src/eng/componentDevelopment/Aggressive.cpp
+        src/eng/componentDevelopment/Aggressive.h
+        src/eng/componentDevelopment/Blueprint.cpp
+        src/eng/componentDevelopment/Blueprint.h
+        src/eng/componentDevelopment/Body.cpp
+        src/eng/componentDevelopment/Body.h
+        src/eng/componentDevelopment/BodyDep.cpp
+        src/eng/componentDevelopment/BodyDep.h
+        src/eng/componentDevelopment/Chassis.cpp
+        src/eng/componentDevelopment/Chassis.h
+        src/eng/componentDevelopment/ChassisDep.cpp
+        src/eng/componentDevelopment/ChassisDep.h
+        src/eng/componentDevelopment/Component.cpp
+        src/eng/componentDevelopment/Component.h
+        src/eng/componentDevelopment/Department.cpp
+        src/eng/componentDevelopment/Department.h
+        src/eng/componentDevelopment/ElectricDepartment.cpp
+        src/eng/componentDevelopment/ElectricDepartment.h
+        src/eng/componentDevelopment/ElectricHarness.cpp
+        src/eng/componentDevelopment/ElectricHarness.h
+        src/eng/componentDevelopment/Engine.cpp
+        src/eng/componentDevelopment/Engine.h
+        src/eng/componentDevelopment/EngineDep.cpp
+        src/eng/componentDevelopment/EngineDep.h
+        src/eng/componentDevelopment/MicroInitiationPlutoniumHammer.cpp
+        src/eng/componentDevelopment/MicroInitiationPlutoniumHammer.h
+        src/eng/componentDevelopment/MicroTimeTravelDep.cpp
+        src/eng/componentDevelopment/MicroTimeTravelDep.h
+        src/eng/componentDevelopment/Moderate.cpp
+        src/eng/componentDevelopment/Moderate.h
+        src/eng/componentDevelopment/Risk.h
+        src/eng/componentDevelopment/Safe.cpp
+        src/eng/componentDevelopment/Safe.h
+        src/eng/Car.cpp
+        src/eng/Car.h
+        src/eng/EngTeam.cpp
+        src/eng/EngTeam.h
+        src/log/enums/RiskLevel.h
+        src/log/enums/TrackComplexity.h
+        src/log/enums/WeatherConditions.h
+        src/log/races/Aggregate.h
+        src/log/races/ArrivedState.cpp
+        src/log/races/ArrivedState.h
+        src/log/races/Box.cpp
+        src/log/races/Box.h
+        src/log/races/CateringEquipment.cpp
+        src/log/races/CateringEquipment.h
+        src/log/races/Container.cpp
+        src/log/races/Container.h
+        src/log/races/GarageEquipment.cpp
+        src/log/races/GarageEquipment.h
+        src/log/races/Iterator.h
+        src/log/races/main.cpp
+        src/log/races/Race.cpp
+        src/log/races/Race.h
+        src/log/races/RaceIterator.cpp
+        src/log/races/RaceIterator.h
+        src/log/races/RacesList.cpp
+        src/log/races/RacesList.h
+        src/log/races/TyreBox.cpp
+        src/log/races/TyreBox.h
+        src/log/transportation/Fly.cpp
+        src/log/transportation/Fly.h
+        src/log/transportation/Road.cpp
+        src/log/transportation/Road.h
+        src/log/transportation/Ship.cpp
+        src/log/transportation/Ship.h
+        src/log/transportation/TransportHandler.cpp
+        src/log/transportation/TransportHandler.h
+        src/log/Colleague.cpp
+        src/log/Colleague.h
+        src/log/Logistics.cpp
+        src/log/Logistics.h
+        src/log/main.cpp
+        src/log/Mediator.h
+        src/log/Strategy.cpp
+        src/log/Strategy.h
+        src/ppl/factories/HireAmateur.cpp
+        src/ppl/factories/HireAmateur.h
+        src/ppl/factories/HireProfessional.cpp
+        src/ppl/factories/HireProfessional.h
+        src/ppl/factories/KidnapStudent.cpp
+        src/ppl/factories/KidnapStudent.h
+        src/ppl/specialists/Amateur.cpp
+        src/ppl/specialists/Amateur.h
+        src/ppl/specialists/Driver.cpp
+        src/ppl/specialists/Driver.h
+        src/ppl/specialists/Professional.cpp
+        src/ppl/specialists/Professional.h
+        src/ppl/specialists/Student.cpp
+        src/ppl/specialists/Student.h
+        src/ppl/HumanResources.cpp
+        src/ppl/HumanResources.h
+        src/ppl/Person.cpp
+        src/ppl/Person.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
+        src/rce/carState/CarState.cpp
+        src/rce/carState/CarState.h
+        src/rce/carState/CarStateBroken.cpp
+        src/rce/carState/CarStateBroken.h
+        src/rce/carState/CarStateDamaged.cpp
+        src/rce/carState/CarStateDamaged.h
+        src/rce/carState/CarStateFullHP.cpp
+        src/rce/carState/CarStateFullHP.h
+        src/rce/leaderboard/DriverScore.cpp
+        src/rce/leaderboard/DriverScore.h
+        src/rce/leaderboard/DriversLeaderboard.cpp
+        src/rce/leaderboard/DriversLeaderboard.h
+        src/rce/leaderboard/Leaderboard.cpp
+        src/rce/leaderboard/Leaderboard.h
+        src/rce/leaderboard/Score.cpp
+        src/rce/leaderboard/Score.h
+        src/rce/leaderboard/TeamLeaderboard.cpp
+        src/rce/leaderboard/TeamLeaderboard.h
+        src/rce/pitstop/ChangeTyre.cpp
+        src/rce/pitstop/ChangeTyre.h
+        src/rce/pitstop/DriverPitStop.cpp
+        src/rce/pitstop/DriverPitStop.h
+        src/rce/pitstop/PitCrew.cpp
+        src/rce/pitstop/PitCrew.h
+        src/rce/pitstop/Pitstop.cpp
+        src/rce/pitstop/Pitstop.h
+        src/rce/pitstop/Tyres.cpp
+        src/rce/pitstop/Tyres.h
+        src/rce/simulator/Simulator.cpp
+        src/rce/simulator/Simulator.h
+        src/rce/simulator/SimulatorHotCondition.cpp
+        src/rce/simulator/SimulatorHotCondition.h
+        src/rce/simulator/SimulatorNormalCondition.cpp
+        src/rce/simulator/SimulatorNormalCondition.h
+        src/rce/simulator/SimulatorWetCondition.cpp
+        src/rce/simulator/SimulatorWetCondition.h
+        src/rce/strategy/AggressiveStrategy.cpp
+        src/rce/strategy/AggressiveStrategy.h
+        src/rce/strategy/CreateStrategy.cpp
+        src/rce/strategy/CreateStrategy.h
+        src/rce/strategy/ModerateStrategy.cpp
+        src/rce/strategy/ModerateStrategy.h
+        src/rce/strategy/SafeStrategy.cpp
+        src/rce/strategy/SafeStrategy.h
+        src/rce/RaceDaysIterator.cpp
+        src/rce/RaceDaysIterator.h
+        src/rce/RaceWeekend.cpp
+        src/rce/RaceWeekend.h
+        src/rce/RacingDep.cpp
+        src/rce/RacingDep.h
+        src/main.cpp)
