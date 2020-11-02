@@ -16,6 +16,7 @@ namespace lg {
         CateringEquipment(std::list <std::string> insides);
         void unpack() override;
         ~CateringEquipment() override;
+        void print() override;
     };
 }
 

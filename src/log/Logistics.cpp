@@ -234,7 +234,7 @@ Container *Logistics::getNextNonEuropean() {
 
 void Logistics::packContainers() {
 
-    //Need to create container objects to match to races - lots of
+    //Need to create container objects to match to races - iterate through races, assigning containers
     //Test by packing a single container:
 
     Container *container = packSingleContainer();
