@@ -156,7 +156,7 @@ void Logistics::raceSeason() {
     }
     std::cout << std::endl;
 
-    callRacingDept()->getResults()
+    callRacingDept()->getResults();
 
     //2 cars
     //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
@@ -181,9 +181,11 @@ void Logistics::simulateEvent(Race *r) {
 
     //3. get correct container and pre-race arrival
     if (r->isRaceEuropean()) {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
+        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
+                                         reinterpret_cast<ppl::Driver **>(driver), r, getEuropeanContainer());
     } else {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
+        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
+                                         reinterpret_cast<ppl::Driver **>(driver), r, getNextNonEuropean());
     }
     //4. racing weekend finishes and get points
     int *temp = callRacingDept()->RacingWeekend();
