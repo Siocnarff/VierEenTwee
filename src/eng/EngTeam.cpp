@@ -9,9 +9,17 @@
 #include <componentDevelopment/ChassisDep.h>
 #include "EngTeam.h"
 #include <chrono>
-#include <pr/Doc.h>
 
 using namespace eng;
+
+EngTeam::EngTeam() {
+    windTunnel = WindTunnel::instance();
+    department[3] = new BodyDep();
+    department[4] = new MicroTimeTravelDep(department[3]);
+    department[2] = new ElectricDepartment(department[4]);
+    department[1] = new EngineDep(department[2]);
+    department[0] = new ChassisDep(department[1]);
+}
 
 void EngTeam::hireEmployees(int budget) {
     pr::Doc::summary("Engineering team is hiring new employees...");
@@ -63,11 +71,6 @@ void EngTeam::hireEmployees(int budget) {
     } else {
         humanResources = new ppl::HireProfessional();
     }
-    department[3] = new BodyDep();
-    department[4] = new MicroTimeTravelDep(department[3]);
-    department[2] = new ElectricDepartment(department[4]);
-    department[1] = new EngineDep(department[2]);
-    department[0] = new ChassisDep(department[1]);
     // Hire for all departments if hirelings sufficiently skilled (implied by budget >= 50)
     time_t t = time(nullptr);
     int time = (int) t;
@@ -99,6 +102,9 @@ int EngTeam::buildCar(int budget) {
         department[0]->build(car);
     }
     garage.storeCar(car);
+    for (int i = 0; i < 50; ++i) {
+        improveCar(id, true);
+    }
     return id;
 }
 
@@ -131,8 +137,8 @@ void EngTeam::fixCar(int id) {
 
 void EngTeam::improveCar(int id, bool usingWindTunnel) {
 	Car* car = garage.retrieveCar(id);
-    if (usingWindTunnel) {
-    	windTunnel.testCar(car);
+    if (usingWindTunnel && windTunnel->sufficientTickets()) {
+    	windTunnel->testCar(car);
     } else {
 		simulator.testComponents(car);
     }
@@ -154,4 +160,8 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
     garage.retrieveCar(id);
+}
+
+void EngTeam::resetTickets() {
+    windTunnel->resetTickets();
 }
