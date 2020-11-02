@@ -10,11 +10,10 @@
 
 #include <fstream>
 #include <sstream>
-#include <log/races/Box.h>
-#include <log/races/GarageEquipment.h>
-#include <log/races/CateringEquipment.h>
-#include <log/races/Box.h>
-#include "ppl/factories/HireDriver.h"
+#include <races/Box.h>
+#include <races/GarageEquipment.h>
+#include <races/CateringEquipment.h>
+#include <factories/HireDriver.h>
 
 using namespace lg;
 
@@ -160,40 +159,19 @@ Container *Logistics::packSingleContainer() {
 }
 
 void Logistics::simulateEvent(Race *r) {
-    //get car
-    eng::Car* carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
-    //transport car
-    transportManager->transport(nullptr, r, carInTransport);
-
-    //get correct container and pre-race arrival
-/*
-    if (r->isRaceEuropean()) {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
-    }
-    else {
-        callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
-    }
-*/
-    //racing weekend finishes and get points
-/*
-    int* temp = callRacingDept()->RacingWeekend();
-    seasonPointTally[0]+= temp[0];
-    seasonPointTally[1]+= temp[1];
-*/
-    //finish the packup
-//    Container* tCont = callRacingDept()->postRacePackUp(); //execute
     //1. get car
     eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
     //2. transport car
     transportManager->transport(nullptr, r, carInTransport);
 
     //3. get correct container and pre-race arrival
+    //TODO FIX!
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(driver), r, getEuropeanContainer());
+                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getEuropeanContainer());
     } else {
         callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(driver), r, getNextNonEuropean());
+                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getNextNonEuropean());
     }
     //4. racing weekend finishes and get points
     int *temp = callRacingDept()->RacingWeekend();
@@ -333,7 +311,7 @@ void Logistics::driverBootCamp() {
     Dalk kan ons dit volgens riskLevel doen*/
     for (ppl::Driver* d: drivers) {
         //randomise weathering
-        callRacingDept()->trainDriver(d, rand()%10+1, randomWC(), randomTL());
+//        callRacingDept()->trainDriver(d, rand()%10+1, randomWC(), randomTL());
     }
 }
 

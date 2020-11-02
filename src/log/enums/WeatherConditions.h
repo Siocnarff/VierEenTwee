@@ -11,7 +11,7 @@ namespace lg {
         //Hot, Normal, Rainy
     };
 
-    WeatherConditions randomWC() {
+    /*WeatherConditions randomWC() {
         switch (rand()%3) {
             case 0:
                 return Wet;
@@ -20,7 +20,7 @@ namespace lg {
             case 2:
                 return Rainy;
         }
-    }
+    }*/
 }
 
 #endif //SRC_WEATHERCONDITIONS_H

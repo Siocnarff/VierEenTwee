@@ -11,8 +11,7 @@ namespace lg {
     enum TrackComplexity {
         Easy, Average, Difficult, Extreme
     };
-
-    TrackComplexity randomTL() {
+    /*TrackComplexity randomTL() {
         switch (rand()%4) {
             case 0:
                 return Easy;
@@ -23,7 +22,7 @@ namespace lg {
             case 3:
                 return Extreme;
         }
-    }
+    }*/
 }
 
 #endif //SRC_TRACKCOMPLEXITY_H

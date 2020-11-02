@@ -1,6 +1,6 @@
 #ifndef ENG_RISKLEVEL_H
 #define ENG_RISKLEVEL_H
-
+#include <random>
 namespace lg {
 	enum RiskLevel {
 		Safe, 
@@ -8,7 +8,7 @@ namespace lg {
 		Aggressive
 	};
 
-	RiskLevel randomRL() {
+	/*RiskLevel randomRL() {
         switch (rand()%3) {
             case 0:
                 return Safe;
@@ -17,7 +17,7 @@ namespace lg {
             case 2:
                 return Aggressive;
         }
-	}
+	}*/
 }
 
 #endif

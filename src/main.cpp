@@ -5,7 +5,7 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
-#include <log/Logistics.h>
+#include <Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
@@ -180,13 +180,11 @@ int main () {
     */
 
   //  testContainerPacking();
-=======
-    testBasicIntegration();
+    //testBasicIntegration();
 
+//    testContainerPacking();
 
-    testContainerPacking();
-
-//    testTyres();
+    testTyres();
 
 //    testIterator();
 

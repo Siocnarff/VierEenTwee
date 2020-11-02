@@ -4,7 +4,8 @@
 
 #ifndef VIEREENTWEE_HIREDRIVER_H
 #define VIEREENTWEE_HIREDRIVER_H
-#include <ppl/HumanResources.h>
+#include <Person.h>
+#include <HumanResources.h>
 
 namespace ppl {
     class HireDriver : public HumanResources {

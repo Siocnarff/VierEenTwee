@@ -12,7 +12,7 @@ namespace lg {
 
     class Mediator {
     protected:
-        virtual ~Mediator();
+//        virtual ~Mediator();
 
         virtual void sendCarToFactory(eng::Car *) = 0;
 
