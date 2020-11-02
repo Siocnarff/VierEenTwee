@@ -60,13 +60,11 @@ rce::Tyres::~Tyres() {
 
 SetOfTyres *rce::Tyres::getTyres(int compound) {
     SetOfTyres* tyreSet = nullptr;
-    /*switch (compound) {
-        case 0:
-            if(!softTyres.empty()) {
-                tyreSet = softTyres[0];
-            }
-
-    }*/
+    if (!tyreSets[compound].empty()) {
+        tyreSet = *tyreSets[compound].begin();
+        tyreSets[compound].pop_front();
+    }
+    return tyreSet;
 }
 
 void rce::Tyres::printStats() {

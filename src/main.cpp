@@ -72,13 +72,39 @@ void testContainerPacking() {
 
 
 void testTyres() {
-    int arr[3] = {2,1,2};
+    int arr1[3] = {2,1,2};
+    int arr2[3] = {0,1,4};
+    int arr3[3] = {0,0,5};
 
-    auto* tyres = new rce::Tyres(arr);
 
-    tyres->printStats();
+    auto* tyres1 = new rce::Tyres(arr1);
+    auto* tyres2 = new rce::Tyres(arr2);
+    auto* tyres3 = new rce::Tyres(arr3);
 
-    delete tyres;
+    tyres1->printStats();
+//    tyres2->printStats();
+//    tyres3->printStats();
+
+    SetOfTyres* tyreSet1 = tyres1->getTyres(0);
+
+    if (tyreSet1 != nullptr) {
+        tyreSet1->printStats();
+
+        tyreSet1->reduceThread();
+
+        tyreSet1->printStats();
+
+        tyreSet1->reduceThread();
+        tyreSet1->reduceThread();
+
+        tyreSet1->printStats();
+
+    }
+
+    tyres1->printStats();
+    delete tyres1;
+    delete tyres2;
+    delete tyres3;
 
 }
 

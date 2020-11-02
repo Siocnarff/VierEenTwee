@@ -39,4 +39,8 @@ std::string SetOfTyres::getTyreCompoundString() {
     return tyreCompoundString;
 }
 
+void SetOfTyres::printStats() {
+    std::cout << tyreCompoundString << " - Thread: " << getThread() << std::endl;
+}
+
 
