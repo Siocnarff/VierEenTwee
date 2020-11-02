@@ -5,6 +5,7 @@
 #ifndef PREMODELLING_SUBJECT_H
 #define PREMODELLING_SUBJECT_H
 
+#include <races/Race.h>
 #include "Car.h"
 #include "races/Container.h"
 //#include <iostream> //both eng- and racing- need it
@@ -17,7 +18,7 @@ namespace lg {
 
         void addObserver(Mediator *obs);
 
-        void notify(eng::Car *car);
+        void notify(eng::Car *car, Race*);
 
         void notify(Container *container);
 

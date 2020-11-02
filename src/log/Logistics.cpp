@@ -48,7 +48,7 @@ void Logistics::registerNotifier(Colleague *colleague) {
     if (typeid(*temp) == typeid(*colleague)) {
         departments.insert(pair<char, Colleague *>('e', colleague));
     } else {
-        colleague->notify(true);
+        //colleague->notify(true);
         departments.insert(pair<char, Colleague *>('r', colleague));
     }
     colleague->addObserver(this);
@@ -126,7 +126,10 @@ void Logistics::preSeasonPreparation() {
     }
 }
 
-
+/**
+ * @status finito
+ * @author Jo
+ */
 void Logistics::packContainers() {
     //european container
     europeanContainer = packSingleContainer();
@@ -162,12 +165,12 @@ Container *Logistics::packSingleContainer() {
 }
 
 
-// TODO : Let's get to the meaty stuff.
+// TODO : Check again
 void Logistics::simulateEvent(Race *r) {
     //1. Transport every car from factory to race location and fill up our list to send to race
-    vector<eng::Car*> carClipboard;
+    vector<eng::Car *> carClipboard;
     for (int id : carsInSeasonIDs) {
-        eng::Car* temp = callEngDept()->checkCarOutOfFactory(id);
+        eng::Car *temp = callEngDept()->checkCarOutOfFactory(id);
         transportManager->transport(nullptr, r, temp);
         carClipboard.push_back(temp);
     }
@@ -199,8 +202,8 @@ void Logistics::simulateEvent(Race *r) {
  * @status nearly there
  * @ERROR hard-coded file path
  */
+// TODO : Fix hard-coded file-path
 void Logistics::putRacesIntoCalender() {
-    // TODO : File path hard-coded. Needs to change
     racingCalendar = new RacesList;
 
     try {
@@ -235,27 +238,30 @@ void Logistics::putRacesIntoCalender() {
 
 }
 
-//JUST FINISH THE FINAL CELEBRATION
-// TODO : get leaderboard from racingDept and decide accordingly
 void Logistics::raceSeason() {
     //And the season starts
     pr::Doc::summary("And the season begins!");
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
     }
-
-
-    int* tumTumTum = callRacingDept()->getFinalResults();
-
-
 }
 
 
 //NOT STARTED
+// TODO : get leaderboard from racingDept and decide accordingly
 void Logistics::postSeasonDebrief() {
-    //start building a new car
-    //let driver take holiday
-    //let transportHandler take holiday
+    //1. Get results
+    int *tumTumTum = callRacingDept()->getFinalResults();
+
+    //2. Flashy results
+    //Decorator here?
+
+    //3. let transportManager take a holiday
+    //Implement destructors
+
+    //4. Let driver take a holiday
+
+    //5. start building a new car?
 
 }
 
@@ -299,14 +305,6 @@ eng::EngTeam *Logistics::callEngDept() {
     return dynamic_cast<eng::EngTeam *>(departments['e']);
 }
 
-/**
- * @author Jo
- * @details console output or not
- * @status if it works it should be done
- */
-void Logistics::toggleVerbose() {
-    verbose = !verbose;
-}
 
 //TODO : Decide on regime based on riskLevel
 //IDEA: Change to command?
@@ -324,9 +322,8 @@ void Logistics::driverBootCamp() {
 // =========================== MEDIATOR ===========================
 
 //TODO : Strategy for using windTunnel;
-void Logistics::sendCarToFactory(eng::Car *car) {
-    cout << "send car to factory" << endl;
-    transportManager->transport(new Race, new Race, car);
+void Logistics::sendCarToFactory(eng::Car *car, Race *r) {
+    transportManager->transport(r, nullptr, car);
     callEngDept()->carArrivesAtFactory(car);
     callEngDept()->improveCar(car->getId(), true);
 }
@@ -336,25 +333,31 @@ void Logistics::containerHasBeenPacked(Container *) {
     cout << "fly container" << endl;
 }
 
-//IN THE WORKS - DECIDE WHETHER TO INSTANTIATE OR NOT
+/**
+ * @status Should be done
+ * @param tyreOrder
+ */
 void Logistics::orderTyres(int *tyreOrder) {
-    std::cout << "Tedious paperwork to complete tyre order" << std::endl;
-    if (tyreOrder[0] != 0) {
-        if (verbose) {
-            std::cout << "Ordering " << tyreOrder[0] << "pair(s) of Soft Compound Tyres" << std::endl;
-        }
-    }
+    pr::Doc::summary("Ordering tyres as informed by Racing Departement\n");
+    pr::Doc::detail("Tedious paperwork to complete tyre order\n");
 
-    if (tyreOrder[1] != 0) {
-        if (verbose) {
-            std::cout << "Ordering " << tyreOrder[1] << "pair(s) of Medium Compound Tyres" <<
-                      std::endl;
-        }
-    }
-    if (tyreOrder[2] != 0) {
-        if (verbose) {
-            std::cout << "Ordering " << tyreOrder[2] << "pair(s) of Hard Compound Tyres" <<
-                      std::endl;
+
+    for (int i = 0; i < 3; ++i) {
+        if (tyreOrder[0] != 0) {
+            pr::Doc::detail("Ordering");
+            pr::Doc::detail(to_string(tyreOrder[i]));
+            pr::Doc::detail("pair(s) of ");
+            switch (i) {
+                case 0:
+                    pr::Doc::detail("Soft Compound Tyres\n");
+                    break;
+                case 1:
+                    pr::Doc::detail("Medium Compound Tyres\n");
+                    break;
+                case 2:
+                    pr::Doc::detail("Hard Compound Tyres\n");
+                    break;
+            }
         }
     }
 

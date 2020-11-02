@@ -12,8 +12,8 @@ void Colleague::addObserver(Mediator *obs) {
     logisticsDept = obs;
 }
 
-void Colleague::notify(eng::Car *car) {
-    logisticsDept->sendCarToFactory(car);
+void Colleague::notify(eng::Car *car, Race* r) {
+    logisticsDept->sendCarToFactory(car, r);
 }
 
 void Colleague::notify(Container *container) {

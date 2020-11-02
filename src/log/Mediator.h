@@ -5,6 +5,7 @@
 #ifndef LOGISTICS_MEDIATOR_H
 #define LOGISTICS_MEDIATOR_H
 
+#include <races/Race.h>
 #include "Car.h"
 #include "races/Container.h"
 
@@ -14,7 +15,7 @@ namespace lg {
     protected:
 //        virtual ~Mediator();
 
-        virtual void sendCarToFactory(eng::Car *) = 0;
+        virtual void sendCarToFactory(eng::Car *, Race*) = 0;
 
         virtual void containerHasBeenPacked(Container *) = 0;
 

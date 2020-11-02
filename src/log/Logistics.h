@@ -33,10 +33,8 @@ namespace lg {
 
         void postSeasonDebrief();
 
-        void toggleVerbose();
-
     protected:
-        void sendCarToFactory(eng::Car *) override;
+        void sendCarToFactory(eng::Car *, Race*) override;
 
         void containerHasBeenPacked(Container *) override;
 
@@ -76,7 +74,6 @@ namespace lg {
 
         std::vector<int> seasonPointTally;
         int budget;
-        bool verbose = true;
         int numPairs = 2;
 
     };
