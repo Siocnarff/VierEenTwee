@@ -16,10 +16,10 @@ namespace eng {
 
     private:
         Garage garage;
-        BlueprintStore blueprintStore{};
+        BlueprintStore blueprintStore;
         WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
-        Department *department[5]{nullptr};
+        Department *department[5] = {nullptr};
 
         void cashUpDeps(int cash);
 

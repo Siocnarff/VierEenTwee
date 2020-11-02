@@ -9,7 +9,7 @@ namespace eng {
 
 	private:
 	    int lookup[20] = {-1};
-		Car* car[20];
+		Car* car[20] = {nullptr};
 
 	public:
 		void storeCar(Car* car);
