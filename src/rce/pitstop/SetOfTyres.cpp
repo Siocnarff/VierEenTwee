@@ -27,7 +27,7 @@ int SetOfTyres::getThread() {
 }
 
 void SetOfTyres::reduceThread(int damage) {
-    if (thread > damage) {
+    if (thread > damage && damage > 0) {
         thread = thread - damage;
     }
     else {
