@@ -86,19 +86,26 @@ void testTyres() {
 //    tyres3->printStats();
 
     SetOfTyres* tyreSet1 = tyres1->getTyres(0);
+    SetOfTyres* tyreSet2 = tyres1->getTyres(0);
+    SetOfTyres* tyreSet3 = tyres1->getTyres(0);
+
 
     if (tyreSet1 != nullptr) {
         tyreSet1->printStats();
 
         tyreSet1->reduceThread();
+        tyreSet1->printStats();
+
+        for (int x = 0; x < 20; x++) {
+            tyreSet1->reduceThread();
+        }
 
         tyreSet1->printStats();
 
-        tyreSet1->reduceThread();
-        tyreSet1->reduceThread();
+    }
 
-        tyreSet1->printStats();
-
+    if(tyreSet3 == nullptr) {
+        std::cout << "No more tyres of that type" << std::endl;
     }
 
     tyres1->printStats();
