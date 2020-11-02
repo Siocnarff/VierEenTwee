@@ -13,7 +13,7 @@
 #include <log/races/Box.h>
 #include <log/races/GarageEquipment.h>
 #include <log/races/CateringEquipment.h>
-#include <log/races/TyreBox.h>
+#include <log/races/Box.h>
 #include "ppl/factories/HireDriver.h"
 
 using namespace lg;
@@ -32,6 +32,10 @@ Logistics::Logistics() {
     seasonPointTally[1] = -1;
     budget = -1;
 }
+
+Logistics::~Logistics() {
+}
+
 
 /**
  * @status completed
@@ -142,14 +146,12 @@ void Logistics::packContainers() {
 
 
 Container *Logistics::packSingleContainer() {
-    Box *box = new Box();
-    auto *garageEquip = new GarageEquipment();
-    auto *cateringEquip = new CateringEquipment();
-    auto *tyreBox = new TyreBox(tyreCompound);
+    Box* box = new Box();
+    GarageEquipment* garageEquip = new GarageEquipment();
+    CateringEquipment* cateringEquip = new CateringEquipment();
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
-    box->addElement(tyreBox);
 
     cout << "Packed a container" << endl;
 
@@ -378,7 +380,5 @@ void Logistics::orderTyres(int *tyreOrder) {
     tyreSpecs = new rce::Tyres(tyreOrder);
 }
 
-Logistics::~Logistics() {
-}
 
 
