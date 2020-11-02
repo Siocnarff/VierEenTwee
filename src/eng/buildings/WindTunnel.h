@@ -5,10 +5,20 @@
 
 namespace eng {
 	class WindTunnel {
+    private:
+        int tickets;
+
+        WindTunnel();
 
 	public:
+	    static WindTunnel* instance();
+
 		void testCar(Car* car);
-	};
+
+        bool sufficientTickets();
+
+        void resetTickets();
+    };
 }
 
 #endif

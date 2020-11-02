@@ -17,18 +17,21 @@ namespace eng {
     private:
         int carIdGenerator = 0;
         Garage garage;
-        BlueprintStore blueprintStore;
-        WindTunnel windTunnel;
+        BlueprintStore blueprintStore{};
+        WindTunnel *windTunnel;
         ComponentSimulator simulator;
         Department *department[5];
-        Risk *innovation;
 
         void cashUpDeps(int cash);
 
     public:
+        EngTeam();
+
         void hireEmployees(int budget) override;
 
         void registerForSeason(lg::Mediator *mediator);
+
+        void resetTickets();
 
         int buildCar(int budget);
 
