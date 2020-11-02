@@ -28,8 +28,9 @@ void BodyDep::fix(Car *car) {
 }
 
 void BodyDep::update(Component* component) {
-	// TODO - implement BodyDep::update
-	throw "Not yet implemented";
+	pr::Doc::detail(departmentName);
+	pr::Doc::detail(" is using poly filler to streamline the body.\n");
+	Department::specialistsImproveComponent(component);
 }
 
 BodyDep::BodyDep(Department *next) : Department(next){

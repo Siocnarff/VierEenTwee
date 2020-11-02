@@ -25,8 +25,9 @@ void ElectricDepartment::fix(Car *car) {
 }
 
 void ElectricDepartment::update(Component* component) {
-	// TODO - implement ElectricDepartment::update
-	throw "Not yet implemented";
+	pr::Doc::detail(departmentName);
+	pr::Doc::detail(" is rewiring the electric harness.\n");
+	Department::specialistsImproveComponent(component);
 }
 
 ElectricDepartment::ElectricDepartment(Department *next) : Department(next) {

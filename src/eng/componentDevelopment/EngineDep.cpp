@@ -27,8 +27,9 @@ void EngineDep::fix(Car *car) {
 }
 
 void EngineDep::update(Component* component) {
-	// TODO - implement EngineDep::update
-	throw "Not yet implemented";
+	pr::Doc::detail(departmentName);
+	pr::Doc::detail(" is tuning the engine.\n");
+	Department::specialistsImproveComponent(component);
 }
 
 EngineDep::EngineDep(Department *next) : Department(next) {
