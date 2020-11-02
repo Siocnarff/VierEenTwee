@@ -13,7 +13,7 @@
 #include <races/Box.h>
 #include <races/GarageEquipment.h>
 #include <races/CateringEquipment.h>
-
+#include <factories/HireDriver.h>
 
 using namespace lg;
 
@@ -22,7 +22,6 @@ using namespace lg;
  * @status Done and dusted!
  */
 Logistics::Logistics() {
-    driver = nullptr;
     transportManager = nullptr;
     raceIterator = nullptr;
     racingCalendar = nullptr;
@@ -32,6 +31,10 @@ Logistics::Logistics() {
     seasonPointTally[1] = -1;
     budget = -1;
 }
+
+Logistics::~Logistics() {
+}
+
 
 /**
  * @status completed
@@ -52,24 +55,35 @@ void Logistics::registerNotifier(Colleague *colleague) {
 
 /**
  * @author Jo
- * @status finished
+ * @status really finished
  */
 void Logistics::doYearPlanning() {
     //1. getBudget from "Sponsors"
     budget = abs(rand() % 100 + 1);
+
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
-    //3. putRacesIntoCalender();
+
+    //3. Set tickets of racingDept;
+
+    //4. putRacesIntoCalender();
     putRacesIntoCalender();
-    //4. hire driver
-    driver = new ppl::Driver("Fluffy McAllen", 0, 0);
-    //5. Set home tracks
-    for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //interval [1,5]
-        driver->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
+
+    //5. Hire drivers
+    ppl::HireDriver driverCurator;
+    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
+    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
+
+    //6. Set drivers' home tracks
+    for (ppl::Driver* d : drivers) {        //for each driver
+        for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //possible home tracks - interval [1,5]
+            d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
+        }
     }
-    //6. hire transportManager
+
+    //7. hire transportManager
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Fly);
@@ -77,38 +91,97 @@ void Logistics::doYearPlanning() {
 }
 
 //IN THE WORKS
+// TODO: decide on driver training regime
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
-    // 1.1 Notified about tyres
-    //     Receive array on tyre specs
-
-    int arr[3] = {3,2,0};
-
-    // 1.2 Instantiate tyres
-    rce::Tyres tyres = rce::Tyres(arr);
-    tyres.printStats();
+    cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: " << currentTeamStrategy->getStratName() << std::endl;
+    // 1.1 Notified about tyres (in the meanwhile)
+    // 1.2 Receive Order
     std::cout << "Tyre Order has arrived" << endl;
+    //tyreSpecs->printStats(); //not always
 
-
-    //Pack containers right after tyre compound received
-
+    //2. Pack containers
+    cout << "Ordering the necessary tooleries and garage equipment thingamabobs\n";
     packContainers();
 
-    //moet meer spesifiek wees hierso.
-    //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
-    //Dalk kan ons dit volgens riskLevel doen
-    callRacingDept()->trainDriver(new ppl::Driver("s", 0, 0), 15, Rainy, Average);
+    //3. Train drivers
+    driverBootCamp();
 
-    //order stuff
-
-    //build cars x2
+    //4.build the cars
 //    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
 
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
     testCar();
     getRaceIterator();
    */
+
+}
+
+/*void Logistics::requestContainerStateChange(bool isEuropeanRace) {
+
+}*/
+
+
+void Logistics::packContainers() {
+
+    //Need to create container objects to match to races
+    //Test by packing a single container:
+
+    for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        //std::cout << t.currentItem()->getLocation() << std::endl;
+        if (!t.currentItem()->isRaceEuropean()) {
+            nonEuropeanContainers.push_back(packSingleContainer());
+        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
+            europeanContainer = packSingleContainer();
+        } else {
+            //do nothing
+        }
+    }
+
+    cout << "Packed all containers" << endl;
+
+}
+
+
+Container *Logistics::packSingleContainer() {
+    Box* box = new Box();
+    GarageEquipment* garageEquip = new GarageEquipment();
+    CateringEquipment* cateringEquip = new CateringEquipment();
+
+    box->addElement(garageEquip);
+    box->addElement(cateringEquip);
+
+    cout << "Packed a container" << endl;
+
+    return box;
+
+}
+
+void Logistics::simulateEvent(Race *r) {
+    //1. get car
+    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
+    //2. transport car
+    transportManager->transport(nullptr, r, carInTransport);
+
+    //3. get correct container and pre-race arrival
+    //TODO FIX!
+    if (r->isRaceEuropean()) {
+        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
+                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getEuropeanContainer());
+    } else {
+        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
+                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getNextNonEuropean());
+    }
+    //4. racing weekend finishes and get points
+    int *temp = callRacingDept()->RacingWeekend();
+    seasonPointTally[0] += temp[0];
+    seasonPointTally[1] += temp[1];
+    //5. finish the packup
+    Container *tCont = callRacingDept()->postRacePackUp(); //execute
+    if (!r->isRaceEuropean()) {
+        delete tCont; //nonEuropeanContainer won't be used again
+    } //else stay with the container
 
 }
 
@@ -173,35 +246,6 @@ void Logistics::raceSeason() {
 
 }
 
-/**
- * @author Jo
- * @param race
- */
-void Logistics::simulateEvent(Race *r) {
-    //1. get car
-    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
-    //2. transport car
-    transportManager->transport(nullptr, r, carInTransport);
-
-    //3. get correct container and pre-race arrival
-    if (r->isRaceEuropean()) {
-        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(driver), r, getEuropeanContainer());
-    } else {
-        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(driver), r, getNextNonEuropean());
-    }
-    //4. racing weekend finishes and get points
-    int *temp = callRacingDept()->RacingWeekend();
-    seasonPointTally[0] += temp[0];
-    seasonPointTally[1] += temp[1];
-    //5. finish the packup
-    Container *tCont = callRacingDept()->postRacePackUp(); //execute
-    if (!r->isRaceEuropean()) {
-        delete tCont; //nonEuropeanContainer won't be used again
-    } //else stay with the container
-
-}
 
 //NOT STARTED
 void Logistics::postSeasonDebrief() {
@@ -232,32 +276,6 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
-void Logistics::packContainers() {
-
-    //Need to create container objects to match to races - iterate through races, assigning containers
-    //Test by packing a single container:
-
-    Container *container = packSingleContainer();
-
-    cout << "Packed all containers" << endl;
-
-}
-
-Container* Logistics::packSingleContainer() {
-    Box* box = new Box();
-    GarageEquipment* garageEquip = new GarageEquipment();
-    CateringEquipment* cateringEquip = new CateringEquipment();
-
-    box->addElement(garageEquip);
-    box->addElement(cateringEquip);
-
-    cout << "Packed a container" << endl;
-
-    return box;
-
-}
-
-
 
 /**
  * @author Jo
@@ -286,10 +304,22 @@ void Logistics::toggleVerbose() {
     verbose = !verbose;
 }
 
+//TODO : Decide on regime based on
+//IDEA: Change to command?
+void Logistics::driverBootCamp() {
+/*moet meer spesifiek wees hierso. gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
+    Dalk kan ons dit volgens riskLevel doen*/
+    for (ppl::Driver* d: drivers) {
+        //randomise weathering
+//        callRacingDept()->trainDriver(d, rand()%10+1, randomWC(), randomTL());
+    }
+}
+
+
 
 // =========================== MEDIATOR ===========================
 
-//DONE
+//TODO : Strategy for using windTunnel;
 void Logistics::sendCarToFactory(eng::Car *car) {
     cout << "send car to factory" << endl;
     transportManager->transport(new Race, new Race, car);
@@ -304,9 +334,7 @@ void Logistics::containerHasBeenPacked(Container *) {
 
 //IN THE WORKS - DECIDE WHETHER TO INSTANTIATE OR NOT
 void Logistics::orderTyres(int *tyreOrder) {
-    if (!verbose) {
-        std::cout << "Tedious paperwork to complete tyre order" << std::endl;
-    }
+    std::cout << "Tedious paperwork to complete tyre order" << std::endl;
     if (tyreOrder[0] != 0) {
         if (verbose) {
             std::cout << "Ordering " << tyreOrder[0] << "pair(s) of Soft Compound Tyres" << std::endl;
@@ -327,9 +355,9 @@ void Logistics::orderTyres(int *tyreOrder) {
     }
 
 
-//instantiate tyres or leave for later
-
-
-
+    //instantiate tyres
+    tyreSpecs = new rce::Tyres(tyreOrder);
 }
+
+
 

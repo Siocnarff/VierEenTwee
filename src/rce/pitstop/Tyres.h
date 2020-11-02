@@ -32,6 +32,8 @@ namespace rce {
 
         SetOfTyres* getTyres(int);
 
+        void setOrder(int[]);
+
         void printStats();
     };
 }

@@ -21,6 +21,8 @@ namespace lg {
     public:
         Logistics();
 
+        virtual ~Logistics();
+
         void registerNotifier(Colleague *);
 
         void doYearPlanning();
@@ -54,12 +56,14 @@ namespace lg {
 
         void orderTyres(int *tyreOrder) override;
 
+        void driverBootCamp();
+
     private:
         rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
-        std::map<char, Colleague *> departments;
-        ppl::Driver *driver;
+        map<char, Colleague *> departments;
+        std::vector<ppl::Driver *> drivers;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
@@ -68,10 +72,11 @@ namespace lg {
         std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
+        rce::Tyres* tyreSpecs;
+
 
         int seasonPointTally[2];
         int budget;
-
         bool verbose = true;
 
     };

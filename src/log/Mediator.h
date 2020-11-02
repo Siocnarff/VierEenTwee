@@ -12,6 +12,8 @@ namespace lg {
 
     class Mediator {
     protected:
+//        virtual ~Mediator();
+
         virtual void sendCarToFactory(eng::Car *) = 0;
 
         virtual void containerHasBeenPacked(Container *) = 0;

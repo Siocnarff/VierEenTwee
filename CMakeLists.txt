@@ -101,7 +101,6 @@ add_executable(VierEenTwee
         src/log/Colleague.h
         src/log/Logistics.cpp
         src/log/Logistics.h
-#        src/log/main.cpp
         src/log/Mediator.h
         src/log/Strategy.cpp
         src/log/Strategy.h
@@ -169,6 +168,10 @@ add_executable(VierEenTwee
         src/rce/strategy/ModerateStrategy.h
         src/rce/strategy/SafeStrategy.cpp
         src/rce/strategy/SafeStrategy.h
+        src/ppl/factories/HireDriver.cpp
+        src/ppl/factories/HireDriver.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
         src/rce/RaceDaysIterator.cpp
         src/rce/RaceDaysIterator.h
         src/rce/RaceWeekend.cpp
