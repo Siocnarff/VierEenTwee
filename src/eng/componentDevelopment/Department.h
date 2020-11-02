@@ -28,6 +28,8 @@ namespace eng {
 
         int specialistsDesignComponent();
 
+        void specialistsImproveComponent(Component*);
+
     public:
 
         explicit Department(Department *next);
