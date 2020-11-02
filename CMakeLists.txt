@@ -171,7 +171,7 @@ add_executable(VierEenTwee
         src/rce/strategy/ModerateStrategy.h
         src/rce/strategy/SafeStrategy.cpp
         src/rce/strategy/SafeStrategy.h
-        src/ppl/factories/HireDriver.cpp src/ppl/factories/HireDriver.h)
+        src/ppl/factories/HireDriver.cpp src/ppl/factories/HireDriver.h
         src/pr/Doc.cpp
         src/pr/Doc.h
         )

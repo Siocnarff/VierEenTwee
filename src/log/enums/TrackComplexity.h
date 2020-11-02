@@ -5,19 +5,23 @@
 #ifndef SRC_TRACKCOMPLEXITY_H
 #define SRC_TRACKCOMPLEXITY_H
 
+#include "random"
+
 namespace lg {
     enum TrackComplexity {
         Easy, Average, Difficult, Extreme
     };
 
-    RiskLevel randomTL() {
-        switch (rand()%3) {
+    TrackComplexity randomTL() {
+        switch (rand()%4) {
             case 0:
-                return Safe;
+                return Easy;
             case 1:
-                return Moderate;
+                return Average;
             case 2:
-                return Aggressive;
+                return Difficult;
+            case 3:
+                return Extreme;
         }
     }
 }

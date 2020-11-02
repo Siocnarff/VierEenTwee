@@ -11,14 +11,14 @@ namespace lg {
         //Hot, Normal, Rainy
     };
 
-    RiskLevel randomWC() {
+    WeatherConditions randomWC() {
         switch (rand()%3) {
             case 0:
-                return Safe;
+                return Wet;
             case 1:
-                return Moderate;
+                return Dry;
             case 2:
-                return Aggressive;
+                return Rainy;
         }
     }
 }
