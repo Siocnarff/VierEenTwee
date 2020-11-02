@@ -12,6 +12,7 @@
 #include "Mediator.h"
 #include "../eng/EngTeam.h"
 #include "rce/RacingDep.h"
+#include "transportation/TransportHandler.h"
 
 namespace lg {
 
@@ -54,14 +55,14 @@ namespace lg {
         rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
-        map<char, Colleague *> departments;
+        std::map<char, Colleague *> departments;
         ppl::Driver *driver;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
         RacesList *racingCalendar;
-        vector<int> carsInSeasonIDs;
-        vector<Container *> nonEuropeanContainers; //lots of containers for non-European
+        std::vector<int> carsInSeasonIDs;
+        std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
