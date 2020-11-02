@@ -10,6 +10,17 @@ namespace lg {
         Wet, Dry, Rainy
         //Hot, Normal, Rainy
     };
+
+    RiskLevel randomWC() {
+        switch (rand()%3) {
+            case 0:
+                return Safe;
+            case 1:
+                return Moderate;
+            case 2:
+                return Aggressive;
+        }
+    }
 }
 
 #endif //SRC_WEATHERCONDITIONS_H

@@ -9,6 +9,17 @@ namespace lg {
     enum TrackComplexity {
         Easy, Average, Difficult, Extreme
     };
+
+    RiskLevel randomTL() {
+        switch (rand()%3) {
+            case 0:
+                return Safe;
+            case 1:
+                return Moderate;
+            case 2:
+                return Aggressive;
+        }
+    }
 }
 
 #endif //SRC_TRACKCOMPLEXITY_H

@@ -13,7 +13,7 @@
 #include <log/races/Box.h>
 #include <log/races/GarageEquipment.h>
 #include <log/races/CateringEquipment.h>
-
+#include "ppl/factories/HireDriver.h"
 
 using namespace lg;
 
@@ -22,7 +22,6 @@ using namespace lg;
  * @status Done and dusted!
  */
 Logistics::Logistics() {
-    driver = nullptr;
     transportManager = nullptr;
     raceIterator = nullptr;
     racingCalendar = nullptr;
@@ -52,24 +51,35 @@ void Logistics::registerNotifier(Colleague *colleague) {
 
 /**
  * @author Jo
- * @status finished
+ * @status really finished
  */
 void Logistics::doYearPlanning() {
     //1. getBudget from "Sponsors"
     budget = abs(rand() % 100 + 1);
+
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
-    //3. putRacesIntoCalender();
+
+    //3. Set tickets of racingDept;
+
+    //4. putRacesIntoCalender();
     putRacesIntoCalender();
-    //4. hire driver
-    driver = new ppl::Driver("Fluffy McAllen", 0, 0);
-    //5. Set home tracks
-    for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //interval [1,5]
-        driver->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
+
+    //5. Hire drivers
+    ppl::HireDriver driverCurator;
+    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
+    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
+
+    //6. Set drivers' home tracks
+    for (ppl::Driver* d : drivers) {        //for each driver
+        for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //possible home tracks - interval [1,5]
+            d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
+        }
     }
-    //6. hire transportManager
+
+    //7. hire transportManager
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Fly);
@@ -77,6 +87,7 @@ void Logistics::doYearPlanning() {
 }
 
 //IN THE WORKS
+// TODO: decide on driver training regime
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
@@ -84,19 +95,16 @@ void Logistics::preSeasonPreparation() {
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
     std::cout << "Tyre Order has arrived" << endl;
-    tyreSpecs->printStats(); //not always
+    //tyreSpecs->printStats(); //not always
 
     //2. Pack containers
+    cout << "Ordering the necessary tooleries and garage equipment thingamabobs\n";
     packContainers();
 
-    //moet meer spesifiek wees hierso.
-    //gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
-    //Dalk kan ons dit volgens riskLevel doen
-    callRacingDept()->trainDriver(new ppl::Driver("s", 0, 0), 15, Rainy, Average);
+    //3. Train drivers
+    driverBootCamp();
 
-    //order stuff
-
-    //build cars x2
+    //4.build the cars
 //    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
 
     /*carsInSeason.push(buildCar()); //ons gaan bou die kar
@@ -289,6 +297,18 @@ void Logistics::toggleVerbose() {
     verbose = !verbose;
 }
 
+//TODO : Decide on regime based on
+//IDEA: Change to command?
+void Logistics::driverBootCamp() {
+/*moet meer spesifiek wees hierso. gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
+    Dalk kan ons dit volgens riskLevel doen*/
+    for (ppl::Driver* d: drivers) {
+        //randomise weathering
+        callRacingDept()->trainDriver(d, rand()%10+1, randomTL(), randomWC());
+    }
+}
+
+
 
 // =========================== MEDIATOR ===========================
 
@@ -331,4 +351,8 @@ void Logistics::orderTyres(int *tyreOrder) {
     //instantiate tyres
     tyreSpecs = new rce::Tyres(tyreOrder);
 }
+
+Logistics::~Logistics() {
+}
+
 
