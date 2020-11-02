@@ -26,11 +26,11 @@ int SetOfTyres::getThread() {
     return thread;
 }
 
-void SetOfTyres::reduceThread() {
-    if (thread > 0) {
-        thread = thread -5;
+void SetOfTyres::reduceThread(int damage) {
+    if (thread > damage) {
+        thread = thread - damage;
     }
-    if (thread == 0) {
+    else {
         std::cout << "Tyres worn out" << std::endl;
     }
 }

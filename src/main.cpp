@@ -5,6 +5,7 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
+#include <Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
@@ -95,11 +96,11 @@ void testTyres() {
     if (tyreSet1 != nullptr) {
         tyreSet1->printStats();
 
-        tyreSet1->reduceThread();
+        tyreSet1->reduceThread(49);
         tyreSet1->printStats();
 
         for (int x = 0; x < 20; x++) {
-            tyreSet1->reduceThread();
+            tyreSet1->reduceThread(2);
         }
 
         tyreSet1->printStats();
@@ -122,9 +123,9 @@ int main () {
     testBasicIntegration();
 
 
-    testContainerPacking();
+//    testContainerPacking();
 
-//    testTyres();
+    testTyres();
 
 //    testIterator();
 

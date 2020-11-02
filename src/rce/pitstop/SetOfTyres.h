@@ -16,7 +16,7 @@ public:
 
     std::string getTyreCompoundString();
 
-    void reduceThread();
+    void reduceThread(int);
 
     void printStats();
 

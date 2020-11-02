@@ -32,8 +32,6 @@ namespace rce {
 
         SetOfTyres* getTyres(int);
 
-        std::string getCompound();
-
         void printStats();
     };
 }
