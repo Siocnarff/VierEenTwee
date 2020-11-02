@@ -15,7 +15,7 @@ namespace eng {
     class EngTeam : public lg::Colleague {
 
     private:
-        int carIdGenerator = 0;
+        static int carIdGenerator;
         Garage garage;
         BlueprintStore blueprintStore{};
         WindTunnel *windTunnel;

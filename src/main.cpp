@@ -12,6 +12,7 @@
 eng::WindTunnel* eng::WindTunnel::tunnel = nullptr;
 int ppl::Person::idCounter = 0;
 int pr::Doc::transparency = 0;
+int eng::EngTeam::carIdGenerator = 0;
 
 using namespace eng;
 
