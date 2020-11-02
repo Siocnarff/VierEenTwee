@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(VierEenTwee)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/eng)
 include_directories(src/eng/buildings)
@@ -71,8 +71,6 @@ add_executable(VierEenTwee
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
         src/log/races/Aggregate.h
-        src/log/races/ArrivedState.cpp
-        src/log/races/ArrivedState.h
         src/log/races/Box.cpp
         src/log/races/Box.h
         src/log/races/CateringEquipment.cpp

@@ -7,11 +7,12 @@
 
 #include <map>
 #include <vector>
-#include <log/races/RaceIterator.h>
+#include <races/RaceIterator.h>
+#include <strategy/CreateStrategy.h>
+#include <RacingDep.h>
 
 #include "Mediator.h"
 #include "../eng/EngTeam.h"
-#include "rce/RacingDep.h"
 #include "transportation/TransportHandler.h"
 
 namespace lg {

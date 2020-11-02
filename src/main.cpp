@@ -6,7 +6,6 @@
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
 #include "ppl/factories/KidnapStudent.h"
-#include <log/Logistics.h>
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
 #include "pr/Doc.h"

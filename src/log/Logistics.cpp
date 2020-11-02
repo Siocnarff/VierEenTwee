@@ -10,9 +10,9 @@
 
 #include <fstream>
 #include <sstream>
-#include <log/races/Box.h>
-#include <log/races/GarageEquipment.h>
-#include <log/races/CateringEquipment.h>
+#include <races/Box.h>
+#include <races/GarageEquipment.h>
+#include <races/CateringEquipment.h>
 
 
 using namespace lg;
@@ -290,7 +290,7 @@ void Logistics::sendCarToFactory(eng::Car *car) {
     cout << "send car to factory" << endl;
     transportManager->transport(new Race, new Race, car);
     callEngDept()->carArrivesAtFactory(car);
-    callEngDept()->improveCar(car->getId());
+    callEngDept()->improveCar(car->getId(), true);
 }
 
 //NOT STARTED - should transport container here

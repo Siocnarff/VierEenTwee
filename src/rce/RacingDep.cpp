@@ -1,15 +1,9 @@
-#include <rce/strategy/AggressiveStrategy.h>
-#include <rce/strategy/ModerateStrategy.h>
-#include <rce/strategy/SafeStrategy.h>
-#include <ppl/specialists/Driver.h>
-#include <log/enums/WeatherConditions.h>
-#include <rce/simulator/Simulator.h>
-#include <rce/simulator/SimulatorWetCondition.h>
-#include <rce/simulator/SimulatorNormalCondition.h>
-#include <rce/simulator/SimulatorHotCondition.h>
-#include <eng/Car.h>
-#include <log/races/Race.h>
-#include <log/races/Container.h>
+#include <strategy/SafeStrategy.h>
+#include <strategy/ModerateStrategy.h>
+#include <strategy/AggressiveStrategy.h>
+#include <simulator/SimulatorWetCondition.h>
+#include <simulator/SimulatorHotCondition.h>
+#include <simulator/SimulatorNormalCondition.h>
 #include "RacingDep.h"
 
 using namespace rce;

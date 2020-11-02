@@ -2,7 +2,6 @@
 #include "RiskLevel.h"
 #include <stdlib.h>
 #include <time.h>
-#include <log/races/Container.h>
 
 using namespace rce;
 
