@@ -6,8 +6,7 @@
 using namespace ppl;
 
 Person::Person(std::string n, bool hasDegree, int s) : name(std::move(n)), degree(hasDegree), skillLevel(s) {
-    static int idCounter = 0;
-    id = idCounter++;
+    id = generateId();
 }
 
 std::string Person::getName() {
@@ -51,4 +50,9 @@ void Person::setJobDescription(std::string job) {
 
 bool Person::isProfessional() const {
     return false;
+}
+
+int Person::generateId() {
+    static int newId = 0;
+    return newId++;
 }

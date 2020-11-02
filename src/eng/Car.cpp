@@ -17,6 +17,13 @@ Car::Car(Car *car) {
     }
 }
 
+Car::~Car() {
+    for (Component * comp : components) {
+        delete comp;
+        comp = nullptr;
+    }
+}
+
 int Car::getSpeed() const {
 	int speed = 0;
 	if (components[1]) {

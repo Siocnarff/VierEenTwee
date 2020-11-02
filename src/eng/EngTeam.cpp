@@ -21,8 +21,8 @@ EngTeam::EngTeam() {
 }
 
 EngTeam::~EngTeam() {
-    for (auto & i : department) {
-        delete i;
+    for (auto & dep : department) {
+        delete dep;
     }
 }
 

@@ -12,6 +12,8 @@ namespace ppl {
 		int skillLevel;
 		int id;
 
+        static int generateId();
+
 	public:
 		Person(std::string name, bool hasDegree, int skillLevel);
 
