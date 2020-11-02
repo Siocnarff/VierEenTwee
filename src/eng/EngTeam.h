@@ -20,7 +20,7 @@ namespace eng {
         BlueprintStore blueprintStore{};
         WindTunnel *windTunnel;
         ComponentSimulator simulator;
-        Department *department[5];
+        Department *department[5]{nullptr};
 
         void cashUpDeps(int cash);
 

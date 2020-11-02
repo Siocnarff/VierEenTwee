@@ -12,6 +12,15 @@
 
 using namespace eng;
 
+EngTeam::EngTeam() {
+    windTunnel = WindTunnel::instance();
+    department[3] = new BodyDep();
+    department[4] = new MicroTimeTravelDep(department[3]);
+    department[2] = new ElectricDepartment(department[4]);
+    department[1] = new EngineDep(department[2]);
+    department[0] = new ChassisDep(department[1]);
+}
+
 void EngTeam::hireEmployees(int budget) {
     pr::Doc::summary("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
@@ -151,15 +160,6 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
     garage.retrieveCar(id);
-}
-
-EngTeam::EngTeam() {
-    windTunnel = WindTunnel::instance();
-    department[3] = new BodyDep();
-    department[4] = new MicroTimeTravelDep(department[3]);
-    department[2] = new ElectricDepartment(department[4]);
-    department[1] = new EngineDep(department[2]);
-    department[0] = new ChassisDep(department[1]);
 }
 
 void EngTeam::resetTickets() {
