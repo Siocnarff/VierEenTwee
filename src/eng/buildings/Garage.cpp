@@ -16,7 +16,9 @@ Car *Garage::retrieveCar(int id) {
     for (int i = 0; i < 20; ++i) {
         if (lookup[i] == id) {
             lookup[i] = -1;
-            return car[i];
+            Car *target = car[i];
+            car[i] = nullptr;
+            return target;
         }
     }
     return nullptr;
@@ -35,7 +37,9 @@ Car *Garage::getPrototype() {
         }
     }
     if (idOfBest != -1) {
-        return car[idOfBest];
+        Car * target = car[idOfBest];
+        car[idOfBest] = nullptr;
+        return target;
     }
     return nullptr;
 }
