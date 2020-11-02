@@ -32,7 +32,7 @@ namespace rce {
 
         SetOfTyres* getTyres(int);
 
-        std::string getCompound();
+        void setOrder(int[]);
 
         void printStats();
     };

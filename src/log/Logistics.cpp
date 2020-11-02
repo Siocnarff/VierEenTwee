@@ -80,15 +80,13 @@ void Logistics::doYearPlanning() {
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
-    // 1.1 Notified about tyres
-
-    // 1.2 Instantiate tyres
-    // x x x
+    cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: " << currentTeamStrategy->getStratName() << std::endl;
+    // 1.1 Notified about tyres (in the meanwhile)
+    // 1.2 Receive Order
     std::cout << "Tyre Order has arrived" << endl;
+    tyreSpecs->printStats(); //not always
 
-
-    //Pack containers right after tyre compound received
-
+    //2. Pack containers
     packContainers();
 
     //moet meer spesifiek wees hierso.
@@ -239,10 +237,10 @@ void Logistics::packContainers() {
 
 }
 
-Container* Logistics::packSingleContainer() {
-    Box* box = new Box();
-    GarageEquipment* garageEquip = new GarageEquipment();
-    CateringEquipment* cateringEquip = new CateringEquipment();
+Container *Logistics::packSingleContainer() {
+    Box *box = new Box();
+    GarageEquipment *garageEquip = new GarageEquipment();
+    CateringEquipment *cateringEquip = new CateringEquipment();
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
@@ -252,7 +250,6 @@ Container* Logistics::packSingleContainer() {
     return box;
 
 }
-
 
 
 /**
@@ -300,9 +297,7 @@ void Logistics::containerHasBeenPacked(Container *) {
 
 //IN THE WORKS - DECIDE WHETHER TO INSTANTIATE OR NOT
 void Logistics::orderTyres(int *tyreOrder) {
-    if (!verbose) {
-        std::cout << "Tedious paperwork to complete tyre order" << std::endl;
-    }
+    std::cout << "Tedious paperwork to complete tyre order" << std::endl;
     if (tyreOrder[0] != 0) {
         if (verbose) {
             std::cout << "Ordering " << tyreOrder[0] << "pair(s) of Soft Compound Tyres" << std::endl;
@@ -323,9 +318,7 @@ void Logistics::orderTyres(int *tyreOrder) {
     }
 
 
-//instantiate tyres or leave for later
-
-
-
+    //instantiate tyres
+    tyreSpecs = new rce::Tyres(tyreOrder);
 }
 

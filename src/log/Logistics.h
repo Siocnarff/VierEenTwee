@@ -67,10 +67,11 @@ namespace lg {
         vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
+        rce::Tyres* tyreSpecs;
+
 
         int seasonPointTally[2];
         int budget;
-
         bool verbose = true;
 
     };
