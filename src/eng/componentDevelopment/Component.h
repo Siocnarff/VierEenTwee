@@ -11,6 +11,7 @@ namespace eng {
 	friend class Car;
 	friend class Department;
 	friend class ComponentSimulator;
+	friend class WindTunnel;
 
 	private:
 		int quality = 0;

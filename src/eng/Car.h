@@ -11,6 +11,7 @@ namespace eng {
 	friend class Department;
 	friend class EngTeam;
 	friend class ComponentSimulator;
+	friend class WindTunnel;
 
 	private:
         /**

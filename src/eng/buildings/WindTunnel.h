@@ -10,6 +10,8 @@ namespace eng {
 
         WindTunnel();
 
+        static WindTunnel* tunnel;
+
 	public:
 	    static WindTunnel* instance();
 

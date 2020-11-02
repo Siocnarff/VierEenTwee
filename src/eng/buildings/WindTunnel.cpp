@@ -2,13 +2,14 @@
 
 using namespace eng;
 
-void WindTunnel::testCar(Car* car) {
-	// TODO - implement WindTunnel::testCar
-	throw "Not yet implemented";
+void WindTunnel::testCar(Car *car) {
+    for (Component *c: car->components) {
+        c->setQualityLabel(c->quality - 3 + (rand() % 6));
+    }
 }
 
 bool WindTunnel::sufficientTickets() {
-    if(tickets > 0) {
+    if (tickets > 0) {
         tickets--;
         return true;
     }
@@ -20,6 +21,9 @@ WindTunnel::WindTunnel() {
 }
 
 WindTunnel *WindTunnel::instance() {
+    if (tunnel) {
+        return tunnel;
+    }
     return new WindTunnel();
 }
 

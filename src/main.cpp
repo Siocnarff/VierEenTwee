@@ -9,6 +9,7 @@
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 
+eng::WindTunnel* eng::WindTunnel::tunnel = nullptr;
 int ppl::Person::idCounter = 0;
 int pr::Doc::transparency = 0;
 
