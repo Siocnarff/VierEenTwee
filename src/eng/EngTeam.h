@@ -15,23 +15,24 @@ namespace eng {
     class EngTeam : public lg::Colleague {
 
     private:
-        bool transparent = false;
-        int carIdGenerator = 0;
         Garage garage;
-        BlueprintStore blueprint;
-        WindTunnel windTunnel;
+        BlueprintStore blueprintStore;
+        WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
-        Department *department[5];
-        Risk *innovation;
+        Department *department[5] = {nullptr};
 
         void cashUpDeps(int cash);
 
-        void print(const std::string& message) const;
-
     public:
+        EngTeam();
+
         void hireEmployees(int budget) override;
 
-        void registerForSeason(lg::Mediator* mediator);
+        void registerForSeason(lg::Mediator *mediator);
+
+        void resetTickets();
+
+        static int generateId();
 
         int buildCar(int budget);
 
@@ -39,13 +40,11 @@ namespace eng {
 
         void fixCar(int id);
 
-        void improveCar(int id);
+        void improveCar(int id, bool usingWindTunnel);
 
         Car *checkCarOutOfFactory(int id);
 
         void setRiskLevel(lg::RiskLevel riskLevel);
-
-        void toggleTransparency();
     };
 }
 

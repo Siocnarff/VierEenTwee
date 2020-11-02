@@ -6,7 +6,8 @@
 using namespace ppl;
 
 Person::Person(std::string n, bool hasDegree, int s) : name(std::move(n)), degree(hasDegree), skillLevel(s) {
-    id = Person::idCounter++;
+    static int idCounter = 0;
+    id = idCounter++;
 }
 
 std::string Person::getName() {
@@ -21,14 +22,19 @@ int Person::getSkillLevel() const {
 	return skillLevel;
 }
 
-void Person::printResume() {
-	std::cout   << "RESUME:\n"
-                << "    id: " << id  << std::endl
-                << "    Name: " << name << std::endl
-                << "    Has A Degree: " << (degree ? "Yes" : "No") << std::endl
-                << "    Job Description: " << jobDescription << std::endl
-                << "    Skill Level: " << skillLevel << std::endl
-                << "----\n";
+std::string Person::getResume() {
+    std::string resume = "RESUME:\n    id: ";
+    resume.append(std::to_string(id));
+    resume.append("\n    Name: ");
+    resume.append(name);
+    resume.append("\n    Has A Degree: ");
+    resume.append(degree ? "Yes" : "No");
+    resume.append("\n    Job Description: ");
+    resume.append( jobDescription);
+    resume.append("\n    Skill Level: ");
+    resume.append(std::to_string(skillLevel));
+    resume.append( "\n----");
+    return resume;
 }
 
 int Person::getId() const {

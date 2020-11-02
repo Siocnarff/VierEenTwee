@@ -3,7 +3,6 @@ project(VierEenTwee)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src)
 include_directories(src/eng)
 include_directories(src/eng/buildings)
 include_directories(src/eng/componentDevelopment)
@@ -14,14 +13,15 @@ include_directories(src/log/transportation)
 include_directories(src/ppl)
 include_directories(src/ppl/factories)
 include_directories(src/ppl/specialists)
+include_directories(src/pr)
 include_directories(src/rce)
 include_directories(src/rce/carState)
 include_directories(src/rce/leaderboard)
 include_directories(src/rce/pitstop)
 include_directories(src/rce/simulator)
+include_directories(src/rce/strategy)
 
 add_executable(VierEenTwee
-        src/main.cpp
         src/eng/buildings/BlueprintStore.cpp
         src/eng/buildings/BlueprintStore.h
         src/eng/buildings/ComponentSimulator.cpp
@@ -101,7 +101,10 @@ add_executable(VierEenTwee
         src/log/Colleague.h
         src/log/Logistics.cpp
         src/log/Logistics.h
+        src/log/main.cpp
         src/log/Mediator.h
+        src/log/Strategy.cpp
+        src/log/Strategy.h
         src/ppl/factories/HireAmateur.cpp
         src/ppl/factories/HireAmateur.h
         src/ppl/factories/HireProfessional.cpp
@@ -120,6 +123,8 @@ add_executable(VierEenTwee
         src/ppl/HumanResources.h
         src/ppl/Person.cpp
         src/ppl/Person.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
         src/rce/carState/CarState.cpp
         src/rce/carState/CarState.h
         src/rce/carState/CarStateBroken.cpp
@@ -133,6 +138,7 @@ add_executable(VierEenTwee
         src/rce/leaderboard/DriversLeaderboard.cpp
         src/rce/leaderboard/DriversLeaderboard.h
         src/rce/leaderboard/Leaderboard.cpp
+        src/rce/leaderboard/Leaderboard.h
         src/rce/leaderboard/Score.cpp
         src/rce/leaderboard/Score.h
         src/rce/leaderboard/TeamLeaderboard.cpp
@@ -145,6 +151,8 @@ add_executable(VierEenTwee
         src/rce/pitstop/PitCrew.h
         src/rce/pitstop/Pitstop.cpp
         src/rce/pitstop/Pitstop.h
+        src/rce/pitstop/Tyres.cpp
+        src/rce/pitstop/Tyres.h
         src/rce/simulator/Simulator.cpp
         src/rce/simulator/Simulator.h
         src/rce/simulator/SimulatorHotCondition.cpp
@@ -153,22 +161,18 @@ add_executable(VierEenTwee
         src/rce/simulator/SimulatorNormalCondition.h
         src/rce/simulator/SimulatorWetCondition.cpp
         src/rce/simulator/SimulatorWetCondition.h
-        src/rce/RaceWeekend.cpp
-        src/rce/RaceWeekend.h
-        src/rce/RacingDep.cpp
-        src/rce/RacingDep.h
-        src/main.cpp
-        src/rce/leaderboard/Leaderboard.h
-        src/rce/pitstop/Tyres.cpp
-        src/rce/pitstop/Tyres.h
-        src/rce/RaceDaysIterator.cpp
-        src/rce/RaceDaysIterator.h
         src/rce/strategy/AggressiveStrategy.cpp
         src/rce/strategy/AggressiveStrategy.h
-        src/rce/strategy/CreateStrategy.h
         src/rce/strategy/CreateStrategy.cpp
+        src/rce/strategy/CreateStrategy.h
         src/rce/strategy/ModerateStrategy.cpp
         src/rce/strategy/ModerateStrategy.h
         src/rce/strategy/SafeStrategy.cpp
         src/rce/strategy/SafeStrategy.h
-        )
+        src/rce/RaceDaysIterator.cpp
+        src/rce/RaceDaysIterator.h
+        src/rce/RaceWeekend.cpp
+        src/rce/RaceWeekend.h
+        src/rce/RacingDep.cpp
+        src/rce/RacingDep.h
+        src/main.cpp)

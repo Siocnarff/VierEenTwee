@@ -3,11 +3,19 @@
 using namespace eng;
 
 void ElectricHarness::print() {
-    std::cout   << "        Electric Harness Quality: " << getQualityLabel() << std::endl;
+    pr::Doc::detail("        Electric Harness Quality: " + std::to_string(getQualityLabel()));
 }
 
 ElectricHarness::ElectricHarness(Component *toClone) : Component(toClone) {}
 
 Component *ElectricHarness::clone() {
     return new ElectricHarness(this);
+}
+
+int ElectricHarness::getId() {
+    return 2;
+}
+
+ElectricHarness::ElectricHarness(int quality) : Component(quality) {
+
 }

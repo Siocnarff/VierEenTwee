@@ -12,8 +12,16 @@
 
 using namespace eng;
 
+EngTeam::EngTeam() {
+    department[3] = new BodyDep();
+    department[4] = new MicroTimeTravelDep(department[3]);
+    department[2] = new ElectricDepartment(department[4]);
+    department[1] = new EngineDep(department[2]);
+    department[0] = new ChassisDep(department[1]);
+}
+
 void EngTeam::hireEmployees(int budget) {
-    print("Engineering team is hiring new employees...");
+    pr::Doc::summary("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -62,39 +70,55 @@ void EngTeam::hireEmployees(int budget) {
     } else {
         humanResources = new ppl::HireProfessional();
     }
-    department[4] = new BodyDep();
-    department[3] = new MicroTimeTravelDep(department[4]);
-    department[2] = new ElectricDepartment(department[3]);
-    department[1] = new EngineDep(department[2]);
-    department[0] = new ChassisDep(department[1]);
     // Hire for all departments if hirelings sufficiently skilled (implied by budget >= 50)
     time_t t = time(nullptr);
     int time = (int) t;
     srand(time);
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
         if (budget >= 50) {
-            department[3]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]), transparent);
+            department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
-        department[4]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]), transparent);
-        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]), transparent);
-        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]), transparent);
-        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]), transparent);
+        department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
+        department[2]->addSpecialist(humanResources->hire(electricalJobs[rand() % 5]));
+        department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
+        department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
 }
 
+void EngTeam::registerForSeason(lg::Mediator *mediator) {
+    logisticsDept = mediator;
+}
+
+int EngTeam::generateId() {
+    static int nextNewId = 0;
+    return nextNewId++;
+}
+
 int EngTeam::buildCar(int budget) {
-    cashUpDeps(budget);
-    int id = carIdGenerator++;
-    department[0]->build(new Car(id));
+    int id = generateId();
+    Car *prototype = garage.getPrototype();
+    cashUpDeps(prototype ? budget : budget - 50);
+    Car *car;
+    if (prototype) {
+        car = prototype->clone(id);
+    } else {
+        car = new Car(id);
+        department[0]->build(car);
+    }
+    garage.storeCar(car);
+    for (int i = 0; i < 50; ++i) {
+        improveCar(id, true);
+    }
     return id;
 }
 
 void EngTeam::cashUpDeps(int cash) {
-    for (auto &dep : department) {
-        dep->topUpBudget(cash);
+    if (cash > 0) {
+        for (auto &dep : department) {
+            dep->topUpBudget(cash);
+        }
     }
 }
-
 
 void EngTeam::setRiskLevel(lg::RiskLevel riskLevel) {
     for (auto &dep : department) {
@@ -102,35 +126,46 @@ void EngTeam::setRiskLevel(lg::RiskLevel riskLevel) {
     }
 }
 
+
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
 }
 
 void EngTeam::fixCar(int id) {
-    // TODO - implement EngTeam::fixCar
-    throw "Not yet implemented";
-}
-
-void EngTeam::improveCar(int id) {
-    // TODO - implement EngTeam::improveCar
-    throw "Not yet implemented";
-}
-
-Car *EngTeam::checkCarOutOfFactory(int id) {
-    // TODO - implement EngTeam::checkCarOutOfFactory
-    throw "Not yet implemented";
-}
-
-void EngTeam::toggleTransparency() {
-    transparent = !transparent;
-}
-
-void EngTeam::print(const std::string &message) const {
-    if (transparent) {
-        std::cout << message << std::endl;
+    if (department[0]) {
+        Car *car = garage.retrieveCar(id);
+        department[0]->fix(car);
+        garage.storeCar(car);
     }
 }
 
-void EngTeam::registerForSeason(lg::Mediator* mediator) {
-    logisticsDept = mediator;
+void EngTeam::improveCar(int id, bool usingWindTunnel) {
+	Car* car = garage.retrieveCar(id);
+    if (usingWindTunnel && windTunnel.sufficientTickets()) {
+    	windTunnel.testCar(car);
+    } else {
+		simulator.testComponents(car);
+    }
+	for (int num = 0; num < 5; num++) {
+		Component* component = car->components[num];
+		if (component) {
+			int currentQuality = component->getQualityLabel();
+			blueprintStore.setBlueprint(component->createBlueprint());
+			department[num]->update(component);
+			simulator.testComponent(component);
+			int changedQuality = component->getQualityLabel();
+			if (currentQuality > changedQuality) {
+				component->rebuildComponent(blueprintStore.getBlueprint());
+			}
+			car->components[num] = component;
+		}
+	}
+}
+
+Car *EngTeam::checkCarOutOfFactory(int id) {
+	return garage.retrieveCar(id);
+}
+
+void EngTeam::resetTickets() {
+    windTunnel.resetTickets();
 }
