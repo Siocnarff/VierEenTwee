@@ -24,10 +24,14 @@ int main() {
     int id = e->buildCar(10);
 
     //pr::Doc::setTransparency(1);
+    int id2 = e->buildCar(10);
+    eng::Car* car2 = e->checkCarOutOfFactory(id2);
 
     eng::Car* car = e->checkCarOutOfFactory(id);
 
     car->print();
+
+    car2->print();
 
 
 

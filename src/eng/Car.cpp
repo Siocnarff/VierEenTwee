@@ -16,7 +16,11 @@ Car::Car(Car *car) {
     driver = car->driver;
     damage = car->damage;
     for (int i = 0; i < 5; ++i) {
-        components[i] = car->components[i]->clone();
+    	if (components[i]) {
+			components[i] = car->components[i]->clone();
+		} else {
+    		components[i] = nullptr;
+    	}
     }
 }
 
