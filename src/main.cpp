@@ -9,10 +9,14 @@
 #include <log/Logistics.h>
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
+#include "pr/Doc.h"
 
 int ppl::Person::idCounter = 0;
+int pr::Doc::transparency = 0;
 
 void testBasicIntegration() {
+    pr::Doc::setTransparency(1);
+    auto* a = new lg::Logistics();
     auto* a = new lg::Logistics();
     auto* engDept = new eng::EngTeam();
     auto* racingDept = new rce::RacingDep();
@@ -22,6 +26,7 @@ void testBasicIntegration() {
     a->preSeasonPreparation();
     a->raceSeason();
     a->postSeasonDebrief();
+*/
 
     delete a;
     delete engDept;

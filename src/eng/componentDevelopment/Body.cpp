@@ -3,7 +3,7 @@
 using namespace eng;
 
 void Body::print() {
-	std::cout   << "        Body Quality: " << getQualityLabel() << std::endl;
+	pr::Doc::detail("        Body Quality: " + std::to_string(getQualityLabel()));
 }
 
 Component *Body::clone() {
@@ -11,3 +11,11 @@ Component *Body::clone() {
 }
 
 Body::Body(Component *toClone) : Component(toClone) {}
+
+int Body::getId() {
+    return 3;
+}
+
+Body::Body(int quality) : Component(quality) {
+
+}

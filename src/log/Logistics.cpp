@@ -114,6 +114,110 @@ void Logistics::preSeasonPreparation() {
 
 }
 
+
+void Logistics::raceSeason() {
+    for (RaceIterator t = racingCalendar->begin(); !(t==racingCalendar->end()) ; ++t) {
+        //std::cout << t.currentItem()->getLocation() << std::endl;
+        simulateEvent(t.currentItem());
+    }
+    std::cout << std::endl;
+
+    //2 cars
+    //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
+//    callRacingDept()->preRaceArrival(new eng::Car(2), driver, new Race, new Box);
+
+    //
+    throw "Implement for two cars";
+    //seasonPointTally += callRacingDept()->RacingWeekend();
+    callRacingDept()->postRacePackUp(); //execute
+
+}
+
+void Logistics::postSeasonDebrief() {
+//maybe do some analysis?
+    //start building a new car
+    //let driver take holiday
+    //let transportHandler take holiday
+
+}
+
+void Logistics::sendCarToFactory(eng::Car *car) {
+    cout << "send car to factory" << endl;
+    transportManager->transport(new Race, new Race, car);
+    callEngDept()->carArrivesAtFactory(car);
+    callEngDept()->improveCar(car->getId());
+}
+
+void Logistics::containerHasBeenPacked(Container *) {
+    cout << "fly container" << endl;
+}
+
+/*void Logistics::requestContainerStateChange(bool isEuropeanRace) {
+
+}*/
+
+Container *Logistics::getEuropeanContainer() {
+    return europeanContainer;
+}
+
+Container *Logistics::getNextNonEuropean() {
+    Container *back = nonEuropeanContainers.back();
+    nonEuropeanContainers.pop_back();
+    return back;
+}
+
+void Logistics::packContainers(int tyreCompound) {
+
+    //Need to create container objects to match to races
+    //Test by packing a single container:
+
+    Container *container = packSingleContainer(tyreCompound);
+
+    cout << "Packed all containers" << endl;
+
+}
+
+Container *Logistics::packSingleContainer(int tyreCompound) {
+    Box *box = new Box();
+    auto *garageEquip = new GarageEquipment();
+    auto *cateringEquip = new CateringEquipment();
+    auto *tyreBox = new TyreBox(tyreCompound);
+
+    box->addElement(garageEquip);
+    box->addElement(cateringEquip);
+    box->addElement(tyreBox);
+
+    cout << "Packed a container" << endl;
+
+    return box;
+
+}
+
+void Logistics::simulateEvent(Race *r) {
+    //get car
+    eng::Car* carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
+    //transport car
+    transportManager->transport(nullptr, r, carInTransport);
+
+    //get correct container and pre-race arrival
+/*
+    if (r->isRaceEuropean()) {
+        callRacingDept()->preRaceArrival(carInTransport, driver, r, getEuropeanContainer());
+    }
+    else {
+        callRacingDept()->preRaceArrival(carInTransport, driver, r, getNextNonEuropean());
+    }
+*/
+    //racing weekend finishes and get points
+/*
+    int* temp = callRacingDept()->RacingWeekend();
+    seasonPointTally[0]+= temp[0];
+    seasonPointTally[1]+= temp[1];
+*/
+    //finish the packup
+//    Container* tCont = callRacingDept()->postRacePackUp(); //execute
+}
+
 /**
  * @author Jo
  * @status nearly there

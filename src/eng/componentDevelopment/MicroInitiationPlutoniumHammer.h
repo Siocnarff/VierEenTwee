@@ -9,9 +9,13 @@ namespace eng {
         explicit MicroInitiationPlutoniumHammer(Component * toClone);
 
     public:
+        explicit MicroInitiationPlutoniumHammer(int quality);
+
         void print() final;
 
         Component* clone() final;
+
+        int getId() final;
 	};
 }
 

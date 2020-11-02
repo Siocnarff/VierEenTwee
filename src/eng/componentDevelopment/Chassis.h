@@ -9,9 +9,13 @@ namespace eng {
         explicit Chassis(Component * toClone);
 
     public:
+        explicit Chassis(int quality);
+
         void print() final;
 
-        Component* clone() final;;
+        Component* clone() final;
+
+        int getId() final;
 	};
 }
 
