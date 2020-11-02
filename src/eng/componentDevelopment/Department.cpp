@@ -24,8 +24,11 @@ Department::Department(Department *next) {
 
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
-    pr::Doc::summary(departmentName + " hired a new specialist\n");
-    pr::Doc::detail(specialist->getResume());
+    pr::Doc::summary(
+            departmentName + " hired a new " +
+            (specialist->hasDegree() ? "specialist\n" : "employee\n")
+    );
+    pr::Doc::detail(specialist->getResume() + "\n");
 }
 
 void Department::fix(Car *car) {
@@ -78,34 +81,34 @@ int Department::specialistsDesignComponent() {
     double average = double(totalSkill) / double(teamSize);
     double result = int(average * 0.2 + double(best) * 0.4 + riskLevel->trySomethingNew() * 0.4);
     if (result > 100) {
-    	result = 100;
+        result = 100;
     } else if (result < 0) {
-		result = 0;
+        result = 0;
     }
-    return (int)result;
+    return (int) result;
 }
 
-void Department::specialistsImproveComponent(Component* component) {
-	if (!haveSpecialists()){
-		return;
-	}
-	int best = -1;
-	int teamSize = specialists.size();
-	int totalSkill = 0;
-	for (ppl::Person *specialist: specialists) {
-		if (specialist->getSkillLevel() > best) {
-			best = specialist->getSkillLevel();
-		}
-		totalSkill += specialist->getSkillLevel();
-	}
-	double average = double(totalSkill) / double(teamSize);
-	double result = int(average * 0.1 + best * 0.2 + riskLevel->trySomethingNew() * 0.7);
-	double percentage = ((100-component->quality)/100.0 > 0.05)? 0.05 : (100-component->quality)/200.0;
-	component->quality = (int)(result * percentage);
+void Department::specialistsImproveComponent(Component *component) {
+    if (!haveSpecialists()) {
+        return;
+    }
+    int best = -1;
+    int teamSize = specialists.size();
+    int totalSkill = 0;
+    for (ppl::Person *specialist: specialists) {
+        if (specialist->getSkillLevel() > best) {
+            best = specialist->getSkillLevel();
+        }
+        totalSkill += specialist->getSkillLevel();
+    }
+    double average = double(totalSkill) / double(teamSize);
+    double result = int(average * 0.1 + best * 0.2 + riskLevel->trySomethingNew() * 0.7);
+    double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.05 : (100 - component->quality) / 200.0;
+    component->quality = (int) (result * percentage);
 }
 
 Department::~Department() {
-    for (ppl::Person* p : specialists) {
+    for (ppl::Person *p : specialists) {
         delete p;
     }
     delete riskLevel;

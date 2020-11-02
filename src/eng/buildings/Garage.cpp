@@ -7,9 +7,9 @@ void Garage::storeCar(Car *c) {
         if (lookup[i] == -1) {
             car[i] = c;
             lookup[i] = c->getId();
+            return;
         }
     }
-    throw "Garage is full!";
 }
 
 Car *Garage::retrieveCar(int id) {
@@ -48,5 +48,12 @@ Garage::~Garage() {
     for (Car * c : car) {
         delete c;
         c = nullptr;
+    }
+}
+
+Garage::Garage() {
+    for (int i = 0; i < 20; ++i) {
+        lookup[i] = -1;
+        car[i] = nullptr;
     }
 }

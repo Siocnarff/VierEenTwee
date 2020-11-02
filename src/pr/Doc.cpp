@@ -8,7 +8,7 @@
 using namespace pr;
 
 void Doc::setTransparency(int outOf2) {
-    Doc::transparency = outOf2 % 2;
+    transparency = outOf2;
 }
 
 void Doc::summary(const std::string& message) {

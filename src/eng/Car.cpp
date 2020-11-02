@@ -6,6 +6,9 @@ using namespace eng;
 
 eng::Car::Car(int identification) {
     id = identification;
+    for (int i = 0; i < 5; ++i) {
+        components[i] = nullptr;
+    }
 }
 
 Car::Car(Car *car) {
@@ -41,13 +44,13 @@ int Car::getSpeed() const {
 int Car::getHandling() const {
 	int handling = 0;
 	if (components[0]) {
-		handling += components[1]->quality / 3;
+		handling += components[0]->quality / 3;
 	}
 	if (components[2]) {
-		handling += components[3]->quality / 3;
+		handling += components[2]->quality / 3;
 	}
 	if (components[3]) {
-		handling += components[4]->quality / 3;
+		handling += components[3]->quality / 3;
 	}
 	return handling;
 }

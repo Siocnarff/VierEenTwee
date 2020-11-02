@@ -20,7 +20,7 @@ namespace eng {
         int damage = 0;
         ppl::Driver* driver = nullptr;
         int id = 0;
-        Component* components[5] = {nullptr};
+        Component* components[5];
 
 	public:
 	    ~Car();

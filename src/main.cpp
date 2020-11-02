@@ -10,7 +10,7 @@
 #include "rce/RacingDep.h"
 #include "pr/Doc.h"
 
-int pr::Doc::transparency = 2;
+int pr::Doc::transparency = 1;
 
 int main() {
 
@@ -18,7 +18,10 @@ int main() {
 
     e->hireEmployees(50);
 
+
     int id = e->buildCar(50);
+
+    //pr::Doc::setTransparency(1);
 
     eng::Car* car = e->checkCarOutOfFactory(id);
 

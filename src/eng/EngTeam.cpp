@@ -80,8 +80,9 @@ void EngTeam::hireEmployees(int budget) {
     time_t t = time(nullptr);
     int time = (int) t;
     srand(time);
+
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
-        if (budget >= 50) {
+        if (budget >= 70) {
             department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
         department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
@@ -166,6 +167,7 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 			car->components[num] = component;
 		}
 	}
+    garage.storeCar(car);
 }
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
