@@ -80,7 +80,7 @@ add_executable(VierEenTwee
         src/log/races/GarageEquipment.cpp
         src/log/races/GarageEquipment.h
         src/log/races/Iterator.h
-        src/log/races/main.cpp
+#        src/log/races/main.cpp
         src/log/races/Race.cpp
         src/log/races/Race.h
         src/log/races/RaceIterator.cpp

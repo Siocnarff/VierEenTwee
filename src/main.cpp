@@ -95,11 +95,11 @@ void testTyres() {
     if (tyreSet1 != nullptr) {
         tyreSet1->printStats();
 
-        tyreSet1->reduceThread();
+        tyreSet1->reduceThread(49);
         tyreSet1->printStats();
 
         for (int x = 0; x < 20; x++) {
-            tyreSet1->reduceThread();
+            tyreSet1->reduceThread(2);
         }
 
         tyreSet1->printStats();
@@ -119,68 +119,8 @@ void testTyres() {
 
 
 int main () {
-    /*EngTeam engTeam;
-    engTeam.toggleTransparency();
-    engTeam.hireEmployees(49);*/
+    testBasicIntegration();
 
-    /*auto** factories = new ppl::HumanResources*[3];
-    factories[0] = new ppl::KidnapStudent();
-    factories[1] = new ppl::HireAmateur();
-    factories[2] = new ppl::HireProfessional();
-
-    std::string jobs[7]  =  {"Draw cars",
-                             "Clean things",
-                             "Make coffee",
-                             "Weld parts together",
-                             "Complain",
-                             "Count bolts",
-                             "Deep sea diver"};
-
-    auto** people = new ppl::Person*[15];
-    for (int i = 0; i < 5; ++i) {
-        people[i] = factories[0]->hire(jobs[random() % 7]);
-        people[i + 5] = factories[1]->hire(jobs[random() % 7]);
-        people[i + 10] = factories[2]->hire(jobs[random() % 7]);
-    }
-
-    for (int i = 0; i < 15; ++i) {
-        people[i]->printResume();
-        std::cout << std::endl;
-    }*/
-  //  testBasicIntegration();
-
-    /*auto *racingDept = new rce::RacingDep();
-    auto *engTeam = new eng::EngTeam();
-    auto *lg = new lg::Logistics;
-
-    lg->registerNotifier(racingDept);
-    lg->registerNotifier(engTeam);
-
-    engTeam->toggleTransparency();
-    lg->toggleVerbose();
-    lg->doYearPlanning();
-
-    lg->toggleVerbose();*/
-// ERROR : STORE CAR NOT IMPLEMENTED
-    //lg->raceSeason();
-
-   /* auto *racingDept = new lg::RacingDept();
-    auto *engTeam = new eng::EngTeam();
-    auto *lg = new lg::Logistics;
-
-    lg->registerNotifier(racingDept);
-    lg->registerNotifier(engTeam);
-
-    engTeam->toggleTransparency();
-    lg->toggleVerbose();
-    lg->doYearPlanning();
-
-    lg->toggleVerbose();
-    lg->raceSeason();
-    */
-
-  //  testContainerPacking();
-    //testBasicIntegration();
 
 //    testContainerPacking();
 
