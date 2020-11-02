@@ -112,10 +112,10 @@ int RaceWeekend::RacingWeekend() {
                         }
                     }
                 }
-                if (DayWeather == lg::Wet) {
+                if (DayWeather == lg::Hot) {
                     time[n] += rand() % 10 + 1;
                 } else {
-                    if (DayWeather == lg::Dry) {
+                    if (DayWeather == lg::Normal) {
                         time[n] += rand() % 5 + 0;
                     } else {
                         if (DayWeather == lg::Rainy) {

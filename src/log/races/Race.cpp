@@ -60,10 +60,10 @@ WeatherConditions Race::getRaceDayWeather() {
     int r = rand() % 3;
     switch (r) {
         case 0:
-            return Wet;
+            return Hot;
             break;
         case 1:
-            return Dry;
+            return Normal;
             break;
         case 2:
             return Rainy;
