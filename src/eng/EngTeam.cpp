@@ -163,8 +163,9 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 			int changedQuality = component->getQualityLabel();
 			if (currentQuality > changedQuality) {
 				component->rebuildComponent(blueprintStore.getBlueprint());
+			}else{
+			    std::cout << "Here" << std::endl;
 			}
-			car->components[num] = component;
 		}
 	}
     garage.storeCar(car);

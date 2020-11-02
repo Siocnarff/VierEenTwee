@@ -79,7 +79,7 @@ int Department::specialistsDesignComponent() {
         totalSkill += specialist->getSkillLevel();
     }
     double average = double(totalSkill) / double(teamSize);
-    double result = int(average * 0.2 + double(best) * 0.4 + riskLevel->trySomethingNew() * 0.4);
+    double result = int(average * 0.2 + double(best) * 0.7 + riskLevel->trySomethingNew() * 0.4);
     if (result > 100) {
         result = 100;
     } else if (result < 0) {
@@ -102,9 +102,10 @@ void Department::specialistsImproveComponent(Component *component) {
         totalSkill += specialist->getSkillLevel();
     }
     double average = double(totalSkill) / double(teamSize);
-    double result = int(average * 0.1 + best * 0.2 + riskLevel->trySomethingNew() * 0.7);
+    double result = int(average * 0.2 + best * 0.4 + riskLevel->trySomethingNew() * 0.4);
     double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.05 : (100 - component->quality) / 200.0;
     component->quality = (int) (result * percentage);
+    std::cout << component->quality << std::endl;
 }
 
 Department::~Department() {
