@@ -93,6 +93,9 @@ int EngTeam::buildCar(int budget) {
         department[0]->build(car);
     }
     garage.storeCar(car);
+    for (int i = 0; i < 50; ++i) {
+        improveCar(id, true);
+    }
     return id;
 }
 
