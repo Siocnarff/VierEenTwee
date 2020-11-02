@@ -6,7 +6,8 @@
 using namespace ppl;
 
 Person::Person(std::string n, bool hasDegree, int s) : name(std::move(n)), degree(hasDegree), skillLevel(s) {
-    id = Person::idCounter++;
+    static int idCounter = 0;
+    id = idCounter++;
 }
 
 std::string Person::getName() {

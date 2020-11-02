@@ -9,7 +9,6 @@
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 
-int ppl::Person::idCounter = 0;
 int pr::Doc::transparency = 0;
 
 using namespace eng;
