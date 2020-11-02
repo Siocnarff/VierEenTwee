@@ -35,4 +35,8 @@ void SetOfTyres::reduceThread() {
     }
 }
 
+std::string SetOfTyres::getTyreCompoundString() {
+    return tyreCompoundString;
+}
+
 
