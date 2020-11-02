@@ -43,7 +43,7 @@ namespace rce {
 
         ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions, lg::TrackComplexity);
 
-        void preRaceArrival(eng::Car **, ppl::Driver **, lg::Race *, lg::Container *);
+        void preRaceArrival(std::vector<eng::Car*>, std::vector<ppl::Driver*>, lg::Race*, lg::Container*, Tyres*);
         //void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
 
         int* RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.

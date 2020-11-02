@@ -19,7 +19,7 @@ namespace lg {
 
     class Logistics : public Mediator {
     public:
-        Logistics();
+        Logistics(int numDriverCarPairs = 2);
 
         virtual ~Logistics();
 
@@ -39,8 +39,6 @@ namespace lg {
         void sendCarToFactory(eng::Car *) override;
 
         void containerHasBeenPacked(Container *) override;
-
-        //void requestContainerStateChange(bool isEuropeanRace) override;
 
         Container *getEuropeanContainer();
 
@@ -72,12 +70,14 @@ namespace lg {
         std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
-        rce::Tyres* tyreSpecs;
+
+        rce::Tyres* tyreSpecs; //possibly unnecessary? No
 
 
-        int seasonPointTally[2];
+        std::vector<int> seasonPointTally;
         int budget;
         bool verbose = true;
+        int numPairs = 2;
 
     };
 

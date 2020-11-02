@@ -14,6 +14,7 @@
 #include <races/GarageEquipment.h>
 #include <races/CateringEquipment.h>
 #include <factories/HireDriver.h>
+#include "enums/randomisation.h"
 
 using namespace lg;
 
@@ -21,14 +22,16 @@ using namespace lg;
  * @author Jo
  * @status Done and dusted!
  */
-Logistics::Logistics() {
+Logistics::Logistics(int numDriverCarPairs) {
+    numPairs = numDriverCarPairs;
+    drivers.reserve(numDriverCarPairs);
+    carsInSeasonIDs.reserve(numDriverCarPairs);
+    seasonPointTally.reserve(numDriverCarPairs);
     transportManager = nullptr;
     raceIterator = nullptr;
     racingCalendar = nullptr;
     europeanContainer = nullptr;
     currentTeamStrategy = nullptr;
-    seasonPointTally[0] = -1;
-    seasonPointTally[1] = -1;
     budget = -1;
 }
 
@@ -67,18 +70,20 @@ void Logistics::doYearPlanning() {
     }
 
     //3. Set tickets of racingDept;
+    callEngDept()->resetTickets();
 
     //4. putRacesIntoCalender();
     putRacesIntoCalender();
 
     //5. Hire drivers
     ppl::HireDriver driverCurator;
-    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
-    drivers.push_back(static_cast<ppl::Driver*>(driverCurator.hire("Driver")));
+    for (int i = 0; i < numPairs; ++i) {
+        drivers.push_back(static_cast<ppl::Driver *>(driverCurator.hire("Driver")));
+    }
 
     //6. Set drivers' home tracks
-    for (ppl::Driver* d : drivers) {        //for each driver
-        for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //possible home tracks - interval [1,5]
+    for (ppl::Driver *d : drivers) {        //for each driver
+        for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //# home tracks in [1,5]
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
         }
     }
@@ -90,12 +95,16 @@ void Logistics::doYearPlanning() {
 
 }
 
-//IN THE WORKS
-// TODO: decide on driver training regime
+/**
+ * @status Theoretically this one's done as well
+ * @author Jo
+ */
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
-    cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: " << currentTeamStrategy->getStratName() << std::endl;
+    cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: "
+         << currentTeamStrategy->getStratName() << std::endl;
+
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
     std::cout << "Tyre Order has arrived" << endl;
@@ -108,46 +117,40 @@ void Logistics::preSeasonPreparation() {
     //3. Train drivers
     driverBootCamp();
 
-    //4.build the cars
-//    carsInSeasonIDs.push_back(callEngDept()->buildCar(budget,currentTeamStrategy->getRiskLevel())); //tyres
+    //4.Inform engDept of riskLevel
+    callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
-    /*carsInSeason.push(buildCar()); //ons gaan bou die kar
-    testCar();
-    getRaceIterator();
-   */
-
+    //5. Build the cars
+    for (int i = 0; i < numPairs; ++i) {
+        carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+    }
 }
-
-/*void Logistics::requestContainerStateChange(bool isEuropeanRace) {
-
-}*/
 
 
 void Logistics::packContainers() {
+    //european container
+    europeanContainer = packSingleContainer();
 
-    //Need to create container objects to match to races
-    //Test by packing a single container:
-
+    //non-european containers
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
-        //std::cout << t.currentItem()->getLocation() << std::endl;
-        if (!t.currentItem()->isRaceEuropean()) {
+        if (!t.currentItem()->isRaceEuropean()) {   //not european
             nonEuropeanContainers.push_back(packSingleContainer());
-        } else if (t.currentItem()->isRaceEuropean() && getEuropeanContainer() == nullptr) {
-            europeanContainer = packSingleContainer();
-        } else {
-            //do nothing
+        } else if (t.currentItem()->isRaceEuropean()) {
+            continue;
         }
     }
-
     cout << "Packed all containers" << endl;
-
 }
 
-
+/**
+ * @author Marike
+ * @status She be done
+ * @return Packed Container
+ */
 Container *Logistics::packSingleContainer() {
-    Box* box = new Box();
-    GarageEquipment* garageEquip = new GarageEquipment();
-    CateringEquipment* cateringEquip = new CateringEquipment();
+    Box *box = new Box();
+    auto *garageEquip = new GarageEquipment();
+    auto *cateringEquip = new CateringEquipment();
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
@@ -158,27 +161,33 @@ Container *Logistics::packSingleContainer() {
 
 }
 
-void Logistics::simulateEvent(Race *r) {
-    //1. get car
-    eng::Car *carInTransport = callEngDept()->checkCarOutOfFactory(carsInSeasonIDs[0]);
-    //2. transport car
-    transportManager->transport(nullptr, r, carInTransport);
 
-    //3. get correct container and pre-race arrival
-    //TODO FIX!
-    if (r->isRaceEuropean()) {
-        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getEuropeanContainer());
-    } else {
-        callRacingDept()->preRaceArrival(reinterpret_cast<eng::Car **>(carInTransport),
-                                         reinterpret_cast<ppl::Driver **>(drivers[0]), r, getNextNonEuropean());
+// TODO : Let's get to the meaty stuff.
+void Logistics::simulateEvent(Race *r) {
+    //1. Transport every car from factory to race location and fill up our list to send to race
+    vector<eng::Car*> carClipboard;
+    for (int id : carsInSeasonIDs) {
+        eng::Car* temp = callEngDept()->checkCarOutOfFactory(id);
+        transportManager->transport(nullptr, r, temp);
+        carClipboard.push_back(temp);
     }
-    //4. racing weekend finishes and get points
+
+    //2. get correct container and send to people pre-race arrival
+    if (r->isRaceEuropean()) {
+        // TODO : add fly functionality for drivers
+        callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
+    } else {
+        callRacingDept()->preRaceArrival(carClipboard, drivers, r, getNextNonEuropean(), tyreSpecs);
+    }
+
+    //4. racing weekend finishes and get points for each pair
     int *temp = callRacingDept()->RacingWeekend();
-    seasonPointTally[0] += temp[0];
-    seasonPointTally[1] += temp[1];
+    for (int i = 0; i < numPairs; ++i) {
+        seasonPointTally[i] += temp[i];
+    }
+
     //5. finish the packup
-    Container *tCont = callRacingDept()->postRacePackUp(); //execute
+    Container *tCont = callRacingDept()->postRacePackUp();
     if (!r->isRaceEuropean()) {
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
@@ -227,22 +236,17 @@ void Logistics::putRacesIntoCalender() {
 }
 
 //JUST FINISH THE FINAL CELEBRATION
+// TODO : get leaderboard from racingDept and decide accordingly
 void Logistics::raceSeason() {
+    //And the season starts
+    pr::Doc::summary("And the season begins!");
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
     }
-    std::cout << std::endl;
 
-    callRacingDept()->getResults();
 
-    //2 cars
-    //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);
-//    callRacingDept()->preRaceArrival(new eng::Car(2), driver, new Race, new Box);
+    int* tumTumTum = callRacingDept()->getFinalResults();
 
-    //
-    throw "Implement for two cars";
-    //seasonPointTally += callRacingDept()->RacingWeekend();
-    callRacingDept()->postRacePackUp(); //execute
 
 }
 
@@ -304,14 +308,14 @@ void Logistics::toggleVerbose() {
     verbose = !verbose;
 }
 
-//TODO : Decide on regime based on
+//TODO : Decide on regime based on riskLevel
 //IDEA: Change to command?
 void Logistics::driverBootCamp() {
 /*moet meer spesifiek wees hierso. gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
     Dalk kan ons dit volgens riskLevel doen*/
-    for (ppl::Driver* d: drivers) {
+    for (ppl::Driver *d: drivers) {
         //randomise weathering
-//        callRacingDept()->trainDriver(d, rand()%10+1, randomWC(), randomTL());
+        callRacingDept()->trainDriver(d, rand() % 10 + 1, randomWC(), randomTL());
     }
 }
 
