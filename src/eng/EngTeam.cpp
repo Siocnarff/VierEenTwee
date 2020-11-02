@@ -27,7 +27,7 @@ EngTeam::~EngTeam() {
 }
 
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("Engineering team is hiring new employees...");
+    pr::Doc::summary("Engineering team is hiring new employees...\n");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -69,9 +69,9 @@ void EngTeam::hireEmployees(int budget) {
             "CAD Guy"
     };
     ppl::HumanResources *humanResources;
-    if (budget < 20) {
+    if (budget < 40) {
         humanResources = new ppl::KidnapStudent();
-    } else if (budget < 50) {
+    } else if (budget < 70) {
         humanResources = new ppl::HireAmateur();
     } else {
         humanResources = new ppl::HireProfessional();

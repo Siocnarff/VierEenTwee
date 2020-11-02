@@ -18,7 +18,7 @@ void Doc::summary(const std::string& message) {
 }
 
 void Doc::detail(const std::string &message) {
-    if (Doc::transparency == 2) {
+    if (Doc::transparency >= 1) {
         std::cout << message;
     }
 }

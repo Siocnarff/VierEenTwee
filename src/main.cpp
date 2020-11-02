@@ -10,11 +10,22 @@
 #include "rce/RacingDep.h"
 #include "pr/Doc.h"
 
-int pr::Doc::transparency = 0;
+int pr::Doc::transparency = 2;
 
-void testBasicIntegration() {
-    pr::Doc::setTransparency(1);
-    auto* engDept = new eng::EngTeam();
+int main() {
+
+    auto* e = new eng::EngTeam();
+
+    e->hireEmployees(50);
+
+    int id = e->buildCar(50);
+
+    eng::Car* car = e->checkCarOutOfFactory(id);
+
+    car->print();
+
+
+
 //    auto* racingDept = new rce::RacingDep();
 /*
     a->registerNotifier(racingDept);
@@ -24,6 +35,6 @@ void testBasicIntegration() {
     a->raceSeason();
     a->postSeasonDebrief();
 */
-    delete engDept;
+    delete e;
 //    delete racingDept;
 }
