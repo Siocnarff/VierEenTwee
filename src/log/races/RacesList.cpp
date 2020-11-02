@@ -65,7 +65,7 @@ void RacesList::printList() {
             pr::Doc::detail("\nNumLaps: ");
             pr::Doc::detail(std::to_string(temp->getNumLaps()));
             pr::Doc::detail("\nWeather:");
-            pr::Doc::detail(temp->getRaceDayWeather());
+//            pr::Doc::detail(temp->getRaceDayWeather());
             pr::Doc::detail("\n");
             std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
                       << temp->getRaceDayWeather() << std::endl;
