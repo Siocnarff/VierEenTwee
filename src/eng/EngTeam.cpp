@@ -13,7 +13,6 @@
 using namespace eng;
 
 EngTeam::EngTeam() {
-    windTunnel = WindTunnel::instance();
     department[3] = new BodyDep();
     department[4] = new MicroTimeTravelDep(department[3]);
     department[2] = new ElectricDepartment(department[4]);
@@ -90,8 +89,13 @@ void EngTeam::registerForSeason(lg::Mediator *mediator) {
     logisticsDept = mediator;
 }
 
+int EngTeam::generateId() {
+    static int nextNewId = 0;
+    return nextNewId++;
+}
+
 int EngTeam::buildCar(int budget) {
-    int id = carIdGenerator++;
+    int id = generateId();
     Car *prototype = garage.getPrototype();
     cashUpDeps(prototype ? budget : budget - 50);
     Car *car;
@@ -137,8 +141,8 @@ void EngTeam::fixCar(int id) {
 
 void EngTeam::improveCar(int id, bool usingWindTunnel) {
 	Car* car = garage.retrieveCar(id);
-    if (usingWindTunnel && windTunnel->sufficientTickets()) {
-    	windTunnel->testCar(car);
+    if (usingWindTunnel && windTunnel.sufficientTickets()) {
+    	windTunnel.testCar(car);
     } else {
 		simulator.testComponents(car);
     }
@@ -163,5 +167,5 @@ Car *EngTeam::checkCarOutOfFactory(int id) {
 }
 
 void EngTeam::resetTickets() {
-    windTunnel->resetTickets();
+    windTunnel.resetTickets();
 }

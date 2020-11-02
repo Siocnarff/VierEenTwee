@@ -4,16 +4,16 @@
 #include "../Car.h"
 
 namespace eng {
-	class WindTunnel {
+    class WindTunnel {
     private:
         int tickets;
 
         WindTunnel();
 
-	public:
-	    static WindTunnel* instance();
+    public:
+        static WindTunnel &instance();
 
-		void testCar(Car* car);
+        void testCar(Car *car);
 
         bool sufficientTickets();
 
