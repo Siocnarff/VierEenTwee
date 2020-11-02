@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Aggressive.h"
 
 using namespace eng;
@@ -11,5 +12,6 @@ int Aggressive::trySomethingNew() {
 	} else if (num > 50){
 		num = 50;
 	}
+	std::cout << num << std::endl;
 	return (int)num;
 }
