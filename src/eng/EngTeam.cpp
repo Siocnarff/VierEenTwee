@@ -89,8 +89,13 @@ void EngTeam::registerForSeason(lg::Mediator *mediator) {
     logisticsDep = mediator;
 }
 
+int EngTeam::generateId() {
+    static int nextNewId = 0;
+    return nextNewId++;
+}
+
 int EngTeam::buildCar(int budget) {
-    int id = carIdGenerator++;
+    int id = generateId();
     Car *prototype = garage.getPrototype();
     cashUpDeps(prototype ? budget : budget - 50);
     Car *car;

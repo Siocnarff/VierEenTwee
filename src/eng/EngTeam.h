@@ -15,7 +15,6 @@ namespace eng {
     class EngTeam : public lg::Colleague {
 
     private:
-        static int carIdGenerator;
         Garage garage;
         BlueprintStore blueprintStore{};
         WindTunnel windTunnel = WindTunnel::instance();
@@ -32,6 +31,8 @@ namespace eng {
         void registerForSeason(lg::Mediator *mediator);
 
         void resetTickets();
+
+        static int generateId();
 
         int buildCar(int budget);
 
