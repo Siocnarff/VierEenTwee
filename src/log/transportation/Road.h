@@ -8,7 +8,7 @@
 #include <races/Race.h>
 #include "TransportHandler.h"
 
-namespace log {
+namespace lg {
     class Road : public TransportHandler {
     public:
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;

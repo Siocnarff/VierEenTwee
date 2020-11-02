@@ -8,7 +8,7 @@
 #include <enums/TrackComplexity.h>
 #include <enums/WeatherConditions.h>
 
-namespace log {
+namespace lg {
     class Race {
     private:
         std::string location;

@@ -3,7 +3,7 @@
 //
 
 #include "TransportHandler.h"
-using namespace log;
+using namespace lg;
 
 void TransportHandler::hireEmployees(int budget) {
 

@@ -5,7 +5,7 @@
 #include <enums/TrackComplexity.h>
 #include <enums/WeatherConditions.h>
 #include "Race.h"
-using namespace log;
+using namespace lg;
 
 Race::Race() {
     location = "outer space";
@@ -94,12 +94,12 @@ int Race::getNumLaps() {
     return numLaps;
 }
 
-/*std::ostream &log::operator<<(std::ostream &os, const Race &rc) {
+/*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
     os << rc.location << '/nEurope: ' << rc.isInEurope << '/nNumLaps: ' << rc.numLaps << std::endl;
     return os;
 }*/
 
-/*std::ostream& operator<<(std::ostream& stream, log::Race rc) {
+/*std::ostream& operator<<(std::ostream& stream, lg::Race rc) {
     stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
     return stream;
 }*/

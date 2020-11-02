@@ -5,7 +5,7 @@
 #include "RaceIterator.h"
 #include "Race.h"
 #include "RacesList.h"
-using namespace log;
+using namespace lg;
 
 RaceIterator::RaceIterator() {
     head = nullptr;

@@ -23,7 +23,7 @@ void RacingDep::hireEmployees(int b)
 //CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)
 rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget)
 {
-    //Net sodat die code nie aan log se kant so baie errors het nie
+    //Net sodat die code nie aan lg se kant so baie errors het nie
     std::string weather = "";
 	//safe ,moderate ,aggressive
     if(strategy)
@@ -91,7 +91,7 @@ rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget)
 }
 
 //void RacingDep::trainDriver(std::string weather, ppl::Driver* driver,int trackDifficulty,int time)
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, log::WeatherConditions)
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
@@ -129,15 +129,15 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, log::WeatherC
 	}
 }
 
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::TrackComplexity) {
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, lg::TrackComplexity) {
     return nullptr;
 }
 
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, log::WeatherConditions, log::TrackComplexity) {
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, lg::WeatherConditions, lg::TrackComplexity) {
     return nullptr;
 }
 
-void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, log::Race* r, log::Container* con)
+void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, lg::Race* r, lg::Container* con)
 {
 	// TODO - implement RacingDep::preRaceArrival
 	//throw "Not yet implemented";
@@ -155,7 +155,7 @@ void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, log::Race* r, log:
 	throw "Not yet implemented";
 }*/
 
-/*void RacingDep::registerForSeason(log::Observer* logisticsDept)
+/*void RacingDep::registerForSeason(lg::Observer* logisticsDept)
 {
 	// TODO - implement RacingDep::registerForSeason
 	throw "Not yet implemented";
@@ -167,7 +167,7 @@ Leaderboard* RacingDep::getResults()
 	throw "Not yet implemented";
 }
 
-log::Race* RacingDep::getRace()
+lg::Race* RacingDep::getRace()
 {
 	return this->race;
 }
@@ -229,7 +229,7 @@ int *RacingDep::RacingWeekend() {
     return nullptr;
 }
 
-log::Container *RacingDep::postRacePackUp() {
+lg::Container *RacingDep::postRacePackUp() {
     return nullptr;
 }
 

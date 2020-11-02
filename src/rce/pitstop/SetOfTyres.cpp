@@ -17,7 +17,7 @@ SetOfTyres::SetOfTyres(int compound) {
         this->tyreCompoundString = "Hard Tyres";
     }
     this->thread = 100;
-    std::cout << "     Ordered " << this->tyreCompoundString << std::endl;
+//    std::cout << "     Ordered " << this->tyreCompoundString << std::endl;
 }
 
 SetOfTyres::~SetOfTyres() {}

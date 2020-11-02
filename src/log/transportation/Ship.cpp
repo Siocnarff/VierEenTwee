@@ -3,7 +3,7 @@
 //
 
 #include "Ship.h"
-using namespace log;
+using namespace lg;
 
 void Ship::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     if (fromLocation->isRaceEuropean()!=destination->isRaceEuropean()) {

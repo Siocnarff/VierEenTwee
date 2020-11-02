@@ -3,7 +3,7 @@
 //
 
 #include "Box.h"
-using namespace log;
+using namespace lg;
 
 Box::Box() {}
 

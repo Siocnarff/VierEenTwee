@@ -24,7 +24,7 @@ namespace eng {
 
 	    void addSpecialist(ppl::Person *specialist, bool printResults = false);
 
-		void setRiskLevel(log::RiskLevel level);
+		void setRiskLevel(lg::RiskLevel level);
 
 		void build(Car* car);
 

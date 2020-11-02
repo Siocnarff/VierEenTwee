@@ -10,7 +10,7 @@ using namespace rce;
 rce::Tyres::Tyres(int tyreOrder[2]) {
     for (int x = 0; x < 3; x++) {
         if (tyreOrder[x] > 0) {
-            std::cout << "no.: " << tyreOrder[x] << std::endl;
+//            std::cout << "no.: " << tyreOrder[x] << std::endl;
             for (int comp = 0; comp < tyreOrder[x]; comp++) {
                 switch (x) {
                     case 0:

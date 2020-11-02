@@ -96,7 +96,7 @@ void EngTeam::cashUpDeps(int cash) {
 }
 
 
-void EngTeam::setRiskLevel(log::RiskLevel riskLevel) {
+void EngTeam::setRiskLevel(lg::RiskLevel riskLevel) {
     for (auto &dep : department) {
         dep->setRiskLevel(riskLevel);
     }
@@ -131,6 +131,6 @@ void EngTeam::print(const std::string &message) const {
     }
 }
 
-void EngTeam::registerForSeason(log::Mediator* mediator) {
+void EngTeam::registerForSeason(lg::Mediator* mediator) {
     logisticsDept = mediator;
 }

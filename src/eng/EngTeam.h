@@ -12,7 +12,7 @@
 #include "../log/Mediator.h"
 
 namespace eng {
-    class EngTeam : public log::Colleague {
+    class EngTeam : public lg::Colleague {
 
     private:
         bool transparent = false;
@@ -31,7 +31,7 @@ namespace eng {
     public:
         void hireEmployees(int budget) override;
 
-        void registerForSeason(log::Mediator* mediator);
+        void registerForSeason(lg::Mediator* mediator);
 
         int buildCar(int budget);
 
@@ -43,7 +43,7 @@ namespace eng {
 
         Car *checkCarOutOfFactory(int id);
 
-        void setRiskLevel(log::RiskLevel riskLevel);
+        void setRiskLevel(lg::RiskLevel riskLevel);
 
         void toggleTransparency();
     };

@@ -87,8 +87,8 @@ add_executable(VierEenTwee
         src/log/races/RaceIterator.h
         src/log/races/RacesList.cpp
         src/log/races/RacesList.h
-        src/log/races/SetOfTyres.cpp
-        src/log/races/SetOfTyres.h
+        src/rce/pitstop/SetOfTyres.cpp
+        src/rce/pitstop/SetOfTyres.h
         src/log/transportation/Fly.cpp
         src/log/transportation/Fly.h
         src/log/transportation/Road.cpp

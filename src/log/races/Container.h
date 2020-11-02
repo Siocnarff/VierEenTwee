@@ -11,7 +11,7 @@
 #include "Tyres.h"
 
 
-namespace log {
+namespace lg {
     class ContainerState;
 
     class Container {

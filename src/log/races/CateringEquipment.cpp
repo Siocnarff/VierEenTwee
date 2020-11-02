@@ -4,7 +4,7 @@
 
 #include "CateringEquipment.h"
 
-using namespace log;
+using namespace lg;
 
 CateringEquipment::CateringEquipment() {}
 

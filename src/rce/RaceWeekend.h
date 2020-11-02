@@ -4,7 +4,7 @@
 //#include "DriverPitStop.h"
 #include "../eng/Car.h"
 //#include "../people/Pitcrew.h"
-//#include "../log/Race.h"
+//#include "../lg/Race.h"
 #include "strategy/CreateStrategy.h"
 #include "leaderboard/Leaderboard.h"
 #include "WeatherConditions.h"
@@ -23,15 +23,15 @@ namespace rce {
         CreateStrategy *strategy;
         eng::Car **car;
         ppl::Driver **driver;
-        log::Race *raceConditions;
-        log::Container *container;
+        lg::Race *raceConditions;
+        lg::Container *container;
         std::list<PitCrew *> pitcrew;
         std::string TeamName;
-        log::WeatherConditions DayWeather;
+        lg::WeatherConditions DayWeather;
         Leaderboard *team;
         //Leaderboard *driver;
         CarState **CState;
-        log::TrackComplexity TC;
+        lg::TrackComplexity TC;
         int time[2];
         int score[2];
         int speed;
@@ -42,7 +42,7 @@ namespace rce {
 
 
     public:
-        RaceWeekend(eng::Car *cars, ppl::Driver *drivers, log::Race *r, CreateStrategy *s,std::list<PitCrew *> p, log::Container *c);
+        RaceWeekend(eng::Car *cars, ppl::Driver *drivers, lg::Race *r, CreateStrategy *s, std::list<PitCrew *> p, lg::Container *c);
 
         int RacingWeekend();
 
@@ -54,9 +54,9 @@ namespace rce {
 
         void setDriver(ppl::Driver *driver, int i);
 
-        log::Container *getContainer();
+        lg::Container *getContainer();
 
-        void setContainer(log::Container *container);
+        void setContainer(lg::Container *container);
 
         std::list<PitCrew *> getPitcrew();
 
@@ -72,9 +72,9 @@ namespace rce {
 
         void setScore(int score, int i);
 
-        log::WeatherConditions getDayWeather();
+        lg::WeatherConditions getDayWeather();
 
-        void setDayWeather(log::WeatherConditions *DayWeather);
+        void setDayWeather(lg::WeatherConditions *DayWeather);
 
         rce::CarState *getCState(int i);
 

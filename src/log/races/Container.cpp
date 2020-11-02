@@ -4,7 +4,7 @@
 
 #include "Container.h"
 #include <iostream>
-using namespace log;
+using namespace lg;
 
 Container::Container() {
 }
