@@ -298,6 +298,7 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
+
 /**
  * @author Jo
  * @return RacingDept Instance

@@ -2,9 +2,10 @@
 #define RACINGDEP_H
 
 
-#include <rce/strategy/CreateStrategy.h>
-#include <rce/leaderboard/Leaderboard.h>
-#include <log/Colleague.h>
+#include <Colleague.h>
+#include <strategy/CreateStrategy.h>
+#include <races/Race.h>
+#include <leaderboard/Leaderboard.h>
 #include "PitCrew.h"
 
 namespace rce {

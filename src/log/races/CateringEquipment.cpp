@@ -23,3 +23,7 @@ CateringEquipment::CateringEquipment(std::list<std::string> insides) {
 }
 
 CateringEquipment::~CateringEquipment() = default;
+
+void CateringEquipment::print() {
+
+}

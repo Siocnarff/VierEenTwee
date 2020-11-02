@@ -1,4 +1,3 @@
-#include <ppl/specialists/Driver.h>
 #include "SimulatorWetCondition.h"
 
 namespace rce {

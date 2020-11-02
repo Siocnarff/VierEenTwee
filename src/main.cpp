@@ -5,13 +5,12 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
-#include "ppl/factories/KidnapStudent.h"
 #include <log/Logistics.h>
+#include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
 #include "pr/Doc.h"
 
-int ppl::Person::idCounter = 0;
 int pr::Doc::transparency = 0;
 
 void testBasicIntegration() {
@@ -25,8 +24,6 @@ void testBasicIntegration() {
     a->preSeasonPreparation();
     a->raceSeason();
     a->postSeasonDebrief();
-
-    delete a;
     delete engDept;
     delete racingDept;
 }
@@ -61,13 +58,17 @@ void testIterator(){
 }
 
 void testContainerPacking() {
-    auto* a = new lg::Logistics();
+    auto* log = new lg::Logistics();
+    auto* rce = new rce::RacingDep();
 
-    a->preSeasonPreparation();
+    log->registerNotifier(rce);
+
+    log->preSeasonPreparation();
 
     std::cout << "PreSeasonPrep done" << std::endl;
 
-    delete a;
+    delete log;
+    delete rce;
 
 }
 
@@ -179,8 +180,13 @@ int main () {
     */
 
   //  testContainerPacking();
+=======
+    testBasicIntegration();
 
-    testTyres();
+
+    testContainerPacking();
+
+//    testTyres();
 
 //    testIterator();
 

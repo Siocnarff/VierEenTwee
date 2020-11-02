@@ -1,5 +1,4 @@
 #include <iostream>
-#include <pr/Doc.h>
 #include "Department.h"
 #include "Safe.h"
 #include "Moderate.h"
@@ -32,7 +31,7 @@ void Department::fix(Car *car) {
     if (nextDepartment) {
         nextDepartment->fix(car);
     } else {
-        pr::Doc::summary("There are no more departments, the car has been completely fixed and stored in garage.");
+        pr::Doc::summary("There are no more departments, the car has been fixed and stored in garage.");
     }
 }
 
@@ -54,7 +53,7 @@ void Department::build(Car *car) {
     if (nextDepartment) {
         nextDepartment->build(car);
     } else {
-        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been build");
+        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been built.");
     }
 }
 
@@ -76,5 +75,30 @@ int Department::specialistsDesignComponent() {
         totalSkill += specialist->getSkillLevel();
     }
     double average = double(totalSkill) / double(teamSize);
-    return (int(average * 0.2 + double(best) * 0.8) + riskLevel->trySomethingNew()) % 100;
+    double result = int(average * 0.2 + double(best) * 0.4 + riskLevel->trySomethingNew() * 0.4);
+    if (result > 100) {
+    	result = 100;
+    } else if (result < 0) {
+		result = 0;
+    }
+    return (int)result;
+}
+
+void Department::specialistsImproveComponent(Component* component) {
+	if (!haveSpecialists()){
+		return;
+	}
+	int best = -1;
+	int teamSize = specialists.size();
+	int totalSkill = 0;
+	for (ppl::Person *specialist: specialists) {
+		if (specialist->getSkillLevel() > best) {
+			best = specialist->getSkillLevel();
+		}
+		totalSkill += specialist->getSkillLevel();
+	}
+	double average = double(totalSkill) / double(teamSize);
+	double result = int(average * 0.1 + best * 0.2 + riskLevel->trySomethingNew() * 0.7);
+	double percentage = ((100-component->quality)/100.0 > 0.05)? 0.05 : (100-component->quality)/200.0;
+	component->quality = (int)(result * percentage);
 }

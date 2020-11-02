@@ -19,6 +19,8 @@ namespace lg {
         void unpack() override;
 
         ~GarageEquipment() override;
+
+        void print() override;
     };
 }
 

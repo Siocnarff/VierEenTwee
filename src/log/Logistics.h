@@ -7,12 +7,13 @@
 
 #include <map>
 #include <vector>
-#include <transportation/TransportHandler.h>
 #include <races/RaceIterator.h>
+#include <strategy/CreateStrategy.h>
+#include <RacingDep.h>
 
 #include "Mediator.h"
 #include "../eng/EngTeam.h"
-#include "rce/RacingDep.h"
+#include "transportation/TransportHandler.h"
 
 namespace lg {
 
@@ -67,8 +68,8 @@ namespace lg {
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
         RacesList *racingCalendar;
-        vector<int> carsInSeasonIDs;
-        vector<Container *> nonEuropeanContainers; //lots of containers for non-European
+        std::vector<int> carsInSeasonIDs;
+        std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
         rce::Tyres* tyreSpecs;

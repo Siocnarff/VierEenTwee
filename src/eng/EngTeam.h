@@ -15,20 +15,24 @@ namespace eng {
     class EngTeam : public lg::Colleague {
 
     private:
-        int carIdGenerator = 0;
         Garage garage;
         BlueprintStore blueprintStore;
-        WindTunnel windTunnel;
+        WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
-        Department *department[5];
-        Risk *innovation;
+        Department *department[5] = {nullptr};
 
         void cashUpDeps(int cash);
 
     public:
+        EngTeam();
+
         void hireEmployees(int budget) override;
 
         void registerForSeason(lg::Mediator *mediator);
+
+        void resetTickets();
+
+        static int generateId();
 
         int buildCar(int budget);
 

@@ -1,5 +1,4 @@
 #include "ComponentSimulator.h"
-#include <pr/Doc.h>
 
 using namespace eng;
 
