@@ -8,20 +8,24 @@
 using namespace lg;
 
 Race::Race() {
+    static int trackID = 0;
     location = "outer space";
     complexity = Difficult;
     isInEurope = false;
     next = nullptr;
     prev = nullptr;
+    id = trackID++;
 }
 
 Race::Race(std::string loc, int comp, bool eur, int laps, Race *nextR, Race* prevR) {
+    static int trackID = 0;
     location = loc;
     complexity = computeTrackComplexity(comp);
     isInEurope = eur;
     numLaps = laps;
     next = nextR;
     prev = prevR;
+    id = trackID ++;
 }
 
 /**
@@ -92,6 +96,10 @@ Race *Race::prevRace() {
 }
 int Race::getNumLaps() {
     return numLaps;
+}
+
+int Race::getTrackID() {
+    return id;
 }
 
 /*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
