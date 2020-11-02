@@ -18,6 +18,8 @@ namespace lg {
 
         //virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
 
+        virtual void orderTyres(int* tyreOrder) = 0;
+
     public:
         friend class Colleague;
     };

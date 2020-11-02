@@ -23,12 +23,14 @@ namespace lg {
 
         virtual ~Container();
 
-        virtual rce::Tyres * unpack();
+        virtual void unpack();
 
-        void pack();
+        virtual void pack();    //Nodig om die tyres te vervang met die verweerdes
 
     protected:
         virtual void addElement(Container *);
+
+        virtual void print();
 
     };
 

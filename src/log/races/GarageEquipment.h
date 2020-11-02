@@ -16,7 +16,7 @@ namespace lg {
 
         GarageEquipment(std::list <std::string> insides);
 
-        rce::Tyres * unpack() override;
+        void unpack() override;
 
         ~GarageEquipment() override;
     };

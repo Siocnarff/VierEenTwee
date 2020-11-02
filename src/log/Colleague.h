@@ -23,6 +23,8 @@ namespace lg {
 
         void notify(bool isEuropeanRace);
 
+        void notify(int* tyreOrder);
+
         virtual void hireEmployees(int) = 0;
 
     protected:

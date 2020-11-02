@@ -43,13 +43,15 @@ namespace lg {
 
         Container *getNextNonEuropean();
 
-        void packContainers(int);
+        void packContainers();
 
-        Container* packSingleContainer(int);
+        Container* packSingleContainer();
 
         void simulateEvent(Race *);
 
         void putRacesIntoCalender();
+
+        void orderTyres(int *tyreOrder) override;
 
     private:
         rce::RacingDep *callRacingDept();

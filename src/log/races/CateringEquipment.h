@@ -14,7 +14,7 @@ namespace lg {
     public:
         CateringEquipment();
         CateringEquipment(std::list <std::string> insides);
-        rce::Tyres * unpack() override;
+        void unpack() override;
         ~CateringEquipment() override;
     };
 }
