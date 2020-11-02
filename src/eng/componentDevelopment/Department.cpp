@@ -7,6 +7,7 @@
 using namespace eng;
 
 void Department::setRiskLevel(lg::RiskLevel level) {
+    delete riskLevel;
     if (level == lg::Safe) {
         riskLevel = new Safe();
     } else if (level == lg::Moderate) {
@@ -101,4 +102,11 @@ void Department::specialistsImproveComponent(Component* component) {
 	double result = int(average * 0.1 + best * 0.2 + riskLevel->trySomethingNew() * 0.7);
 	double percentage = ((100-component->quality)/100.0 > 0.05)? 0.05 : (100-component->quality)/200.0;
 	component->quality = (int)(result * percentage);
+}
+
+Department::~Department() {
+    for (ppl::Person* p : specialists) {
+        delete p;
+    }
+    delete riskLevel;
 }

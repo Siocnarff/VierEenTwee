@@ -20,6 +20,7 @@ namespace eng {
         std::vector<ppl::Person *> specialists;
 
     protected:
+
         std::string departmentName;
 
         void buildComponentIntoCar(Car *car, Component *comp);
@@ -47,6 +48,8 @@ namespace eng {
         void topUpBudget(int cash);
 
         bool haveSpecialists();
+
+        virtual ~Department();
     };
 }
 

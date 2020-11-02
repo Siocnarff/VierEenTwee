@@ -23,6 +23,8 @@ namespace eng {
         Component* components[5] = {nullptr};
 
 	public:
+	    ~Car();
+
 	    explicit Car(int identification);
 
 	    explicit Car(Car *car);

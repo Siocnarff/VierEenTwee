@@ -20,6 +20,12 @@ EngTeam::EngTeam() {
     department[0] = new ChassisDep(department[1]);
 }
 
+EngTeam::~EngTeam() {
+    for (auto & i : department) {
+        delete i;
+    }
+}
+
 void EngTeam::hireEmployees(int budget) {
     pr::Doc::summary("Engineering team is hiring new employees...");
     std::string secretJobs[6] = {
@@ -120,12 +126,12 @@ void EngTeam::cashUpDeps(int cash) {
     }
 }
 
+
 void EngTeam::setRiskLevel(lg::RiskLevel riskLevel) {
     for (auto &dep : department) {
         dep->setRiskLevel(riskLevel);
     }
 }
-
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);

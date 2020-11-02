@@ -39,3 +39,10 @@ Car *Garage::getPrototype() {
     }
     return nullptr;
 }
+
+Garage::~Garage() {
+    for (Car * c : car) {
+        delete c;
+        c = nullptr;
+    }
+}

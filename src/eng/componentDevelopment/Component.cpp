@@ -3,16 +3,16 @@
 
 using namespace eng;
 
-int Component::getQualityLabel() {
+int Component::getQualityLabel() const {
 	return this->qualityLabel;
 }
 
-void Component::setQualityLabel(int qualityLabel) {
-	this->qualityLabel = qualityLabel;
+void Component::setQualityLabel(int label) {
+	this->qualityLabel = label;
 }
 
 Blueprint* Component::createBlueprint() {
-	Blueprint* blueprint = new Blueprint();
+	auto* blueprint = new Blueprint();
 	std::vector<int> state{quality, damage, qualityLabel};
 	blueprint->setState(state);
 	return blueprint;

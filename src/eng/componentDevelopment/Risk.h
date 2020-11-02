@@ -8,7 +8,9 @@ namespace eng {
 	class Risk {
 
 	public:
-		virtual int trySomethingNew() = 0;
+	    virtual ~Risk() = default;
+
+        virtual int trySomethingNew() = 0;
 	};
 }
 

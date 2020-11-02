@@ -12,6 +12,8 @@ namespace eng {
 		Car* car[20] = {nullptr};
 
 	public:
+	    ~Garage();
+
 		void storeCar(Car* car);
 
 		Car* retrieveCar(int id);
