@@ -103,13 +103,8 @@ void Department::specialistsImproveComponent(Component *component) {
     }
     double average = double(totalSkill) / double(teamSize);
     double result = int(average * 0.2 + best * 0.4 + riskLevel->trySomethingNew() * 0.4);
-	std::cout << "Average:" << average << std::endl;
-	std::cout << "Best:" << best << std::endl;
-	std::cout << "Result:" << result << std::endl;
     double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.05 : (100 - component->quality) / 200.0;
-    std::cout << "Percentage:" << percentage << std::endl;
     component->quality += (int) (result * percentage);
-    std::cout << "-----------------------Here is the component quality after the improvement was made:" << component->quality << std::endl;
 }
 
 Department::~Department() {
