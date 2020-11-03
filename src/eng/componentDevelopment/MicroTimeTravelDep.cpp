@@ -23,11 +23,11 @@ void MicroTimeTravelDep::fix(Car *car) {
 			pr::Doc::detail(std::to_string(damage));
 			pr::Doc::detail("% damage.\n");
 		}
-        Department::fix(car);
 	} else {
 		pr::Doc::detail(departmentName);
 		pr::Doc::detail(" does not have any employees and does nothing.\n");
 	}
+	Department::fix(car);
 }
 
 void MicroTimeTravelDep::update(Component* component) {
