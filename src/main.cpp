@@ -10,7 +10,7 @@
 #include "rce/RacingDep.h"
 #include "pr/Doc.h"
 
-int pr::Doc::transparency = 1;
+int pr::Doc::transparency = 0;
 
 int main() {
 

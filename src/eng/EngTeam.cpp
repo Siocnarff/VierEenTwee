@@ -115,9 +115,12 @@ int EngTeam::buildCar(int budget) {
 	windTunnel.testCar(car);
     garage.storeCar(car);
     car->print();
+    int transparency = pr::Doc::transparency;
     for (int i = 0; i < 50; ++i) {
         improveCar(id, true);
+        pr::Doc::transparency = -1;
     }
+    pr::Doc::transparency = transparency;
     return id;
 }
 

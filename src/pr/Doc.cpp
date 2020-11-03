@@ -12,7 +12,7 @@ void Doc::setTransparency(int outOf2) {
 }
 
 void Doc::summary(const std::string& message) {
-    if (Doc::transparency > 0) {
+    if (Doc::transparency >= 0) {
         std::cout << message;
     }
 }
