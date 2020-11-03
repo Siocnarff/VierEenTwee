@@ -14,10 +14,6 @@ namespace eng {
 	friend class WindTunnel;
 
 	private:
-        /**
-         * ranges between 0 - 100
-         */
-        int damage = 0;
         ppl::Driver* driver = nullptr;
         int id = 0;
         Component* components[5];

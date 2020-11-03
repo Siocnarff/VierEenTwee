@@ -16,21 +16,35 @@ int main() {
 
     auto* e = new eng::EngTeam();
 
-    e->hireEmployees(10);
+    e->hireEmployees(50);
 
     e->setRiskLevel(lg::Aggressive);
 
 
-    int id = e->buildCar(10);
+    int id = e->buildCar(50);
 
     //pr::Doc::setTransparency(1);
-    int id2 = e->buildCar(10);
+    int id2 = e->buildCar(50);
     eng::Car* car = e->checkCarOutOfFactory(id);
     car->print();
 
     eng::Car* car2 = e->checkCarOutOfFactory(id2);
     car2->print();
 
+    car2->setDamage(50);
+
+    car2->print();
+
+    e->carArrivesAtFactory(car2);
+    e->carArrivesAtFactory(car);
+
+    e->fixCar(id2);
+
+    eng::Car* fixedCar = e->checkCarOutOfFactory(id2);
+
+    fixedCar->print();
+
+    delete fixedCar;
 
 
 

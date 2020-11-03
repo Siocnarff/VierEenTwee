@@ -14,7 +14,6 @@ eng::Car::Car(int identification) {
 Car::Car(Car *car) {
     id = car->id;
     driver = car->driver;
-    damage = car->damage;
     for (int i = 0; i < 5; ++i) {
     	if (car->components[i]) {
 			components[i] = car->components[i]->clone();
@@ -60,11 +59,36 @@ int Car::getHandling() const {
 }
 
 int Car::getDamage() const {
-    return damage;
+    int damage = 0;
+    for (auto component : components) {
+        if (component) {
+            damage += component->damage;
+        }
+    }
+    return damage/5;
 }
 
 void Car::setDamage(int carDamage) {
-    damage = carDamage;
+    carDamage = carDamage*5;
+    for (auto & component : components) {
+        if(component) {
+            component->damage = 0;
+        }
+    }
+    while (carDamage > 0) {
+        for (auto & component : components) {
+            if (component) {
+                int d = rand() % 101;
+                if(carDamage < d) {
+                    d = carDamage;
+                }
+                if (component->damage + d <= 100) {
+                    carDamage -= d;
+                    component->damage += d;
+                }
+            }
+        }
+    }
 }
 
 ppl::Driver *Car::getDriver() {
@@ -80,7 +104,7 @@ void Car::print() {
     pr::Doc::summary(std::to_string(id));
     pr::Doc::summary(" Driver=" + (driver ? driver->getName() : "None") + "\n");
     pr::Doc::detail("  Detail:");
-    pr::Doc::detail(" Damage=" + std::to_string(damage));
+    pr::Doc::detail(" Damage=" + std::to_string(getDamage()));
     pr::Doc::detail(" Speed=" + std::to_string(getSpeed()));
     pr::Doc::detail(" Handling=" + std::to_string(getHandling()) + "\n");
     pr::Doc::detail("    Components:\n");
