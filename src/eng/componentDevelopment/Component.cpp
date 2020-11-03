@@ -33,3 +33,11 @@ Component::Component(Component *component) {
 Component::Component(int quality) {
     this->quality = quality;
 }
+
+int Component::getDamage() const {
+	return damage;
+}
+
+void Component::setDamage(int d) {
+	damage = d;
+}
