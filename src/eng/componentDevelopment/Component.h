@@ -41,6 +41,8 @@ namespace eng {
         virtual int getId() = 0;
 
         int getDamage() const;
+
+        void setDamage(int);
     };
 }
 

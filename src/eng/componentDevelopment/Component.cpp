@@ -37,3 +37,7 @@ Component::Component(int quality) {
 int Component::getDamage() const {
 	return damage;
 }
+
+void Component::setDamage(int d) {
+	damage = d;
+}
