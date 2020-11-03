@@ -6,12 +6,13 @@
 namespace ppl {
 	class Person {
 	private:
-        static int idCounter;   //  initialized to zero below this class definition
 		std::string name;
 		std::string jobDescription;
 		bool degree;
 		int skillLevel;
 		int id;
+
+        static int generateId();
 
 	public:
 		Person(std::string name, bool hasDegree, int skillLevel);
@@ -26,7 +27,7 @@ namespace ppl {
 
 		int getSkillLevel() const;
 
-		void printResume();
+		std::string getResume();
 
 		int getId() const;
 

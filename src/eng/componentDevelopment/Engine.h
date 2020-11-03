@@ -9,9 +9,13 @@ namespace eng {
         explicit Engine(Component *toClone);
 
     public:
+        explicit Engine(int quality);
+
         void print() final;
 
         Component *clone() final;
+
+        int getId() final;
     };
 }
 #endif

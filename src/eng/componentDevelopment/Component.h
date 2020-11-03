@@ -3,10 +3,16 @@
 
 #include "Blueprint.h"
 #include <iostream>
+#include <vector>
+#include "../../pr/Doc.h"
 
 namespace eng {
 	class Component {
 	friend class Car;
+	friend class Department;
+	friend class ComponentSimulator;
+	friend class WindTunnel;
+
 	private:
 		int quality = 0;
 		int damage = 0;
@@ -15,10 +21,14 @@ namespace eng {
     protected:
         explicit Component(Component* component);
 
-    public:
-		int getQualityLabel();
+        explicit Component(int quality);
 
-		void setQualityLabel(int qualityLabel);
+    public:
+	    virtual ~Component() = default;
+
+		int getQualityLabel() const;
+
+		void setQualityLabel(int label);
 
 		virtual void print() = 0;
 
@@ -27,6 +37,8 @@ namespace eng {
 		void rebuildComponent(Blueprint* plan);
 
         virtual Component *clone() = 0;
+
+        virtual int getId() = 0;
     };
 }
 

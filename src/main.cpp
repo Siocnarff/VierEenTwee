@@ -5,64 +5,59 @@
 #include <iostream>
 #include "factories/HireProfessional.h"
 #include <factories/HireAmateur.h>
-#include <log/Logistics.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
-#include "log/RacingDept.h"
+#include "rce/RacingDep.h"
+#include "pr/Doc.h"
 
-int ppl::Person::idCounter = 0;
+int pr::Doc::transparency = 0;
 
-using namespace eng;
+int main() {
 
-int main () {
-    /*EngTeam engTeam;
-    engTeam.toggleTransparency();
-    engTeam.hireEmployees(49);*/
+    auto* e = new eng::EngTeam();
 
-    /*auto** factories = new ppl::HumanResources*[3];
-    factories[0] = new ppl::KidnapStudent();
-    factories[1] = new ppl::HireAmateur();
-    factories[2] = new ppl::HireProfessional();
+    e->hireEmployees(100);
 
-    std::string jobs[7]  =  {"Draw cars",
-                             "Clean things",
-                             "Make coffee",
-                             "Weld parts together",
-                             "Complain",
-                             "Count bolts",
-                             "Deep sea diver"};
+    e->setRiskLevel(lg::Moderate);
 
-    auto** people = new ppl::Person*[15];
-    for (int i = 0; i < 5; ++i) {
-        people[i] = factories[0]->hire(jobs[random() % 7]);
-        people[i + 5] = factories[1]->hire(jobs[random() % 7]);
-        people[i + 10] = factories[2]->hire(jobs[random() % 7]);
-    }
 
-    for (int i = 0; i < 15; ++i) {
-        people[i]->printResume();
-        std::cout << std::endl;
-    }*/
-//    testBasicIntegration();
+    int id = e->buildCar(50);
 
-    auto *racingDept = new log::RacingDept();
-    auto *engTeam = new eng::EngTeam();
-    auto *log = new log::Logistics;
+    pr::Doc::setTransparency(1);
+    int id2 = e->buildCar(80);
+    eng::Car* car = e->checkCarOutOfFactory(id);
+    car->print();
 
-    log->registerNotifier(racingDept);
-    log->registerNotifier(engTeam);
+    eng::Car* car2 = e->checkCarOutOfFactory(id2);
+    car2->print();
 
-    engTeam->toggleTransparency();
-    log->toggleVerbose();
-    log->doYearPlanning();
+    car2->setDamage(50);
 
-    log->toggleVerbose();
-    log->raceSeason();
+    car2->print();
+
+    e->carArrivesAtFactory(car2);
+    e->carArrivesAtFactory(car);
+
+    e->fixCar(id2);
+
+    eng::Car* fixedCar = e->checkCarOutOfFactory(id2);
+
+    fixedCar->print();
+
+    delete fixedCar;
 
 
 
-//    testIterator();
 
-//    testContainerState();
-
+//    auto* racingDept = new rce::RacingDep();
+/*
+    a->registerNotifier(racingDept);
+    a->registerNotifier(engDept);
+    a->doYearPlanning();
+    a->preSeasonPreparation();
+    a->raceSeason();
+    a->postSeasonDebrief();
+*/
+    delete e;
+//    delete racingDept;
 }

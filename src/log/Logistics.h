@@ -7,20 +7,21 @@
 
 #include <map>
 #include <vector>
-#include <transportation/TransportHandler.h>
 #include <races/RaceIterator.h>
+#include <strategy/CreateStrategy.h>
+#include <RacingDep.h>
 
 #include "Mediator.h"
-#include "RacingDept.h"
 #include "../eng/EngTeam.h"
+#include "transportation/TransportHandler.h"
 
-namespace log {
+namespace lg {
 
     class Logistics : public Mediator {
     public:
         Logistics();
 
-        eng::EngTeam registerNotifier(Colleague *);
+        void registerNotifier(Colleague *);
 
         void doYearPlanning();
 
@@ -37,7 +38,7 @@ namespace log {
 
         void containerHasBeenPacked(Container *) override;
 
-        void requestContainerStateChange(bool isEuropeanRace) override;
+        //void requestContainerStateChange(bool isEuropeanRace) override;
 
         Container *getEuropeanContainer();
 
@@ -45,27 +46,30 @@ namespace log {
 
         void packContainers();
 
-        void SimulateEvent(Race *);
+        Container* packSingleContainer();
+
+        void simulateEvent(Race *);
 
         void putRacesIntoCalender();
 
-    private:
-        RacingDept *callRacingDept();
+        void orderTyres(int *tyreOrder) override;
 
+    private:
+        rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
-        map<char, Colleague *> departments;
+        std::map<char, Colleague *> departments;
         ppl::Driver *driver;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
         RacesList *racingCalendar;
-        vector<int> carsInSeasonIDs;
-        vector<Container *> nonEuropeanContainers; //lots of containers for non-European
+        std::vector<int> carsInSeasonIDs;
+        std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
-        Strategy *currentTeamStrategy;
+        rce::CreateStrategy *currentTeamStrategy;
 
-        int seasonPointTally;
+        int seasonPointTally[2];
         int budget;
 
         bool verbose = true;

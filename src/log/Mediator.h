@@ -8,7 +8,7 @@
 #include "Car.h"
 #include "races/Container.h"
 
-namespace log {
+namespace lg {
 
     class Mediator {
     protected:
@@ -16,7 +16,9 @@ namespace log {
 
         virtual void containerHasBeenPacked(Container *) = 0;
 
-        virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
+        //virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
+
+        virtual void orderTyres(int* tyreOrder) = 0;
 
     public:
         friend class Colleague;

@@ -9,7 +9,7 @@
 #include "Race.h"
 #include "RaceIterator.h"
 
-namespace log {
+namespace lg {
 //class RacesList : public Aggregate {
     class RacesList {
         friend class RaceIterator;
@@ -30,8 +30,13 @@ namespace log {
 
         RaceIterator end();
 
+        int getNumRaces();
+
+        void printList();
+
     private:
         Race *headRace; //ie. head
+        int numRaces;
     };
 
 }

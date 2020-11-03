@@ -8,12 +8,12 @@
 #include "Car.h"
 #include "races/Container.h"
 //#include <iostream> //both eng- and racing- need it
-namespace log {
+namespace lg {
     class Mediator;
 
     class Colleague {
     public:
-        ~Colleague();
+        virtual ~Colleague();
 
         void addObserver(Mediator *obs);
 
@@ -23,10 +23,12 @@ namespace log {
 
         void notify(bool isEuropeanRace);
 
+        void notify(int* tyreOrder);
+
         virtual void hireEmployees(int) = 0;
 
     protected:
-        Mediator *logistcsDep;
+        Mediator *logisticsDept;
     };
 
 }

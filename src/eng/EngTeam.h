@@ -12,26 +12,29 @@
 #include "../log/Mediator.h"
 
 namespace eng {
-    class EngTeam : public log::Colleague {
+    class EngTeam final : public lg::Colleague {
 
     private:
-        bool transparent = false;
-        int carIdGenerator = 0;
         Garage garage;
-        BlueprintStore blueprint;
-        WindTunnel windTunnel;
+        BlueprintStore blueprintStore;
+        WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
-        Department *department[5];
-        Risk *innovation;
+        Department *department[5] = {nullptr};
 
         void cashUpDeps(int cash);
 
-        void print(const std::string& message) const;
-
     public:
-        void hireEmployees(int budget) override;
+        EngTeam();
 
-        void registerForSeason(log::Mediator* mediator);
+        ~EngTeam() final;
+
+        void hireEmployees(int budget) final;
+
+        void registerForSeason(lg::Mediator *mediator);
+
+        void resetTickets();
+
+        static int generateId();
 
         int buildCar(int budget);
 
@@ -39,13 +42,11 @@ namespace eng {
 
         void fixCar(int id);
 
-        void improveCar(int id);
+        void improveCar(int id, bool usingWindTunnel);
 
         Car *checkCarOutOfFactory(int id);
 
-        void setRiskLevel(log::RiskLevel riskLevel);
-
-        void toggleTransparency();
+        void setRiskLevel(lg::RiskLevel riskLevel);
     };
 }
 

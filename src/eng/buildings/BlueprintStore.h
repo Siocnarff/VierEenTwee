@@ -7,9 +7,11 @@ namespace eng {
 	class BlueprintStore {
 
 	private:
-		Blueprint* blueprint;
+		Blueprint* blueprint = nullptr;
 
 	public:
+	    ~BlueprintStore();
+
 		Blueprint* getBlueprint();
 
 		void setBlueprint(Blueprint* blueprint);

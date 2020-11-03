@@ -3,7 +3,7 @@
 //
 
 #include "Fly.h"
-using namespace log;
+using namespace lg;
 
 void Fly::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     if (car) {

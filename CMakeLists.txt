@@ -3,7 +3,6 @@ project(VierEenTwee)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(src)
 include_directories(src/eng)
 include_directories(src/eng/buildings)
 include_directories(src/eng/componentDevelopment)
@@ -14,6 +13,7 @@ include_directories(src/log/transportation)
 include_directories(src/ppl)
 include_directories(src/ppl/factories)
 include_directories(src/ppl/specialists)
+include_directories(src/pr)
 include_directories(src/rce)
 include_directories(src/rce/carState)
 include_directories(src/rce/leaderboard)
@@ -71,33 +71,24 @@ add_executable(VierEenTwee
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
-#        src/log/races/Aggregate.h
-#        src/log/races/ArrivedState.cpp
-#        src/log/races/ArrivedState.h
-#        src/log/races/BeingPackedState.cpp
-#        src/log/races/BeingPackedState.h
-#        src/log/races/Box.cpp
-#        src/log/races/Box.h
-#        src/log/races/CateringEquipment.cpp
-#        src/log/races/CateringEquipment.h
-#        src/log/races/Container.cpp
-#        src/log/races/Container.h
-#        src/log/races/ContainerState.cpp
-#        src/log/races/ContainerState.h
-#        src/log/races/GarageEquipment.cpp
-#        src/log/races/GarageEquipment.h
-#        src/log/races/InShippingState.cpp
-#        src/log/races/InShippingState.h
-#        src/log/races/Iterator.h
-#        src/log/races/main.cpp
-#        src/log/races/Race.cpp
-#        src/log/races/Race.h
-#        src/log/races/RaceIterator.cpp
-#        src/log/races/RaceIterator.h
-#        src/log/races/RacesList.cpp
-#        src/log/races/RacesList.h
-#        src/log/races/Tyres.cpp
-#        src/log/races/Tyres.h
+        src/log/races/Aggregate.h
+        src/log/races/Box.cpp
+        src/log/races/Box.h
+        src/log/races/CateringEquipment.cpp
+        src/log/races/CateringEquipment.h
+        src/log/races/Container.cpp
+        src/log/races/Container.h
+        src/log/races/GarageEquipment.cpp
+        src/log/races/GarageEquipment.h
+        src/log/races/Iterator.h
+        src/log/races/Race.cpp
+        src/log/races/Race.h
+        src/log/races/RaceIterator.cpp
+        src/log/races/RaceIterator.h
+        src/log/races/RacesList.cpp
+        src/log/races/RacesList.h
+        src/rce/pitstop/SetOfTyres.cpp
+        src/rce/pitstop/SetOfTyres.h
         src/log/transportation/Fly.cpp
         src/log/transportation/Fly.h
         src/log/transportation/Road.cpp
@@ -166,6 +157,36 @@ add_executable(VierEenTwee
         src/rce/pitstop/DriverPitStop.h
         src/rce/pitstop/Pitstop.cpp
         src/rce/pitstop/Pitstop.h
+        src/pr/Doc.cpp
+        src/pr/Doc.h
+        src/rce/carState/CarState.cpp
+        src/rce/carState/CarState.h
+        src/rce/carState/CarStateBroken.cpp
+        src/rce/carState/CarStateBroken.h
+        src/rce/carState/CarStateDamaged.cpp
+        src/rce/carState/CarStateDamaged.h
+        src/rce/carState/CarStateFullHP.cpp
+        src/rce/carState/CarStateFullHP.h
+        src/rce/leaderboard/DriverScore.cpp
+        src/rce/leaderboard/DriverScore.h
+        src/rce/leaderboard/DriversLeaderboard.cpp
+        src/rce/leaderboard/DriversLeaderboard.h
+        src/rce/leaderboard/Leaderboard.cpp
+        src/rce/leaderboard/Leaderboard.h
+        src/rce/leaderboard/Score.cpp
+        src/rce/leaderboard/Score.h
+        src/rce/leaderboard/TeamLeaderboard.cpp
+        src/rce/leaderboard/TeamLeaderboard.h
+        src/rce/pitstop/ChangeTyre.cpp
+        src/rce/pitstop/ChangeTyre.h
+        src/rce/pitstop/DriverPitStop.cpp
+        src/rce/pitstop/DriverPitStop.h
+        src/rce/pitstop/PitCrew.cpp
+        src/rce/pitstop/PitCrew.h
+        src/rce/pitstop/Pitstop.cpp
+        src/rce/pitstop/Pitstop.h
+        src/rce/pitstop/Tyres.cpp
+        src/rce/pitstop/Tyres.h
         src/rce/simulator/Simulator.cpp
         src/rce/simulator/Simulator.h
         src/rce/simulator/SimulatorHotCondition.cpp
@@ -174,16 +195,18 @@ add_executable(VierEenTwee
         src/rce/simulator/SimulatorNormalCondition.h
         src/rce/simulator/SimulatorWetCondition.cpp
         src/rce/simulator/SimulatorWetCondition.h
+        src/rce/strategy/AggressiveStrategy.cpp
         src/rce/strategy/AggressiveStrategy.h
-        src/rce/strategy/AggressiveStrategy.h
-        src/rce/strategy/ModerateStrategy.h
-        src/rce/strategy/ModerateStrategy.cpp
-        src/rce/strategy/SafeStrategy.h
-        src/rce/strategy/SafeStrategy.cpp
-        src/rce/strategy/CreateStrategy.h
         src/rce/strategy/CreateStrategy.cpp
-#        src/rce/RaceWeekend.cpp
-#        src/rce/RaceWeekend.h
+        src/rce/strategy/CreateStrategy.h
+        src/rce/strategy/ModerateStrategy.cpp
+        src/rce/strategy/ModerateStrategy.h
+        src/rce/strategy/SafeStrategy.cpp
+        src/rce/strategy/SafeStrategy.h
+        src/rce/RaceDaysIterator.cpp
+        src/rce/RaceDaysIterator.h
+        src/rce/RaceWeekend.cpp
+        src/rce/RaceWeekend.h
         src/rce/RacingDep.cpp
         src/rce/RacingDep.h
-        src/main.cpp)
+        )

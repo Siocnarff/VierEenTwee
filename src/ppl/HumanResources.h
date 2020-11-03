@@ -10,6 +10,8 @@ namespace ppl {
     public:
         HumanResources();
 
+        virtual ~HumanResources() = default;
+
         Person *hire(std::string job);
 
     protected:
