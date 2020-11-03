@@ -1,15 +1,14 @@
-#ifndef RACING_CARSTATEDAMAGED_H
-#define RACING_CARSTATEDAMAGED_H
-#include "../eng/Car.h"
+#ifndef CARSTATEDAMAGED_H
+#define CARSTATEDAMAGED_H
 #include "CarState.h"
-//namespace racing{
-class CarStateDamaged : public CarState {
+namespace rce{
+class CarStateDamaged : public rce::CarState {
 
 
 public:
-	void handleChange(int i, int d);
+	void handleChange();
 
 	std::string getCarState();
 };
-//}
+}
 #endif

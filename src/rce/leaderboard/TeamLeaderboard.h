@@ -2,8 +2,8 @@
 #define TEAMLEADERBOARD_H
 #include <string>
 #include "Leaderboard.h"
-//namespace racing{
-class TeamLeaderboard : public Leaderboard {
+namespace rce{
+class TeamLeaderboard : public rce::Leaderboard {
 private:
 		std::string TeamName[3][10];
 		int teamresult[3][10];
@@ -17,12 +17,7 @@ public:
 	
 	void display();
 
-	void createLeaderboard(std::string DriverName1,std::string DriverName2);
-
-	//bool getdisplayLeaderboard();
-
-	//void setdisplayLeaderboard(bool b);
-	//update the team leaderboard and displaces the result
+	void createLeaderboard(std::string DriverName1,std::string DriverName2, int *score);
 };
-//}
+}
 #endif

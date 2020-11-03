@@ -1,11 +1,13 @@
 #ifndef RACING_CHANGETYRE_H
 #define RACING_CHANGETYRE_H
-namespace racing{
-class ChangeTyre : public racing::PitCrew {
 
+#include "../rce/pitstop/PitTeam.h"
+namespace rce{
+class ChangeTyre : public PitTeam
+{
 
 public:
-	void changetyres();
+	bool changetyres();
 };
 }
 #endif

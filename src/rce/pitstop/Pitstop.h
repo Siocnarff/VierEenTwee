@@ -1,28 +1,30 @@
 #ifndef RACING_PITSTOP_H
 #define RACING_PITSTOP_H
-//#include "../eng/Car.h"
-//#include "Pitcrew.h"
+#include "../eng/Car.h"
+#include "../ppl/specialists/PitCrew.h"
 //#include "Tires.h"
-#include "../people/Pitcrew.h"
-namespace racing{
-class Pitstop {
+#include <list>
+#include "../rce/pitstop/PitTeam.h"
+namespace rce{
+class Pitstop
+{
 
 private:
-	list<people::Pitcrew*> pitcrew;
-	racing::Tires* tires;
-
+	std::list<ppl::Person*> TyreChangers;
+	Tyres* tyre;
+    eng::Car* car;
+    PitTeam* PitStopTeam;
 public:
-	void addCrew(list<people::Pitcrew*> p);
+    Pitstop(eng::Car* c,Tyres* t);
 
-	void detachCrew(list<people::Pitcrew*> p);
+	void addCrew(std::list<ppl::Person*> p);
 
-	void tyres(racing::Tires* t);
+	void tyres(Tyres* t);
 
-	void notify();
+	bool stop();
 
 	void setCar(eng::Car* c);
 
-	//void race();
 };
 }
 #endif

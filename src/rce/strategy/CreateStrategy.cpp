@@ -13,7 +13,7 @@ CreateStrategy::CreateStrategy()
 	
 }
 
-int CreateStrategy::getRiskLevel() 
+log::RiskLevel CreateStrategy::getRiskLevel()
 {
 	return risklevel;
 }

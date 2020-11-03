@@ -2,8 +2,8 @@
 #define RACING_DRIVERSLEADERBOARD_H
 #include <string>
 #include "Leaderboard.h"
-//namespace racing{
-class DriversLeaderboard : public Leaderboard {
+namespace rce{
+class DriversLeaderboard : public rce::Leaderboard {
 
 private:
 	std::string driverName[20];
@@ -15,11 +15,11 @@ public:
 
 	int GetTeamScore(std::string TN);
 
-	void createLeaderboard(std::string DriverName1,std::string DriverName2);
+	void createLeaderboard(std::string DriverName1,std::string DriverName2, int *score);
 
 	void UpdateLeaderBoard(std::string TN,std::string DriverName, int Score) ;
 	//void UpdateDriverLeaderBoard(std::string driverName, int Score);
 	//used to update the indivitual scores of the driver then displays the output 
 };
-//}
+}
 #endif

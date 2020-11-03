@@ -1,11 +1,8 @@
 #include "CarStateBroken.h"
-
-void CarStateBroken::handleChange(int i, int d) {
-	setDamage(getDamage + d);
-	if(getDamage() >=90)
-	{
-		race->NotifyCar();
-	}
+#include <iostream>
+using namespace rce;
+void CarStateBroken::handleChange() {
+	std::cout << "The car is broken" << std::endl;
 }
 
 std::string CarStateBroken::getCarState() {

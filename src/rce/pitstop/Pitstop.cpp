@@ -1,31 +1,31 @@
 #include "Pitstop.h"
 
-void Pitstop::addCrew(PitCrew* crew) {
-	// TODO - implement Pitstop::addCrew
-	throw "Not yet implemented";
+#include <utility>
+using namespace rce;
+
+Pitstop::Pitstop(eng::Car *c, Tyres *t)
+{
+    car=c;
+    tyre=t;
 }
 
-void Pitstop::detachCrew(PitCrew* crew) {
-	// TODO - implement Pitstop::detachCrew
-	throw "Not yet implemented";
+void Pitstop::addCrew(std::list<ppl::Person*> p)
+{
+    TyreChangers=std::move(p);
 }
 
-void Pitstop::tyres(Tyres* t) {
-	// TODO - implement Pitstop::tyres
-	throw "Not yet implemented";
+void Pitstop::tyres(Tyres* t)
+{
+	tyre=t;
 }
 
-void Pitstop::notify() {
-	// TODO - implement Pitstop::notify
-	throw "Not yet implemented";
+bool Pitstop::stop()
+{
+    //todo see how to change tyres on the car
 }
 
-void Pitstop::setCar(Car* c) {
-	// TODO - implement Pitstop::setCar
-	throw "Not yet implemented";
+void Pitstop::setCar(eng::Car* c)
+{
+	car=c;
 }
 
-void Pitstop::race() {
-	// TODO - implement Pitstop::race
-	throw "Not yet implemented";
-}

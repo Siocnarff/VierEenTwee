@@ -1,19 +1,17 @@
 #ifndef RACING_DRIVERPITSTOP_H
 #define RACING_DRIVERPITSTOP_H
-//#include "../eng/Car.h"
-//#include "Tires.h"
+#include "../eng/Car.h"
+#include "Tyres.h"
 #include "RaceWeekend.h"
-namespace racing{
-class DriverPitStop : public racing::Pitstop {
+#include "../rce/pitstop/Pitstop.h"
+namespace rce{
+class DriverPitStop : public rce::Pitstop
+{
 
 public:
 	eng::Car* car;
+    DriverPitStop(eng::Car* c,Tyres* t);
 
-	void tyres(racing::Tires* t);
-
-	void setCar(eng::Car* car);
-
-	//void race();
 };
 }
 #endif

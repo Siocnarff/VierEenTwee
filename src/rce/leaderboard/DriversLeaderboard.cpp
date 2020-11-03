@@ -1,10 +1,7 @@
 #include "DriversLeaderboard.h"
 #include <iostream>
-/*void DriversLeaderboard::UpdateDriverLeaderBoard(String driverName, int Score) {
-	// TODO - implement DriversLeaderboard::UpdateDriverLeaderBoard
-	throw "Not yet implemented";
-}*/
 
+using namespace rce;
 DriversLeaderboard::DriversLeaderboard():Leaderboard()
 {
 
@@ -15,20 +12,25 @@ int DriversLeaderboard::GetTeamScore(std::string TN)
 	return -1;
 }
 
-void DriversLeaderboard::createLeaderboard(std::string DriverName1,std::string DriverName2)
+void DriversLeaderboard::createLeaderboard(std::string DriverName1,std::string DriverName2 , int *score )
 {
 	setdisplayLeaderboard(false);
-	std::string Drivers[18]= {"Carlo Abate","George Abecassis","Kenny Acheson","Andrea de Adamich","Philippe Adams","Walt Ader","Kurt Adolff","Fred Agabashian","Christijan Albers","Michele Alboreto","Jean Alesi","Jaime Alguersuari","Philippe Alliot","Cliff Allison","Giovanna Amati","George Amick","Red Amick","Chris Amon"};
-	for(int i =0; i< 18;i++)
+	std::string Drivers[20]= {"Carlo Abate","George Abecassis","Kenny Acheson","Andrea de Adamich","Philippe Adams","Walt Ader","Kurt Adolff","Fred Agabashian","Christijan Albers","Michele Alboreto","Jean Alesi","Jaime Alguersuari","Philippe Alliot","Cliff Allison","Giovanna Amati","George Amick","Red Amick","Chris Amon", "Neel degras", "Suan Pearson"};
+	for(int i =0; i< 20;i++)
 	{
 		driverName[i] = Drivers[i];
 	}
-	driverName[18] = DriverName1;
+	driverName[9] = DriverName1;
 	driverName[19] = DriverName2;
 	for(int i =0; i < 20;i++)
 	{
-		driverResult[i] = i;
+		driverResult[i] = score[i];
+		
 	}
+
+
+	
+	
 }
 void DriversLeaderboard::UpdateLeaderBoard(std::string TN,std::string DriverName, int Score) {
 	int i;
@@ -38,44 +40,37 @@ void DriversLeaderboard::UpdateLeaderBoard(std::string TN,std::string DriverName
 		{
 			driverResult[i] = Score;
 		}
+		//std::cout << "============================================================" 	<< std::endl;
 	}
 }
 
 	
 void DriversLeaderboard::display()
 {
-	int array[10];
+bool array[20];
+	for(int i = 0; i < 20; i++)
+	{
+		array[i] = false;
+	}
+	int largepos = 0;
 	int largest = 0;
-	int big = 101;
-	int count = 0;
 	int position =1;
 	if(getdisplayLeaderboard()== true){
 	std::cout << "Driver Leaderboard"<< std::endl<<std::endl;
-	for(int j = 0; j < 20 ; j++){
-		for(int i =0;i< 20;i++)
-		{
-			if(largest < driverResult[i] && driverResult[i] < big)
+	for(int i = 0; i < 20; i ++)
+	{
+		for(int n = 0; n < 20; n++){
+			if(largest <= driverResult[n] && array[n] != true)
 			{
-				largest = driverResult[i];
-			}
-		
-		}
-		for(int i =0;i< 20;i++)
-		{
-			if(largest == driverResult[i])
-			{
-				array[count] =i; 
-				count++;
+					largest = driverResult[n];
+					largepos = n;
 			}
 		}
-		for(int i =0;i< count;i++)
-		{
-			std::cout << "#" << position << "	" << driverName[array[i]] << ":			"<< largest<< std::endl;
-		}
-		big = largest;
-		largest = 0;
-		count= 0;
+		std::cout << "#" << position << "	" << driverName[largepos] << ":			"<< driverResult[largepos]<< std::endl;
+		array[largepos] = true;
 		position++;
+		largest = 0;
 		}
+		
 	}
 }

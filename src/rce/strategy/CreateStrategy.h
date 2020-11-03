@@ -29,7 +29,7 @@ namespace rce {
 
         void SetStratName(std::string s);
 
-        int getRiskLevel();
+        log::RiskLevel getRiskLevel();
 
         int *getTyres();
 

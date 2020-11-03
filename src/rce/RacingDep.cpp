@@ -1,10 +1,20 @@
 #include "RacingDep.h"
+
+#include <utility>
 using namespace rce;
 
 void RacingDep::HireEmployees(int b)
 {
-	// TODO - implement RacingDep::HireWorker
-	throw "Not yet implemented";
+    ppl::HirePitCrew *PitCrewFactory=new ppl::HirePitCrew();
+	ppl::HireStrategist *StratFactory=new ppl::HireStrategist();
+    for (int i = 0; i <2 ; ++i)
+    {
+        Strategist.push_back(StratFactory->source("racing strategist"));
+    }
+    for (int i = 0; i <b ; ++i)
+    {
+        pitcrew.push_back(PitCrewFactory->source("pitcrew member"));
+    }
 }
 
 CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
@@ -24,6 +34,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 			tyre[1]=2;
 			tyre[2]=0;
 			strategy=new SafeStrategy(2,tyre,risk);
+			notify(tyre);
 			return strategy->execute();
 	}
 	else if(budget>=25 && budget<50)
@@ -33,6 +44,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
         tyre[1]=3;
         tyre[2]=0;
         strategy=new ModerateStrategy(2,tyre,risk);
+        notify(tyre);
         return strategy->execute();
 	}
 	else
@@ -42,6 +54,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 		tyre[1]=2;
 		tyre[2]=1;
 		strategy=new AggressiveStrategy(2,tyre,risk);
+        notify(tyre);
 		return strategy->execute();
 	}
 }
@@ -128,22 +141,14 @@ ppl::Driver* trainDriver(ppl::Driver *driver, int time, log::TrackComplexity t)
         return driver;
 }
 
-void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, Race* r, Container* con)
+void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, Container* con)
 {
-	// TODO - implement RacingDep::preRaceArrival
-	throw "Not yet implemented";
-}
-
-int RacingDep::RacingWeekend()
-{
-	// TODO - implement RacingDep::Race
-	throw "Not yet implemented";
+	// TODO unpack container
 }
 
 void RacingDep::postRacePackUp()
 {
-	// TODO - implement RacingDep::postRacePackUp
-	throw "Not yet implemented";
+	// TODO - pack container -- do we need to send anything?
 }
 
 CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
@@ -160,6 +165,7 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
         tyre[1]=2;
         tyre[2]=0;
         strategy=new SafeStrategy(2,tyre,risk);
+        notify(tyre);
         return strategy->execute();
     }
     else if(risk==log::Moderate)
@@ -168,6 +174,7 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
         tyre[1]=3;
         tyre[2]=0;
         strategy=new ModerateStrategy(2,tyre,risk);
+        notify(tyre);
         return strategy->execute();
     }
     else
@@ -176,6 +183,7 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
         tyre[1]=2;
         tyre[2]=1;
         strategy=new AggressiveStrategy(2,tyre,risk);
+        notify(tyre);
         return strategy->execute();
     }
 }
@@ -183,68 +191,59 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
 void RacingDep::registerForSeason(Observer* logisticsDept)
 {
 	// TODO - implement RacingDep::registerForSeason
-	throw "Not yet implemented";
 }
 
-Leaderboard* RacingDep::getResults()
-{
-	// TODO - implement RacingDep::getResults
-	throw "Not yet implemented";
-}
-
-Race* RacingDep::getRace()
+log::Race* RacingDep::getRace()
 {
 	return this->race;
 }
 
-void RacingDep::setResult(int result)
-{
-	// TODO - implement RacingDep::setResult
-	throw "Not yet implemented";
-}
-
-int RacingDep::getResult()
-{
-	// TODO - implement RacingDep::getResult
-	throw "Not yet implemented";
-}
-
 std::string RacingDep::getTeamName()
 {
-	// TODO - implement RacingDep::getTeamName
-	throw "Not yet implemented";
+    return TeamName;
 }
 
 void RacingDep::setTeamName(std::string TeamName)
 {
-	// TODO - implement RacingDep::setTeamName
-	throw "Not yet implemented";
+	this->TeamName=std::move(TeamName);
 }
 
-std::list<ppl::Person*> RacingDep::getStategist()
+std::list<ppl::Person*> RacingDep::getStrategist()
 {
-	// TODO - implement RacingDep::getStategist
-	throw "Not yet implemented";
+    return Strategist;
 }
 
-void RacingDep::setStategist(std::list<ppl::Person*> Stategist)
+void RacingDep::setStrategist(std::list<ppl::Person*> Strategist)
 {
-	// TODO - implement RacingDep::setStategist
-	throw "Not yet implemented";
+    this->Strategist=std::move(Strategist);
 }
 
 std::list<ppl::Person*> RacingDep::getPitcrew()
 {
-	return this->pitcrew;
+	return pitcrew;
 }
 
 void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
 {
-	this->pitcrew = pitcrew;
+	//
 }
 
-void RacingDep::SetCarAfterRace()
+void RacingDep::SetCarAfterRace(eng::Car* c)
 {
-	// TODO - implement RacingDep::SetCarAfterRace
-	throw "Not yet implemented";
+	car=c;// todo double check
+}
+
+int * RacingDep::Race()
+{
+    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
+    int * Score = racingweekend->RacingWeekend();
+    delete racingweekend;
+    CarContainer->pack();
+    return Score;
+    //ToDo final stuff for array
+}
+
+int * RacingDep::getFinalScore()
+{
+    return lead[0]->getFinalScore();
 }

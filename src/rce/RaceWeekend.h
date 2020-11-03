@@ -1,67 +1,77 @@
-#ifndef RACING_RACEWEEKEND_H
-#define RACING_RACEWEEKEND_H
-#include "../racing/CarState.h"
-#include "../racing/CarStateBroken.h"
-#include "../racing/CarStateDamaged.h"
-#include "../racing/CarStateFullHP.h"
+#ifndef RCE_RACEWEEKEND_H
+#define RCE_RACEWEEKEND_H
+#include "CarState.h"
+#include "CarStateBroken.h"
+#include "CarStateDamaged.h"
+#include "CarStateFullHP.h"
 //#include "DriverPitStop.h"
-#include "../people/Driver.h"
-#include "../eng/Car.h"
+//#include "../people/Driver.h"
+#include "Driver.h"
+#include "Race.h"
+#include "Car.h"
+//#include "../eng/Car.h"
 //#include "../people/Pitcrew.h"
 //#include "../log/Race.h"
-#include "../racing/strategy/CreateStrategy.h"
-#include "../racing/Leaderboard.h"
+//#include "../racing/strategy/CreateStrategy.h"
+//#include "../racing/Leaderboard.h"
 #include "WeatherConditions.h"
 #include "TrackComplexity.h"
+#include "RiskLevel.h"
 #include "Leaderboard.h"
+#include "DriversLeaderboard.h"
+#include "TeamLeaderboard.h"
+#include "Container.h"
 #include <string>
-namespace racing{
-class RaceWeekend {
+#include "Tyres.h"
+#include <list>
+//enum RiskLevel {	Safe, Moderate, Aggressive};
+namespace rce{
+
+class RaceWeekend: public lg::Colleague {
 
 private:
 	CreateStrategy* strategy;
-	Car** car;
-	Driver** driver;
-	Race* raceConditions;
-	Container* container;
-	list<Pitcrew*> pitcrew;
+	eng::Car** car;
+	ppl::Driver** driver;
+	lg::Race* raceConditions;
+	rce::Pitstop ** pitstop;
+	list<ppl::Pitcrew*> pitcrew;
 	std::string TeamName;
-	WeatherConditions DayWeather;
-	Leaderboard * team;
-	Leaderboard * driver;
+	lg::WeatherConditions DayWeather;
+	Leaderboard ** lead;
 	CarState** CState;
-	TrackComplexity TC;
+	lg::TrackComplexity TC;
 	int time[2];
 	int score[2];
+	int Damage[2];
 	int speed;
-	int handling;
+	int handling[2];
 	int xp;
 	bool hometrack;
 	int trackID;
+	bool brokenstate[2];
+	Tyres * tyre;
+	bool tyresleft[2];
 	
 
 public:
-	RaceWeekend(eng::Car* cars, people::Driver* drivers, log::Race* r, strategy::CreateStategy* s, list<people::Pitcrew*> p, log::Container* c);
+	RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, rce::CreateStategy* s, list<ppl::Pitcrew*> p, Tyres* t, Leaderboard ** l);
 
-	int RacingWeekend();
+	int * RacingWeekend();
 
 	eng::Car* getCar(int i);
 
 	void setCar(eng::Car* car, int i);
 
-	Driver* getDriver(int i);
+	ppl::Driver* getDriver(int i);
 
-	void setDriver(people::Driver* driver, int i);
+	void setDriver(ppl::Driver* driver, int i);
 
-	log::Container* getContainer();
+	list<ppl::Pitcrew*> getPitcrew();
 
-	void setContainer(log::Container* container);
+	void setPitcrew(list<ppl::Pitcrew*> pitcrew);
 
-	list<people::Pitcrew*> getPitcrew();
-
-	void setPitcrew(list<people::Pitcrew*> pitcrew);
-
-	void notifyCarState(int i);
+	void getCarnotify(int i);
 
 	int getTime(int i);
 
@@ -71,15 +81,26 @@ public:
 
 	void setScore(int score, int i);
 
-	log::WeatherConditions* getDayWeather();
+	lg::WeatherConditions getDayWeather();
 
-	void setDayWeather(log::WeatherConditions* DayWeather);
+	void setDayWeather();
 
-	racing::CarState* getCState(int i);
+	CarState* getCState(int i);
 
-	void setCState(racing::CarState* CState, int i);
+	void setCState(CarState* CState, int i);
 	
 	void deel_Damage(int i, int d);
+	
+	int getDamage(int i);
+	
+	void setDamage(int damage, int i);
+	
+	lg::RiskLevel getRiskLevel();
+	
+	std::string getState(int i);
+	
+	void ChangeState(int i);
+	
 };
 }
 #endif

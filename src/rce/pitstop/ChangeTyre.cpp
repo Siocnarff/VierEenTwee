@@ -1,6 +1,6 @@
 #include "ChangeTyre.h"
-
-void ChangeTyre::changetyres() {
-	// TODO - implement ChangeTyre::changetyres
-	throw "Not yet implemented";
+using namespace rce;
+bool ChangeTyre::changetyres()
+{
+   //todo see how to change tyres on the car
 }

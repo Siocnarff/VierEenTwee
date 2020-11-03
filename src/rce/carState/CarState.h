@@ -1,27 +1,20 @@
-#ifndef RACING_CARSTATE_H
-#define RACING_CARSTATE_H
-#include "../eng/Car.h"
-namespace racing{
+#ifndef CARSTATE_H
+#define CARSTATE_H
+#include <string>
+namespace rce{
 class CarState {
-
-private:
-	int damage;
-	int car;
+	private:
+		CarState* carState;
 	
 public:
-	RaceWeekend * race;
-
-	CarState(RaceWeekend * r);
-	
-	virtual void handleChange(int i, int d) = 0;
+	virtual void handleChange() = 0;
 
 	virtual std::string getCarState()=0;
 
-	int getDamage();
+	CarState * getState();
 
-	void setDamage(int damage);
+	void setCarState(CarState * c);
 
-	void Deal_damage(int d);
 };
 }
 #endif

@@ -6,15 +6,16 @@
 #include "../rce/simulator/SimulatorNormalCondition.h"
 #include "../rce/simulator/SimulatorWetCondition.h"
 
-#include "../log/RacingDept.h"
-
+#include "../log/races/Race.h"
 #include "../rce/RaceWeekend.h"
 
 #include "../ppl/specialists/Driver.h"
+#include "../ppl/specialists/PitCrew.h"
+#include "../ppl/specialists/Strategist.h"
 
 #include "../eng/Car.h"
 
-//#include "../rce/leaderboard/Leaderboard.h"
+#include "../rce/leaderboard/Leaderboard.h"
 
 #include "../rce/strategy/CreateStrategy.h"
 #include "../rce/strategy/SafeStrategy.h"
@@ -24,6 +25,9 @@
 #include "../log/enums/RiskLevel.h"
 #include "../log/enums/WeatherConditions.h"
 #include "../log/enums/TrackComplexity.h"
+
+#include "HirePitCrew.h"
+#include "HireStrategist.h"
 
 #include "../log/Colleague.h"
 #include <string>
@@ -36,25 +40,22 @@ namespace rce
     private:
         log::RiskLevel risklevel;
         int budget;
-        Race *race;
-        int results;
+        log::Race *race;
+        rce::Leaderboard ** lead;
         CreateStrategy *strategy;
         log::Container *CarContainer;
         std::string TeamName;
-        std::list<ppl::Strategist *> Stategist;
-        std::list<ppl::Pitcrew *> pitcrew;
-        eng::Car *car;
+        std::list<ppl::Person*> Strategist;
+        std::list<ppl::Person*> pitcrew;
+        eng::Car *car;//needed?
+        eng::Car ** cars;//todo: where to get and set?
+        ppl::Driver **drivers;//todo: where to get and set?
 
-// / ppl::Driver array of size 2?
-// / car array of size 2? 
-// / different strategies for each ppl::Driver and car?
     public:
         void HireEmployees(int b);
-        CreateStrategy *PlanSeasonStrategy(int budget);//weather
-        void preRaceArrival(eng::Car *c, ppl::Driver *d, Race *r, Container *con);
-        int RacingWeekend();// why is it an int?
+        CreateStrategy *PlanSeasonStrategy(int budget);
+        void preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, Container *con);
         Container* postRacePackUp();// return the container with tires in
-
         CreateStrategy* changeStrat(log::RiskLevel risk);//used to change strat during season
         void registerForSeason(Observer *logisticsDept);// is it needed?
 
@@ -62,27 +63,27 @@ namespace rce
         ppl::Driver* trainDriver(ppl::Driver *, int time, log::TrackComplexity);
         ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions weather, log::TrackComplexity trackDifficulty);
 
-        Leaderboard *getResults();
+        int * Race();
 
         void setResult(int result);
 
-        int getResult();// needed?
-
-        Race *getRace();
+        log::Race *getRace();
 
         std::string getTeamName();
 
         void setTeamName(std::string TeamName);
 
-        void SetCarAfterRace();
+        void SetCarAfterRace(eng::Car* c);
 
-        std::list<ppl::Person *> getStategist();
+        std::list<ppl::Person *> getStrategist();
 
-        void setStategist(std::list<ppl::Person *> Stategist);
+        void setStrategist(std::list<ppl::Person*> Strategist);
 
         std::list<ppl::Person *> getPitcrew();
 
         void setPitcrew(std::list<ppl::Person *> pitcrew);
+
+        int * getFinalScore();
     };
 }
 #endif
