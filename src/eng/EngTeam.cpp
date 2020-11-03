@@ -90,6 +90,7 @@ void EngTeam::hireEmployees(int budget) {
         department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
         department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
+    delete humanResources;
 }
 
 void EngTeam::registerForSeason(lg::Mediator *mediator) {

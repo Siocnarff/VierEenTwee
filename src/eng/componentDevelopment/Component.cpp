@@ -22,6 +22,7 @@ void Component::rebuildComponent(Blueprint* plan) {
 	quality = plan->getState()[0];
 	damage = plan->getState()[1];
 	qualityLabel = plan->getState()[2];
+	delete plan;
 }
 
 Component::Component(Component *component) {

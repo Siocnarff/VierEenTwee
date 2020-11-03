@@ -7,7 +7,7 @@ namespace ppl {
 	class HireAmateur : public HumanResources {
 
 	public:
-		Person* source(std::string job);
+		Person* source(std::string job) override;
 	};
 }
 

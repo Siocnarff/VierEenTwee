@@ -10,6 +10,8 @@ namespace eng {
 		Blueprint* blueprint = nullptr;
 
 	public:
+	    ~BlueprintStore();
+
 		Blueprint* getBlueprint();
 
 		void setBlueprint(Blueprint* blueprint);

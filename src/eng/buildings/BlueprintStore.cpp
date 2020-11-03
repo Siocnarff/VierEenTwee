@@ -9,8 +9,10 @@ Blueprint* BlueprintStore::getBlueprint() {
 }
 
 void BlueprintStore::setBlueprint(Blueprint* blueprint) {
-	if (this->blueprint) {
-		delete this->blueprint;
-	}
+    delete this->blueprint;
 	this->blueprint = blueprint;
+}
+
+BlueprintStore::~BlueprintStore() {
+    delete blueprint;
 }

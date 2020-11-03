@@ -33,7 +33,6 @@ namespace eng {
         void specialistsImproveComponent(Component*);
 
     public:
-
         explicit Department(Department *next);
 
         void addSpecialist(ppl::Person *specialist);
