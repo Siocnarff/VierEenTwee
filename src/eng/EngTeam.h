@@ -12,7 +12,7 @@
 #include "../log/Mediator.h"
 
 namespace eng {
-    class EngTeam : public lg::Colleague {
+    class EngTeam final : public lg::Colleague {
 
     private:
         Garage garage;
@@ -26,7 +26,9 @@ namespace eng {
     public:
         EngTeam();
 
-        void hireEmployees(int budget) override;
+        ~EngTeam() final;
+
+        void hireEmployees(int budget) final;
 
         void registerForSeason(lg::Mediator *mediator);
 

@@ -14,15 +14,13 @@ namespace eng {
 	friend class WindTunnel;
 
 	private:
-        /**
-         * ranges between 0 - 100
-         */
-        int damage = 0;
         ppl::Driver* driver = nullptr;
         int id = 0;
-        Component* components[5] = {nullptr};
+        Component* components[5];
 
 	public:
+	    ~Car();
+
 	    explicit Car(int identification);
 
 	    explicit Car(Car *car);

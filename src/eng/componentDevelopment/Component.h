@@ -24,9 +24,11 @@ namespace eng {
         explicit Component(int quality);
 
     public:
-		int getQualityLabel();
+	    virtual ~Component() = default;
 
-		void setQualityLabel(int qualityLabel);
+		int getQualityLabel() const;
+
+		void setQualityLabel(int label);
 
 		virtual void print() = 0;
 

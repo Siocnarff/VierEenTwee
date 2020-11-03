@@ -3,20 +3,26 @@
 using namespace eng;
 
 void Garage::storeCar(Car *c) {
+	pr::Doc::summary("\n[_] Storing car in garage. [_]\n");
     for (int i = 0; i < 20; ++i) {
         if (lookup[i] == -1) {
             car[i] = c;
             lookup[i] = c->getId();
+			pr::Doc::detail("Car has id: " + std::to_string(c->getId()));
+			pr::Doc::detail("\nAnd is stored at position " + std::to_string(i) + "\n");
+            break;
         }
     }
-    throw "Garage is full!";
+	pr::Doc::summary("--------------------------------------\n\n");
 }
 
 Car *Garage::retrieveCar(int id) {
     for (int i = 0; i < 20; ++i) {
         if (lookup[i] == id) {
             lookup[i] = -1;
-            return car[i];
+            Car *target = car[i];
+            car[i] = nullptr;
+            return target;
         }
     }
     return nullptr;
@@ -38,4 +44,18 @@ Car *Garage::getPrototype() {
         return car[idOfBest];
     }
     return nullptr;
+}
+
+Garage::~Garage() {
+    for (Car * c : car) {
+        delete c;
+        c = nullptr;
+    }
+}
+
+Garage::Garage() {
+    for (int i = 0; i < 20; ++i) {
+        lookup[i] = -1;
+        car[i] = nullptr;
+    }
 }

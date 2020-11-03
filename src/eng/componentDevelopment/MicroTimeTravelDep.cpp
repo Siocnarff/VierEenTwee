@@ -23,14 +23,21 @@ void MicroTimeTravelDep::fix(Car *car) {
 			pr::Doc::detail(std::to_string(damage));
 			pr::Doc::detail("% damage.\n");
 		}
-        Department::fix(car);
 	} else {
 		pr::Doc::detail(departmentName);
 		pr::Doc::detail(" does not have any employees and does nothing.\n");
 	}
+	Department::fix(car);
 }
 
 void MicroTimeTravelDep::update(Component* component) {
+	if (budget > 0) {
+		budget -= rand() % 2;
+	} else {
+		pr::Doc::detail(departmentName);
+		pr::Doc::detail(" has no more funds to improve the component.\n");
+		return;
+	}
 	pr::Doc::detail(departmentName);
 	pr::Doc::detail(" is replacing and improving the flux capacitor within the Micro Initiation Plutonium Hammer hoping it will improve performance.\n");
 	Department::specialistsImproveComponent(component);

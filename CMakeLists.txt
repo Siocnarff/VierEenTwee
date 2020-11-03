@@ -22,6 +22,7 @@ include_directories(src/rce/simulator)
 include_directories(src/rce/strategy)
 
 add_executable(VierEenTwee
+        src/main.cpp
         src/eng/buildings/BlueprintStore.cpp
         src/eng/buildings/BlueprintStore.h
         src/eng/buildings/ComponentSimulator.cpp
@@ -80,7 +81,6 @@ add_executable(VierEenTwee
         src/log/races/GarageEquipment.cpp
         src/log/races/GarageEquipment.h
         src/log/races/Iterator.h
-#        src/log/races/main.cpp
         src/log/races/Race.cpp
         src/log/races/Race.h
         src/log/races/RaceIterator.cpp
@@ -101,6 +101,7 @@ add_executable(VierEenTwee
         src/log/Colleague.h
         src/log/Logistics.cpp
         src/log/Logistics.h
+        src/log/main.cpp
         src/log/Mediator.h
         src/log/Strategy.cpp
         src/log/Strategy.h

@@ -6,7 +6,9 @@ void WindTunnel::testCar(Car *car) {
     if(tickets > 0) {
         --tickets;
         for (Component *c: car->components) {
-            c->setQualityLabel(c->quality - 3 + (rand() % 6));
+            if (c != nullptr) {
+                c->setQualityLabel(c->quality - 3 + (rand() % 6));
+            }
         }
     }
 }

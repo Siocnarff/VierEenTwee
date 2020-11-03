@@ -8,10 +8,14 @@ namespace eng {
 	class Garage {
 
 	private:
-	    int lookup[20] = {-1};
-		Car* car[20] = {nullptr};
+	    int lookup[20];
+		Car* car[20];
 
 	public:
+	    Garage();
+
+	    ~Garage();
+
 		void storeCar(Car* car);
 
 		Car* retrieveCar(int id);

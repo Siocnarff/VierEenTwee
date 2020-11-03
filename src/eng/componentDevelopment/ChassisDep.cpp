@@ -24,6 +24,13 @@ void ChassisDep::fix(Car *car) {
 }
 
 void ChassisDep::update(Component* component) {
+	if (budget > 0) {
+		budget -= rand() % 2;
+	} else {
+		pr::Doc::detail(departmentName);
+		pr::Doc::detail(" has no more funds to improve the component.\n");
+		return;
+	}
 	pr::Doc::detail(departmentName);
 	pr::Doc::detail(" is improving the chassis.\n");
 	Department::specialistsImproveComponent(component);

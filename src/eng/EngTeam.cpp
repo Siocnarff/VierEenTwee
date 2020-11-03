@@ -20,8 +20,14 @@ EngTeam::EngTeam() {
     department[0] = new ChassisDep(department[1]);
 }
 
+EngTeam::~EngTeam() {
+    for (auto & dep : department) {
+        delete dep;
+    }
+}
+
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("Engineering team is hiring new employees...");
+    pr::Doc::summary("Engineering team is hiring new employees...\n");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -63,9 +69,9 @@ void EngTeam::hireEmployees(int budget) {
             "CAD Guy"
     };
     ppl::HumanResources *humanResources;
-    if (budget < 20) {
+    if (budget < 40) {
         humanResources = new ppl::KidnapStudent();
-    } else if (budget < 50) {
+    } else if (budget < 70) {
         humanResources = new ppl::HireAmateur();
     } else {
         humanResources = new ppl::HireProfessional();
@@ -74,8 +80,9 @@ void EngTeam::hireEmployees(int budget) {
     time_t t = time(nullptr);
     int time = (int) t;
     srand(time);
+
     for (int i = 0; i < 1 + int(budget / 20); ++i) {
-        if (budget >= 50) {
+        if (budget >= 70) {
             department[4]->addSpecialist(humanResources->hire(secretJobs[rand() % 5]));
         }
         department[3]->addSpecialist(humanResources->hire(bodyJobs[rand() % 5]));
@@ -83,6 +90,7 @@ void EngTeam::hireEmployees(int budget) {
         department[1]->addSpecialist(humanResources->hire(engineJobs[rand() % 5]));
         department[0]->addSpecialist(humanResources->hire(chassisJobs[rand() % 5]));
     }
+    delete humanResources;
 }
 
 void EngTeam::registerForSeason(lg::Mediator *mediator) {
@@ -105,10 +113,15 @@ int EngTeam::buildCar(int budget) {
         car = new Car(id);
         department[0]->build(car);
     }
+	windTunnel.testCar(car);
     garage.storeCar(car);
+    car->print();
+    int transparency = pr::Doc::transparency;
     for (int i = 0; i < 50; ++i) {
         improveCar(id, true);
+        pr::Doc::transparency = -1;
     }
+    pr::Doc::transparency = transparency;
     return id;
 }
 
@@ -120,12 +133,12 @@ void EngTeam::cashUpDeps(int cash) {
     }
 }
 
+
 void EngTeam::setRiskLevel(lg::RiskLevel riskLevel) {
     for (auto &dep : department) {
         dep->setRiskLevel(riskLevel);
     }
 }
-
 
 void EngTeam::carArrivesAtFactory(Car *car) {
     garage.storeCar(car);
@@ -157,9 +170,9 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 			if (currentQuality > changedQuality) {
 				component->rebuildComponent(blueprintStore.getBlueprint());
 			}
-			car->components[num] = component;
 		}
 	}
+    garage.storeCar(car);
 }
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
