@@ -11,7 +11,7 @@ namespace rce {
 
     private:
 
-        log::RiskLevel risklevel;
+        lg::RiskLevel risklevel;
 
         int *tyres = new int[3];// 3 compounds in pairs and a wet compound [soft,meduim,hard]//only 5 pairs per weekend
         int Pitstops;//added
@@ -21,7 +21,7 @@ namespace rce {
 
         CreateStrategy();
 
-        void SetRiskLevel(log::RiskLevel rl);
+        void SetRiskLevel(lg::RiskLevel rl);
 
         void SetTyres(int *t);
 
@@ -29,7 +29,7 @@ namespace rce {
 
         void SetStratName(std::string s);
 
-        log::RiskLevel getRiskLevel();
+        lg::RiskLevel getRiskLevel();
 
         int *getTyres();
 

@@ -5,12 +5,12 @@ int Simulator::getTime()
 	return time;
 }
 
-log::TrackComplexity Simulator::getTrackDifficulty()
+lg::TrackComplexity Simulator::getTrackDifficulty()
 {
 	return trackDifficulty;
 }
 
-log::WeatherConditions Simulator::getWeather()
+lg::WeatherConditions Simulator::getWeather()
 {
 	return weather;
 }
@@ -25,7 +25,7 @@ void Simulator::setDriver(ppl::Driver* d)
 	driver=d;
 }
 
-void Simulator::setWeather(log::WeatherConditions w)
+void Simulator::setWeather(lg::WeatherConditions w)
 {
 	weather=w;
 }
@@ -35,7 +35,7 @@ void Simulator::setTime(int t)
 	time=t;
 }
 
-void Simulator::setDifficulty(log::TrackComplexity dif)
+void Simulator::setDifficulty(lg::TrackComplexity dif)
 {
 	trackDifficulty=dif;
 }

@@ -156,7 +156,7 @@ void Logistics::raceSeason() {
     }
     std::cout << std::endl;
 
-    callRacingDept()->getResults();
+//    callRacingDept()->getResults();
 
     //2 cars
     //callRacingDept()->preRaceArrival(new eng::Car(3), driver, new Race, new Container);

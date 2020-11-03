@@ -13,12 +13,12 @@ CreateStrategy::CreateStrategy()
 	
 }
 
-log::RiskLevel CreateStrategy::getRiskLevel()
+lg::RiskLevel CreateStrategy::getRiskLevel()
 {
 	return risklevel;
 }
 
-void CreateStrategy::SetRiskLevel(log::RiskLevel rl)
+void CreateStrategy::SetRiskLevel(lg::RiskLevel rl)
 {
 	risklevel=rl;
 }

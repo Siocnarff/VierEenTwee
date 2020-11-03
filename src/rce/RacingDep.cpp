@@ -20,7 +20,7 @@ void RacingDep::HireEmployees(int b)
 CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
-	log::RiskLevel risk;
+	lg::RiskLevel risk;
     if(strategy)
     {
         delete strategy;
@@ -29,7 +29,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 	int* tyre=new int[3];
 	if(budget<25)
 	{
-	    risk=log::Safe;
+	    risk=lg::Safe;
 			tyre[0]=3;
 			tyre[1]=2;
 			tyre[2]=0;
@@ -39,7 +39,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 	}
 	else if(budget>=25 && budget<50)
 	{
-	    risk=log::Moderate;
+	    risk=lg::Moderate;
         tyre[0]=2;
         tyre[1]=3;
         tyre[2]=0;
@@ -49,7 +49,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 	}
 	else
 	{
-	    risk=log::Aggressive;
+	    risk=lg::Aggressive;
 		tyre[0]=2;
 		tyre[1]=2;
 		tyre[2]=1;
@@ -59,12 +59,12 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 	}
 }
 
-ppl::Driver*  RacingDep::trainDriver(ppl::Driver * driver, int time, log::WeatherConditions weather, log::TrackComplexity trackDifficulty)
+ppl::Driver*  RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherConditions weather, lg::TrackComplexity trackDifficulty)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
 
-	if(weather==log::Rainy)
+	if(weather==lg::Rainy)
 	{
 		Simulator* wet=new SimulatorWetCondition();
 		wet->setDriver(driver);
@@ -74,7 +74,7 @@ ppl::Driver*  RacingDep::trainDriver(ppl::Driver * driver, int time, log::Weathe
 		wet->SimulateWeather();
         return driver;
 	}
-	else if(weather==log::Hot)
+	else if(weather==lg::Hot)
 	{
 		Simulator* hot=new SimulatorHotCondition();
 		hot->setDriver(driver);
@@ -84,7 +84,7 @@ ppl::Driver*  RacingDep::trainDriver(ppl::Driver * driver, int time, log::Weathe
 		hot->SimulateWeather();
         return driver;
 	}
-	else if(weather==log::Normal)
+	else if(weather==lg::Normal)
 	{
 		Simulator* normal=new SimulatorNormalCondition();
 		normal->setDriver(driver);
@@ -96,62 +96,62 @@ ppl::Driver*  RacingDep::trainDriver(ppl::Driver * driver, int time, log::Weathe
     }
 }
 
-ppl::Driver* trainDriver(ppl::Driver * driver, int time, log::WeatherConditions weather)
+ppl::Driver* trainDriver(ppl::Driver * driver, int time, lg::WeatherConditions weather)
 {
-    if(weather==log::Rainy)
+    if(weather==lg::Rainy)
     {
         Simulator* wet=new SimulatorWetCondition();
         wet->setDriver(driver);
         wet->setWeather(weather);
-        wet->setDifficulty(log::Average);
+        wet->setDifficulty(lg::Average);
         wet->setTime(time);
         wet->SimulateWeather();
         return driver;
     }
-    else if(weather==log::Hot)
+    else if(weather==lg::Hot)
     {
         Simulator* hot=new SimulatorHotCondition();
         hot->setDriver(driver);
         hot->setWeather(weather);
-        hot->setDifficulty(log::Average);
+        hot->setDifficulty(lg::Average);
         hot->setTime(time);
         hot->SimulateWeather();
         return driver;
     }
-    else if(weather==log::Normal)
+    else if(weather==lg::Normal)
     {
         Simulator* normal=new SimulatorNormalCondition();
         normal->setDriver(driver);
         normal->setWeather(weather);
-        normal->setDifficulty(log::Average);
+        normal->setDifficulty(lg::Average);
         normal->setTime(time);
         normal->SimulateWeather();
         return driver;
     }
 }
 
-ppl::Driver* trainDriver(ppl::Driver *driver, int time, log::TrackComplexity t)
+ppl::Driver* trainDriver(ppl::Driver *driver, int time, lg::TrackComplexity t)
 {
         Simulator* normal=new SimulatorNormalCondition();
         normal->setDriver(driver);
-        normal->setWeather(log::Normal);
+        normal->setWeather(lg::Normal);
         normal->setDifficulty(t);
         normal->setTime(time);
         normal->SimulateWeather();
         return driver;
 }
 
-void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, log::Race* r, Container* con)
+void RacingDep::preRaceArrival(eng::Car* c, ppl::Driver* d, lg::Race* r, lg::Container* con)
 {
 	// TODO unpack container
 }
 
-void RacingDep::postRacePackUp()
+lg::Container* RacingDep::postRacePackUp()
 {
 	// TODO - pack container -- do we need to send anything?
 }
 
-CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
+CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
 {
     if(strategy)
     {
@@ -159,7 +159,7 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
         strategy=NULL;
     }
         int* tyre=new int[3];
-    if(risk==log::Safe)
+    if(risk==lg::Safe)
     {
         tyre[0]=3;
         tyre[1]=2;
@@ -168,7 +168,7 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
         notify(tyre);
         return strategy->execute();
     }
-    else if(risk==log::Moderate)
+    else if(risk==lg::Moderate)
     {
         tyre[0]=2;
         tyre[1]=3;
@@ -188,12 +188,12 @@ CreateStrategy* RacingDep::changeStrat(log::RiskLevel risk)
     }
 }
 
-void RacingDep::registerForSeason(Observer* logisticsDept)
+void RacingDep::registerForSeason(lg::Observer* logisticsDept)
 {
 	// TODO - implement RacingDep::registerForSeason
 }
 
-log::Race* RacingDep::getRace()
+lg::Race* RacingDep::getRace()
 {
 	return this->race;
 }

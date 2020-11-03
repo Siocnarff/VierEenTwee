@@ -13,27 +13,27 @@ namespace rce
     {
     private:
         ppl::Driver *driver;
-        log::WeatherConditions weather;
+        lg::WeatherConditions weather;
         int time;
-        log::TrackComplexity trackDifficulty;
+        lg::TrackComplexity trackDifficulty;
     public:
         virtual void SimulateWeather() = 0;
 
         int getTime();
 
-        log::TrackComplexity getTrackDifficulty();
+        lg::TrackComplexity getTrackDifficulty();
 
-        log::WeatherConditions getWeather();
+        lg::WeatherConditions getWeather();
 
         ppl::Driver *getDriver();
 
         void setDriver(ppl::Driver *d);
 
-        void setWeather(log::WeatherConditions w);
+        void setWeather(lg::WeatherConditions w);
 
         void setTime(int t);
 
-        void setDifficulty(log::TrackComplexity dif);
+        void setDifficulty(lg::TrackComplexity dif);
     };
 }
 #endif

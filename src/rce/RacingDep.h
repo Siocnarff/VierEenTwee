@@ -34,16 +34,16 @@
 #include <list>
 namespace rce
 {
-    class RacingDep:public log::Colleague
+    class RacingDep:public lg::Colleague
     {
 
     private:
-        log::RiskLevel risklevel;
+        lg::RiskLevel risklevel;
         int budget;
-        log::Race *race;
+        lg::Race *race;
         rce::Leaderboard ** lead;
         CreateStrategy *strategy;
-        log::Container *CarContainer;
+        lg::Container *CarContainer;
         std::string TeamName;
         std::list<ppl::Person*> Strategist;
         std::list<ppl::Person*> pitcrew;
@@ -54,20 +54,19 @@ namespace rce
     public:
         void HireEmployees(int b);
         CreateStrategy *PlanSeasonStrategy(int budget);
-        void preRaceArrival(eng::Car *c, ppl::Driver *d, log::Race *r, Container *con);
-        Container* postRacePackUp();// return the container with tires in
-        CreateStrategy* changeStrat(log::RiskLevel risk);//used to change strat during season
-        void registerForSeason(Observer *logisticsDept);// is it needed?
+        void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
+        lg::Container* postRacePackUp();// return the container with tires in
+        CreateStrategy* changeStrat(lg::RiskLevel risk);//used to change strat during season
 
-        ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions);
-        ppl::Driver* trainDriver(ppl::Driver *, int time, log::TrackComplexity);
-        ppl::Driver* trainDriver(ppl::Driver *, int time, log::WeatherConditions weather, log::TrackComplexity trackDifficulty);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::TrackComplexity);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions weather, lg::TrackComplexity trackDifficulty);
 
         int * Race();
 
         void setResult(int result);
 
-        log::Race *getRace();
+        lg::Race *getRace();
 
         std::string getTeamName();
 

@@ -10,7 +10,7 @@ namespace rce {
     public:
         CreateStrategy *execute() override;
 
-        SafeStrategy(int p, int *t, log::RiskLevel risk);
+        SafeStrategy(int p, int *t, lg::RiskLevel risk);
     };
 }
 #endif

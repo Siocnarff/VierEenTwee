@@ -4,15 +4,15 @@ void SimulatorNormalCondition::SimulateWeather()
 {
     int xp=0;
     int i;
-    if(getTrackDifficulty()==log::Easy)
+    if(getTrackDifficulty()==lg::Easy)
     {
         i=2;
     }
-    else if (getTrackDifficulty()==log::Average)
+    else if (getTrackDifficulty()==lg::Average)
     {
         i=5;
     }
-    else if(getTrackDifficulty()==log::Difficult)
+    else if(getTrackDifficulty()==lg::Difficult)
     {
         i=7;
     }

@@ -7,7 +7,7 @@ namespace rce
     class AggressiveStrategy : public CreateStrategy
     {
     public:
-        AggressiveStrategy(int p, int *t, log::RiskLevel risk);
+        AggressiveStrategy(int p, int *t, lg::RiskLevel risk);
 
         CreateStrategy *execute();
     };

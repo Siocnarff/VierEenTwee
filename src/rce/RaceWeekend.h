@@ -4,16 +4,16 @@
 #include "CarStateBroken.h"
 #include "CarStateDamaged.h"
 #include "CarStateFullHP.h"
-//#include "DriverPitStop.h"
-//#include "../people/Driver.h"
-#include "Driver.h"
-#include "Race.h"
-#include "Car.h"
-//#include "../eng/Car.h"
-//#include "../people/Pitcrew.h"
-//#include "../log/Race.h"
-//#include "../racing/strategy/CreateStrategy.h"
-//#include "../racing/Leaderboard.h"
+#include "DriverPitStop.h"
+#include "../ppl/specialists/Driver.h"
+//#include "Driver.h"
+//#include "Race.h"
+//#include "Car.h"
+#include "../eng/Car.h"
+#include "../ppl/specialists/PitCrew.h"
+#include "../log/races/Race.h"
+#include "../rce/strategy/CreateStrategy.h"
+#include "../rce/leaderboard/Leaderboard.h"
 #include "WeatherConditions.h"
 #include "TrackComplexity.h"
 #include "RiskLevel.h"
@@ -35,7 +35,7 @@ private:
 	ppl::Driver** driver;
 	lg::Race* raceConditions;
 	rce::Pitstop ** pitstop;
-	list<ppl::Pitcrew*> pitcrew;
+	std::list<ppl::Person*> pitcrew;
 	std::string TeamName;
 	lg::WeatherConditions DayWeather;
 	Leaderboard ** lead;
@@ -55,7 +55,7 @@ private:
 	
 
 public:
-	RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, rce::CreateStategy* s, list<ppl::Pitcrew*> p, Tyres* t, Leaderboard ** l);
+	RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, CreateStrategy* s, std::list<ppl::Person*> p, Tyres* t, Leaderboard ** l);
 
 	int * RacingWeekend();
 
@@ -67,9 +67,9 @@ public:
 
 	void setDriver(ppl::Driver* driver, int i);
 
-	list<ppl::Pitcrew*> getPitcrew();
+	std::list<ppl::Person*> getPitcrew();
 
-	void setPitcrew(list<ppl::Pitcrew*> pitcrew);
+	void setPitcrew(std::list<ppl::Person*> pitcrew);
 
 	void getCarnotify(int i);
 

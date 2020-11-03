@@ -60,13 +60,13 @@ WeatherConditions Race::getRaceDayWeather() {
     int r = rand() % 3;
     switch (r) {
         case 0:
-            return Wet;
+            return lg::Rainy;//todo should this be hot?
             break;
         case 1:
-            return Dry;
+            return lg::Normal;
             break;
         case 2:
-            return Rainy;
+            return lg::Rainy;
             break;
         default:
             break;

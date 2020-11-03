@@ -102,8 +102,8 @@ add_executable(VierEenTwee
         src/log/Logistics.cpp
         src/log/Logistics.h
         src/log/Mediator.h
-        src/log/RacingDept.cpp
-        src/log/RacingDept.h
+#        src/log/RacingDept.cpp
+#        src/log/RacingDept.h
         src/ppl/factories/HireRacingDep.h
         src/ppl/factories/HireRacingDep.cpp
         src/ppl/factories/HirePitCrew.h
@@ -181,8 +181,8 @@ add_executable(VierEenTwee
         src/rce/pitstop/ChangeTyre.h
         src/rce/pitstop/DriverPitStop.cpp
         src/rce/pitstop/DriverPitStop.h
-        src/rce/pitstop/PitCrew.cpp
-        src/rce/pitstop/PitCrew.h
+#        src/rce/pitstop/PitCrew.cpp
+#        src/rce/pitstop/PitCrew.h
         src/rce/pitstop/Pitstop.cpp
         src/rce/pitstop/Pitstop.h
         src/rce/pitstop/Tyres.cpp

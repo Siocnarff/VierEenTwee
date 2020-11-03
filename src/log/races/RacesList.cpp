@@ -4,7 +4,7 @@
 
 #include "RacesList.h"
 
-using namespace log;
+using namespace lg;
 
 /*RaceIterator RacesList::createIterator() {
     return RaceIterator(*this, headRace);
