@@ -103,17 +103,15 @@ void Logistics::doYearPlanning() {
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    //TODO : change to doc
-    cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: "
-         << currentTeamStrategy->getStratName() << std::endl;
+    pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " + currentTeamStrategy->getStratName());
 
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    std::cout << "Tyre Order has arrived" << endl;
-    //tyreSpecs->printStats(); //moet ons dit so maak dat dit print op verskillende levels?
+    pr::Doc::summary("Tyre Order has arrived");
+    //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
-    cout << "Ordering the necessary tooleries and garage equipment thingamabobs\n";
+    pr::Doc::detail("Ordering the necessary tooleries and garage equipment thingamabobs\n");
     packContainers();
 
     //3. Train drivers
@@ -158,8 +156,6 @@ Container *Logistics::packSingleContainer() {
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
 
-
-
     pr::Doc::summary("Packed a container\n");
     box->print();
     pr::Doc::detail("\n");
@@ -168,8 +164,6 @@ Container *Logistics::packSingleContainer() {
 
 }
 
-
-// TODO : Check again
 void Logistics::simulateEvent(Race *r) {
     //1. Transport car (from factory to race location)
     //1.1 Fill up clipboard
@@ -204,10 +198,17 @@ void Logistics::simulateEvent(Race *r) {
 
     //5. finish the packup
     Container *tCont = callRacingDept()->postRacePackUp();
+    //6. Transport drivers on and container back
+    if (r->nextRace()== nullptr) {
+        pr::Doc::detail ("The drivers are transported in a luxury mode of transport back to HQ");
+        transportManager->transport(r, nullptr);
+        if (r->isRaceEuropean()) {
+            delete tCont;   //we need to get rid of it.
+        }
+    }
     if (!r->isRaceEuropean()) {
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
-    //6. Transport drivers on and container back
 
 }
 
