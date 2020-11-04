@@ -117,7 +117,7 @@ int EngTeam::buildCar(int budget) {
     garage.storeCar(car);
     car->print();
     int transparency = pr::Doc::transparency;
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         improveCar(id, true);
         pr::Doc::transparency = -1;
     }

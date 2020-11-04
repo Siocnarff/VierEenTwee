@@ -70,9 +70,9 @@ void seasonRun() {
 void engTeamTesting() {
     auto *e = new eng::EngTeam();
 
-    e->hireEmployees(100);
+    e->hireEmployees(50);
 
-    e->setRiskLevel(lg::Moderate);
+    e->setRiskLevel(lg::Safe);
 
 
     int id = e->buildCar(50);
