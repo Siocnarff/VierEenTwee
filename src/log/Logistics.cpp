@@ -10,9 +10,9 @@
 
 #include <fstream>
 #include <sstream>
-#include <races/Box.h>
-#include <races/GarageEquipment.h>
-#include <races/CateringEquipment.h>
+#include <containers/Box.h>
+#include <containers/GarageEquipment.h>
+#include <containers/CateringEquipment.h>
 #include <factories/HireDriver.h>
 #include "enums/randomisation.h"
 
@@ -150,13 +150,14 @@ void Logistics::packContainers() {
  */
 Container *Logistics::packSingleContainer() {
     Box *box = new Box();
-    auto *garageEquip = new GarageEquipment();
-    auto *cateringEquip = new CateringEquipment();
+    auto *garageEquip = new GarageEquipment(budget);
+    auto *cateringEquip = new CateringEquipment(budget);
 
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
 
     pr::Doc::summary("Packed a container\n");
+    pr::Doc::detail("\n");
     box->print();
     pr::Doc::detail("\n");
 
@@ -367,17 +368,17 @@ for (ppl::Driver *d: drivers) {
 
 void Logistics::sponsoredBudget(int sumPositions) {
 
-    pr::Doc::summary("Approaching sponsors to negotiate a new budget");
+    pr::Doc::summary("Approaching sponsors to negotiate a new budget\n");
 
     if (budget == 0) {  //default argument
         budget = abs(rand() % 100 + 1);
     }
     else {
         if (sumPositions >= 3) {
-            pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly");
+            pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 1.5),(100- (int) ((double) budget * 0.5)))  ;
         } else if (sumPositions <= 6) {
-            pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly");
+            pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 0.2),(80- (int) ((double) budget * 0.2)));
         } else if (sumPositions <= 10) {
             pr::Doc::detail("The sponsor is satisfied with the performance");
