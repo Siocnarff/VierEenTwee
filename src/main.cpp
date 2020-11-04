@@ -14,20 +14,21 @@
 #include "pr/Doc.h"
 #include "log/Logistics.h"
 
-int pr::Doc::transparency = 0;
+int pr::Doc::transparency = 1;
 
 void logDeptTesting();
 void engTeamTesting();
 void seasonRun();
 void testTyres();
-void testContainers();
+
 
 int main() {
 
     //logDeptTesting();
     //engTeamTesting();
-//    seasonRun();
-   testTyres();
+    seasonRun();
+//   testTyres();
+
 
 }
 
@@ -74,6 +75,8 @@ void seasonRun() {
     int id = engDept->buildCar(50);
     eng::Car* car = engDept->checkCarOutOfFactory(id);
     car->print();*/
+
+
 
 
 }
@@ -157,4 +160,3 @@ void testTyres() {
         delete tyres3;
 
     }
-

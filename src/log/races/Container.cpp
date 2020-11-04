@@ -13,29 +13,6 @@ Container::~Container() {
 
 }
 
-void Container::unpack() {
-    //Unpack gaan net werk in die hoof container. Dit moenie geroep word later nie.
-
-    //Print alles uit
-
-    //Gaan soek die container wat 'n tyreBox is om dit te return . . . tyre variable to return? Ja. Okay.
-
-    std::cout << "CONTAINER UNPACK BY printing out contents and returning the tyres in the container" << std::endl;
-
-}
-
-/**
- *@author Marike
- * @param usedTyres
- */
-void Container::pack() {
-
-    //Should we pack up the container? Ek dink ons hoef net 'n print funksie te hê
-
-    std::cout << "print out contents" << std::endl;
-
-}
-
 void Container::addElement(Container * newContainer) {
     std::cout << "Pack box into main container" << std::endl;
 }

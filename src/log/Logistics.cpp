@@ -110,7 +110,7 @@ void Logistics::preSeasonPreparation() {
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
     std::cout << "Tyre Order has arrived" << endl;
-    //tyreSpecs->printStats(); //not always
+    //tyreSpecs->printStats(); //moet ons dit so maak dat dit print op verskillende levels?
 
     //2. Pack containers
     cout << "Ordering the necessary tooleries and garage equipment thingamabobs\n";
@@ -158,7 +158,11 @@ Container *Logistics::packSingleContainer() {
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
 
-    cout << "Packed a container" << endl;
+
+
+    pr::Doc::summary("Packed a container\n");
+    box->print();
+    pr::Doc::detail("\n");
 
     return box;
 

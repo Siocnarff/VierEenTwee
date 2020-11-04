@@ -16,8 +16,6 @@ namespace lg {
 
         GarageEquipment(std::list <std::string> insides);
 
-        void unpack() override;
-
         ~GarageEquipment() override;
 
         void print() override;

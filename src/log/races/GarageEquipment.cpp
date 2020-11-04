@@ -7,11 +7,21 @@
 
 using namespace lg;
 
-GarageEquipment::GarageEquipment() {}
+/**
+ * @author Marike
+ * //TODO: create int parameter constructor
+ */
+GarageEquipment::GarageEquipment() {
+    contents.emplace_back("Spare Tyres");
+    contents.emplace_back("Oil can");
+    contents.emplace_back("Elbow Grease");
+    contents.emplace_back("Nuts and bolts");
+    contents.emplace_back("A spanner");
+}
 
 GarageEquipment::GarageEquipment(std::list <std::string> insides) {
-    if (insides.size() == 0) {
-        contents.push_back("Lots and lots of stuff");
+    if (insides.empty()) {
+        contents.emplace_back("Lots and lots of stuff");
         return;
     }
     for (std::list<std::string>::iterator it = insides.begin(); it != insides.end(); ++it) {
@@ -19,19 +29,14 @@ GarageEquipment::GarageEquipment(std::list <std::string> insides) {
     }
 }
 
-void GarageEquipment::unpack() {
-    for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
-        std::cout << "-" << (*it) << std::endl;
-    }
-}
-
 GarageEquipment::~GarageEquipment() = default;
 
 void GarageEquipment::print() {
     pr::Doc::detail("Garage equipment:\n");
-    pr::Doc::detail("   ");
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
+        pr::Doc::detail("   ");
         pr::Doc::detail(*it);
+        pr::Doc::detail("\n");
     }
     pr::Doc::detail("\n");
 }

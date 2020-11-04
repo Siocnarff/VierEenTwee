@@ -23,10 +23,6 @@ namespace lg {
 
         virtual ~Container();
 
-        virtual void unpack();
-
-        virtual void pack();
-
         virtual void print();
 
     protected:
