@@ -22,6 +22,8 @@ namespace lg {
        void pack() override;
 
         ~Box() override;
+
+        void print() override;
     };
 
 }

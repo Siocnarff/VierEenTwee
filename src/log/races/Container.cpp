@@ -30,7 +30,7 @@ void Container::unpack() {
  */
 void Container::pack() {
 
-    //Pack container up and put in the "used" tyres.
+    //Should we pack up the container? Ek dink ons hoef net 'n print funksie te hê
 
     std::cout << "print out contents" << std::endl;
 

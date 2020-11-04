@@ -2,7 +2,9 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include <iostream>
 #include "RacesList.h"
+#include "Doc.h"
 
 using namespace lg;
 
@@ -33,7 +35,7 @@ void RacesList::addRace(Race *race) {
 }*/
 
 bool RacesList::isEmpty() {
-    return (headRace== nullptr);
+    return (headRace == nullptr);
 }
 
 RaceIterator RacesList::begin() {
@@ -42,8 +44,8 @@ RaceIterator RacesList::begin() {
 }
 
 RaceIterator RacesList::end() {
-    Race* tail = headRace;
-    while (tail!= nullptr) {
+    Race *tail = headRace;
+    while (tail != nullptr) {
         tail = tail->nextRace();
     }
     return RaceIterator(*this, tail);
@@ -51,6 +53,30 @@ RaceIterator RacesList::end() {
 
 Race *RacesList::getHeadRace() const {
     return headRace;
+}
+
+void RacesList::printList() {
+    Race *temp = headRace;
+    if (isEmpty()) {
+        return;
+    } else {
+        while (temp != nullptr) {
+            pr::Doc::detail(temp->getLocation());
+            pr::Doc::detail("\nNumLaps: ");
+            pr::Doc::detail(std::to_string(temp->getNumLaps()));
+            pr::Doc::detail("\nWeather:");
+//            pr::Doc::detail(temp->getRaceDayWeather());
+            pr::Doc::detail("\n");
+            std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
+                      << temp->getRaceDayWeather() << std::endl;
+            temp = temp->nextRace();
+        }
+    }
+
+}
+
+int RacesList::getNumRaces() {
+    return numRaces;
 }
 
 

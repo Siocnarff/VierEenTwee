@@ -18,7 +18,9 @@ namespace lg {
         Race *prev;
         //WeatherConditions raceDayWeather;
         int numLaps;
+        int id;
         TrackComplexity computeTrackComplexity(int comp);
+
     public:
         Race();
 
@@ -37,6 +39,8 @@ namespace lg {
         std::string getLocation();
 
         TrackComplexity getTrackComplexity();
+
+        int getTrackID();
 
         /**
          * @details returns a randomly generated weather condition to be gotten for each separate day.

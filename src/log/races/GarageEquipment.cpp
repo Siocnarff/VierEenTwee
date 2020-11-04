@@ -25,3 +25,5 @@ void GarageEquipment::unpack() {
 }
 
 GarageEquipment::~GarageEquipment() = default;
+
+void GarageEquipment::print() {}

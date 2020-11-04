@@ -29,4 +29,13 @@ Box::~Box() {
     }
 }
 
-
+void Box::print() {
+    if (!elements.empty()) {
+        for (std::list<Container*>::iterator it = elements.begin(); it != elements.end(); ++it) {
+            (*it)->print();
+        }
+    }
+    else {
+        std::cout << "Empty" << std::endl;
+    }
+}

@@ -19,7 +19,9 @@ namespace lg {
 
     class Logistics : public Mediator {
     public:
-        Logistics();
+        Logistics(int numDriverCarPairs = 2);
+
+        virtual ~Logistics();
 
         void registerNotifier(Colleague *);
 
@@ -31,14 +33,10 @@ namespace lg {
 
         void postSeasonDebrief();
 
-        void toggleVerbose();
-
     protected:
-        void sendCarToFactory(eng::Car *) override;
+        void sendCarToFactory(eng::Car *, Race*) override;
 
         void containerHasBeenPacked(Container *) override;
-
-        //void requestContainerStateChange(bool isEuropeanRace) override;
 
         Container *getEuropeanContainer();
 
@@ -54,12 +52,14 @@ namespace lg {
 
         void orderTyres(int *tyreOrder) override;
 
+        void driverBootCamp();
+
     private:
         rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
 
-        std::map<char, Colleague *> departments;
-        ppl::Driver *driver;
+        map<char, Colleague *> departments;
+        std::vector<ppl::Driver *> drivers;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RaceIterator *raceIterator;
@@ -69,10 +69,12 @@ namespace lg {
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
-        int seasonPointTally[2];
-        int budget;
+        rce::Tyres* tyreSpecs; //possibly unnecessary? No
 
-        bool verbose = true;
+
+        std::vector<int> seasonPointTally;
+        int budget;
+        int numPairs = 2;
 
     };
 

@@ -25,13 +25,13 @@ namespace lg {
 
         virtual void unpack();
 
-        virtual void pack();    //Nodig om die tyres te vervang met die verweerdes
-
-    protected:
-        virtual void addElement(Container *);
+        virtual void pack();
 
         virtual void print();
 
+    protected:
+
+        virtual void addElement(Container *);
     };
 
 }

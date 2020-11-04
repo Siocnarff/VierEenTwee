@@ -7,6 +7,7 @@
 
 namespace lg {
     enum WeatherConditions {
+        //Wet, Dry, Rainy
         Hot, Normal, Rainy
     };
 }

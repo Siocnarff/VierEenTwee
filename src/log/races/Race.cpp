@@ -8,20 +8,24 @@
 using namespace lg;
 
 Race::Race() {
+    static int trackID = 0;
     location = "outer space";
     complexity = Difficult;
     isInEurope = false;
     next = nullptr;
     prev = nullptr;
+    id = trackID++;
 }
 
 Race::Race(std::string loc, int comp, bool eur, int laps, Race *nextR, Race* prevR) {
+    static int trackID = 0;
     location = loc;
     complexity = computeTrackComplexity(comp);
     isInEurope = eur;
     numLaps = laps;
     next = nextR;
     prev = prevR;
+    id = trackID ++;
 }
 
 /**
@@ -60,13 +64,13 @@ WeatherConditions Race::getRaceDayWeather() {
     int r = rand() % 3;
     switch (r) {
         case 0:
-            return lg::Rainy;//todo should this be hot?
+            return Hot;
             break;
         case 1:
-            return lg::Normal;
+            return Normal;
             break;
         case 2:
-            return lg::Rainy;
+            return Rainy;
             break;
         default:
             break;
@@ -92,6 +96,10 @@ Race *Race::prevRace() {
 }
 int Race::getNumLaps() {
     return numLaps;
+}
+
+int Race::getTrackID() {
+    return id;
 }
 
 /*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
