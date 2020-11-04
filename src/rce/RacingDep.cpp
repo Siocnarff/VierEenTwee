@@ -129,8 +129,9 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, lg::TrackComplexity
     return nullptr;
 }
 
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, lg::WeatherConditions, lg::TrackComplexity) {
-    return nullptr;
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions, lg::TrackComplexity) {
+    driver->setXp(driver->getXp()+10);
+    return driver;
 }
 
 /*void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, lg::Race* r, lg::Container* con)

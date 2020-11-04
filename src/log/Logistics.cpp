@@ -140,6 +140,7 @@ void Logistics::packContainers() {
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         if (!t.currentItem()->isRaceEuropean()) {   //not european
             nonEuropeanContainers.push_back(packSingleContainer());
+        }
     }
     cout << "Packed all containers" << endl;
 }
