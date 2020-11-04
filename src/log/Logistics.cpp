@@ -140,9 +140,6 @@ void Logistics::packContainers() {
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         if (!t.currentItem()->isRaceEuropean()) {   //not european
             nonEuropeanContainers.push_back(packSingleContainer());
-        } else if (t.currentItem()->isRaceEuropean()) {
-            continue;
-        }
     }
     cout << "Packed all containers" << endl;
 }
@@ -347,13 +344,13 @@ void Logistics::containerHasBeenPacked(Container *) {
  * @status Should be done
  * @param tyreOrder
  */
-void Logistics::orderTyres(int *tyreOrder) {
+void Logistics::orderTyres(int* tyreOrder) {
     pr::Doc::summary("Ordering tyres as informed by Racing Departement\n");
     pr::Doc::detail("Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
-        if (tyreOrder[0] != 0) {
+        if (tyreOrder[i] != 0) {
             pr::Doc::detail("Ordering");
             pr::Doc::detail(to_string(tyreOrder[i]));
             pr::Doc::detail("pair(s) of ");

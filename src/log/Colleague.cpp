@@ -31,7 +31,6 @@ void Colleague::notify(bool isEuropeanRace) {
 
 }
 
-void Colleague::notify(int *tyreOrder) {
+void Colleague::notify(int* tyreOrder) {
     logisticsDept->orderTyres(tyreOrder);
-
 }

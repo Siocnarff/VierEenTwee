@@ -22,9 +22,9 @@ void seasonRun();
 
 int main() {
 
-    logDeptTesting();
+    //logDeptTesting();
     //    engTeamTesting();
-    //seasonRun();
+    seasonRun();
 
 }
 

@@ -50,7 +50,7 @@ namespace lg {
 
         void putRacesIntoCalender();
 
-        void orderTyres(int *tyreOrder) override;
+        void orderTyres(int* tyreOrder) override;
 
         void driverBootCamp();
 

@@ -16,6 +16,9 @@ void RacingDep::hireEmployees(int b)
 
 //CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)
 rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget) {
+    int* tyreOrder = new int[3];
+    tyreOrder[0] = 0; tyreOrder[1] = 2; tyreOrder[2] = 3;
+    notify(tyreOrder);
     //Net sodat die code nie aan lg se kant so baie errors het nie
     std::string weather = "";
     //safe ,moderate ,aggressive
@@ -183,7 +186,8 @@ int RacingDep::getResult()
 std::string RacingDep::getTeamName()
 {
 	// TODO - implement RacingDep::getTeamName
-	throw "Not yet implemented";
+	//throw "Not yet implemented";
+    return "standard team name";
 }
 
 void RacingDep::setTeamName(std::string TeamName)
