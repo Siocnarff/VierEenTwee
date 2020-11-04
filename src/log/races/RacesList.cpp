@@ -6,11 +6,22 @@
 #include "RacesList.h"
 #include "Doc.h"
 
-using namespace lg;
+namespace lg {
+    std::string convertComplexityToString(TrackComplexity t) {
+        switch (t) {
+            case Easy:
+                return "Easy";
+            case Average:
+                return "Average";
+            case Difficult:
+                return "Difficult";
+            case Extreme:
+                return "Extreme";
+        }
+    }
+}
 
-/*RaceIterator RacesList::createIterator() {
-    return RaceIterator(*this, headRace);
-}*/
+using namespace lg;
 
 RacesList::RacesList() {
     headRace = nullptr;
@@ -64,14 +75,13 @@ void RacesList::printList() {
     } else {
         while (temp != nullptr) {
             pr::Doc::detail(temp->getLocation());
-            pr::Doc::detail("\nNumLaps: ");
+            pr::Doc::detail("\nNumber of Laps: ");
             pr::Doc::detail(std::to_string(temp->getNumLaps()));
-            pr::Doc::detail("\nWeather:");
-            // TODO : add back in race day weather
-//            pr::Doc::detail(temp->getRaceDayWeather());
+            pr::Doc::detail("\nTrack Complexity: ");
+            pr::Doc::detail(convertComplexityToString(temp->getTrackComplexity()));
             pr::Doc::detail("\n");
-            std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
-                      << temp->getRaceDayWeather() << std::endl;
+            /*std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
+                      << temp->getRaceDayWeather() << std::endl;*/
             temp = temp->nextRace();
         }
     }

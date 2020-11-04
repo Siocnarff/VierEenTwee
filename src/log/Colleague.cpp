@@ -22,11 +22,10 @@ void Colleague::notify(Container *container) {
 
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);
-    //TODO : change to pr::DOC
     if (isEuropeanRace) {
-        std::cout << "Transportation in Europe\n";
+        pr::Doc::summary("Transportation in Europe\n");
     } else {
-        std::cout << "Transportation outside of Europe\n";
+        pr::Doc::summary("Transportation outside of Europe\n");
     }
 
 }
