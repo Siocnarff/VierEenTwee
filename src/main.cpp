@@ -18,11 +18,13 @@ int pr::Doc::transparency = 1;
 
 void logDeptTesting();
 void engTeamTesting();
+void seasonRun();
 
 int main() {
 
     logDeptTesting();
     //    engTeamTesting();
+    //seasonRun();
 
 }
 
@@ -31,21 +33,15 @@ void logDeptTesting() {
     auto* engDept = new eng::EngTeam;
     auto* a = new lg::Logistics;
 
-   /* a->registerNotifier(racingDept);
-    a->registerNotifier(engDept);
-    a->doYearPlanning();
-    a->preSeasonPreparation();
-    a->raceSeason();
-    a->postSeasonDebrief();*/
-
     lg::TransportHandler* curator = new lg::Road;
     curator->addAMethod(new lg::Ship);
     curator->addAMethod(new lg::Fly);
 
-    lg::Race* race1 = new lg::Race("Aussies",0,0,58);
-    lg::Race* race2 = new lg::Race("Mozzies", 2, 0, 26);
+    lg::Race* race1 = new lg::Race("Aussies",0,1,58);
+    lg::Race* race2 = new lg::Race("Mozzies", 2, 1, 26);
     eng::Car* car = new eng::Car(50);
 
+    //transport container between non-european races
     curator->transport(race1, race2); //between races
     curator->transport(nullptr, race2); //from factory
     curator->transport(race1, nullptr); //to factory
@@ -56,6 +52,20 @@ void logDeptTesting() {
     delete a;
 }
 
+void seasonRun() {
+    auto* racingDept = new rce::RacingDep();
+    auto* engDept = new eng::EngTeam;
+    auto* a = new lg::Logistics;
+     a->registerNotifier(racingDept);
+     a->registerNotifier(engDept);
+     a->doYearPlanning();
+     a->preSeasonPreparation();
+     a->raceSeason();
+     a->postSeasonDebrief();
+    delete racingDept;
+    delete engDept;
+    delete a;
+}
 
 void engTeamTesting() {
     auto *e = new eng::EngTeam();
