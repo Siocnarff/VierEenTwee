@@ -245,7 +245,6 @@ RacingDep::~RacingDep() {
 }
 
 RacingDep::RacingDep() {
-    strategy = nullptr;
     std::cout << "Constructor" << std::endl;
 }
 

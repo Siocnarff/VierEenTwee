@@ -14,17 +14,20 @@
 #include "pr/Doc.h"
 #include "log/Logistics.h"
 
-int pr::Doc::transparency = 1;
+int pr::Doc::transparency = 0;
 
 void logDeptTesting();
 void engTeamTesting();
 void seasonRun();
+void testTyres();
+void testContainers();
 
 int main() {
 
     //logDeptTesting();
     //engTeamTesting();
-    seasonRun();
+//    seasonRun();
+   testTyres();
 
 }
 
@@ -110,3 +113,48 @@ void engTeamTesting() {
 
     delete e;
 }
+
+void testTyres() {
+        int arr1[3] = {2,1,2};
+        int arr2[3] = {0,1,4};
+        int arr3[3] = {0,0,5};
+
+
+        auto* tyres1 = new rce::Tyres(arr1);
+        auto* tyres2 = new rce::Tyres(arr2);
+        auto* tyres3 = new rce::Tyres(arr3);
+
+        tyres1->printStats();
+//    tyres2->printStats();
+//    tyres3->printStats();
+
+        SetOfTyres* tyreSet1 = tyres1->getTyres(0);
+        SetOfTyres* tyreSet2 = tyres1->getTyres(0);
+        SetOfTyres* tyreSet3 = tyres1->getTyres(0);
+
+
+        if (tyreSet1 != nullptr) {
+            tyreSet1->printStats();
+
+            tyreSet1->reduceThread(49);
+            tyreSet1->printStats();
+
+            for (int x = 0; x < 20; x++) {
+                tyreSet1->reduceThread(2);
+            }
+
+            tyreSet1->printStats();
+
+        }
+
+        if(tyreSet3 == nullptr) {
+            std::cout << "No more tyres of that type" << std::endl;
+        }
+
+        tyres1->printStats();
+        delete tyres1;
+        delete tyres2;
+        delete tyres3;
+
+    }
+
