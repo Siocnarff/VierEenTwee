@@ -11,7 +11,7 @@ using namespace rce;
 void RacingDep::hireEmployees(int b)
 {
 	// TODO - implement RacingDep::HireWorker
-	throw "Not yet implemented";
+	//throw "Not yet implemented";
 }
 
 //CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)

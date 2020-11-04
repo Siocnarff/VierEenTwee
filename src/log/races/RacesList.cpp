@@ -14,6 +14,7 @@ using namespace lg;
 
 RacesList::RacesList() {
     headRace = nullptr;
+    numRaces = 0;
 }
 
 //IS DONE?
@@ -26,8 +27,9 @@ void RacesList::addRace(Race *race) {
             temp = temp->nextRace();
         }
         temp->setNextRace(race);
-        race->setPrevRace(temp);
+        //race->setPrevRace(temp);
     }
+    numRaces++;
 }
 
 /*Race *RacesList::removeRace() {
@@ -65,6 +67,7 @@ void RacesList::printList() {
             pr::Doc::detail("\nNumLaps: ");
             pr::Doc::detail(std::to_string(temp->getNumLaps()));
             pr::Doc::detail("\nWeather:");
+            // TODO : add back in race day weather
 //            pr::Doc::detail(temp->getRaceDayWeather());
             pr::Doc::detail("\n");
             std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"

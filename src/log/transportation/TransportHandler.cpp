@@ -12,7 +12,7 @@ void TransportHandler::hireEmployees(int budget) {
 void TransportHandler::addAMethod(TransportHandler *transport) {
     if (nextTransportationMethod) {
         //notify?
-        //nextTransportationMethod->addAMethod(transport);
+        nextTransportationMethod->addAMethod(transport);
     }
     else {
         nextTransportationMethod = transport;

@@ -83,7 +83,8 @@ void Logistics::doYearPlanning() {
 
     //6. Set drivers' home tracks
     for (ppl::Driver *d : drivers) {        //for each driver
-        for (int i = 0; i < abs(rand() % 5) + 1; ++i) { //# home tracks in [1,5]
+        int rand_hom_tracks = abs(rand() % 5) + 1; //# home tracks in [1,5]
+        for (int i = 0; i < rand_hom_tracks; ++i) {
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
         }
     }
@@ -102,6 +103,7 @@ void Logistics::doYearPlanning() {
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
+    //TODO : change to doc
     cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: "
          << currentTeamStrategy->getStratName() << std::endl;
 
@@ -167,7 +169,8 @@ Container *Logistics::packSingleContainer() {
 
 // TODO : Check again
 void Logistics::simulateEvent(Race *r) {
-    //1. Transport every car from factory to race location and fill up our list to send to race
+    //1. Transport car (from factory to race location)
+    //1.1 Fill up clipboard
     vector<eng::Car *> carClipboard;
     for (int id : carsInSeasonIDs) {
         eng::Car *temp = callEngDept()->checkCarOutOfFactory(id);
@@ -175,9 +178,17 @@ void Logistics::simulateEvent(Race *r) {
         carClipboard.push_back(temp);
     }
 
-    //2. get correct container and send to people pre-race arrival
+    //2. Transport Drivers
+    pr::Doc::detail("The two drivers are transported in a luxury mode of transport to ");
+    pr::Doc::detail(r->getLocation());
+
+    //Transport drivers
+    // TODO : add fly functionality for drivers
+
+    //3. get correct container, transport and fly and fly
+    // TODO : test transporter
+    transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
-        // TODO : add fly functionality for drivers
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
     } else {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getNextNonEuropean(), tyreSpecs);
@@ -194,6 +205,7 @@ void Logistics::simulateEvent(Race *r) {
     if (!r->isRaceEuropean()) {
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
+    //6. Transport drivers on and container back
 
 }
 
@@ -208,7 +220,7 @@ void Logistics::putRacesIntoCalender() {
 
     try {
         std::ifstream infile;
-        infile.open("/home/jo-anne/Documents/VierEenTwee/src/lg/races/raceData.txt");
+        infile.open("/home/jo-anne/Documents/VierEenTwee/src/log/races/raceData.txt");
         //infile.open("src/lg/races/raceData.txt");
         int numRaces;
         infile >> numRaces;

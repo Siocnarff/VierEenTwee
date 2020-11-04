@@ -22,6 +22,7 @@ void Colleague::notify(Container *container) {
 
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);
+    //TODO : change to pr::DOC
     if (isEuropeanRace) {
         std::cout << "Transportation in Europe\n";
     } else {
