@@ -2,6 +2,7 @@
 // Created by jo-anne on 2020/10/26.
 //
 
+#include <Doc.h>
 #include "GarageEquipment.h"
 
 using namespace lg;
@@ -26,4 +27,11 @@ void GarageEquipment::unpack() {
 
 GarageEquipment::~GarageEquipment() = default;
 
-void GarageEquipment::print() {}
+void GarageEquipment::print() {
+    pr::Doc::detail("Garage equipment:\n");
+    pr::Doc::detail("   ");
+    for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
+        pr::Doc::detail(*it);
+    }
+    pr::Doc::detail("\n");
+}
