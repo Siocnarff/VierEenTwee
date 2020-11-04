@@ -23,8 +23,8 @@ void seasonRun();
 int main() {
 
     //logDeptTesting();
-    //    engTeamTesting();
-    seasonRun();
+    engTeamTesting();
+    //seasonRun();
 
 }
 
@@ -37,9 +37,9 @@ void logDeptTesting() {
     curator->addAMethod(new lg::Ship);
     curator->addAMethod(new lg::Fly);
 
-    lg::Race* race1 = new lg::Race("Aussies",0,1,58);
-    lg::Race* race2 = new lg::Race("Mozzies", 2, 1, 26);
-    eng::Car* car = new eng::Car(50);
+    auto* race1 = new lg::Race("Aussies",0,1,58);
+    auto* race2 = new lg::Race("Mozzies", 2, 1, 26);
+    auto* car = new eng::Car(50);
 
     //transport container between non-european races
     curator->transport(race1, race2); //between races
