@@ -16,6 +16,7 @@
 #include "../eng/Car.h"
 
 #include "../rce/leaderboard/Leaderboard.h"
+#include "../rce/pitstop/Tyres.h"
 
 #include "../rce/strategy/CreateStrategy.h"
 #include "../rce/strategy/SafeStrategy.h"
@@ -50,11 +51,14 @@ namespace rce
         eng::Car *car;//needed?
         eng::Car ** cars;//todo: where to get and set?
         ppl::Driver **drivers;//todo: where to get and set?
+        Tyres* tyre;
 
     public:
+        RacingDep();
+        ~RacingDep();
         void HireEmployees(int b);
         CreateStrategy *PlanSeasonStrategy(int budget);
-        void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
+        void preRaceArrival(std::vector<eng::Car*> c,std::vector<ppl::Driver *>d, lg::Race *r, lg::Container *con,Tyres* tyreSpecs);
         lg::Container* postRacePackUp();// return the container with tires in
         CreateStrategy* changeStrat(lg::RiskLevel risk);//used to change strat during season
 

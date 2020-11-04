@@ -9,6 +9,7 @@
 //#include "Driver.h"
 //#include "Race.h"
 //#include "Car.h"
+#include "../log/Colleague.h"
 #include "../eng/Car.h"
 #include "../ppl/specialists/PitCrew.h"
 #include "../log/races/Race.h"
@@ -24,6 +25,7 @@
 #include <string>
 #include "Tyres.h"
 #include <list>
+#include "../rce/pitstop/Pitstop.h"
 //enum RiskLevel {	Safe, Moderate, Aggressive};
 namespace rce{
 
@@ -34,7 +36,7 @@ private:
 	eng::Car** car;
 	ppl::Driver** driver;
 	lg::Race* raceConditions;
-	rce::Pitstop ** pitstop;
+	rce::Pitstop* pitstop;
 	std::list<ppl::Person*> pitcrew;
 	std::string TeamName;
 	lg::WeatherConditions DayWeather;
@@ -56,7 +58,7 @@ private:
 
 public:
 	RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, CreateStrategy* s, std::list<ppl::Person*> p, Tyres* t, Leaderboard ** l);
-
+    ~RaceWeekend();
 	int * RacingWeekend();
 
 	eng::Car* getCar(int i);
@@ -100,6 +102,8 @@ public:
 	std::string getState(int i);
 	
 	void ChangeState(int i);
+
+    void hireEmployees(int);
 	
 };
 }

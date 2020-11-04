@@ -10,7 +10,7 @@
 #include <races/RaceIterator.h>
 #include <strategy/CreateStrategy.h>
 #include <RacingDep.h>
-
+#include "../rce/RaceWeekend.h"
 #include "Mediator.h"
 #include "../eng/EngTeam.h"
 #include "transportation/TransportHandler.h"

@@ -184,15 +184,15 @@ void Logistics::simulateEvent(Race *r) {
     }
 
     //4. racing weekend finishes and get points for each pair
-    int *temp = callRacingDept()->RaceWeekend();
+    int *temp = callRacingDept()->Race();
     for (int i = 0; i < numPairs; ++i) {
         seasonPointTally[i] += temp[i];
     }
 
     //5. finish the packup
-    Container *tCont = callRacingDept()->postRacePackUp();
+//    Container *tCont = callRacingDept()->postRacePackUp(); todo not working "undefined reference to `rce::RacingDep::postRacePackUp()"
     if (!r->isRaceEuropean()) {
-        delete tCont; //nonEuropeanContainer won't be used again
+//        delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
 
 }
@@ -249,7 +249,7 @@ void Logistics::raceSeason() {
 // TODO : get leaderboard from racingDept and decide accordingly
 void Logistics::postSeasonDebrief() {
     //1. Get results
-    int *tumTumTum = callRacingDept()->getFinalResults();
+    int *tumTumTum = callRacingDept()->getFinalScore();
 
     //2. Flashy results
     //Decorator here?
