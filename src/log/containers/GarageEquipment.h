@@ -14,7 +14,7 @@ namespace lg {
     public:
         GarageEquipment();
 
-        GarageEquipment(std::list <std::string> insides);
+        GarageEquipment(int);
 
         ~GarageEquipment() override;
 

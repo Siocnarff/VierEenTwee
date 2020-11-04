@@ -19,13 +19,27 @@ CateringEquipment::CateringEquipment() {
     contents.emplace_back("A torch");
 }
 
-CateringEquipment::CateringEquipment(std::list<std::string> insides) {
-    if (insides.size() == 0) {
-        contents.push_back("Lots and lots of stuff");
-        return;
+CateringEquipment::CateringEquipment(int budget) {
+    int arr = 4;
+
+    std::string poorArr[] = {"Benches", "Water bottles", "Salty Cracks", "Gazebo"};
+    std::string aveArr[] =  {"Camping chairs", "Energy drinks", "Nutri bars", "Tent"};
+    std::string richArr[] = {"Hospitality Sofas - Inflatable", "Champagne", "Caviar", "Gala Performance Dual Pit Walling"};
+
+    if (budget < 51) {
+        for (int x = 0; x < arr; x++) {
+            contents.push_back(poorArr[x]);
+        }
     }
-    for (std::list<std::string>::iterator it = insides.begin(); it != insides.end(); ++it) {
-        contents.push_back(*it);
+    else if (budget < 76) {
+        for (int x = 0; x < arr; x++) {
+            contents.push_back(aveArr[x]);
+        }
+    }
+    else {
+        for (int x = 0; x < arr; x++) {
+            contents.push_back(richArr[x]);
+        }
     }
 }
 
@@ -38,5 +52,4 @@ void CateringEquipment::print() {
         pr::Doc::detail(*it);
         pr::Doc::detail("\n");
     }
-    pr::Doc::detail("\n");
 }
