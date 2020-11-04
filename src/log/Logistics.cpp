@@ -343,7 +343,23 @@ eng::EngTeam *Logistics::callEngDept() {
 void Logistics::driverBootCamp() {
 /*moet meer spesifiek wees hierso. gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
     Dalk kan ons dit volgens riskLevel doen*/
-    for (ppl::Driver *d: drivers) {
+    switch (currentTeamStrategy->getRiskLevel()) {
+        case Safe:
+            //time higher
+            //more weather conditions
+            //higher time complexity
+            //worse weather condtions
+            break;
+        case Moderate:
+
+            break;
+        case Aggressive:
+
+            break;
+
+    }
+
+for (ppl::Driver *d: drivers) {
         //randomise weathering
         callRacingDept()->trainDriver(d, rand() % 10 + 1, randomWC(), randomTL());
     }
@@ -381,10 +397,15 @@ void Logistics::sponsoredBudget(int sumPositions) {
 
 //TODO : Strategy for using windTunnel;
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
+    int i = 0;
     for (eng::Car *c: cars) {
         transportManager->transport(r, nullptr, c);
-        callEngDept()->carArrivesAtFactory(c);
-        callEngDept()->improveCar(c->getId(), true);
+        int performance = cars[i]->getSpeed() + cars[i++]->getHandling();
+        if (performance > 10) {
+            callEngDept()->improveCar(c->getId(), false);
+        } else {
+            callEngDept()->improveCar(c->getId(), true)
+        }
     }
 }
 
