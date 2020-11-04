@@ -56,12 +56,12 @@ void seasonRun() {
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* a = new lg::Logistics;
-     a->registerNotifier(racingDept);
-     a->registerNotifier(engDept);
-     a->doYearPlanning();
-     a->preSeasonPreparation();
-     a->raceSeason();
-     a->postSeasonDebrief();
+    a->registerNotifier(racingDept);
+    a->registerNotifier(engDept);
+    a->doYearPlanning();
+    a->preSeasonPreparation();
+    a->raceSeason();
+    a->postSeasonDebrief();
     delete racingDept;
     delete engDept;
     delete a;
