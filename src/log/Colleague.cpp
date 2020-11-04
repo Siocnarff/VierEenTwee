@@ -12,8 +12,8 @@ void Colleague::addObserver(Mediator *obs) {
     logisticsDept = obs;
 }
 
-void Colleague::notify(eng::Car *car, Race* r) {
-    logisticsDept->sendCarToFactory(car, r);
+void Colleague::notify(std::vector<eng::Car *>cars, Race* r) {
+    logisticsDept->sendCarToFactory(cars, r);
 }
 
 void Colleague::notify(Container *container) {

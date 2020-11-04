@@ -18,7 +18,7 @@ namespace lg {
 
         void addObserver(Mediator *obs);
 
-        void notify(eng::Car *car, Race*);
+        void notify(std::vector<eng::Car *>cars, Race*);
 
         void notify(Container *container);
 

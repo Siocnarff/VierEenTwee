@@ -62,7 +62,7 @@ void Logistics::registerNotifier(Colleague *colleague) {
  */
 void Logistics::doYearPlanning() {
     //1. getBudget from "Sponsors"
-    budget = abs(rand() % 100 + 1);
+    sponsoredBudget();
 
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
@@ -102,7 +102,7 @@ void Logistics::doYearPlanning() {
  */
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
-    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget /*+ something else? */ );
+    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     //TODO : change to doc
     cout << "The Strategists of the " << callRacingDept()->getTeamName() << " team have decided on a strategy: "
          << currentTeamStrategy->getStratName() << std::endl;
@@ -184,7 +184,7 @@ void Logistics::simulateEvent(Race *r) {
     // TODO : add fly functionality for drivers
 
     //3. get correct container, transport and fly and fly
-    // TODO : test transporter
+
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
@@ -265,11 +265,31 @@ void Logistics::postSeasonDebrief() {
     //Decorator here?
 
     //3. let transportManager take a holiday
-    //Implement destructors
+    delete transportManager;
 
     //4. Let driver take a holiday
+    int sumPositions = 0;
+    for (int i = 0; i < numPairs; ++i) {
+        ppl::Driver *d = drivers.back();
+        drivers.pop_back();
+        if (tumTumTum[2*i+1] >= 3) {
+            pr::Doc::detail(d->getName() + " takes a well-earned holiday near Malibu\n");
+        } else {
+            pr::Doc::detail(d->getName() + " is tactfully offered a retirement package\n");
+        }
+        sumPositions += tumTumTum[2*i+1];
+
+    }
+
+    //5. Get some sponsors again.
+    sponsoredBudget(sumPositions);
 
     //5. start building a new car?
+    pr::Doc::summary("Start working on a new car");
+    for (int i = 0; i < numPairs; ++i) {
+        carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+    }
+
 
 }
 
@@ -325,15 +345,43 @@ void Logistics::driverBootCamp() {
     }
 }
 
+void Logistics::sponsoredBudget(int sumPositions) {
+
+    pr::Doc::summary("Approaching sponsors to negotiate a new budget");
+
+    if (budget == 0) {  //default argument
+        budget = abs(rand() % 100 + 1);
+    }
+    else {
+        if (sumPositions >= 3) {
+            pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly");
+            budget = max((int) ((double) budget * 1.5),(100- (int) ((double) budget * 0.5)))  ;
+        } else if (sumPositions <= 6) {
+            pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly");
+            budget = max((int) ((double) budget * 0.2),(80- (int) ((double) budget * 0.2)));
+        } else if (sumPositions <= 10) {
+            pr::Doc::detail("The sponsor is satisfied with the performance");
+        } else {
+            pr::Doc::detail("This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
+            budget -= (int) ((double) budget * 0.1);
+        }
+        if (budget > 100) budget = 100;
+        if (budget < 0) budget = 10;
+    }
+    pr::Doc::summary("The team has been allocated a budget of " + to_string(budget) + "\n");
+}
+
 
 
 // =========================== MEDIATOR ===========================
 
 //TODO : Strategy for using windTunnel;
-void Logistics::sendCarToFactory(eng::Car *car, Race *r) {
-    transportManager->transport(r, nullptr, car);
-    callEngDept()->carArrivesAtFactory(car);
-    callEngDept()->improveCar(car->getId(), true);
+void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
+    for (eng::Car *c: cars) {
+        transportManager->transport(r, nullptr, c);
+        callEngDept()->carArrivesAtFactory(c);
+        callEngDept()->improveCar(c->getId(), true);
+    }
 }
 
 //NOT STARTED - should transport container here
@@ -345,7 +393,7 @@ void Logistics::containerHasBeenPacked(Container *) {
  * @status Should be done
  * @param tyreOrder
  */
-void Logistics::orderTyres(int* tyreOrder) {
+void Logistics::orderTyres(int *tyreOrder) {
     pr::Doc::summary("Ordering tyres as informed by Racing Departement\n");
     pr::Doc::detail("Tedious paperwork to complete tyre order\n");
 
@@ -373,6 +421,8 @@ void Logistics::orderTyres(int* tyreOrder) {
     //instantiate tyres
     tyreSpecs = new rce::Tyres(tyreOrder);
 }
+
+
 
 
 

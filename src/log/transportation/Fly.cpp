@@ -26,3 +26,7 @@ void Fly::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     }
 }
 
+Fly::~Fly() {
+
+}
+

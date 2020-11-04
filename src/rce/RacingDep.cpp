@@ -138,8 +138,11 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 {
 }*/
 
-void RacingDep::preRaceArrival(std::vector<eng::Car *>, std::vector<ppl::Driver *>, lg::Race *, lg::Container *, Tyres *) {
+void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Driver *>, lg::Race *r, lg::Container *cont, Tyres *) {
 // TODO - implement RacingDep::preRaceArrival
+    this->CarContainer = cont;
+    this->race = r;
+    this->cars = cars;
     //throw "Not yet implemented";
 }
 
@@ -227,11 +230,14 @@ void RacingDep::SetCarAfterRace()
 }
 
 int *RacingDep::RacingWeekend() {
-    return nullptr;
+    int *results = new int[2];
+    results[0] = 5; results[1] = 6;
+    return results;
 }
 
 lg::Container *RacingDep::postRacePackUp() {
-    return nullptr;
+    notify(cars, race);
+    return this->CarContainer;
 }
 
 RacingDep::~RacingDep() {
@@ -245,7 +251,10 @@ RacingDep::RacingDep() {
 
 int *RacingDep::getFinalResults() {
     //return array {score1,postition1,score2, postion2}
-    throw "Not yet implemented";
+    //throw "Not yet implemented";
+    int* results = new int[4];
+    results[0] = 512; results[1] = 1; results[2] = 213; results[3] = 5;
+    return results;
 }
 
 

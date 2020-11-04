@@ -23,8 +23,8 @@ void seasonRun();
 int main() {
 
     //logDeptTesting();
-    engTeamTesting();
-    //seasonRun();
+    //engTeamTesting();
+    seasonRun();
 
 }
 
@@ -65,6 +65,14 @@ void seasonRun() {
     delete racingDept;
     delete engDept;
     delete a;
+    /*engDept->hireEmployees(50);
+    engDept->resetTickets();
+    engDept->setRiskLevel(lg::Aggressive);
+    int id = engDept->buildCar(50);
+    eng::Car* car = engDept->checkCarOutOfFactory(id);
+    car->print();*/
+
+
 }
 
 void engTeamTesting() {

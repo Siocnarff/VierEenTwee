@@ -17,6 +17,8 @@ namespace lg {
     private:
         TransportHandler *nextTransportationMethod = nullptr;
     public:
+        ~TransportHandler();
+
         void hireEmployees(int budget) override;
 
         void addAMethod(TransportHandler *transport);

@@ -34,7 +34,7 @@ namespace lg {
         void postSeasonDebrief();
 
     protected:
-        void sendCarToFactory(eng::Car *, Race*) override;
+        void sendCarToFactory(std::vector<eng::Car *>, Race*) override;
 
         void containerHasBeenPacked(Container *) override;
 
@@ -53,6 +53,8 @@ namespace lg {
         void orderTyres(int* tyreOrder) override;
 
         void driverBootCamp();
+
+        void sponsoredBudget(int sumPositions = 0);
 
     private:
         rce::RacingDep *callRacingDept();
