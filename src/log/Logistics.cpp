@@ -210,17 +210,14 @@ void Logistics::simulateEvent(Race *r) {
 /**
  * @author Jo
  * @status nearly there
- * @ERROR hard-coded file path
  */
-// TODO : Fix hard-coded file-path
 void Logistics::putRacesIntoCalender() {
     racingCalendar = new RacesList;
 
-    try {
-        std::ifstream infile;
-//        fstream infile("C:/Users/User/CLionProjects/COS214/VierEenTwee/src/log/races/raceData.txt");
-//        fstream file1("C:/Users/MR_Salman/Desktop/exper.txt");
-        infile.open("../src/log/races/raceData.txt");
+    std::ifstream infile;
+    infile.open("../src/log/races/raceData.txt");
+
+    if (infile.is_open()) {
         int numRaces;
         infile >> numRaces;
 
@@ -239,8 +236,9 @@ void Logistics::putRacesIntoCalender() {
             getline(infile, name); //to remove first random /n
         }
         infile.close();
-    } catch (std::ifstream::failure e) { //exception e
+    } else { //exception e
         std::cout << "There was a file-reading error !\n";
+        throw "Error";
     }
 
     racingCalendar->printList();
