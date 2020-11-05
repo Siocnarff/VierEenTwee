@@ -1,5 +1,6 @@
 #ifndef RACING_DRIVERSLEADERBOARD_H
 #define RACING_DRIVERSLEADERBOARD_H
+#include "../pr/Doc.h"
 #include <string>
 #include "Leaderboard.h"
 namespace rce{

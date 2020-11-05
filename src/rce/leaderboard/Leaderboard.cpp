@@ -55,7 +55,8 @@ int * Leaderboard::getFinalScore()
 	int largest = 0;
 	int position =1;
 	if(getdisplayLeaderboard()== true){
-	std::cout << "Final Leaderboard"<< std::endl<<std::endl;
+
+	pr::Doc::detail("Final Leaderboard\n\n");
 	for(int i = 0; i < 20; i ++)
 	{
 		for(int n = 0; n < 20; n++){
@@ -65,7 +66,14 @@ int * Leaderboard::getFinalScore()
 					largepos = n;
 			}
 		}
-		std::cout << "#" << position << "	" << DriverName[largepos] << ":			"<< finalScore[largepos]<< std::endl;
+//		std::cout << "#" << position << "	" << DriverName[largepos] << ":			"<< finalScore[largepos]<< std::endl;
+		pr::Doc::detail("#");
+		pr::Doc::detail(std::to_string(position));
+		pr::Doc::detail(" ");
+		pr::Doc::detail(DriverName[largepos]);
+		pr::Doc::detail( ":			");
+		pr::Doc::detail(std::to_string(finalScore[largepos]));
+		pr::Doc::detail( "\n");
 		for(int m =0; m < 2; m++ )
 		{
 			if(OurDriver[m] == DriverName[largepos] )

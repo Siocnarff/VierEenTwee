@@ -1,5 +1,6 @@
 #ifndef TEAMLEADERBOARD_H
 #define TEAMLEADERBOARD_H
+#include "../pr/Doc.h"
 #include <string>
 #include "Leaderboard.h"
 namespace rce{

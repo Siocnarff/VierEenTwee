@@ -1,5 +1,6 @@
 #ifndef LEADERBOARD_H
 #define LEADERBOARD_H
+#include "../pr/Doc.h"
 #include <string>
 namespace rce{
 class Leaderboard {

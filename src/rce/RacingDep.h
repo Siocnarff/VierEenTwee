@@ -51,14 +51,14 @@ namespace rce
         eng::Car *car;//needed?
         eng::Car ** cars;//todo: where to get and set?
         ppl::Driver **drivers;//todo: where to get and set?
-        Tyres* tyre;
+        Tyres ** tyres;
 
     public:
         RacingDep();
         ~RacingDep();
         void HireEmployees(int b);
         CreateStrategy *PlanSeasonStrategy(int budget);
-        void preRaceArrival(std::vector<eng::Car*> c,std::vector<ppl::Driver *>d, lg::Race *r, lg::Container *con,Tyres* tyreSpecs);
+        void preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t);
         lg::Container* postRacePackUp();// return the container with tires in
         CreateStrategy* changeStrat(lg::RiskLevel risk);//used to change strat during season
 
@@ -87,6 +87,8 @@ namespace rce
         void setPitcrew(std::list<ppl::Person *> pitcrew);
 
         int * getFinalScore();
+
+
     };
 }
 #endif

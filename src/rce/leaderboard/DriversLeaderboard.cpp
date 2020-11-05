@@ -56,7 +56,8 @@ bool array[20];
 	int largest = 0;
 	int position =1;
 	if(getdisplayLeaderboard()== true){
-	std::cout << "Driver Leaderboard"<< std::endl<<std::endl;
+	//std::cout << "Driver Leaderboard"<< std::endl<<std::endl;
+	pr::Doc::detail(" Driver Leaderboard\n\n");
 	for(int i = 0; i < 20; i ++)
 	{
 		for(int n = 0; n < 20; n++){
@@ -66,7 +67,15 @@ bool array[20];
 					largepos = n;
 			}
 		}
-		std::cout << "#" << position << "	" << driverName[largepos] << ":			"<< driverResult[largepos]<< std::endl;
+//		std::cout << "#" << position << "	" << driverName[largepos] << ":			"<< driverResult[largepos]<< std::endl;
+		pr::Doc::detail("#");
+		pr::Doc::detail(std::to_string(position));
+		pr::Doc::detail(" ");
+		pr::Doc::detail(driverName[largepos]);
+		pr::Doc::detail( ":			");
+		pr::Doc::detail(std::to_string(driverResult[largepos]));
+		pr::Doc::detail( "\n");
+		
 		array[largepos] = true;
 		position++;
 		largest = 0;

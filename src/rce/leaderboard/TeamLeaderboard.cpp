@@ -99,7 +99,7 @@ void TeamLeaderboard::display()
 	int largest = 0;
 	int position =1;
 	if(getdisplayLeaderboard()== true){
-	std::cout << "Team Leaderboard"<< std::endl<<std::endl;
+    pr::Doc::detail("Team Leaderboard\n\n");
 	for(int i = 0; i < 10; i ++)
 	{
 		for(int n = 0; n < 10; n++){
@@ -110,7 +110,14 @@ void TeamLeaderboard::display()
 			}
 		}
 		//std::cout << "largest: " << largest<< std::endl;
-		std::cout << "#" << position << "	" << TeamName[0][largepos] << ":			"<< teamresult[0][largepos]<< std::endl;
+//		std::cout << "#" << position << "	" << TeamName[0][largepos] << ":			"<< teamresult[0][largepos]<< std::endl;
+		pr::Doc::detail("#");
+		pr::Doc::detail(std::to_string(position));
+		pr::Doc::detail(" ");
+		pr::Doc::detail(TeamName[0][largepos]);
+		pr::Doc::detail( ":			");
+		pr::Doc::detail(std::to_string(teamresult[0][largepos]));
+		pr::Doc::detail( "\n");
 		array[largepos] = true;
 		position++;
 		largest = 0;

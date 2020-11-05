@@ -38,6 +38,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 			tyre[1]=2;
 			tyre[2]=0;
 			strategy=new SafeStrategy(2,tyre,lg::Safe);
+            notify(tyre);
 			return strategy->execute();
 	}
 	else if(budget>=25 && budget<50)
@@ -47,6 +48,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 			tyre[1]=2;
 			tyre[2]=0;
             strategy=new ModerateStrategy(2,tyre,lg::Moderate);
+            notify(tyre);
 			return strategy->execute();
 
 	}
@@ -56,6 +58,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 			tyre[1]=2;
 			tyre[2]=1;
             strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
+            notify(tyre);
 			return strategy->execute();
 	}
 }
@@ -125,20 +128,58 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherC
     return driver;
 }
 
-void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver *>d, lg::Race *r, lg::Container *con,Tyres* tyreSpecs)
+void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t)
 {
     cars = new eng::Car*[2];
     drivers = new ppl::Driver*[2];
-	CarContainer = con;
-	race = r;
-	for(int i = 0; i < 2; i++)
-	{
-		cars[i] = c[i];
-		drivers[i] = d[i];
-	}
-	CarContainer->unpack();
+    tyres = new Tyres*[2];
+    CarContainer = con;
+    race = r;
+    for(int i = 0; i < 2; i++)
+    {
+        tyres[i] = t[i];
+        cars[i] = c[i];
+        drivers[i] = d[i];
+    }
+    CarContainer->unpack();
 }
 
+CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
+{
+    if(strategy)
+    {
+        delete strategy;
+        strategy=NULL;
+    }
+    int* tyre=new int[3];
+    if(risk==lg::Safe)
+    {
+        tyre[0]=3;
+        tyre[1]=2;
+        tyre[2]=0;
+        strategy=new SafeStrategy(2,tyre,lg::Safe);
+        notify(tyre);
+        return strategy->execute();
+    }
+    else if(risk==lg::Moderate)
+    {
+        tyre[0]=3;
+        tyre[1]=2;
+        tyre[2]=0;
+        strategy=new ModerateStrategy(2,tyre,lg::Moderate);
+        notify(tyre);
+        return strategy->execute();
+    }
+    else
+    {
+        tyre[0]=2;
+        tyre[1]=2;
+        tyre[2]=1;
+        strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
+        notify(tyre);
+        return strategy->execute();
+    }
+}
 /*int RacingDep::RacingWeekend()
 {
 	// TODO - implement RacingDep::Race
@@ -199,7 +240,7 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 
 int * RacingDep::Race()
 {
-    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyre, lead);
+    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();
     delete racingweekend;
     CarContainer->pack();

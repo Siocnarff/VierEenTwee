@@ -185,7 +185,8 @@ void Logistics::simulateEvent(Race *r) {
 
     //4. racing weekend finishes and get points for each pair
     int *temp = callRacingDept()->Race();
-    for (int i = 0; i < numPairs; ++i) {
+    for (int i = 0; i < numPairs; ++i)
+    {
         seasonPointTally[i] += temp[i];
     }
 

@@ -23,8 +23,10 @@ namespace lg {
         }
     }
 
-    TrackComplexity randomTL() {
-        switch (rand() % 4) {
+    TrackComplexity randomTL()
+    {
+        switch (rand() % 4)
+        {
             case 0:
                 return Easy;
             case 1:
@@ -36,8 +38,10 @@ namespace lg {
         }
     }
 
-    RiskLevel randomRL() {
-        switch (rand()%3) {
+    RiskLevel randomRL()
+    {
+        switch (rand()%3)
+        {
             case 0:
                 return Safe;
             case 1:
