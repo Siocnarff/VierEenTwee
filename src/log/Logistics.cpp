@@ -44,13 +44,12 @@ Logistics::Logistics(int numDriverCarPairs) {
 
 // TODO : @jo finish destructor
 Logistics::~Logistics(){
-    if (transportManager) delete transportManager;
-    if (racingCalendar) {
+    if (racingCalendar!= nullptr) {
         //delete accordingly
     }
-    if (europeanContainer) delete europeanContainer;
-    if (currentTeamStrategy) delete currentTeamStrategy;
-    if (tyreSpecs) delete tyreSpecs;
+    if (europeanContainer != nullptr) delete europeanContainer;
+    if (currentTeamStrategy != nullptr) delete currentTeamStrategy;
+    if (tyreSpecs != nullptr) delete tyreSpecs;
 };
 
 /**

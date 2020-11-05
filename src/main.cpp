@@ -25,10 +25,10 @@ void proto_FinalMain();
 
 int main() {
 
-    logDeptTesting();
+    //logDeptTesting();
     //engTeamTesting();
     //seasonRun();
-   // proto_FinalMain();
+    proto_FinalMain();
 //   testTyres();
 
 
