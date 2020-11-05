@@ -7,7 +7,7 @@ int Component::getQualityLabel() const {
 	return this->qualityLabel;
 }
 
-void Component::setQualityLabel(int label) {
+void Component::setQualityLabel(int label) {te
 	this->qualityLabel = label;
 }
 

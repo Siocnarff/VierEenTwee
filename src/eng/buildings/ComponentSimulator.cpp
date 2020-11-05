@@ -18,7 +18,9 @@ void ComponentSimulator::testComponent(Component* component) {
 
 void ComponentSimulator::testComponents(Car* car) {
 	for (Component* component : car->components) {
-		testComponent(component);
+	    if (component) {
+            testComponent(component);
+        }
 	}
 	pr::Doc::detail("Components of car ");
 	pr::Doc::detail(std::to_string(car->getId()));
