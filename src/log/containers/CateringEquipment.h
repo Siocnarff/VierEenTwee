@@ -9,13 +9,19 @@
 
 namespace lg {
     class CateringEquipment : public Container {
+
     private:
+
         std::list <std::string> contents;
+
     public:
+
         CateringEquipment();
-        CateringEquipment(std::list <std::string> insides);
-        void unpack() override;
+
+        CateringEquipment(int);
+
         ~CateringEquipment() override;
+
         void print() override;
     };
 }

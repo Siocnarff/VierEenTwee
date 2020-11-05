@@ -176,7 +176,6 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
 }
 
 Car *EngTeam::checkCarOutOfFactory(int id) {
-    garage.retrieveCar(id);
 	return garage.retrieveCar(id);
 }
 

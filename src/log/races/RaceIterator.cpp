@@ -21,7 +21,6 @@ void RaceIterator::first() {
     current = head;
 }
 
-//RaceIterator RaceIterator::operator++() {
 void RaceIterator::operator++() {
     if (this != nullptr) {
         this->current = this->current->nextRace();

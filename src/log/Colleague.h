@@ -7,7 +7,7 @@
 
 #include <races/Race.h>
 #include "Car.h"
-#include "races/Container.h"
+#include "containers/Container.h"
 //#include <iostream> //both eng- and racing- need it
 namespace lg {
     class Mediator;
@@ -18,9 +18,11 @@ namespace lg {
 
         void addObserver(Mediator *obs);
 
-        void notify(eng::Car *car, Race*);
+        void notify(std::vector<eng::Car *>cars, Race*);
 
-        void notify(Container *container);
+        void notify(eng::Car* brokenCar, Race*);
+
+        /*void notify(Container *container);*/
 
         void notify(bool isEuropeanRace);
 

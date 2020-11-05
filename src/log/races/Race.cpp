@@ -82,10 +82,10 @@ void Race::setNextRace(Race *race) {
     race->prev = this;
 }
 
-void Race::setPrevRace(Race *race) {
+/*void Race::setPrevRace(Race *race) {
     this->prev = race;
     race->next = this;
-}
+}*/
 
 Race *Race::nextRace() {
     return next;
@@ -101,6 +101,8 @@ int Race::getNumLaps() {
 int Race::getTrackID() {
     return id;
 }
+
+Race::~Race() = default;
 
 /*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
     os << rc.location << '/nEurope: ' << rc.isInEurope << '/nNumLaps: ' << rc.numLaps << std::endl;

@@ -5,8 +5,6 @@
 #ifndef SRC_TRACKCOMPLEXITY_H
 #define SRC_TRACKCOMPLEXITY_H
 
-#include "random"
-
 namespace lg {
     enum TrackComplexity {
         Easy, Average, Difficult, Extreme

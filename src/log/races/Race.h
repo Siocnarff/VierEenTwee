@@ -26,6 +26,8 @@ namespace lg {
 
         Race(std::string, int complexity, bool inEU, int laps, Race *next = nullptr, Race *prev = nullptr);
 
+        ~Race();
+
         void setNextRace(Race *);
 
         void setPrevRace(Race *);

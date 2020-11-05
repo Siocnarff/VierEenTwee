@@ -15,8 +15,10 @@ namespace lg {
 
     class TransportHandler : public Colleague {
     private:
-        TransportHandler *nextTransportationMethod;
+        TransportHandler *nextTransportationMethod = nullptr;
     public:
+        ~TransportHandler();
+
         void hireEmployees(int budget) override;
 
         void addAMethod(TransportHandler *transport);

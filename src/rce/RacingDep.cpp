@@ -114,7 +114,6 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::TrackComp
     normal->setTime(time);
     normal->SimulateWeather();
     return driver;
-    return driver;
 }
 
 ppl::Driver *RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherConditions weather)
@@ -180,23 +179,7 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         return strategy->execute();
     }
 }
-/*int RacingDep::RacingWeekend()
-{
-	// TODO - implement RacingDep::Race
-	throw "Not yet implemented";
-}*/
 
-/*void RacingDep::postRacePackUp()
-{
-	// TODO - implement RacingDep::postRacePackUp
-	throw "Not yet implemented";
-}*/
-
-/*void RacingDep::registerForSeason(lg::Observer* logisticsDept)
-{
-	// TODO - implement RacingDep::registerForSeason
-	throw "Not yet implemented";
-}*/
 
 lg::Race* RacingDep::getRace()
 {
@@ -230,7 +213,8 @@ std::list<ppl::Person*> RacingDep::getPitcrew()
 
 void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
 {
-	//
+	//mens kan nie een list net aan 'n ander assign nie. Jy moet elementwise deurgaan
+//    this->pitcrew = pitcrew;
 }
 
 void RacingDep::SetCarAfterRace(eng::Car* c)
