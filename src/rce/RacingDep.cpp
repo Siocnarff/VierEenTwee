@@ -9,10 +9,10 @@
 #include <utility>
 using namespace rce;
 
-void RacingDep::HireEmployees(int b)
+void RacingDep::hireEmployees(int b)
 {
-    ppl::HirePitCrew *PitCrewFactory=new ppl::HirePitCrew();
-	ppl::HireStrategist *StratFactory=new ppl::HireStrategist();
+    ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
+	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
     for (int i = 0; i <2 ; ++i)
     {
         Strategist.push_back(StratFactory->source("racing strategist"));

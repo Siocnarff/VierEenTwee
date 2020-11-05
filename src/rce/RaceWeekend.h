@@ -12,6 +12,7 @@
 #include "../rce/strategy/ModerateStrategy.h"
 #include "../rce/strategy/AggressiveStrategy.h"
 #include "DriverPitStop.h"
+#include "../rce/pitstop/Pitstop.h"
 #include "../ppl/specialists/Driver.h"
 #include "Driver.h"
 #include "Race.h"
@@ -28,7 +29,7 @@
 #include "Leaderboard.h"
 #include "DriversLeaderboard.h"
 #include "TeamLeaderboard.h"
-#include "Container.h"
+#include "../log/containers/Container.h"
 #include <string>
 #include "Tyres.h"
 #include "../rce/pitstop/SetOfTyres.h"

@@ -23,6 +23,8 @@ namespace lg {
 
         virtual void orderTyres(int* tyreOrder) = 0;
 
+        virtual void moveDrivers(std::vector<ppl::Driver*>) = 0;
+
     public:
         friend class Colleague;
     };

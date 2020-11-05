@@ -33,7 +33,7 @@ namespace rce {
 
         RacingDep();
         ~RacingDep();
-        void HireEmployees(int b);
+        void hireEmployees(int b);
         CreateStrategy *PlanSeasonStrategy(int budget);
         void preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t);
         lg::Container* postRacePackUp();// return the container with tires in
