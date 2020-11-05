@@ -23,6 +23,7 @@ using namespace lg;
 // IDEA : approach budget people in the middle to ask for raise?
 // IDEA : use up the budget
 // TODO : @both fix memleaks
+// TODO : @marike ensure deletion of containers works
 
 /**
  * @author Jo
@@ -121,7 +122,7 @@ void Logistics::preSeasonPreparation() {
 
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    pr::Doc::summary("Tyre Order has arrived");
+    pr::Doc::summary("Tyre Order has arrived after one month");
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
@@ -298,6 +299,7 @@ void Logistics::postSeasonDebrief() {
             pr::Doc::detail(d->getName() + " is tactfully offered a retirement package\n");
         }
         sumPositions += tumTumTum[2 * i + 1];
+        // IDEA : keep good drivers for next season
     }
 
     //5. Get some sponsors again.
@@ -309,6 +311,10 @@ void Logistics::postSeasonDebrief() {
     for (int i = 0; i < numPairs; ++i) {
         carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
     }
+
+    //6. clear out remaining containers
+    europeanContainer = nullptr;
+    nonEuropeanContainers.clear();
 
 
 }
