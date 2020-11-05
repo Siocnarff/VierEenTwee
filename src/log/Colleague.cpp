@@ -16,9 +16,9 @@ void Colleague::notify(std::vector<eng::Car *>cars, Race* r) {
     logisticsDept->sendCarToFactory(cars, r);
 }
 
-void Colleague::notify(Container *container) {
+/*void Colleague::notify(Container *container) {
     logisticsDept->containerHasBeenPacked(container);
-}
+}*/
 
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);

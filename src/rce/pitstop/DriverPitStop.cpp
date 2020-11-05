@@ -3,7 +3,7 @@
 using namespace rce;
 
 /*void DriverPitStop::tyres(int t, int compounds) {
-	// TODO - implement DriverPitStop::tyres
+	//  implement DriverPitStop::tyres
 	throw "Not yet implemented";
 }*/
 
@@ -12,11 +12,11 @@ void DriverPitStop::setCar(eng::Car* c) {
 }
 
 void DriverPitStop::tyres(Tyres *t) {
-    // TODO - implement DriverPitStop::tyres
+    //  - implement DriverPitStop::tyres
     throw "Not yet implemented";
 }
 
 void DriverPitStop::race() {
-	// TODO - implement DriverPitStop::race
+	//  - implement DriverPitStop::race
 	throw "Not yet implemented";
 }

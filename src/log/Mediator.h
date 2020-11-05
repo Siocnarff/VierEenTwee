@@ -13,7 +13,7 @@ namespace lg {
 
     class Mediator {
     protected:
-//        virtual ~Mediator();
+        virtual ~Mediator() = default;
 
         virtual void sendCarToFactory(std::vector<eng::Car *>, Race*) = 0;
 

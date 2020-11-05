@@ -57,7 +57,7 @@ namespace rce {
         int* getFinalResults();
 
 
-    // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
+    //  Besluit dalk watter funksies eintlik protected en private moet wees
 
         Leaderboard *getResults();
 

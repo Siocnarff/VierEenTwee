@@ -10,6 +10,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <random>
 #include <containers/Box.h>
 #include <containers/GarageEquipment.h>
 #include <containers/CateringEquipment.h>
@@ -32,11 +33,11 @@ Logistics::Logistics(int numDriverCarPairs) {
     racingCalendar = nullptr;
     europeanContainer = nullptr;
     currentTeamStrategy = nullptr;
+    tyreSpecs = nullptr;
     budget = -1;
 }
 
-Logistics::~Logistics() {
-}
+Logistics::~Logistics() = default;
 
 
 /**
@@ -78,7 +79,7 @@ void Logistics::doYearPlanning() {
     //5. Hire drivers
     ppl::HireDriver driverCurator;
     for (int i = 0; i < numPairs; ++i) {
-        drivers.push_back(static_cast<ppl::Driver *>(driverCurator.hire("Driver")));
+        drivers.push_back(dynamic_cast<ppl::Driver *>(driverCurator.hire("Driver")));
     }
 
     //6. Set drivers' home tracks
@@ -148,7 +149,7 @@ void Logistics::packContainers() {
  * @status She be done
  * @return Packed Container
  */
-Container *Logistics::packSingleContainer() {
+Container *Logistics::packSingleContainer() const {
     Box *box = new Box();
     auto *garageEquip = new GarageEquipment(budget);
     auto *cateringEquip = new CateringEquipment(budget);
@@ -208,6 +209,7 @@ void Logistics::simulateEvent(Race *r) {
         }
     }
     if (!r->isRaceEuropean()) {
+        //TODO : check possible double-delete here
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
 
@@ -396,24 +398,25 @@ void Logistics::sponsoredBudget(int sumPositions) {
 
 // =========================== MEDIATOR ===========================
 
-//TODO : Strategy for using windTunnel;
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
-    int i = 0;
-    for (eng::Car *c: cars) {
+
+    for (int i = 0; i < cars.size(); ++i) {
+        eng::Car* c = cars[i];
         transportManager->transport(r, nullptr, c);
-        int performance = cars[i]->getSpeed() + cars[i++]->getHandling();
+        int performance = cars[i]->getSpeed() + cars[i]->getHandling();
+        // TODO : Check parameter at runtime ( & Improve strategy for using windTunnel)
         if (performance > 10) {
             callEngDept()->improveCar(c->getId(), false);
         } else {
-            callEngDept()->improveCar(c->getId(), true)
+            callEngDept()->improveCar(c->getId(), true);
         }
     }
 }
 
 //NOT STARTED - should transport container here
-void Logistics::containerHasBeenPacked(Container *) {
+/*void Logistics::containerHasBeenPacked(Container *) {
     cout << "fly container" << endl;
-}
+}*/
 
 /**
  * @status Should be done

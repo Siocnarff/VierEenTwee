@@ -10,7 +10,7 @@ using namespace rce;
 
 void RacingDep::hireEmployees(int b)
 {
-	// TODO - implement RacingDep::HireWorker
+	//   - implement RacingDep::HireWorker
 	//throw "Not yet implemented";
 }
 
@@ -139,7 +139,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 }*/
 
 void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Driver *>, lg::Race *r, lg::Container *cont, Tyres *) {
-// TODO - implement RacingDep::preRaceArrival
+//   - implement RacingDep::preRaceArrival
     this->CarContainer = cont;
     this->race = r;
     this->cars = cars;
@@ -148,25 +148,25 @@ void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Dr
 
 /*int RacingDep::RacingWeekend()
 {
-	// TODO - implement RacingDep::Race
+	//   - implement RacingDep::Race
 	throw "Not yet implemented";
 }*/
 
 /*void RacingDep::postRacePackUp()
 {
-	// TODO - implement RacingDep::postRacePackUp
+	//   - implement RacingDep::postRacePackUp
 	throw "Not yet implemented";
 }*/
 
 /*void RacingDep::registerForSeason(lg::Observer* logisticsDept)
 {
-	// TODO - implement RacingDep::registerForSeason
+	//   - implement RacingDep::registerForSeason
 	throw "Not yet implemented";
 }*/
 
 Leaderboard* RacingDep::getResults() 
 {
-	// TODO - implement RacingDep::getResults
+	//   - implement RacingDep::getResults
 	throw "Not yet implemented";
 }
 
@@ -177,38 +177,38 @@ lg::Race* RacingDep::getRace()
 
 void RacingDep::setResult(int result) 
 {
-	// TODO - implement RacingDep::setResult
+	//   - implement RacingDep::setResult
 	throw "Not yet implemented";
 }
 
 int RacingDep::getResult() 
 {
-	// TODO - implement RacingDep::getResult
+	//   - implement RacingDep::getResult
 	throw "Not yet implemented";
 }
 
 std::string RacingDep::getTeamName()
 {
-	// TODO - implement RacingDep::getTeamName
+	//   - implement RacingDep::getTeamName
 	//throw "Not yet implemented";
     return "standard team name";
 }
 
 void RacingDep::setTeamName(std::string TeamName)
 {
-	// TODO - implement RacingDep::setTeamName
+	//   - implement RacingDep::setTeamName
 	throw "Not yet implemented";
 }
 
 std::list<ppl::Person*> RacingDep::getStategist()
 {
-	// TODO - implement RacingDep::getStategist
+	//   - implement RacingDep::getStategist
 	throw "Not yet implemented";
 }
 
 void RacingDep::setStategist(std::list<ppl::Person*> Stategist)
 {
-	// TODO - implement RacingDep::setStategist
+	//   - implement RacingDep::setStategist
 	throw "Not yet implemented";
 }
 
@@ -225,7 +225,7 @@ void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
 
 void RacingDep::SetCarAfterRace() 
 {
-	// TODO - implement RacingDep::SetCarAfterRace
+	//   - implement RacingDep::SetCarAfterRace
 	throw "Not yet implemented";
 }
 

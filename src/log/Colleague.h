@@ -20,7 +20,7 @@ namespace lg {
 
         void notify(std::vector<eng::Car *>cars, Race*);
 
-        void notify(Container *container);
+        /*void notify(Container *container);*/
 
         void notify(bool isEuropeanRace);
 

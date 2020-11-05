@@ -44,7 +44,7 @@ namespace lg {
 
         void packContainers();
 
-        Container* packSingleContainer();
+        Container* packSingleContainer() const;
 
         void simulateEvent(Race *);
 
@@ -71,7 +71,7 @@ namespace lg {
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;
 
-        rce::Tyres* tyreSpecs; //possibly unnecessary? No
+        rce::Tyres* tyreSpecs{}; //possibly unnecessary? No
 
 
         std::vector<int> seasonPointTally;

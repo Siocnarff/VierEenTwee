@@ -4,7 +4,7 @@
 using namespace rce;
 
 /*void DriversLeaderboard::UpdateDriverLeaderBoard(String driverName, int Score) {
-	// TODO - implement DriversLeaderboard::UpdateDriverLeaderBoard
+	// - implement DriversLeaderboard::UpdateDriverLeaderBoard
 	throw "Not yet implemented";
 }*/
 
