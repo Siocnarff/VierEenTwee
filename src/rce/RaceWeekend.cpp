@@ -17,7 +17,7 @@ int * RaceWeekend::RacingWeekend() {
         pr::Doc::detail("Race # ");
         pr::Doc::detail(std::to_string(i+1));
         pr::Doc::detail(" is starting.\n");
-//        std::cout <<std:: endl<<"Race #"<<i+1<< " is starting."<<std:: endl<<std:: endl;
+//        std::cout <<std:: endl<<"Rakce #"<<i+1<< " is starting."<<std:: endl<<std:: endl;
         setDayWeather();
         for(int n = 0; n < 2; n++)
         {

@@ -208,8 +208,6 @@ add_executable(VierEenTwee
         src/ppl/factories/HireDriver.h
         src/pr/Doc.cpp
         src/pr/Doc.h
-        src/rce/RaceDaysIterator.cpp
-        src/rce/RaceDaysIterator.h
         src/rce/RaceWeekend.cpp
         src/rce/RaceWeekend.h
         src/rce/RacingDep.cpp
