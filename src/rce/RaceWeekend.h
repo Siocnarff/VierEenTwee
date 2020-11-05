@@ -4,7 +4,7 @@
 #include "../rce/carState/CarStateBroken.h"
 #include "../rce/carState/CarStateDamaged.h"
 #include "../rce/carState/CarStateFullHP.h"
-#include "../rce/RacingDep.h"
+//#include "../rce/RacingDep.h"
 #include "../log/Colleague.h"
 
 #include "../rce/strategy/CreateStrategy.h"
@@ -39,10 +39,11 @@
 //enum RiskLevel {	Safe, Moderate, Aggressive};
 namespace rce{
 
-class RaceWeekend: public lg::Colleague
+class RaceWeekend
 {
 
     private:
+        bool broken [2];
         CreateStrategy* strategy;
         eng::Car** car;
         ppl::Driver** driver;
@@ -114,11 +115,10 @@ class RaceWeekend: public lg::Colleague
 
         void ChangeState(int i);
 
-    void getCarnotify(int i,lg::Race* r);
+        bool* getBrokenCar();
 
-    void notifybackCar(std::vector<eng::Car*> c, lg::Race *r);
 
-    void hireEmployees(int);
+//    void hireEmployees(int);
 
     };
 }

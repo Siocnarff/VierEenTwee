@@ -230,6 +230,21 @@ int * RacingDep::Race()
     int * Score = racingweekend->RacingWeekend();
     delete racingweekend;
     CarContainer->print();
+    std::vector<eng::Car*> carresult ;
+    bool* k=racingweekend->getBrokenCar();
+    for(int i=0;i<2;i++)
+    {
+        if(k[i])
+        {
+            notify(cars[i],race);
+        }
+    }
+    for(int h =0; h < 2; h++)
+    {
+        carresult.push_back(cars[h]);
+    }
+    notifybackCar(carresult,race);
+
     return Score;
     //ToDo final stuff for array
 }
@@ -259,7 +274,15 @@ lg::Container *RacingDep::postRacePackUp()
     return CarContainer;
 }
 
+void RacingDep::getCarnotify(int i,lg::Race* r)
+{
+    notify(cars[i],r);
+}
 
+void RacingDep::notifybackCar(std::vector<eng::Car*> c, lg::Race *r)
+{
+    notify(c,r);
+}
 
 
 

@@ -6,13 +6,18 @@ int * RaceWeekend::RacingWeekend() {
     trackID = raceConditions->getTrackID();
     int resultarray[20];
     TC = raceConditions->getTrackComplexity();
+    broken[0]=false;
+    broken[1]=false;
+
     for(int i = 0; i < 3; i++)
     {
+
         lg::RiskLevel rl = getRiskLevel();
+        pr::Doc::transparency=2;
         pr::Doc::detail("Race # ");
         pr::Doc::detail(std::to_string(i+1));
         pr::Doc::detail(" is starting.\n");
-        //std::cout <<std:: endl<<"Race #"<<i+1<< " is starting."<<std:: endl<<std:: endl;
+//        std::cout <<std:: endl<<"Race #"<<i+1<< " is starting."<<std:: endl<<std:: endl;
         setDayWeather();
         for(int n = 0; n < 2; n++)
         {
@@ -534,7 +539,8 @@ int * RaceWeekend::RacingWeekend() {
                 pr::Doc::detail(" pitstops through the race.\n");
                 if(getState(n) == "Broken")
                 {
-                    getCarnotify(n, raceConditions);
+//                    getCarnotify(n, raceConditions);
+                    broken[n]=true;
                     //std::cout <<"Car "<< n << " has taken too much damage during and is broken. The race has ended for Car "<< n <<"."<< std:: endl;
                     pr::Doc::detail("Car ");
                     pr::Doc::detail(std::to_string(n));
@@ -590,7 +596,8 @@ int * RaceWeekend::RacingWeekend() {
                 if(set[n] == nullptr)
                 {
                     time[n] = 100;
-                    getCarnotify(n,raceConditions);
+//                    getCarnotify(n,raceConditions);
+                    broken[n]=true;
                 }
             }
             if(time[n] < 0)
@@ -700,11 +707,7 @@ int * RaceWeekend::RacingWeekend() {
     ret[0] =  resultarray[9];
     ret[1] = resultarray[19];
 
-    std::vector<eng::Car*> carresult ;
-    for(int h =0; h < 2; h++)
-    {
-        carresult.push_back(car[h]);
-    }
+
 //    notifybackCar(carresult,raceConditions);
     return ret;
 }
@@ -850,17 +853,23 @@ void RaceWeekend::ChangeState(int i)
     CState[i]->handleChange();
     CState[i] = CState[i]->getState();
 }
-void RaceWeekend::getCarnotify(int i,lg::Race* r)
+bool* RaceWeekend::getBrokenCar()
 {
-    notify(car[i],r);
+    bool* k;
+    k=broken;
+    return k;
 }
+//void RaceWeekend::getCarnotify(int i,lg::Race* r)
+//{
+//    notify(car[i],r);
+//}
+//
+//void RaceWeekend::notifybackCar(std::vector<eng::Car*> c, lg::Race *r)
+//{
+//    notify(c,r);
+//}
 
-void RaceWeekend::notifybackCar(std::vector<eng::Car*> c, lg::Race *r)
-{
-    notify(c,r);
-}
-
-void RaceWeekend::hireEmployees(int)
-{
-
-}
+//void RaceWeekend::hireEmployees(int)
+//{
+//
+//}

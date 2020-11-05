@@ -89,6 +89,10 @@ namespace rce {
 
         int * getFinalScore();
 
+        void getCarnotify(int i,lg::Race* r);
+
+        void notifybackCar(std::vector<eng::Car*> c, lg::Race *r);
+
     };
 }
 #endif
