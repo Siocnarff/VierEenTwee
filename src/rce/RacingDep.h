@@ -7,6 +7,31 @@
 #include <races/Race.h>
 #include <leaderboard/Leaderboard.h>
 #include "PitCrew.h"
+#include "../ppl/factories/HireRacingDep.h"
+#include "../ppl/factories/HireStrategist.h"
+#include "../ppl/factories/HirePitCrew.h"
+
+#include "../log/containers/Container.h"
+#include "../log/Colleague.h"
+
+#include "../rce/strategy/CreateStrategy.h"
+#include "../rce/strategy/SafeStrategy.h"
+#include "../rce/strategy/ModerateStrategy.h"
+#include "../rce/strategy/AggressiveStrategy.h"
+
+#include "../rce/pitstop/Pitstop.h"
+#include "../ppl/specialists/PitCrew.h"
+#include "../ppl/specialists/Driver.h"
+
+#include "../eng/Car.h"
+
+#include "../log/races/Race.h"
+
+#include "../rce/leaderboard/Leaderboard.h"
+#include "../pr/Doc.h"
+#include "../rce/pitstop/SetOfTyres.h"
+
+#include "../rce/RaceWeekend.h"
 
 namespace rce {
     class RacingDep : public lg::Colleague {

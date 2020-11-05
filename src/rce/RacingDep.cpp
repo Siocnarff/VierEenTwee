@@ -140,7 +140,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
         cars[i] = c[i];
         drivers[i] = d[i];
     }
-    CarContainer->unpack();
+    CarContainer->print();
 }
 
 CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
@@ -227,7 +227,7 @@ int * RacingDep::Race()
     RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();
     delete racingweekend;
-    CarContainer->pack();
+    CarContainer->print();
     return Score;
     //ToDo final stuff for array
 }
@@ -246,6 +246,12 @@ RacingDep::~RacingDep()
 RacingDep::RacingDep()
 {
     std::cout << "Constructor" << std::endl;
+}
+
+lg::Container *RacingDep::postRacePackUp()
+{
+    CarContainer->print();
+    return CarContainer;
 }
 
 
