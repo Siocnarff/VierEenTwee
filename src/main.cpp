@@ -15,7 +15,7 @@
 #include "pr/Doc.h"
 #include "log/Logistics.h"
 
-int pr::Doc::transparency = 1;
+int pr::Doc::transparency = 0;
 
 void logDeptTesting();
 void engTeamTesting();
@@ -45,7 +45,11 @@ void proto_FinalMain() {
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
-    seasonRun(logDept);
+    for (int i = 0; i < 3; ++i) {
+        seasonRun(logDept);
+    }
+    //breaks at 4, not at 3
+
 
     delete racingDept;
     delete engDept;

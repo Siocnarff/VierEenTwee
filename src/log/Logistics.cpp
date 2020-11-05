@@ -38,7 +38,6 @@ Logistics::Logistics(int numDriverCarPairs) {
     racingCalendar = nullptr;
     europeanContainer = nullptr;
     currentTeamStrategy = nullptr;
-    tyreSpecs = nullptr;
     budget = -1;
 }
 
@@ -49,7 +48,6 @@ Logistics::~Logistics(){
     }
     if (europeanContainer != nullptr) delete europeanContainer;
     if (currentTeamStrategy != nullptr) delete currentTeamStrategy;
-    if (tyreSpecs != nullptr) delete tyreSpecs;
 };
 
 /**
@@ -479,9 +477,8 @@ void Logistics::orderTyres(int *tyreOrder) {
 
 
     //instantiate tyres
-    tyreSpecs = new rce::Tyres*[2];
-    tyreSpecs[0] = new rce::Tyres(tyreOrder);
-    tyreSpecs[1] = new rce::Tyres(tyreOrder);
+    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
+    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
 }
 
 
