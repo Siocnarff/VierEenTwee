@@ -3,6 +3,9 @@
 using namespace eng;
 
 void ComponentSimulator::testComponent(Component* component) {
+    if (!component) {
+        return;
+    }
 	int label = component->quality;
 	label += (rand()%5)-2;
 	if (label > 100) {
