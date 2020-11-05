@@ -138,7 +138,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 {
 }*/
 
-void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Driver *>, lg::Race *r, lg::Container *cont, Tyres *) {
+void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Driver *>, lg::Race *r, lg::Container *cont, Tyres **) {
 //   - implement RacingDep::preRaceArrival
     this->CarContainer = cont;
     this->race = r;

@@ -479,7 +479,9 @@ void Logistics::orderTyres(int *tyreOrder) {
 
 
     //instantiate tyres
-    tyreSpecs = new rce::Tyres(tyreOrder);
+    tyreSpecs = new rce::Tyres*[2];
+    tyreSpecs[0] = new rce::Tyres(tyreOrder);
+    tyreSpecs[1] = new rce::Tyres(tyreOrder);
 }
 
 
