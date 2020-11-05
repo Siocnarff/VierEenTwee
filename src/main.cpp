@@ -15,7 +15,7 @@
 #include "pr/Doc.h"
 #include "log/Logistics.h"
 
-int pr::Doc::transparency = 0;
+int pr::Doc::transparency = 1;
 
 void logDeptTesting();
 void engTeamTesting();
@@ -25,15 +25,11 @@ void proto_FinalMain();
 
 int main() {
 
-    logDeptTesting();
+//    logDeptTesting();
     //engTeamTesting();
     //seasonRun();
-    proto_FinalMain();
-//   testTyres();
-
-
-
-
+//    proto_FinalMain();
+   testTyres();
 }
 
 void proto_FinalMain() {
@@ -136,9 +132,9 @@ void engTeamTesting() {
 }
 
 void testTyres() {
-        int arr1[3] = {2,1,2};
-        int arr2[3] = {0,1,4};
-        int arr3[3] = {0,0,5};
+        int arr1[] = {2,1,2};
+        int arr2[] = {0,1,4};
+        int arr3[] = {0,0,5};
 
 
         auto* tyres1 = new rce::Tyres(arr1);
@@ -153,8 +149,10 @@ void testTyres() {
         SetOfTyres* tyreSet2 = tyres1->getTyres(0);
         SetOfTyres* tyreSet3 = tyres1->getTyres(0);
 
+    rce::Tyres* tyres4 = new rce::Tyres();
+    tyres4->setOrder(tyres1->getTyreOrder());
 
-        if (tyreSet1 != nullptr) {
+    if (tyreSet1 != nullptr) {
             tyreSet1->printStats();
 
             tyreSet1->reduceThread(49);
@@ -168,13 +166,19 @@ void testTyres() {
 
         }
 
-        if(tyreSet3 == nullptr) {
+    if(tyreSet3 == nullptr) {
             std::cout << "No more tyres of that type" << std::endl;
         }
 
-        tyres1->printStats();
+
+    tyres1->printStats();
+
+    std::cout << "print 4" << std::endl;
+    tyres4->printStats();
+
         delete tyres1;
         delete tyres2;
         delete tyres3;
+        delete tyres4;
 
     }
