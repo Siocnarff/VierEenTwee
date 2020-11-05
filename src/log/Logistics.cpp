@@ -19,6 +19,8 @@
 
 using namespace lg;
 
+// TODO : @jo Implement and check accuracy of pop and push for cars
+
 /**
  * @author Jo
  * @status Done and dusted!
@@ -39,7 +41,6 @@ Logistics::Logistics(int numDriverCarPairs) {
 
 Logistics::~Logistics() = default;
 
-
 /**
  * @status completed
  * @param colleague
@@ -55,7 +56,6 @@ void Logistics::registerNotifier(Colleague *colleague) {
     colleague->addObserver(this);
 
 }
-
 
 /**
  * @author Jo
@@ -104,7 +104,8 @@ void Logistics::doYearPlanning() {
 void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " + currentTeamStrategy->getStratName());
+    pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
+                    currentTeamStrategy->getStratName());
 
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
@@ -141,7 +142,7 @@ void Logistics::packContainers() {
             nonEuropeanContainers.push_back(packSingleContainer());
         }
     }
-    cout << "Packed all containers" << endl;
+    pr::Doc::summary("Packed all containers\n");
 }
 
 /**
@@ -181,7 +182,7 @@ void Logistics::simulateEvent(Race *r) {
     pr::Doc::detail(r->getLocation());
 
     //Transport drivers
-    // TODO : add fly functionality for drivers
+    //todolist : add fly functionality for drivers
 
     //3. get correct container, transport and fly and fly
 
@@ -201,15 +202,15 @@ void Logistics::simulateEvent(Race *r) {
     //5. finish the packup
     Container *tCont = callRacingDept()->postRacePackUp();
     //6. Transport drivers on and container back
-    if (r->nextRace()== nullptr) {
-        pr::Doc::detail ("The drivers are transported in a luxury mode of transport back to HQ");
+    if (r->nextRace() == nullptr) {
+        pr::Doc::detail("The drivers are transported in a luxury mode of transport back to HQ");
         transportManager->transport(r, nullptr);
         if (r->isRaceEuropean()) {
             delete tCont;   //we need to get rid of it.
         }
     }
     if (!r->isRaceEuropean()) {
-        //TODO : check possible double-delete here
+        //TODO : @jo check possible double-delete here
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
 
@@ -245,7 +246,7 @@ void Logistics::putRacesIntoCalender() {
         }
         infile.close();
     } else { //exception e
-        std::cout << "There was a file-reading error !\n";
+        std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
         throw "Error";
     }
 
@@ -261,17 +262,15 @@ void Logistics::raceSeason() {
     }
 }
 
-
-//NOT STARTED
-// TODO : get leaderboard from racingDept and decide accordingly
 void Logistics::postSeasonDebrief() {
     //1. Get results
-    int *tumTumTum = callRacingDept()->getFinalResults();
+    int *tumTumTum = callRacingDept()->getFinalResults(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
 
     //2. Flashy results
-    //Decorator here?
+    // TODO: @marike Flashy results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
 
     //3. let transportManager take a holiday
+    //TODO: @marike cout some cool stuff
     delete transportManager;
 
     //4. Let driver take a holiday
@@ -279,19 +278,19 @@ void Logistics::postSeasonDebrief() {
     for (int i = 0; i < numPairs; ++i) {
         ppl::Driver *d = drivers.back();
         drivers.pop_back();
-        if (tumTumTum[2*i+1] >= 3) {
-            pr::Doc::detail(d->getName() + " takes a well-earned holiday near Malibu\n");
+        if (tumTumTum[2 * i + 1] >= 3) {
+            pr::Doc::detail(d->getName() + " loses all his winning money while on a holiday in Vegas\n");
         } else {
             pr::Doc::detail(d->getName() + " is tactfully offered a retirement package\n");
         }
-        sumPositions += tumTumTum[2*i+1];
-
+        sumPositions += tumTumTum[2 * i + 1];
     }
 
     //5. Get some sponsors again.
     sponsoredBudget(sumPositions);
 
     //5. start building a new car?
+    // TODO : @jo NB NB NB Adjust whole flow for cross-season functionality
     pr::Doc::summary("Start working on a new car");
     for (int i = 0; i < numPairs; ++i) {
         carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
@@ -321,7 +320,6 @@ Container *Logistics::getNextNonEuropean() {
     return back;
 }
 
-
 /**
  * @author Jo
  * @return RacingDept Instance
@@ -341,30 +339,35 @@ eng::EngTeam *Logistics::callEngDept() {
 }
 
 
-//TODO : Decide on regime based on riskLevel
 //IDEA: Change to command?
 void Logistics::driverBootCamp() {
-/*moet meer spesifiek wees hierso. gaan ons van hulle verwag of gaan ons self check dat die driver genoeg xp het?
-    Dalk kan ons dit volgens riskLevel doen*/
+    //todolist : Check runtime accuracy of regime
     switch (currentTeamStrategy->getRiskLevel()) {
         case Safe:
-            //time higher
-            //more weather conditions
-            //higher time complexity
-            //worse weather condtions
+            for (ppl::Driver *d: drivers) {
+                callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Difficult); //interval [50,100]
+                callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Rainy, Extreme);
+                callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Extreme);
+                callRacingDept()->trainDriver(d,abs(rand() % 50 + 51), Rainy, Difficult);
+            }
+            //time higher, more weather conditions, higher track complexity, worse weather condtions
             break;
         case Moderate:
-
+            for (ppl::Driver *d: drivers) {
+                callRacingDept()->trainDriver(d, abs(rand() % 30 + 51), Normal, Difficult); //interval [30,80]
+                callRacingDept()->trainDriver(d, abs(rand() % 30 + 51), Rainy, Average);
+                callRacingDept()->trainDriver(d, abs(rand() % 30 + 51), Hot, Easy);
+            }
+            //medium time, range of weather conditions, middling track complexity
             break;
         case Aggressive:
-
+            for (ppl::Driver* d: drivers) {
+                callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL()); //interval [1,100]
+                callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
+                callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
+            }
+            //any time,any weather, any track
             break;
-
-    }
-
-for (ppl::Driver *d: drivers) {
-        //randomise weathering
-        callRacingDept()->trainDriver(d, rand() % 10 + 1, randomWC(), randomTL());
     }
 }
 
@@ -374,14 +377,13 @@ void Logistics::sponsoredBudget(int sumPositions) {
 
     if (budget == 0) {  //default argument
         budget = abs(rand() % 100 + 1);
-    }
-    else {
+    } else {
         if (sumPositions >= 3) {
             pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly\n");
-            budget = max((int) ((double) budget * 1.5),(100- (int) ((double) budget * 0.5)))  ;
+            budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
         } else if (sumPositions <= 6) {
             pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly\n");
-            budget = max((int) ((double) budget * 0.2),(80- (int) ((double) budget * 0.2)));
+            budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
         } else if (sumPositions <= 10) {
             pr::Doc::detail("The sponsor is satisfied with the performance");
         } else {
@@ -401,10 +403,10 @@ void Logistics::sponsoredBudget(int sumPositions) {
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
 
     for (int i = 0; i < cars.size(); ++i) {
-        eng::Car* c = cars[i];
+        eng::Car *c = cars[i];
         transportManager->transport(r, nullptr, c);
         int performance = cars[i]->getSpeed() + cars[i]->getHandling();
-        // TODO : Check parameter at runtime ( & Improve strategy for using windTunnel)
+        // todolist : Check parameter at runtime ( & Improve strategy for using windTunnel)
         if (performance > 10) {
             callEngDept()->improveCar(c->getId(), false);
         } else {
@@ -413,7 +415,6 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
     }
 }
 
-//NOT STARTED - should transport container here
 /*void Logistics::containerHasBeenPacked(Container *) {
     cout << "fly container" << endl;
 }*/

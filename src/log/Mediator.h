@@ -17,7 +17,7 @@ namespace lg {
 
         virtual void sendCarToFactory(std::vector<eng::Car *>, Race*) = 0;
 
-        virtual void containerHasBeenPacked(Container *) = 0;
+        //virtual void containerHasBeenPacked(Container *) = 0;
 
         //virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
 
