@@ -40,3 +40,7 @@ void Colleague::notify(bool isEuropeanRace) {
 void Colleague::notify(int* tyreOrder) {
     logisticsDept->orderTyres(tyreOrder);
 }
+
+void Colleague::flyDriversBack(std::vector<ppl::Driver*> drivers) {
+    logisticsDept->moveDrivers(drivers);
+}

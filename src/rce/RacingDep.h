@@ -46,15 +46,15 @@ namespace rce {
         void preRaceArrival(std::vector<eng::Car*>, std::vector<ppl::Driver*>, lg::Race*, lg::Container*, std::vector<Tyres*>);
         //void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
 
-        int* RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-        //int* RacingWeekend();// why is it an int? Because we want an array of int[2] giving back the weekend's points
+        int* Race(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
+        //int* Race();// why is it an int? Because we want an array of int[2] giving back the weekend's points
 
         lg::Container *postRacePackUp();
         //void postRacePackUp();// return the container with tires in
 
         ~RacingDep() override;
 
-        int* getFinalResults();
+        int* getFinalScore();
 
 
     //  Besluit dalk watter funksies eintlik protected en private moet wees

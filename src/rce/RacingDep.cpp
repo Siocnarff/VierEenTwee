@@ -146,7 +146,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Dr
     //throw "Not yet implemented";
 }
 
-/*int RacingDep::RacingWeekend()
+/*int RacingDep::Race()
 {
 	//   - implement RacingDep::Race
 	throw "Not yet implemented";
@@ -229,7 +229,7 @@ void RacingDep::SetCarAfterRace()
 	throw "Not yet implemented";
 }
 
-int *RacingDep::RacingWeekend() {
+int *RacingDep::Race() {
     int *results = new int[2];
     results[0] = 5; results[1] = 6;
     return results;
@@ -248,7 +248,7 @@ RacingDep::RacingDep() {
     std::cout << "Constructor" << std::endl;
 }
 
-int *RacingDep::getFinalResults() {
+int *RacingDep::getFinalScore() {
     //return array {score1,postition1,score2, postion2}
     //throw "Not yet implemented";
     int* results = new int[4];

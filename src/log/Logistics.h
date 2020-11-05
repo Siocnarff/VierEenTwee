@@ -56,6 +56,8 @@ namespace lg {
 
         void sponsoredBudget(int sumPositions = 0);
 
+        void moveDrivers(std::vector<ppl::Driver *>) override;
+
     private:
         rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();
