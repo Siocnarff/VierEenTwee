@@ -5,19 +5,20 @@
 #include <list>
 #include "Tyres.h"
 #include "../eng/Car.h"
+#include "../rce/pitstop/SetOfTyres.h"
 namespace rce
 {
     class PitTeam
     {
-    private:
-        std::list<ppl::Person*> pitcrew;
+
+    public:
+        ppl::Person** pitcrew;
         Tyres* tyres;
         eng::Car* car;
-    public:
-    PitTeam(std::list<ppl::Person*> p,Tyres* t,eng::Car* c);
-    void setcrew(std::list<ppl::Person*> crew);
+    PitTeam(ppl::Person** p,Tyres* t,eng::Car* c);
+    void setcrew(ppl::Person** crew);
     void setTyres(Tyres* t);
-    virtual bool changeTyre()=0;
+    virtual SetOfTyres* changeTyre()=0;
     };
 }
 

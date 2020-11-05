@@ -44,8 +44,8 @@ namespace rce {
         CreateStrategy *strategy;
         lg::Container *CarContainer;
         std::string TeamName;
-        std::list<ppl::Person*> Strategist;
-        std::list<ppl::Person*> pitcrew;
+        ppl::Person** Strategist;
+        ppl::Person** pitcrew;
         eng::Car *car;//needed?
         eng::Car ** cars;//todo: where to get and set?
         ppl::Driver **drivers;//todo: where to get and set?
@@ -79,13 +79,13 @@ namespace rce {
 
         void SetCarAfterRace(eng::Car* c);
 
-        std::list<ppl::Person *> getStrategist();
+        ppl::Person** getStrategist();
 
-        void setStrategist(std::list<ppl::Person*> Strategist);
+        void setStrategist(ppl::Person** Strategist);
 
-        std::list<ppl::Person *> getPitcrew();
+        ppl::Person** getPitcrew();
 
-        void setPitcrew(std::list<ppl::Person *> pitcrew);
+        void setPitcrew(ppl::Person** pitcrew);
 
         int * getFinalScore();
 

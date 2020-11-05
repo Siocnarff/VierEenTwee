@@ -26,14 +26,15 @@
 #include "WeatherConditions.h"
 #include "TrackComplexity.h"
 #include "RiskLevel.h"
-#include "Leaderboard.h"
-#include "DriversLeaderboard.h"
+#include "../rce/leaderboard/Leaderboard.h"
+#include "../rce/leaderboard/DriversLeaderboard.h"
 #include "TeamLeaderboard.h"
 #include "../log/containers/Container.h"
 #include <string>
 #include "Tyres.h"
 #include "../rce/pitstop/SetOfTyres.h"
 #include <list>
+#include "../rce/pitstop/DriverPitStop.h"
 #include <vector>
 //enum RiskLevel {	Safe, Moderate, Aggressive};
 namespace rce{
@@ -47,7 +48,7 @@ class RaceWeekend: public lg::Colleague
         ppl::Driver** driver;
         lg::Race* raceConditions;
         rce::Pitstop ** pitstop;
-        std::list<ppl::Person*> pitcrew;
+        ppl::Person** pitcrew;
         std::string TeamName;
         lg::WeatherConditions DayWeather;
         Leaderboard ** lead;
@@ -69,7 +70,7 @@ class RaceWeekend: public lg::Colleague
     public:
         ~RaceWeekend();
 
-        RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r,CreateStrategy* s, std::list<ppl::Person*> p, Tyres** t, Leaderboard ** l);
+        RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r,CreateStrategy* s, ppl::Person** p, Tyres** t, Leaderboard ** l);
 
         int * RacingWeekend();
 
@@ -81,9 +82,9 @@ class RaceWeekend: public lg::Colleague
 
         void setDriver(ppl::Driver* driver, int i);
 
-        std::list<ppl::Person*> getPitcrew();
+        ppl::Person** getPitcrew();
 
-        void setPitcrew(std::list<ppl::Person*> pitcrew);
+        void setPitcrew(ppl::Person** pitcrew);
 
         int getTime(int i);
 

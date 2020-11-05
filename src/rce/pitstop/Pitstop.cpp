@@ -3,15 +3,16 @@
 //#include <utility>
 using namespace rce;
 
-Pitstop::Pitstop(eng::Car *c, Tyres *t)
+Pitstop::Pitstop(eng::Car *c, Tyres *t,ppl::Person** p)
 {
     car=c;
     tyre=t;
+    PitStopTeam=new ChangeTyre(p,t,c);
 }
 
-void Pitstop::addCrew(std::list<ppl::Person*> p)
+void Pitstop::addCrew(ppl::Person** p)
 {
-    TyreChangers=std::move(p);
+    TyreChangers=p;
 }
 
 void Pitstop::tyres(Tyres* t)
@@ -19,9 +20,9 @@ void Pitstop::tyres(Tyres* t)
 	tyre=t;
 }
 
-bool Pitstop::stop()
+SetOfTyres* Pitstop::stop()
 {
-    //todo see how to change tyres on the car
+    return PitStopTeam->changeTyre();
 }
 
 void Pitstop::setCar(eng::Car* c)

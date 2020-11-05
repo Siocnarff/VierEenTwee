@@ -2,12 +2,14 @@
 #define RACING_CHANGETYRE_H
 
 #include "../rce/pitstop/PitTeam.h"
+
 namespace rce{
 class ChangeTyre : public PitTeam
 {
 
 public:
-	bool changetyres();
+    ChangeTyre(ppl::Person** p,Tyres* t,eng::Car* c);
+	 SetOfTyres* changeTyre();
 };
 }
 #endif

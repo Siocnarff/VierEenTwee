@@ -1,6 +1,17 @@
 #include "ChangeTyre.h"
 using namespace rce;
-bool ChangeTyre::changetyres()
+ChangeTyre::ChangeTyre(ppl::Person** p,Tyres* t,eng::Car* c):PitTeam(p,t,c) {}
+SetOfTyres* ChangeTyre::changeTyre()
 {
-   //todo see how to change tyres on the car
+    SetOfTyres* set;
+    set=tyres->getTyres(0);
+    if(set==nullptr)
+    {
+        set = tyres->getTyres(1);
+        if(set == nullptr)
+        {
+            set=tyres->getTyres(2);
+        }
+    }
+    return set;
 }

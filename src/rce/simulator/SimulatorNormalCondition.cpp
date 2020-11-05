@@ -3,26 +3,34 @@ using namespace rce;
 void SimulatorNormalCondition::SimulateWeather() 
 {
     int xp=0;
-    int i;
+    int i=0;
     if(getTrackDifficulty()==lg::Easy)
-    {
-        i=2;
-    }
-    else if (getTrackDifficulty()==lg::Average)
     {
         i=5;
     }
+    else if (getTrackDifficulty()==lg::Average)
+    {
+        i=10;
+    }
     else if(getTrackDifficulty()==lg::Difficult)
     {
-        i=7;
+        i=15;
     }
     else
     {
-        i=9;
+        i=20;
     }
+
     std::cout<<"Driver using simulator to train in normal conditions"<<std::endl;
-    xp=(getTime()/i)*3;
-    getDriver()->setXp(getDriver()->getXp()+xp);
+    xp=i*(((getTime()/5)/100)*3);
+    if(getDriver()->getXp()+xp>=100)
+    {
+        getDriver()->setXp(100);
+    }
+    else
+    {
+        getDriver()->setXp(getDriver()->getXp()+xp);
+    }
 }
 
 SimulatorNormalCondition::SimulatorNormalCondition()

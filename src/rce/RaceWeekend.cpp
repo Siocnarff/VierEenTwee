@@ -362,7 +362,7 @@ int * RaceWeekend::RacingWeekend() {
                             {
                                 Damagetotyres -= threadleft;
                                 set[n]->reduceThread(threadleft);
-//                                set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                                set[n] = pitstop[n]->stop();
                                 count++;
                             }
                             else
@@ -371,7 +371,7 @@ int * RaceWeekend::RacingWeekend() {
                                 {
                                     Damagetotyres -= threadleft;
                                     set[n]->reduceThread(threadleft);
-//                                    set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                                    set[n] = pitstop[n]->stop();
                                     Damagetotyres =0;
                                     count++;
                                 }
@@ -407,7 +407,7 @@ int * RaceWeekend::RacingWeekend() {
                         {
                             Damagetotyres -= threadleft;
                             set[n]->reduceThread(threadleft);
-//                            set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                            set[n] = pitstop[n]->stop();
                             if(set[n] != nullptr)
                             {
                                 set[n]->reduceThread(Damagetotyres);
@@ -421,7 +421,7 @@ int * RaceWeekend::RacingWeekend() {
                             {
                                 Damagetotyres -= threadleft;
                                 set[n]->reduceThread(threadleft);
-//                                set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                                set[n] = pitstop[n]->stop();
                                 Damagetotyres =0;
                                 count++;
                             }
@@ -499,7 +499,7 @@ int * RaceWeekend::RacingWeekend() {
                         {
                             Damagetotyres -= threadleft;
                             set[n]->reduceThread(threadleft);
-//                            set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                            set[n] = pitstop[n]->stop();
                             set[n]->reduceThread(Damagetotyres);
                             Damagetotyres =0;
                             count++;
@@ -510,7 +510,7 @@ int * RaceWeekend::RacingWeekend() {
                             {
                                 Damagetotyres -= threadleft;
                                 set[n]->reduceThread(threadleft);
-//                                set[n] = pitstop[n]->stop(car[n], tyre[n]); todo louis
+                                set[n] = pitstop[n]->stop();
                                 Damagetotyres =0;
                                 count++;
                             }
@@ -705,7 +705,7 @@ int * RaceWeekend::RacingWeekend() {
     {
         carresult.push_back(car[h]);
     }
-    notifybackCar(carresult,raceConditions);
+//    notifybackCar(carresult,raceConditions);
     return ret;
 }
 
@@ -730,11 +730,11 @@ void RaceWeekend::setDriver(ppl::Driver* driver,int i) {
     this->driver[i] = driver;
 }
 
-std::list<ppl::Person*> RaceWeekend::getPitcrew() {
+ppl::Person** RaceWeekend::getPitcrew() {
     return this->pitcrew;
 }
 
-void RaceWeekend::setPitcrew(std::list<ppl::Person*> pitcrew) {
+void RaceWeekend::setPitcrew(ppl::Person** pitcrew) {
     this->pitcrew = pitcrew;
 }
 
@@ -754,11 +754,12 @@ void RaceWeekend::setScore(int score, int i) {
     this->score[i] = score;
 }
 
-RaceWeekend::RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, CreateStrategy* s, std::list<ppl::Person*> p, Tyres ** t, Leaderboard ** l) {
+RaceWeekend::RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, CreateStrategy* s, ppl::Person** p, Tyres ** t, Leaderboard ** l) {
     car = new eng::Car*[2];
     driver = new ppl::Driver*[2];
-    lead = new Leaderboard*[2];
+//    lead = new Leaderboard*[2];
     pitstop = new Pitstop*[2];
+    lead=l;
     pitcrew = p;
     tyre = new Tyres*[2];
     set = new SetOfTyres*[2];
@@ -778,13 +779,13 @@ RaceWeekend::RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, Cr
         }
         car[i] = cars[i];
 //        tyresleft[i] = true;
-//        pitstop[i] = new Pitstop(); todo louis
+        pitstop[i] = new DriverPitStop(car[i],tyre[i],pitcrew);
         pitstop[i]->addCrew(pitcrew);
         pitstop[i]->tyres(tyre[i]);
         pitstop[i]->setCar(car[i]);
         driver[i] = drivers[i];
         handling[i] = car[i]->getHandling();
-        lead[i] = l[i];
+//        lead[i] = l[i];
         CState[i] = new CarStateFullHP();
         Damage[i] = 0;
 

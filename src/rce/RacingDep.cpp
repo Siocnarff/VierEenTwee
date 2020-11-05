@@ -13,13 +13,15 @@ void RacingDep::hireEmployees(int b)
 {
     ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
 	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
+	Strategist=new ppl::Person* [2];
+	pitcrew=new ppl::Person* [b];
     for (int i = 0; i <2 ; ++i)
     {
-        Strategist.push_back(StratFactory->source("racing strategist"));
+        Strategist[i]=StratFactory->source("racing strategist");
     }
     for (int i = 0; i <b ; ++i)
     {
-        pitcrew.push_back(PitCrewFactory->source("pitcrew member"));
+        pitcrew[i]=PitCrewFactory->source("pitcrew member");
     }
 }
 
@@ -196,25 +198,25 @@ void RacingDep::setTeamName(std::string TeamName)
 	this->TeamName=std::move(TeamName);
 }
 
-std::list<ppl::Person*> RacingDep::getStrategist()
+ppl::Person** RacingDep::getStrategist()
 {
     return Strategist;
 }
 
-void RacingDep::setStrategist(std::list<ppl::Person*> Strategist)
+void RacingDep::setStrategist(ppl::Person** Strategist)
 {
     this->Strategist=std::move(Strategist);
 }
 
-std::list<ppl::Person*> RacingDep::getPitcrew()
+ppl::Person** RacingDep::getPitcrew()
 {
 	return pitcrew;
 }
 
-void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
+void RacingDep::setPitcrew(ppl::Person** pitcrew)
 {
 	//mens kan nie een list net aan 'n ander assign nie. Jy moet elementwise deurgaan
-//    this->pitcrew = pitcrew;
+    this->pitcrew = pitcrew;
 }
 
 void RacingDep::SetCarAfterRace(eng::Car* c)
@@ -246,6 +248,9 @@ RacingDep::~RacingDep()
 RacingDep::RacingDep()
 {
     std::cout << "Constructor" << std::endl;
+    lead = new Leaderboard*[2];
+    lead[0] = new DriversLeaderboard();
+    lead[1] = new TeamLeaderboard();
 }
 
 lg::Container *RacingDep::postRacePackUp()

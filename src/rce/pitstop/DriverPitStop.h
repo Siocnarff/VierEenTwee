@@ -10,7 +10,7 @@ class DriverPitStop : public rce::Pitstop
 
 public:
 	eng::Car* car;
-    DriverPitStop(eng::Car* c,Tyres* t);
+    DriverPitStop(eng::Car* c,Tyres* t,ppl::Person** p);
 
 };
 }
