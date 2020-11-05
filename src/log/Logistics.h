@@ -34,9 +34,9 @@ namespace lg {
         void postSeasonDebrief();
 
     protected:
-        void sendCarToFactory(std::vector<eng::Car *>, Race*) override;
+        void sendCarToFactory(std::vector<eng::Car *>, Race*, bool isBroken) override;
 
-        void containerHasBeenPacked(Container *) override;
+        //void containerHasBeenPacked(Container *) override;
 
         Container *getEuropeanContainer();
 

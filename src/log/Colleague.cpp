@@ -13,8 +13,15 @@ void Colleague::addObserver(Mediator *obs) {
 }
 
 void Colleague::notify(std::vector<eng::Car *>cars, Race* r) {
-    logisticsDept->sendCarToFactory(cars, r);
+    logisticsDept->sendCarToFactory(cars, r, false);
 }
+
+void Colleague::notify(eng::Car *broken, Race *r) {
+    std::vector<eng::Car*> brokenCar;
+    brokenCar.push_back(broken);
+    logisticsDept->sendCarToFactory(brokenCar, r, true)
+}
+
 
 /*void Colleague::notify(Container *container) {
     logisticsDept->containerHasBeenPacked(container);

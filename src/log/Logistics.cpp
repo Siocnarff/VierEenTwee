@@ -182,7 +182,7 @@ void Logistics::simulateEvent(Race *r) {
     pr::Doc::detail(r->getLocation());
 
     //Transport drivers
-    //todolist : add fly functionality for drivers
+    //IDEA : add fly functionality for drivers
 
     //3. get correct container, transport and fly and fly
 
@@ -400,17 +400,26 @@ void Logistics::sponsoredBudget(int sumPositions) {
 
 // =========================== MEDIATOR ===========================
 
-void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r) {
-
-    for (int i = 0; i < cars.size(); ++i) {
-        eng::Car *c = cars[i];
-        transportManager->transport(r, nullptr, c);
-        int performance = cars[i]->getSpeed() + cars[i]->getHandling();
-        // todolist : Check parameter at runtime ( & Improve strategy for using windTunnel)
-        if (performance > 10) {
-            callEngDept()->improveCar(c->getId(), false);
-        } else {
-            callEngDept()->improveCar(c->getId(), true);
+void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isBroken) {
+    if (isBroken) {
+        for (int i = 0; i < cars.size(); ++i) {
+            transportManager->transport(r, nullptr, cars[0]);
+            callEngDept()->carArrivesAtFactory(cars[0]);
+            callEngDept()->fixCar(cars[0]->getId());
+            callEngDept()->improveCar(cars[0]->getId(), true);
+        }
+    }
+    else {
+        for (int i = 0; i < cars.size(); ++i) {
+            transportManager->transport(r, nullptr, cars[i]);
+            callEngDept()->carArrivesAtFactory(cars[i]);
+            int performance = cars[i]->getSpeed() + cars[i]->getHandling();
+            // todolist : Check parameter at runtime ( & Improve strategy for using windTunnel)
+            if (performance > 10) {
+                callEngDept()->improveCar(cars[i]->getId(), false);
+            } else {
+                callEngDept()->improveCar(cars[i]->getId(), true);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace lg {
     protected:
         virtual ~Mediator() = default;
 
-        virtual void sendCarToFactory(std::vector<eng::Car *>, Race*) = 0;
+        virtual void sendCarToFactory(std::vector<eng::Car *> cars, Race* currentRace, bool isBroken) = 0;
 
         //virtual void containerHasBeenPacked(Container *) = 0;
 
