@@ -21,7 +21,7 @@ namespace rce {
         std::string TeamName;
         //std::list<ppl::Strategist *> Stategist;
         std::list<PitCrew *> pitcrew;
-        eng::Car *car;
+        std::vector<eng::Car *> cars;
 
 // / ppl::Driver array of size 2?
 // / car array of size 2? 
@@ -57,7 +57,7 @@ namespace rce {
         int* getFinalResults();
 
 
-    // TODO : Besluit dalk watter funksies eintlik protected en private moet wees
+    //  Besluit dalk watter funksies eintlik protected en private moet wees
 
         Leaderboard *getResults();
 

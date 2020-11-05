@@ -18,7 +18,7 @@ namespace rce {
 
         CreateStrategy();
 
-        void SetRiskLevel(int rl);
+        void SetRiskLevel(lg::RiskLevel rl);
 
         void SetTyres(int *t);
 

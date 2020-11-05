@@ -7,17 +7,17 @@
 
 #include <races/Race.h>
 #include "Car.h"
-#include "races/Container.h"
+#include "containers/Container.h"
 
 namespace lg {
 
     class Mediator {
     protected:
-//        virtual ~Mediator();
+        virtual ~Mediator() = default;
 
-        virtual void sendCarToFactory(eng::Car *, Race*) = 0;
+        virtual void sendCarToFactory(std::vector<eng::Car *> cars, Race* currentRace, bool isBroken) = 0;
 
-        virtual void containerHasBeenPacked(Container *) = 0;
+        //virtual void containerHasBeenPacked(Container *) = 0;
 
         //virtual void requestContainerStateChange(bool isEuropeanRace) = 0;
 

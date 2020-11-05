@@ -3,7 +3,7 @@
 using namespace rce;
 
 void CarStateDamaged::handleChange(int i, int d) {
-    // TODO - implement CarStateDamaged::handleChange
+    // - implement CarStateDamaged::handleChange
     throw "Not yet implemented";
 }
 

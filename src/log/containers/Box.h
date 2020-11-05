@@ -17,10 +17,6 @@ namespace lg {
 
         void addElement(Container *) override;
 
-       void unpack() override;
-
-       void pack() override;
-
         ~Box() override;
 
         void print() override;

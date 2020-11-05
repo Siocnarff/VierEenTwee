@@ -12,21 +12,27 @@ void Colleague::addObserver(Mediator *obs) {
     logisticsDept = obs;
 }
 
-void Colleague::notify(eng::Car *car, Race* r) {
-    logisticsDept->sendCarToFactory(car, r);
+void Colleague::notify(std::vector<eng::Car *>cars, Race* r) {
+    logisticsDept->sendCarToFactory(cars, r, false);
 }
 
-void Colleague::notify(Container *container) {
-    logisticsDept->containerHasBeenPacked(container);
+void Colleague::notify(eng::Car *broken, Race *r) {
+    std::vector<eng::Car*> brokenCar;
+    brokenCar.push_back(broken);
+    logisticsDept->sendCarToFactory(brokenCar, r, true);
 }
+
+
+/*void Colleague::notify(Container *container) {
+    logisticsDept->containerHasBeenPacked(container);
+}*/
 
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);
-    //TODO : change to pr::DOC
     if (isEuropeanRace) {
-        std::cout << "Transportation in Europe\n";
+        pr::Doc::summary("Transportation in Europe\n");
     } else {
-        std::cout << "Transportation outside of Europe\n";
+        pr::Doc::summary("Transportation outside of Europe\n");
     }
 
 }

@@ -12,6 +12,7 @@ namespace lg {
     class Fly : public TransportHandler {
     public:
         void transport(Race *fromLocation, Race *destination, eng::Car *car = nullptr) override;
+        ~Fly();
     };
 }
 

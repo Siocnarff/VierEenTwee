@@ -19,6 +19,13 @@ void TransportHandler::addAMethod(TransportHandler *transport) {
     }
 }
 
+TransportHandler::~TransportHandler() {
+    if (nextTransportationMethod) {
+        delete nextTransportationMethod;
+    }
+
+}
+
 void TransportHandler::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     if (nextTransportationMethod) {
         nextTransportationMethod->transport(fromLocation, destination, car);

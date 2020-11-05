@@ -18,8 +18,9 @@ lg::RiskLevel CreateStrategy::getRiskLevel()
 	return risklevel;
 }
 
-void CreateStrategy::SetRiskLevel(int rl) 
+void CreateStrategy::SetRiskLevel(lg::RiskLevel rl)
 {
+    risklevel = rl;
 	//risklevel=rl;
 }
 

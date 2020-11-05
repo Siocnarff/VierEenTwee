@@ -29,3 +29,7 @@ void Road::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     }
 
 }
+
+Road::~Road() {
+
+}

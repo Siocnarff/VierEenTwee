@@ -72,14 +72,14 @@ add_executable(VierEenTwee
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
         src/log/races/Aggregate.h
-        src/log/races/Box.cpp
-        src/log/races/Box.h
-        src/log/races/CateringEquipment.cpp
-        src/log/races/CateringEquipment.h
-        src/log/races/Container.cpp
-        src/log/races/Container.h
-        src/log/races/GarageEquipment.cpp
-        src/log/races/GarageEquipment.h
+        src/log/containers/Box.cpp
+        src/log/containers/Box.h
+        src/log/containers/CateringEquipment.cpp
+        src/log/containers/CateringEquipment.h
+        src/log/containers/Container.cpp
+        src/log/containers/Container.h
+        src/log/containers/GarageEquipment.cpp
+        src/log/containers/GarageEquipment.h
         src/log/races/Iterator.h
         src/log/races/Race.cpp
         src/log/races/Race.h
