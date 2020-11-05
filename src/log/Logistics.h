@@ -64,9 +64,9 @@ namespace lg {
         std::vector<ppl::Driver *> drivers;
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
-        RaceIterator *raceIterator;
         RacesList *racingCalendar;
         std::vector<int> carsInSeasonIDs;
+        std::vector<int> carsInDevIDs;
         std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
         rce::CreateStrategy *currentTeamStrategy;

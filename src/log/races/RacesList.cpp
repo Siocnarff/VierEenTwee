@@ -7,6 +7,7 @@
 #include "Doc.h"
 
 namespace lg {
+    // TODO : find suitable spot for this function
     std::string convertComplexityToString(TrackComplexity t) {
         switch (t) {
             case Easy:
@@ -26,6 +27,15 @@ using namespace lg;
 RacesList::RacesList() {
     headRace = nullptr;
     numRaces = 0;
+}
+
+RacesList::~RacesList() {
+    for (RaceIterator t = begin(); !(t == end()); ) {
+        Race* temp = t.currentItem();
+        ++t;
+        delete temp;
+    }
+
 }
 
 //IS DONE?

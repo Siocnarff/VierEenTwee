@@ -10,18 +10,16 @@
 #include "RaceIterator.h"
 
 namespace lg {
-//class RacesList : public Aggregate {
     class RacesList {
         friend class RaceIterator;
 
     public:
-//    RaceIterator createIterator() override;
         RacesList();
 
-        //RaceIterator createIterator();
+        ~RacesList();
+
         void addRace(Race *);
 
-        //Race* removeRace();
         Race *getHeadRace() const;
 
         bool isEmpty();

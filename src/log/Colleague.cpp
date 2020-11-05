@@ -19,7 +19,7 @@ void Colleague::notify(std::vector<eng::Car *>cars, Race* r) {
 void Colleague::notify(eng::Car *broken, Race *r) {
     std::vector<eng::Car*> brokenCar;
     brokenCar.push_back(broken);
-    logisticsDept->sendCarToFactory(brokenCar, r, true)
+    logisticsDept->sendCarToFactory(brokenCar, r, true);
 }
 
 

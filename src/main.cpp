@@ -8,6 +8,7 @@
 #include <transportation/Road.h>
 #include <transportation/Fly.h>
 #include <transportation/Ship.h>
+#include <races/RacesList.h>
 #include "ppl/factories/KidnapStudent.h"
 #include "eng/EngTeam.h"
 #include "rce/RacingDep.h"
@@ -18,22 +19,51 @@ int pr::Doc::transparency = 1;
 
 void logDeptTesting();
 void engTeamTesting();
-void seasonRun();
+void seasonRun(lg::Logistics*);
 void testTyres();
-
+void proto_FinalMain();
 
 int main() {
 
-    //logDeptTesting();
+    logDeptTesting();
     //engTeamTesting();
-    seasonRun();
+    //seasonRun();
+   // proto_FinalMain();
 //   testTyres();
+
+
 
 
 }
 
-void logDeptTesting() {
+void proto_FinalMain() {
     auto* racingDept = new rce::RacingDep();
+    auto* engDept = new eng::EngTeam;
+    auto* logDept = new lg::Logistics;
+
+    srand(time(0));
+    logDept->registerNotifier(racingDept);
+    logDept->registerNotifier(engDept);
+
+    seasonRun(logDept);
+
+    delete racingDept;
+    delete engDept;
+    delete logDept;
+
+}
+
+
+void seasonRun(lg::Logistics* a) {
+    a->doYearPlanning();
+    a->preSeasonPreparation();
+    a->raceSeason();
+    a->postSeasonDebrief();
+}
+
+void logDeptTesting() {
+    //Testing containers
+    /*    auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* a = new lg::Logistics;
 
@@ -53,33 +83,17 @@ void logDeptTesting() {
 
     delete racingDept;
     delete engDept;
-    delete a;
+    delete a;*/
+    //Testing racingCalender destructor
+    lg::RacesList* r = new lg::RacesList;
+    r->addRace(new lg::Race("Australia", 0, 0,12));
+    r->addRace(new lg::Race("Benoni", 1, 1,21));
+    r->addRace(new lg::Race("Cambridge", 2, 0,112));
+    r->addRace(new lg::Race("Dallas", 0, 1,212));
+    r->printList();
+    delete r;
 }
 
-void seasonRun() {
-    auto* racingDept = new rce::RacingDep();
-    auto* engDept = new eng::EngTeam;
-    auto* a = new lg::Logistics;
-    a->registerNotifier(racingDept);
-    a->registerNotifier(engDept);
-    a->doYearPlanning();
-    a->preSeasonPreparation();
-    a->raceSeason();
-    a->postSeasonDebrief();
-    delete racingDept;
-    delete engDept;
-    delete a;
-    /*engDept->hireEmployees(50);
-    engDept->resetTickets();
-    engDept->setRiskLevel(lg::Aggressive);
-    int id = engDept->buildCar(50);
-    eng::Car* car = engDept->checkCarOutOfFactory(id);
-    car->print();*/
-
-    engDept.
-
-
-}
 
 void engTeamTesting() {
     auto *e = new eng::EngTeam();

@@ -20,6 +20,9 @@
 using namespace lg;
 
 // TODO : @jo Implement and check accuracy of pop and push for cars
+// IDEA : approach budget people in the middle to ask for raise?
+// IDEA : use up the budget
+// TODO : @both fix memleaks
 
 /**
  * @author Jo
@@ -31,7 +34,6 @@ Logistics::Logistics(int numDriverCarPairs) {
     carsInSeasonIDs.reserve(numDriverCarPairs);
     seasonPointTally.reserve(numDriverCarPairs);
     transportManager = nullptr;
-    raceIterator = nullptr;
     racingCalendar = nullptr;
     europeanContainer = nullptr;
     currentTeamStrategy = nullptr;
@@ -39,7 +41,16 @@ Logistics::Logistics(int numDriverCarPairs) {
     budget = -1;
 }
 
-Logistics::~Logistics() = default;
+// TODO : @jo finish destructor
+Logistics::~Logistics(){
+    if (transportManager) delete transportManager;
+    if (racingCalendar) {
+        //delete accordingly
+    }
+    if (europeanContainer) delete europeanContainer;
+    if (currentTeamStrategy) delete currentTeamStrategy;
+    if (tyreSpecs) delete tyreSpecs;
+};
 
 /**
  * @status completed
@@ -67,6 +78,7 @@ void Logistics::doYearPlanning() {
 
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
+        //TODO : check by departemente - kan julle dit hanteer dat ons re-hire gegewe 'n tweede seisoen?
         val->hireEmployees(budget);
     }
 
@@ -178,14 +190,11 @@ void Logistics::simulateEvent(Race *r) {
     }
 
     //2. Transport Drivers
+    //IDEA : add fly functionality for drivers
     pr::Doc::detail("The two drivers are transported in a luxury mode of transport to ");
     pr::Doc::detail(r->getLocation());
 
-    //Transport drivers
-    //IDEA : add fly functionality for drivers
-
     //3. get correct container, transport and fly and fly
-
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
@@ -218,7 +227,7 @@ void Logistics::simulateEvent(Race *r) {
 
 /**
  * @author Jo
- * @status nearly there
+ * @status I wash my hands off this one
  */
 void Logistics::putRacesIntoCalender() {
     racingCalendar = new RacesList;
@@ -257,8 +266,13 @@ void Logistics::putRacesIntoCalender() {
 void Logistics::raceSeason() {
     //And the season starts
     pr::Doc::summary("And the season begins!");
+    int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
+        developTracker++;
+        if (developTracker==7 || developTracker==14) { //third of the way through
+            carsInDevIDs.push_back(callEngDept()->buildCar(budget));
+        }
     }
 }
 
@@ -371,13 +385,14 @@ void Logistics::driverBootCamp() {
     }
 }
 
-void Logistics::sponsoredBudget(int sumPositions) {
+void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 
     pr::Doc::summary("Approaching sponsors to negotiate a new budget\n");
 
-    if (budget == 0) {  //default argument
+    if (budget == -1) {  //default argument in constructor
         budget = abs(rand() % 100 + 1);
     } else {
+        //todolist : check accuracy at runtime
         if (sumPositions >= 3) {
             pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
@@ -403,6 +418,7 @@ void Logistics::sponsoredBudget(int sumPositions) {
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isBroken) {
     if (isBroken) {
         for (int i = 0; i < cars.size(); ++i) {
+            // TODO: @marike descriptionality of the rush to get the car fixed
             transportManager->transport(r, nullptr, cars[0]);
             callEngDept()->carArrivesAtFactory(cars[0]);
             callEngDept()->fixCar(cars[0]->getId());

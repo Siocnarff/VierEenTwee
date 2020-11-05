@@ -102,6 +102,8 @@ int Race::getTrackID() {
     return id;
 }
 
+Race::~Race() = default;
+
 /*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
     os << rc.location << '/nEurope: ' << rc.isInEurope << '/nNumLaps: ' << rc.numLaps << std::endl;
     return os;
