@@ -1,26 +1,16 @@
 #include "Simulator.h"
-
 using namespace rce;
-
-/* void Simulator::trainDriver(string weather, ppl::Driver* driver,int trackDifficulty,int time)
- {
- 	this->weather=weather;
- 	this->driver=driver;
- 	this->time=time;
- 	this->trackDifficulty=trackDifficulty;
- }*/
-
 int Simulator::getTime()
 {
 	return time;
 }
 
-int Simulator::getTrackDifficulty()
+lg::TrackComplexity Simulator::getTrackDifficulty()
 {
 	return trackDifficulty;
 }
 
-std::string Simulator::getWeather()
+lg::WeatherConditions Simulator::getWeather()
 {
 	return weather;
 }
@@ -35,7 +25,7 @@ void Simulator::setDriver(ppl::Driver* d)
 	driver=d;
 }
 
-void Simulator::setWeather(std::string w)
+void Simulator::setWeather(lg::WeatherConditions w)
 {
 	weather=w;
 }
@@ -45,7 +35,7 @@ void Simulator::setTime(int t)
 	time=t;
 }
 
-void Simulator::setDifficulty(int dif)
+void Simulator::setDifficulty(lg::TrackComplexity dif)
 {
 	trackDifficulty=dif;
 }

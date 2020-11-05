@@ -2,6 +2,7 @@
 // Created by jo-anne on 2020/10/22.
 //
 
+#include <Doc.h>
 #include "Box.h"
 using namespace lg;
 
@@ -24,6 +25,6 @@ void Box::print() {
         }
     }
     else {
-        std::cout << "Empty" << std::endl;
+        pr::Doc::detail("Empty");
     }
 }

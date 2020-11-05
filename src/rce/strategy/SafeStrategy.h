@@ -3,13 +3,14 @@
 
 #include "CreateStrategy.h"
 
+
 namespace rce {
-    class SafeStrategy : public CreateStrategy {
+    class SafeStrategy : public CreateStrategy
+   {
     public:
         CreateStrategy *execute() override;
 
-        SafeStrategy(int p, int *t, int risk);
+        SafeStrategy(int p, int *t, lg::RiskLevel risk);
     };
 }
-
 #endif

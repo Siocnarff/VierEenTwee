@@ -6,97 +6,75 @@
 #include <simulator/SimulatorNormalCondition.h>
 #include "RacingDep.h"
 
+#include <utility>
 using namespace rce;
 
 void RacingDep::hireEmployees(int b)
 {
-	//   - implement RacingDep::HireWorker
-	//throw "Not yet implemented";
+    ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
+	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
+	Strategist=new ppl::Person* [2];
+	pitcrew=new ppl::Person* [b];
+    for (int i = 0; i <2 ; ++i)
+    {
+        Strategist[i]=StratFactory->source("racing strategist");
+    }
+    for (int i = 0; i <b ; ++i)
+    {
+        pitcrew[i]=PitCrewFactory->source("pitcrew member");
+    }
 }
 
-//CreateStrategy* RacingDep::PlanSeasonStrategy(int budget,std::string weather,int riskLevel)
-rce::CreateStrategy *RacingDep::PlanSeasonStrategy(int budget) {
-    int* tyreOrder = new int[3];
-    tyreOrder[0] = 0; tyreOrder[1] = 2; tyreOrder[2] = 3;
-    notify(tyreOrder);
-    //Net sodat die code nie aan lg se kant so baie errors het nie
-    std::string weather = "";
-    //safe ,moderate ,aggressive
-    if(strategy != nullptr) {
+CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
+{
+	//safe ,moderate ,aggressive
+    if(strategy)
+    {
         delete strategy;
-        strategy=nullptr;
+        strategy=NULL;
     }
-    int* tyre=new int[3];
-    if(budget<25)
+	int* tyre=new int[3];
+	if(budget<25)
 	{
-        if(weather=="rainy")
-		{	tyre[0]=3;
-            tyre[1]=2;
-            tyre[2]=0;
-            strategy=new SafeStrategy(2,tyre,15);
-            return strategy->execute();
-        }
-		else
-		{
-            tyre[0]=2;
-            tyre[1]=3;
-            tyre[2]=0;
-            strategy=new ModerateStrategy(2,tyre,30);
-            return strategy->execute();
-        }
-    }
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+			strategy=new SafeStrategy(2,tyre,lg::Safe);
+            notify(tyre);
+			return strategy->execute();
+	}
 	else if(budget>=25 && budget<50)
 	{
-        if(weather=="rainy")
-		{
-            tyre[0]=3;
-            tyre[1]=2;
-            tyre[2]=0;
-            strategy=new ModerateStrategy(2,tyre,45);
-            return strategy->execute();
-        }
-		else
-		{
-            tyre[0]=0;
-            tyre[1]=2;
-            tyre[2]=3;
-            strategy=new AggressiveStrategy(1,tyre,60);
-            return strategy->execute();
-        }
-    }
+
+			tyre[0]=3;
+			tyre[1]=2;
+			tyre[2]=0;
+            strategy=new ModerateStrategy(2,tyre,lg::Moderate);
+            notify(tyre);
+			return strategy->execute();
+
+	}
 	else
 	{
-        if(weather=="rainy")
-		{
-            tyre[0]=3;
-            tyre[1]=2;
-            tyre[2]=0;
-            strategy=new ModerateStrategy(1,tyre,75);
-            return strategy->execute();
-        }
-		else
-		{
-            tyre[0]=2;
-            tyre[1]=2;
-            tyre[2]=1;
-            strategy=new AggressiveStrategy(2,tyre,90);
-            return strategy->execute();
-        }
-    }
-
+			tyre[0]=2;
+			tyre[1]=2;
+			tyre[2]=1;
+            strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
+            notify(tyre);
+			return strategy->execute();
+	}
 }
 
-//void RacingDep::trainDriver(std::string weather, ppl::Driver* driver,int trackDifficulty,int time)
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions)
+
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions weather,lg::TrackComplexity trackDifficulty)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
 
 	//net sodat nie error gee nie.
-	std::string weather = "";
-	int trackDifficulty = -1;
+	//todo hkm kan mens nie enums hier gebruik nie?
 
-	if(weather=="wet")
+	if(weather==lg::Rainy)
 	{
 		Simulator* wet=new SimulatorWetCondition();
 		wet->setDriver(driver);
@@ -104,8 +82,9 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 		wet->setDifficulty(trackDifficulty);
 		wet->setTime(time);
 		wet->SimulateWeather();
+        return driver;
 	}
-	else if(weather=="hot")
+	else if(weather==lg::Hot)
 	{
 		Simulator* hot=new SimulatorHotCondition();
 		hot->setDriver(driver);
@@ -113,8 +92,9 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 		hot->setDifficulty(trackDifficulty);
 		hot->setTime(time);
 		hot->SimulateWeather();
+        return driver;
 	}
-	else if(weather=="normal")
+	else if(weather==lg::Normal)
 	{
 		Simulator* normal=new SimulatorNormalCondition();
 		normal->setDriver(driver);
@@ -122,142 +102,187 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 		normal->setDifficulty(trackDifficulty);
 		normal->setTime(time);
 		normal->SimulateWeather();
+        return driver;
 	}
+	return driver;
 }
 
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *, int time, lg::TrackComplexity) {
-    return nullptr;
-}
-
-ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions, lg::TrackComplexity) {
-    driver->setXp(driver->getXp()+10);
+ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::TrackComplexity trackDifficulty)
+{
+    Simulator* normal=new SimulatorNormalCondition();
+    normal->setDriver(driver);
+    normal->setWeather(lg::Normal);
+    normal->setDifficulty(trackDifficulty);
+    normal->setTime(time);
+    normal->SimulateWeather();
     return driver;
 }
 
-/*void RacingDep::preRaceArrival(eng::Car** c, ppl::Driver** d, lg::Race* r, lg::Container* con)
+ppl::Driver *RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherConditions weather)
 {
-}*/
-
-void RacingDep::preRaceArrival(std::vector<eng::Car *> cars, std::vector<ppl::Driver *>, lg::Race *r, lg::Container *cont, std::vector<Tyres *>) {
-//   - implement RacingDep::preRaceArrival
-    this->CarContainer = cont;
-    this->race = r;
-    this->cars = cars;
-    //throw "Not yet implemented";
+    Simulator* normal=new SimulatorNormalCondition();
+    normal->setDriver(driver);
+    normal->setWeather(weather);
+    normal->setDifficulty(lg::Average);
+    normal->setTime(time);
+    normal->SimulateWeather();
+    return driver;
 }
 
-/*int RacingDep::RacingWeekend()
+void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t)
 {
-	//   - implement RacingDep::Race
-	throw "Not yet implemented";
-}*/
-
-/*void RacingDep::postRacePackUp()
-{
-	//   - implement RacingDep::postRacePackUp
-	throw "Not yet implemented";
-}*/
-
-/*void RacingDep::registerForSeason(lg::Observer* logisticsDept)
-{
-	//   - implement RacingDep::registerForSeason
-	throw "Not yet implemented";
-}*/
-
-Leaderboard* RacingDep::getResults() 
-{
-	//   - implement RacingDep::getResults
-	throw "Not yet implemented";
+    cars = new eng::Car*[2];
+    drivers = new ppl::Driver*[2];
+    tyres = new Tyres*[2];
+    CarContainer = con;
+    race = r;
+    for(int i = 0; i < 2; i++)
+    {
+        tyres[i] = t[i];
+        cars[i] = c[i];
+        drivers[i] = d[i];
+    }
+    CarContainer->print();
 }
+
+CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
+{
+    if(strategy)
+    {
+        delete strategy;
+        strategy=NULL;
+    }
+    int* tyre=new int[3];
+    if(risk==lg::Safe)
+    {
+        tyre[0]=3;
+        tyre[1]=2;
+        tyre[2]=0;
+        strategy=new SafeStrategy(2,tyre,lg::Safe);
+        notify(tyre);
+        return strategy->execute();
+    }
+    else if(risk==lg::Moderate)
+    {
+        tyre[0]=3;
+        tyre[1]=2;
+        tyre[2]=0;
+        strategy=new ModerateStrategy(2,tyre,lg::Moderate);
+        notify(tyre);
+        return strategy->execute();
+    }
+    else
+    {
+        tyre[0]=2;
+        tyre[1]=2;
+        tyre[2]=1;
+        strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
+        notify(tyre);
+        return strategy->execute();
+    }
+}
+
 
 lg::Race* RacingDep::getRace()
 {
 	return this->race;
 }
 
-void RacingDep::setResult(int result) 
-{
-	//   - implement RacingDep::setResult
-	throw "Not yet implemented";
-}
-
-int RacingDep::getResult() 
-{
-	//   - implement RacingDep::getResult
-	throw "Not yet implemented";
-}
-
 std::string RacingDep::getTeamName()
 {
-	//   - implement RacingDep::getTeamName
-	//throw "Not yet implemented";
-    return "standard team name";
+    return TeamName;
 }
 
 void RacingDep::setTeamName(std::string TeamName)
 {
-	//   - implement RacingDep::setTeamName
-	throw "Not yet implemented";
+	this->TeamName=std::move(TeamName);
 }
 
-std::list<ppl::Person*> RacingDep::getStategist()
+ppl::Person** RacingDep::getStrategist()
 {
-	//   - implement RacingDep::getStategist
-	throw "Not yet implemented";
+    return Strategist;
 }
 
-void RacingDep::setStategist(std::list<ppl::Person*> Stategist)
+void RacingDep::setStrategist(ppl::Person** Strategist)
 {
-	//   - implement RacingDep::setStategist
-	throw "Not yet implemented";
+    this->Strategist=std::move(Strategist);
 }
 
-std::list<ppl::Person*> RacingDep::getPitcrew()
+ppl::Person** RacingDep::getPitcrew()
 {
-	//return this->pitcrew;
+	return pitcrew;
 }
 
-void RacingDep::setPitcrew(std::list<ppl::Person*> pitcrew)
+void RacingDep::setPitcrew(ppl::Person** pitcrew)
 {
 	//mens kan nie een list net aan 'n ander assign nie. Jy moet elementwise deurgaan
-    //this->pitcrew = pitcrew;
+    this->pitcrew = pitcrew;
 }
 
-void RacingDep::SetCarAfterRace() 
+void RacingDep::SetCarAfterRace(eng::Car* c)
 {
-	//   - implement RacingDep::SetCarAfterRace
-	throw "Not yet implemented";
+	car=c;// todo double check
 }
 
-int *RacingDep::RacingWeekend() {
-    int *results = new int[2];
-    results[0] = 5; results[1] = 6;
-    return results;
+int * RacingDep::Race()
+{
+    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
+    int * Score = racingweekend->RacingWeekend();
+    delete racingweekend;
+    CarContainer->print();
+    std::vector<eng::Car*> carresult ;
+    bool* k=racingweekend->getBrokenCar();
+    for(int i=0;i<2;i++)
+    {
+        if(k[i])
+        {
+            notify(cars[i],race);
+        }
+    }
+    for(int h =0; h < 2; h++)
+    {
+        carresult.push_back(cars[h]);
+    }
+    notifybackCar(carresult,race);
+
+    return Score;
+    //ToDo final stuff for array
 }
 
-lg::Container *RacingDep::postRacePackUp() {
-    notify(cars, race);
-    return this->CarContainer;
+int * RacingDep::getFinalScore()
+{
+    return lead[0]->getFinalScore();
 }
 
-RacingDep::~RacingDep() {
 
+RacingDep::~RacingDep()
+{
+    std::cout << "destructor" << std::endl;
 }
 
-RacingDep::RacingDep() {
+RacingDep::RacingDep()
+{
     std::cout << "Constructor" << std::endl;
+    lead = new Leaderboard*[2];
+    lead[0] = new DriversLeaderboard();
+    lead[1] = new TeamLeaderboard();
 }
 
-int *RacingDep::getFinalResults() {
-    //return array {score1,postition1,score2, postion2}
-    //throw "Not yet implemented";
-    int* results = new int[4];
-    results[0] = 512; results[1] = 1; results[2] = 213; results[3] = 5;
-    return results;
+lg::Container *RacingDep::postRacePackUp()
+{
+    CarContainer->print();
+    return CarContainer;
 }
 
+void RacingDep::getCarnotify(int i,lg::Race* r)
+{
+    notify(cars[i],r);
+}
 
-
+void RacingDep::notifybackCar(std::vector<eng::Car*> c, lg::Race *r)
+{
+    notify(c,r);
+}
 
 
 

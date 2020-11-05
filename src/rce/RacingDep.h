@@ -7,21 +7,49 @@
 #include <races/Race.h>
 #include <leaderboard/Leaderboard.h>
 #include "PitCrew.h"
+#include "../ppl/factories/HireRacingDep.h"
+#include "../ppl/factories/HireStrategist.h"
+#include "../ppl/factories/HirePitCrew.h"
+
+#include "../log/containers/Container.h"
+#include "../log/Colleague.h"
+
+#include "../rce/strategy/CreateStrategy.h"
+#include "../rce/strategy/SafeStrategy.h"
+#include "../rce/strategy/ModerateStrategy.h"
+#include "../rce/strategy/AggressiveStrategy.h"
+
+#include "../rce/pitstop/Pitstop.h"
+#include "../ppl/specialists/PitCrew.h"
+#include "../ppl/specialists/Driver.h"
+
+#include "../eng/Car.h"
+
+#include "../log/races/Race.h"
+
+#include "../rce/leaderboard/Leaderboard.h"
+#include "../pr/Doc.h"
+#include "../rce/pitstop/SetOfTyres.h"
+
+#include "../rce/RaceWeekend.h"
 
 namespace rce {
     class RacingDep : public lg::Colleague {
 
     private:
-        int risklevel;
+        lg::RiskLevel risklevel;
         int budget;
         lg::Race *race;
-        int results;
+        rce::Leaderboard ** lead;
         CreateStrategy *strategy;
         lg::Container *CarContainer;
         std::string TeamName;
-        //std::list<ppl::Strategist *> Stategist;
-        std::list<PitCrew *> pitcrew;
-        std::vector<eng::Car *> cars;
+        ppl::Person** Strategist;
+        ppl::Person** pitcrew;
+        eng::Car *car;//needed?
+        eng::Car ** cars;//todo: where to get and set?
+        ppl::Driver **drivers;//todo: where to get and set?
+        Tyres ** tyres;
 
 // / ppl::Driver array of size 2?
 // / car array of size 2? 
@@ -29,41 +57,19 @@ namespace rce {
     public:
 
         RacingDep();
+        ~RacingDep();
+        void hireEmployees(int b);
+        CreateStrategy *PlanSeasonStrategy(int budget);
+        void preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t);
+        lg::Container* postRacePackUp();// return the container with tires in
+        CreateStrategy* changeStrat(lg::RiskLevel risk);//used to change strat during season
 
-        void hireEmployees(int budget) override;
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::TrackComplexity);
+        ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions weather, lg::TrackComplexity trackDifficulty);
 
-        rce::CreateStrategy *PlanSeasonStrategy(int budget);
-        //NB NB weather is lg::WeatherConditions
-        //CreateStrategy *PlanSeasonStrategy(int budget, std::string weather, int riskLevel);//weather
+        int * Race();
 
-        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
-        //void trainDriver(std::string weather, ppl::Driver *driver, int trackDifficulty, int time);//weather and time
-
-        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::TrackComplexity);
-
-        ppl::Driver *trainDriver(ppl::Driver *, int time, lg::WeatherConditions, lg::TrackComplexity);
-
-        void preRaceArrival(std::vector<eng::Car*>, std::vector<ppl::Driver*>, lg::Race*, lg::Container*, std::vector<Tyres*>);
-        //void preRaceArrival(eng::Car *c, ppl::Driver *d, lg::Race *r, lg::Container *con);
-
-        int* RacingWeekend(); //as een van die karre breek, moet hy dadelik mbv notify(Car*) teruggestuur word asb.
-        //int* RacingWeekend();// why is it an int? Because we want an array of int[2] giving back the weekend's points
-
-        lg::Container *postRacePackUp();
-        //void postRacePackUp();// return the container with tires in
-
-        ~RacingDep() override;
-
-        int* getFinalResults();
-
-
-    //  Besluit dalk watter funksies eintlik protected en private moet wees
-
-        Leaderboard *getResults();
-
-        void setResult(int result);
-
-        int getResult();// needed?
 
         lg::Race *getRace();
 
@@ -71,15 +77,22 @@ namespace rce {
 
         void setTeamName(std::string TeamName);
 
-        void SetCarAfterRace();
+        void SetCarAfterRace(eng::Car* c);
 
-        std::list<ppl::Person *> getStategist();
+        ppl::Person** getStrategist();
 
-        void setStategist(std::list<ppl::Person *> Stategist);
+        void setStrategist(ppl::Person** Strategist);
 
-        std::list<ppl::Person *> getPitcrew();
+        ppl::Person** getPitcrew();
 
-        void setPitcrew(std::list<ppl::Person *> pitcrew);
+        void setPitcrew(ppl::Person** pitcrew);
+
+        int * getFinalScore();
+
+        void getCarnotify(int i,lg::Race* r);
+
+        void notifybackCar(std::vector<eng::Car*> c, lg::Race *r);
+
     };
 }
 #endif

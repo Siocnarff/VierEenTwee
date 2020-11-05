@@ -1,17 +1,16 @@
-#ifndef RACING_CARSTATEFULLHP_H
-#define RACING_CARSTATEFULLHP_H
-
-#include "../eng/Car.h"
+#ifndef CARSTATEFULLHP_H
+#define CARSTATEFULLHP_H
+#include "RaceWeekend.h"
 #include "CarState.h"
-
 namespace rce{
-class CarStateFullHP : public CarState {
+class CarStateFullHP : public rce::CarState
+        {
 
 
 public:
-    void handleChange(int i, int d);
+	void handleChange();
 
-    std::string getCarState();
+	std::string getCarState();
 };
 }
 #endif

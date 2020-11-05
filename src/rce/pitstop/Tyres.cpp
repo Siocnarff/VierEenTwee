@@ -41,7 +41,7 @@ Tyres::~Tyres() {
         }
 
     }
-    pr::Doc::detail("Tyres recycled");
+    pr::Doc::detail("Tyres recycled\n");
 }
 
 SetOfTyres *Tyres::getTyres(int compound) {
@@ -54,23 +54,23 @@ SetOfTyres *Tyres::getTyres(int compound) {
 }
 
 void Tyres::printStats() {
-    pr::Doc::detail("---------------------------");
-    pr::Doc::detail("Tyres condition: ");
+    pr::Doc::detail("---------------------------\n");
+    pr::Doc::detail("Tyres condition: \n");
+
     std::string temp = "";
 
     for (int x = 0; x < 3; x++) {
         if (!tyreSets[x].empty()) {
             int setNum = 1;
             for (std::_List_iterator<SetOfTyres *> it = tyreSets[x].begin(); it != tyreSets[x].end(); ++it) {
-                temp+"  "+ (*it)->getTyreCompoundString() + ":\n";
-                temp + "     Tyre set #" + std::to_string(setNum++) + " thread: " + std::to_string((*it)->getThread()) + "\n";
+                temp = "  "+ (*it)->getTyreCompoundString() + ":\n";
+                temp = temp + "     Tyre set #" + std::to_string(setNum++) + " thread: " + std::to_string((*it)->getThread()) + "\n";
             }
         }
-        temp + "\n";
+        temp = temp + "\n";
+        pr::Doc::detail(temp);
     }
-
-    temp + "--------------------------\n";
-    pr::Doc::detail(temp);
+    pr::Doc::detail("--------------------------\n");
 }
 
 void Tyres::setOrder(int tyreOrder[3]) {

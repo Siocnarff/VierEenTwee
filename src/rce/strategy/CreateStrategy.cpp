@@ -20,8 +20,7 @@ lg::RiskLevel CreateStrategy::getRiskLevel()
 
 void CreateStrategy::SetRiskLevel(lg::RiskLevel rl)
 {
-    risklevel = rl;
-	//risklevel=rl;
+	risklevel=rl;
 }
 
 void CreateStrategy::SetPitstops(int p)
@@ -48,7 +47,7 @@ void CreateStrategy::SetPitstops(int p)
      return Pitstops;
  }
 
- std::string CreateStrategy::getStratName()
+std::string CreateStrategy::getStratName()
  {
      return StratName;
  }

@@ -23,7 +23,7 @@ using namespace lg;
 // IDEA : approach budget people in the middle to ask for raise?
 // IDEA : use up the budget
 // TODO : @both fix memleaks
-// TODO : @marike ensure deletion of containers works
+// TODO : @marike ensure deletion of containers works //--// I think is does
 
 /**
  * @author Jo
@@ -201,7 +201,7 @@ void Logistics::simulateEvent(Race *r) {
     }
 
     //4. racing weekend finishes and get points for each pair
-    int *temp = callRacingDept()->RacingWeekend();
+    int *temp = callRacingDept()->Race();
     for (int i = 0; i < numPairs; ++i) {
         seasonPointTally[i] += temp[i];
     }
@@ -276,7 +276,7 @@ void Logistics::raceSeason() {
 
 void Logistics::postSeasonDebrief() {
     //1. Get results
-    int *tumTumTum = callRacingDept()->getFinalResults(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
+    int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
 
     //2. Flashy results
     // TODO: @marike Flashy results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
@@ -423,6 +423,7 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
         for (int i = 0; i < cars.size(); ++i) {
             // TODO: @marike descriptionality of the rush to get the car fixed
             transportManager->transport(r, nullptr, cars[0]);
+
             callEngDept()->carArrivesAtFactory(cars[0]);
             callEngDept()->fixCar(cars[0]->getId());
             callEngDept()->improveCar(cars[0]->getId(), true);
@@ -479,6 +480,10 @@ void Logistics::orderTyres(int *tyreOrder) {
     //instantiate tyres
     tyreSpecs.push_back(new rce::Tyres(tyreOrder));
     tyreSpecs.push_back(new rce::Tyres(tyreOrder));
+}
+
+void Logistics::moveDrivers(std::vector<ppl::Driver *>) {
+    throw "error";
 }
 
 

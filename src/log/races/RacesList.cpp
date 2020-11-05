@@ -90,9 +90,7 @@ void RacesList::printList() {
             pr::Doc::detail("\nTrack Complexity: ");
             pr::Doc::detail(convertComplexityToString(temp->getTrackComplexity()));
             pr::Doc::detail("\n");
-            /*std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
-                      << temp->getRaceDayWeather() << std::endl;*/
-            temp = temp->nextRace();
+           temp = temp->nextRace();
         }
     }
 

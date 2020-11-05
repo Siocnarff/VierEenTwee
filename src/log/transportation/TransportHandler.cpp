@@ -19,6 +19,7 @@ void TransportHandler::addAMethod(TransportHandler *transport) {
     }
 }
 
+
 TransportHandler::~TransportHandler() {
     if (nextTransportationMethod) {
         delete nextTransportationMethod;
@@ -30,6 +31,6 @@ void TransportHandler::transport(Race *fromLocation, Race *destination, eng::Car
     if (nextTransportationMethod) {
         nextTransportationMethod->transport(fromLocation, destination, car);
     } else {
-        cout << "Cannot handle request" << endl;
+        pr::Doc::detail("Cannot handle request");
     }
 }
