@@ -4,24 +4,25 @@ using namespace eng;
 
 void Garage::storeCar(Car *c) {
 	pr::Doc::summary("[_] Storing car in garage. [_]\n");
-    for (int i = 0; i < 20; ++i) {
-        if (lookup[i] == -1) {
-            car[i] = c;
-            lookup[i] = c->getId();
-			pr::Doc::detail("Car has id: " + std::to_string(c->getId()));
+    pr::Doc::detail("Car has id: " + std::to_string(c->getId()));
+    for (int i = 0; i < cars.size(); i++) {
+        if (!cars[i]) {
+            cars[i] = c;
 			pr::Doc::detail("\nAnd is stored at position " + std::to_string(i) + "\n");
-            break;
+            pr::Doc::summary("------------------------------\n\n");
+            return;
         }
     }
-	pr::Doc::summary("------------------------------\n\n");
+    cars.push_back(c);
+    pr::Doc::detail("\nAnd is stored at position " + std::to_string(cars.size() - 1) + "\n");
+    pr::Doc::summary("------------------------------\n\n");
 }
 
 Car *Garage::retrieveCar(int id) {
-    for (int i = 0; i < 20; ++i) {
-        if (lookup[i] == id) {
-            lookup[i] = -1;
-            Car *target = car[i];
-            car[i] = nullptr;
+    for (auto & car : cars) {
+        if (car && car->getId() == id) {
+            Car *target = car;
+            car = nullptr;
             return target;
         }
     }
@@ -31,9 +32,9 @@ Car *Garage::retrieveCar(int id) {
 Car *Garage::getPrototype() {
     int bestPerformance = -1;
     int idOfBest = -1;
-    for (int i = 0; i < 20; ++i) {
-        if (lookup[i] != -1) {
-            int performance = car[i]->getSpeed() + car[i]->getHandling();
+    for (int i = 0; i < cars.size(); i++) {
+        if (cars[i]) {
+            int performance = cars[i]->getSpeed() + cars[i]->getHandling();
             if (performance > bestPerformance) {
                 bestPerformance = performance;
                 idOfBest = i;
@@ -41,21 +42,7 @@ Car *Garage::getPrototype() {
         }
     }
     if (idOfBest != -1) {
-        return car[idOfBest];
+        return cars[idOfBest];
     }
     return nullptr;
-}
-
-Garage::~Garage() {
-    for (Car * c : car) {
-        delete c;
-        c = nullptr;
-    }
-}
-
-Garage::Garage() {
-    for (int i = 0; i < 20; ++i) {
-        lookup[i] = -1;
-        car[i] = nullptr;
-    }
 }
