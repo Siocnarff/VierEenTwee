@@ -60,6 +60,12 @@ void proto_FinalMain() {
 
 
 void seasonRun(lg::Logistics* a) {
+    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
+    pr::Doc::summary("       ____           _________\n");
+    pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
+    pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
+    pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
+
     a->doYearPlanning();
     a->preSeasonPreparation();
     a->raceSeason();

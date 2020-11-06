@@ -257,12 +257,12 @@ int * RacingDep::getFinalScore()
 
 RacingDep::~RacingDep()
 {
-    std::cout << "destructor" << std::endl;
+//    std::cout << "destructor" << std::endl;
 }
 
 RacingDep::RacingDep()
 {
-    std::cout << "Constructor" << std::endl;
+//    std::cout << "Constructor" << std::endl;
     lead = new Leaderboard*[2];
     lead[0] = new DriversLeaderboard();
     lead[1] = new TeamLeaderboard();

@@ -75,10 +75,14 @@ void Logistics::registerNotifier(Colleague *colleague) {
  * @status really finished
  */
 void Logistics::doYearPlanning() {
+    pr::Doc::summary("\n>>Plan Racing Year:\n\n");
+
     //1. getBudget from "Sponsors"
     sponsoredBudget();
+    pr::Doc::summary("\n");
 
     //2. Hire emplpoyees: each department
+    pr::Doc::summary("Engenering team set up:\n");
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
@@ -431,28 +435,28 @@ void Logistics::driverBootCamp() {
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 
-    pr::Doc::summary("Approaching sponsors to negotiate a new budget\n");
+    pr::Doc::summary("Approaching sponsors to negotiate a new budget:\n");
 
     if (budget == -1) {  //default argument in constructor
         budget = abs(rand() % 100 + 1);
     } else {
         //todolist : check accuracy at runtime
         if (sumPositions >= 3) {
-            pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly\n");
+            pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
         } else if (sumPositions <= 6) {
-            pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly\n");
+            pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
         } else if (sumPositions <= 10) {
-            pr::Doc::detail("The sponsor is satisfied with the performance");
+            pr::Doc::detail("     The sponsor is satisfied with the performance");
         } else {
-            pr::Doc::detail("This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
+            pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
             budget -= (int) ((double) budget * 0.1);
         }
         if (budget > 100) budget = 100;
         if (budget < 0) budget = 10;
     }
-    pr::Doc::summary("The team has been allocated a budget of " + to_string(budget) + "\n");
+    pr::Doc::summary("     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
 }
 
 
