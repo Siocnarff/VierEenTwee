@@ -16,7 +16,7 @@
 #include "log/Logistics.h"
 
 
-int pr::Doc::transparency = 0;
+int pr::Doc::transparency = 2;
 
 void logDeptTesting();
 void engTeamTesting();

@@ -126,12 +126,13 @@ void Logistics::preSeasonPreparation() {
     // 1. Get strategy
     pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
-                    currentTeamStrategy->getStratName());
+    pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
 
+    /*pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
+                    currentTeamStrategy->getStratName() + "\n");
+*/
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    pr::Doc::summary("  ~Tyres ordered according to strategy chosen.(Arrives after a month).~\n");
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
@@ -201,7 +202,8 @@ Container *Logistics::packSingleContainer() const {
 
 void Logistics::simulateEvent(Race *r) {
     //1. Transport car (from factory to race location)
-    //1.1 Fill up clipboard
+
+    //1.1 Fill up clipboard       //--//Wat is die clipboard presies?
     vector<eng::Car *> carClipboard;
     for (int id : carsInSeasonIDs) {
         eng::Car *temp = callEngDept()->checkCarOutOfFactory(id);
@@ -211,10 +213,15 @@ void Logistics::simulateEvent(Race *r) {
 
     //2. Transport Drivers
     //IDEA : add fly functionality for drivers
-    pr::Doc::detail("The two drivers are transported in a luxury mode of transport to ");
-    pr::Doc::detail(r->getLocation());
+//    std::string locationString = r->getLocation();
+//    std::cout << r->getLocation() << std::endl;
+//    std::cout << locationString << std::endl;
+//    pr::Doc::summary(locationString);
+    pr::Doc::summary("  ~The two drivers are transported in a luxury mode of transport to");
+    pr::Doc::summary(r->getLocation());
+    pr::Doc::summary(" ~\n");
 
-    //3. get correct container, transport and fly and fly
+    //3. get correct container, transport and fly    //transport all the drivers and cars to where they should go
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
@@ -505,6 +512,7 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
  * @param tyreOrder
  */
 void Logistics::orderTyres(int *tyreOrder) {
+    pr::Doc::summary("  ~Tyres ordered according to strategy chosen.(Arrives after a month).~\n");
     pr::Doc::midInfo("     Ordering tyres as informed by Racing Departement\n");
     pr::Doc::detail("        Tedious paperwork to complete tyre order\n");
 
