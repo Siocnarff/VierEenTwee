@@ -225,7 +225,7 @@ void Logistics::simulateEvent(Race *r) {
 
 /**
  * @author Jo
- * @status I wash my hands off this one
+ * @status I wash my hands off this one (Marike appreciates your humor ^_^)
  */
 void Logistics::putRacesIntoCalender() {
     racingCalendar = new RacesList;
