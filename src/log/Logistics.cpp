@@ -213,13 +213,13 @@ void Logistics::simulateEvent(Race *r) {
 
     //2. Transport Drivers
     //IDEA : add fly functionality for drivers
-//    std::string locationString = r->getLocation();
-//    std::cout << r->getLocation() << std::endl;
-//    std::cout << locationString << std::endl;
-//    pr::Doc::summary(locationString);
-    pr::Doc::summary("  ~The two drivers are transported in a luxury mode of transport to");
-    pr::Doc::summary(r->getLocation());
-    pr::Doc::summary(" ~\n");
+    //   pr::Doc::summary(locationString);
+    pr::Doc::transparency;
+
+    std::string message = "The two drivers are transported in a luxury mode of transport to ";
+    message.append(r->getLocation());
+    message.append("\n");
+    pr::Doc::summary(message);
 
     //3. get correct container, transport and fly    //transport all the drivers and cars to where they should go
     transportManager->transport(r->prevRace(), r);
@@ -285,7 +285,7 @@ void Logistics::putRacesIntoCalender() {
             }
             infile.close();
         } else { //exception e
-            std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
+            //std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
             throw "Error";
         }
     }
@@ -316,7 +316,7 @@ void Logistics::postSeasonDebrief() {
     int one = tumTumTum[1];
     int two = tumTumTum[2];
     int three = tumTumTum[3];
-    std::cout << zero << one << two << three << std::endl;
+    //std::cout << zero << one << two << three << std::endl;
 
     //2. Flashy results
     // TODO: @marike Flashy results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
