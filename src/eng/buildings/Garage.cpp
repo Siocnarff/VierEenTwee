@@ -3,7 +3,7 @@
 using namespace eng;
 
 void Garage::storeCar(Car *c) {
-	pr::Doc::summary("\n[_] Storing car in garage. [_]\n");
+	pr::Doc::summary("[_] Storing car in garage. [_]\n");
     for (int i = 0; i < 20; ++i) {
         if (lookup[i] == -1) {
             car[i] = c;
@@ -13,7 +13,7 @@ void Garage::storeCar(Car *c) {
             break;
         }
     }
-	pr::Doc::summary("--------------------------------------\n\n");
+	pr::Doc::summary("------------------------------\n\n");
 }
 
 Car *Garage::retrieveCar(int id) {
