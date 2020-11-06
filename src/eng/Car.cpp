@@ -113,7 +113,7 @@ void Car::print() {
             component->print();
         }
     }
-    pr::Doc::summary("----\n");
+    pr::Doc::summary("\n------------------------------\n\n");
 }
 
 int Car::getDriverXP() {

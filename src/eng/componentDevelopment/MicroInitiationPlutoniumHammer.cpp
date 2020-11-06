@@ -2,7 +2,7 @@
 
 using namespace eng;
 void MicroInitiationPlutoniumHammer::print() {
-    pr::Doc::detail("        MicroInitiationPlutoniumHammer Quality: " + std::to_string(getQualityLabel()));
+    pr::Doc::detail("\tMicroInitiationPlutoniumHammer Quality: " + std::to_string(getQualityLabel()));
 }
 
 MicroInitiationPlutoniumHammer::MicroInitiationPlutoniumHammer(Component *toClone) : Component(toClone) {}
