@@ -4,10 +4,10 @@
 using namespace eng;
 
 int Component::getQualityLabel() const {
-	return this->qualityLabel;
+	return (this->qualityLabel > 100) ? 100 : this->quality;
 }
 
-void Component::setQualityLabel(int label) {te
+void Component::setQualityLabel(int label) {
 	this->qualityLabel = label;
 }
 
