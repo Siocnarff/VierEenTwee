@@ -5,7 +5,6 @@
 #ifndef LOGISTICS_RACESLIST_H
 #define LOGISTICS_RACESLIST_H
 
-#include "Aggregate.h"
 #include "Race.h"
 #include "RaceIterator.h"
 
