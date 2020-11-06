@@ -71,7 +71,6 @@ add_executable(VierEenTwee
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
-        src/log/races/Aggregate.h
         src/log/containers/Box.cpp
         src/log/containers/Box.h
         src/log/containers/CateringEquipment.cpp
