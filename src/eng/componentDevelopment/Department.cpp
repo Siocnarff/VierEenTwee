@@ -24,7 +24,7 @@ Department::Department(Department *next) {
 
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
-    pr::Doc::summary(
+    pr::Doc::midInfo(
             departmentName + " hired a new " +
             (specialist->hasDegree() ? "specialist.\n" : "employee.\n")
     );
@@ -57,7 +57,7 @@ void Department::build(Car *car) {
     if (nextDepartment) {
         nextDepartment->build(car);
     } else {
-        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been built.\n\n");
+        pr::Doc::detail("Car " + std::to_string(car->getId()) + " has been built.\n\n");
     }
 }
 

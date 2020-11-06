@@ -27,46 +27,46 @@ EngTeam::~EngTeam() {
 }
 
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("   Engineering team is hiring new employees...\n");
+    pr::Doc::midInfo("    **Engineering team hires new employees**\n");
     std::string secretJobs[6] = {
-            "  Neolithic Researcher",
-            "  Plutonium Handler",
-            "  Dark Matter Prof",
-            "  Basically Marty",
-            "  Doc",
-            "  Quantum Physicist"
+            "Neolithic Researcher",
+            "Plutonium Handler",
+            "Dark Matter Prof",
+            "Basically Marty",
+            "Doc",
+            "Quantum Physicist"
     };
     std::string bodyJobs[6] = {
-            "  Carbon Fiber Expert",
-            "  Carbon Fiber Health Expert",
-            "  Aerodynamic Bettering Guy",
-            "  Makes the car look sexy",
-            "  Painter",
-            "  Impacts Expert"
+            "Carbon Fiber Expert",
+            "Carbon Fiber Health Expert",
+            "Aerodynamic Bettering Guy",
+            "Makes the car look sexy",
+            "Painter",
+            "Impacts Expert"
     };
     std::string electricalJobs[6] = {
-            "  High Voltage Electrician",
-            "  Neaten Wires",
-            "  Computer Scientist",
-            "  Electrical Engineer",
-            "  Computer Engineer",
-            "  Micro Sensors Expert"
+            "High Voltage Electrician",
+            "Neaten Wires",
+            "Computer Scientist",
+            "Electrical Engineer",
+            "Computer Engineer",
+            "Micro Sensors Expert"
     };
     std::string chassisJobs[6] = {
-            "  Spring Rebound Doctor",
-            "  Mechanical Engineer",
-            "  Computer Analyst",
-            "  Rotational Delay Calculator",
-            "  Suspension Mechanic",
-            "  Factotum"
+            "Spring Rebound Doctor",
+            "Mechanical Engineer",
+            "Computer Analyst",
+            "Rotational Delay Calculator",
+            "Suspension Mechanic",
+            "Factotum"
     };
     std::string engineJobs[6] = {
-            "  Mechanical Engineer",
-            "  Makes Things Explode",
-            "  Fuel Facilitator",
-            "  CNC Operator",
-            "  Metallurgical Engineer",
-            "  CAD Guy"
+            "Mechanical Engineer",
+            "Makes Things Explode",
+            "Fuel Facilitator",
+            "CNC Operator",
+            "Metallurgical Engineer",
+            "CAD Guy"
     };
     ppl::HumanResources *humanResources;
     if (budget < 40) {

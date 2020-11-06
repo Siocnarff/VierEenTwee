@@ -75,25 +75,27 @@ void Logistics::registerNotifier(Colleague *colleague) {
  * @status really finished
  */
 void Logistics::doYearPlanning() {
-    pr::Doc::summary("\n>>Plan Racing Year:\n\n");
+    pr::Doc::summary("\n>>Plan Racing Year\n--------------------\n");
 
     //1. getBudget from "Sponsors"
+    pr::Doc::summary("  ~Set team budget~\n");
     sponsoredBudget();
-    pr::Doc::summary("\n");
-
     //2. Hire emplpoyees: each department
-    pr::Doc::summary("Engenering team set up:\n");
+    pr::Doc::summary("  ~Hire an engineering team~\n");
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
 
     //3. Set tickets of racingDept;
+    pr::Doc::summary("  ~Assign training tickets to racing department as per regulations~\n");
     callEngDept()->resetTickets();
 
     //4. putRacesIntoCalender();
+    pr::Doc::summary("  ~Find out which tracks are going to be used this year~\n");
     putRacesIntoCalender();
 
     //5. Hire drivers
+    pr::Doc::summary("  ~Hire drives~\n");
     ppl::HireDriver driverCurator;
     for (int i = 0; i < numPairs; ++i) {
         drivers.push_back(dynamic_cast<ppl::Driver *>(driverCurator.hire("Driver")));
@@ -108,6 +110,7 @@ void Logistics::doYearPlanning() {
     }
 
     //7. hire transportManager
+    pr::Doc::summary("  ~Hire a transport manager~\n");
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Fly);
@@ -119,33 +122,40 @@ void Logistics::doYearPlanning() {
  * @author Jo
  */
 void Logistics::preSeasonPreparation() {
+    pr::Doc::summary("\n>>Pre Season Planning\n------------------------\n");
     // 1. Get strategy
+    pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
                     currentTeamStrategy->getStratName());
 
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    pr::Doc::summary("Tyre Order has arrived after one month");
+    pr::Doc::summary("  ~Tyres ordered according to strategy chosen.(Arrives after a month).~\n");
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
+    pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
     pr::Doc::detail("Ordering the necessary tooleries and garage equipment thingamabobs\n");
     packContainers();
 
     //3. Train drivers
+    pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
     driverBootCamp();
 
     //4.Inform engDept of riskLevel
+    pr::Doc::summary("  ~Inform the engineering team how daring the sponsors are.~\n");
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
     //5. Build the cars if not already developed cars from previous season
     if (carsInSeasonIDs.empty()) {
+        pr::Doc::summary("  ~Build new cars from scratch.~\n");
         for (int i = 0; i < numPairs; ++i) {
             carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
         }
     }
     for (int id : carsInSeasonIDs) {
+        pr::Doc::summary("  ~Build cars for the season using data and experience built up from previous season(s).~\n");
         callEngDept()->improveCar(id, false);
     }
 }
@@ -164,7 +174,7 @@ void Logistics::packContainers() {
             nonEuropeanContainers.push_back(packSingleContainer());
         }
     }
-    pr::Doc::summary("Packed all containers\n");
+    pr::Doc::midInfo("Packed all containers\n");
 }
 
 /**
@@ -180,11 +190,11 @@ Container *Logistics::packSingleContainer() const {
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
 
-    pr::Doc::summary("Packed a container\n");
+    /*pr::Doc::summary("Packed a container\n");
     pr::Doc::detail("\n");
     box->print();
     pr::Doc::detail("\n");
-
+*/
     return box;
 
 }
@@ -278,7 +288,7 @@ void Logistics::putRacesIntoCalender() {
 
 void Logistics::raceSeason() {
     //And the season starts
-    pr::Doc::summary("And the season begins!");
+    pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
@@ -291,6 +301,8 @@ void Logistics::raceSeason() {
 }
 
 void Logistics::postSeasonDebrief() {
+    pr::Doc::summary("\n>>The racing season is over for this year. Debrief.\n--------------------\n");
+
     //1. Get results
     int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
     int zero = tumTumTum[0];
@@ -435,7 +447,7 @@ void Logistics::driverBootCamp() {
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 
-    pr::Doc::summary("Approaching sponsors to negotiate a new budget:\n");
+    pr::Doc::midInfo("  ~Approach spronsers to negotiate budget~\n");
 
     if (budget == -1) {  //default argument in constructor
         budget = abs(rand() % 100 + 1);
@@ -456,7 +468,7 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
         if (budget > 100) budget = 100;
         if (budget < 0) budget = 10;
     }
-    pr::Doc::summary("     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
+    pr::Doc::midInfo("     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
 }
 
 
@@ -493,13 +505,13 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
  * @param tyreOrder
  */
 void Logistics::orderTyres(int *tyreOrder) {
-    pr::Doc::summary("Ordering tyres as informed by Racing Departement\n");
-    pr::Doc::detail("Tedious paperwork to complete tyre order\n");
+    pr::Doc::midInfo("     Ordering tyres as informed by Racing Departement\n");
+    pr::Doc::detail("        Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
         if (tyreOrder[i] != 0) {
-            pr::Doc::detail("Ordering");
+            pr::Doc::detail("        Ordering");
             pr::Doc::detail(to_string(tyreOrder[i]));
             pr::Doc::detail("pair(s) of ");
             switch (i) {

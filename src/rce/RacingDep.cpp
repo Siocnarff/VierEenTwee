@@ -25,7 +25,7 @@ void RacingDep::hireEmployees(int b)
     }
 }
 
-CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
+CreateStrategy* RacingDep:: PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
     if(strategy)

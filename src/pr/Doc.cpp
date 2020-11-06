@@ -17,8 +17,14 @@ void Doc::summary(const std::string& message) {
     }
 }
 
-void Doc::detail(const std::string &message) {
+void Doc::midInfo(const std::string &message) {
     if (Doc::transparency >= 1) {
+        std::cout << message;
+    }
+}
+
+void Doc::detail(const std::string &message) {
+    if (Doc::transparency >= 2) {
         std::cout << message;
     }
 }

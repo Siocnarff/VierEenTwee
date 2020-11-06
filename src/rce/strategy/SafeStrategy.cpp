@@ -9,7 +9,7 @@ CreateStrategy* SafeStrategy::execute()
 
 SafeStrategy::SafeStrategy(int p,int* t,lg::RiskLevel risk)
 {
-	std::cout<<"The startegists have decided to implement a safe strategy"<<std::endl;
+//	std::cout<<"The startegists have decided to implement a safe strategy"<<std::endl;
     SetPitstops(p);
     SetTyres(t);
     SetRiskLevel(lg::Safe);
