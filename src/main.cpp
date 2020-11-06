@@ -16,7 +16,7 @@
 #include "log/Logistics.h"
 
 
-int pr::Doc::transparency = -20;
+int pr::Doc::transparency = 2;
 
 void logDeptTesting();
 void engTeamTesting();
@@ -39,13 +39,14 @@ void proto_FinalMain() {
     auto* logDept = new lg::Logistics;
 
     srand(time(0));
+    /*time_t t = time(nullptr);
+    int time = (int) t;
+    srand(time);
+*/
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
-    for (int i = 0; i < 5; ++i) {
-        if (i==4) {
-            std::cout << "jump";
-        }
+    for (int i = 0; i < 1; ++i) {
         seasonRun(logDept);
     }
     //breaks at 4, not at 3

@@ -20,11 +20,12 @@
 
 using namespace lg;
 
-// TODO : @jo Implement and check accuracy of pop and push for cars
+// DONE : @jo Implement and check accuracy of pop and push for cars
 // IDEA : approach budget people in the middle to ask for raise?
 // IDEA : use up the budget
 // TODO : @both fix memleaks
 // TODO : @marike ensure deletion of containers works //--// I think is does
+// TODO : @jo delete cars in season
 
 /**
  * @author Jo
@@ -42,9 +43,10 @@ Logistics::Logistics(int numDriverCarPairs) {
     budget = -1;
 }
 
-// TODO : @jo finish destructor
+
 Logistics::~Logistics() {
     if (racingCalendar != nullptr) {
+        // TODO : @jo finish destructor racingCalendar
         //delete accordingly
         delete racingCalendar;
     }
@@ -78,7 +80,6 @@ void Logistics::doYearPlanning() {
 
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
-        //TODO : check by departemente - kan julle dit hanteer dat ons re-hire gegewe 'n tweede seisoen?
         val->hireEmployees(budget);
     }
 
@@ -226,7 +227,7 @@ void Logistics::simulateEvent(Race *r) {
         }
     }
     if (!r->isRaceEuropean()) {
-        //TODO : @jo check possible double-delete here
+        //DONE : @jo check possible double-delete here
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
 
@@ -319,10 +320,14 @@ void Logistics::postSeasonDebrief() {
     sponsoredBudget(sumPositions);
 
     //6. Break down old cars
+    for (int id: carsInSeasonIDs) {
+        eng::Car* c = callEngDept()->checkCarOutOfFactory(id);
+        delete c;
+    }
     carsInSeasonIDs.clear();
 
     //7. keep building new cars
-    // TODO : @jo NB NB NB Adjust whole flow for cross-season functionality
+    // DONE : @jo NB NB NB Adjust whole flow for cross-season functionality
     pr::Doc::summary("Start work on new cars");
     for (int i = 0; i < numPairs; ++i) {
         carsInDevIDs.push_back(callEngDept()->buildCar(budget));
@@ -335,13 +340,15 @@ void Logistics::postSeasonDebrief() {
     //8. Choose cars for season (randomly)
     std::random_shuffle (carsInDevIDs.begin(), carsInDevIDs.end());
     while (carsInDevIDs.size() > numPairs) {
+        int id = carsInSeasonIDs.back();
+        eng::Car* c = callEngDept()->checkCarOutOfFactory(id);
+        delete c;
         carsInDevIDs.pop_back();
     }
     for (int i: carsInDevIDs) {
         carsInSeasonIDs.push_back(i);
     }
     carsInDevIDs.clear();
-    //TODO : check that only #numpairs cars left
 
     //9. clear out remaining containers
     europeanContainer = nullptr;
