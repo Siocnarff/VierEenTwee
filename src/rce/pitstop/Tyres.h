@@ -28,6 +28,8 @@ namespace rce {
 
         Tyres(int[]);
 
+        Tyres(Tyres*);
+
         Tyres();
 
         ~Tyres();

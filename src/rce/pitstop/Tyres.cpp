@@ -31,6 +31,12 @@ Tyres::Tyres(int tyreOrder[3]) {       //changed from 2 to 3
     setOrder(tyreOrder);
 }
 
+Tyres::Tyres(Tyres *prev) {
+    for (int x = 0; x < 3; x++) {
+        this->tyreOrder[x] = prev->tyreOrder[x];
+    }
+    setOrder(tyreOrder);
+}
 
 Tyres::~Tyres() {
     for (int x = 0; x < 3; x++) {
@@ -100,3 +106,5 @@ void Tyres::setOrder(int tyreOrder[3]) {
 int* Tyres::getTyreOrder() {
     return this->tyreOrder;
 }
+
+

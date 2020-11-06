@@ -42,8 +42,8 @@ Logistics::Logistics(int numDriverCarPairs) {
 }
 
 // TODO : @jo finish destructor
-Logistics::~Logistics(){
-    if (racingCalendar!= nullptr) {
+Logistics::~Logistics() {
+    if (racingCalendar != nullptr) {
         //delete accordingly
     }
     if (europeanContainer != nullptr) delete europeanContainer;
@@ -208,9 +208,10 @@ void Logistics::simulateEvent(Race *r) {
 
     //5. finish the packup
     Container *tCont = callRacingDept()->postRacePackUp();
-    //6. Transport drivers on and container back
+    //5.1 Notified that drivers are ready to be picked and then flown accordingly
+
+    //6. If season done - transport container back
     if (r->nextRace() == nullptr) {
-        pr::Doc::detail("The drivers are transported in a luxury mode of transport back to HQ");
         transportManager->transport(r, nullptr);
         if (r->isRaceEuropean()) {
             delete tCont;   //we need to get rid of it.
@@ -268,7 +269,7 @@ void Logistics::raceSeason() {
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
         developTracker++;
-        if (developTracker==7 || developTracker==14) { //third of the way through
+        if (developTracker == 7 || developTracker == 14) { //third of the way through
             carsInDevIDs.push_back(callEngDept()->buildCar(budget));
         }
     }
@@ -365,7 +366,7 @@ void Logistics::driverBootCamp() {
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Difficult); //interval [50,100]
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Rainy, Extreme);
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Extreme);
-                callRacingDept()->trainDriver(d,abs(rand() % 50 + 51), Rainy, Difficult);
+                callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Rainy, Difficult);
             }
             //time higher, more weather conditions, higher track complexity, worse weather condtions
             break;
@@ -378,7 +379,7 @@ void Logistics::driverBootCamp() {
             //medium time, range of weather conditions, middling track complexity
             break;
         case Aggressive:
-            for (ppl::Driver* d: drivers) {
+            for (ppl::Driver *d: drivers) {
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL()); //interval [1,100]
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
@@ -428,8 +429,7 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
             callEngDept()->fixCar(cars[0]->getId());
             callEngDept()->improveCar(cars[0]->getId(), true);
         }
-    }
-    else {
+    } else {
         for (int i = 0; i < cars.size(); ++i) {
             transportManager->transport(r, nullptr, cars[i]);
             callEngDept()->carArrivesAtFactory(cars[i]);
@@ -476,14 +476,19 @@ void Logistics::orderTyres(int *tyreOrder) {
         }
     }
 
-
-    //instantiate tyres
+    //todolist copy constructor
     tyreSpecs.push_back(new rce::Tyres(tyreOrder));
-    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
+    tyreSpecs.push_back(new rce::Tyres(tyreSpecs.back()));
 }
 
-void Logistics::moveDrivers(std::vector<ppl::Driver *>) {
-    throw "error";
+void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
+    pr::Doc::summary("Drivers picked up in a limousine and fly in a private jet");
+    if (pr::Doc::transparency >= 1) {
+        for (ppl::Driver *d : drivers) {
+            pr::Doc::detail(d->getName() + " currently has " + to_string(d->getXp()) + "XP\n");
+        }
+    }
+
 }
 
 
