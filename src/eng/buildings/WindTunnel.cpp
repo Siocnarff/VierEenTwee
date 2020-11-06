@@ -3,8 +3,9 @@
 using namespace eng;
 
 void WindTunnel::testCar(Car *car) {
-    if(tickets > 0) {
-        --tickets;
+	pr::Doc::detail("************ Using the Wind Tunnel to test car " + std::to_string(car->getId()) + " ************\n\n");
+    if(tickets - 16 >= 0) {
+        tickets -= 16;
         for (Component *c: car->components) {
             if (c != nullptr) {
                 c->setQualityLabel(c->quality - 3 + (rand() % 6));

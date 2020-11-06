@@ -1,3 +1,4 @@
+#include <Doc.h>
 #include "BlueprintStore.h"
 
 using namespace eng;
@@ -9,6 +10,7 @@ Blueprint* BlueprintStore::getBlueprint() {
 }
 
 void BlueprintStore::setBlueprint(Blueprint* blueprint) {
+	pr::Doc::detail("{--Storing blueprint of component for later use--}\n\n");
     delete this->blueprint;
 	this->blueprint = blueprint;
 }

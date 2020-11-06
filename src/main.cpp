@@ -29,8 +29,8 @@ int main() {
 //    logDeptTesting();
 //    engTeamTesting();
     //seasonRun();
-//    proto_FinalMain();
-   testTyres();
+    proto_FinalMain();
+//   testTyres();
 }
 
 void proto_FinalMain() {
@@ -39,10 +39,14 @@ void proto_FinalMain() {
     auto* logDept = new lg::Logistics;
 
     srand(time(0));
+    /*time_t t = time(nullptr);
+    int time = (int) t;
+    srand(time);
+*/
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 1; ++i) {
         seasonRun(logDept);
     }
     //breaks at 4, not at 3

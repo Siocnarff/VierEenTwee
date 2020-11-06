@@ -9,7 +9,6 @@ using namespace lg;
 
 /**
  * @author Marike
- * TODO: create constructor with int parameter
  */
 CateringEquipment::CateringEquipment() {
     contents.emplace_back("Water Bottles");

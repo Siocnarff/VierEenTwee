@@ -26,7 +26,7 @@ void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
     pr::Doc::summary(
             departmentName + " hired a new " +
-            (specialist->hasDegree() ? "specialist\n" : "employee\n")
+            (specialist->hasDegree() ? "specialist.\n" : "employee.\n")
     );
     pr::Doc::detail(specialist->getResume() + "\n");
 }
@@ -35,7 +35,7 @@ void Department::fix(Car *car) {
     if (nextDepartment) {
         nextDepartment->fix(car);
     } else {
-        pr::Doc::summary("There are no more departments, the car has been fixed and stored in garage.");
+        pr::Doc::summary("There are no more departments, the car has been fixed and stored in garage.\n\n");
     }
 }
 
@@ -57,7 +57,7 @@ void Department::build(Car *car) {
     if (nextDepartment) {
         nextDepartment->build(car);
     } else {
-        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been built.");
+        pr::Doc::summary("Car " + std::to_string(car->getId()) + " has been built.\n\n");
     }
 }
 
@@ -103,7 +103,7 @@ void Department::specialistsImproveComponent(Component *component) {
     }
     double average = double(totalSkill) / double(teamSize);
     double result = int(average * 0.2 + best * 0.4 + riskLevel->trySomethingNew() * 0.4);
-    double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.05 : (100 - component->quality) / 200.0;
+    double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.04 : (100 - component->quality) / 200.0;
     int quality = component->quality += (int) (result * percentage);
     component->quality = (quality > 100) ? 100 : quality;
 }

@@ -15,15 +15,17 @@
 #include <containers/GarageEquipment.h>
 #include <containers/CateringEquipment.h>
 #include <factories/HireDriver.h>
+#include <algorithm>
 #include "enums/randomisation.h"
 
 using namespace lg;
 
-// TODO : @jo Implement and check accuracy of pop and push for cars
+// DONE : @jo Implement and check accuracy of pop and push for cars
 // IDEA : approach budget people in the middle to ask for raise?
 // IDEA : use up the budget
 // TODO : @both fix memleaks
 // TODO : @marike ensure deletion of containers works //--// I think is does
+// TODO : @jo delete cars in season
 
 /**
  * @author Jo
@@ -41,10 +43,12 @@ Logistics::Logistics(int numDriverCarPairs) {
     budget = -1;
 }
 
-// TODO : @jo finish destructor
-Logistics::~Logistics(){
-    if (racingCalendar!= nullptr) {
+
+Logistics::~Logistics() {
+    if (racingCalendar != nullptr) {
+        // TODO : @jo finish destructor racingCalendar
         //delete accordingly
+        delete racingCalendar;
     }
     if (europeanContainer != nullptr) delete europeanContainer;
     if (currentTeamStrategy != nullptr) delete currentTeamStrategy;
@@ -76,7 +80,6 @@ void Logistics::doYearPlanning() {
 
     //2. Hire emplpoyees: each department
     for (auto const&[key, val] : departments) {
-        //TODO : check by departemente - kan julle dit hanteer dat ons re-hire gegewe 'n tweede seisoen?
         val->hireEmployees(budget);
     }
 
@@ -132,9 +135,14 @@ void Logistics::preSeasonPreparation() {
     //4.Inform engDept of riskLevel
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
-    //5. Build the cars
-    for (int i = 0; i < numPairs; ++i) {
-        carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+    //5. Build the cars if not already developed cars from previous season
+    if (carsInSeasonIDs.empty()) {
+        for (int i = 0; i < numPairs; ++i) {
+            carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+        }
+    }
+    for (int id : carsInSeasonIDs) {
+        callEngDept()->improveCar(id, false);
     }
 }
 
@@ -208,16 +216,18 @@ void Logistics::simulateEvent(Race *r) {
 
     //5. finish the packup
     Container *tCont = callRacingDept()->postRacePackUp();
-    //6. Transport drivers on and container back
+    //5.1 Notified that drivers are ready to be picked and then flown accordingly
+
+
+    //6. If season done - transport container back
     if (r->nextRace() == nullptr) {
-        pr::Doc::detail("The drivers are transported in a luxury mode of transport back to HQ");
         transportManager->transport(r, nullptr);
         if (r->isRaceEuropean()) {
             delete tCont;   //we need to get rid of it.
         }
     }
     if (!r->isRaceEuropean()) {
-        //TODO : @jo check possible double-delete here
+        //DONE : @jo check possible double-delete here
         delete tCont; //nonEuropeanContainer won't be used again
     } //else stay with the container
 
@@ -228,35 +238,36 @@ void Logistics::simulateEvent(Race *r) {
  * @status I wash my hands off this one (Marike appreciates your humor ^_^)
  */
 void Logistics::putRacesIntoCalender() {
-    racingCalendar = new RacesList;
+    if (racingCalendar== nullptr) {
+        racingCalendar = new RacesList;
 
-    std::ifstream infile;
-    infile.open("../src/log/races/raceData.txt");
+        std::ifstream infile;
+        infile.open("../src/log/races/raceData.txt");
 
-    if (infile.is_open()) {
-        int numRaces;
-        infile >> numRaces;
+        if (infile.is_open()) {
+            int numRaces;
+            infile >> numRaces;
 
-        std::string name;
-        int complexity;
-        bool inEurope;
-        int laps;
-        getline(infile, name); //to remove first random /n
-        for (int i = 0; i < numRaces; ++i) {
-            std::getline(infile, name);
-            infile >> complexity;
-            infile >> inEurope;
-            infile >> laps;
-            Race *newRace = new Race(name, complexity, inEurope, laps);
-            racingCalendar->addRace(newRace);
+            std::string name;
+            int complexity;
+            bool inEurope;
+            int laps;
             getline(infile, name); //to remove first random /n
+            for (int i = 0; i < numRaces; ++i) {
+                std::getline(infile, name);
+                infile >> complexity;
+                infile >> inEurope;
+                infile >> laps;
+                Race *newRace = new Race(name, complexity, inEurope, laps);
+                racingCalendar->addRace(newRace);
+                getline(infile, name); //to remove first random /n
+            }
+            infile.close();
+        } else { //exception e
+            std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
+            throw "Error";
         }
-        infile.close();
-    } else { //exception e
-        std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
-        throw "Error";
     }
-
     racingCalendar->printList();
 
 }
@@ -268,7 +279,8 @@ void Logistics::raceSeason() {
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
         developTracker++;
-        if (developTracker==7 || developTracker==14) { //third of the way through
+        if (developTracker == 7 || developTracker == 14) { //third of the way through
+            pr::Doc::detail("Start work on a new prototype");
             carsInDevIDs.push_back(callEngDept()->buildCar(budget));
         }
     }
@@ -277,6 +289,11 @@ void Logistics::raceSeason() {
 void Logistics::postSeasonDebrief() {
     //1. Get results
     int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
+    int zero = tumTumTum[0];
+    int one = tumTumTum[1];
+    int two = tumTumTum[2];
+    int three = tumTumTum[3];
+    std::cout << zero << one << two << three << std::endl;
 
     //2. Flashy results
     // TODO: @marike Flashy results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
@@ -302,14 +319,38 @@ void Logistics::postSeasonDebrief() {
     //5. Get some sponsors again.
     sponsoredBudget(sumPositions);
 
-    //5. start building a new car?
-    // TODO : @jo NB NB NB Adjust whole flow for cross-season functionality
-    pr::Doc::summary("Start working on a new car");
+    //6. Break down old cars
+    for (int id: carsInSeasonIDs) {
+        eng::Car* c = callEngDept()->checkCarOutOfFactory(id);
+        delete c;
+    }
+    carsInSeasonIDs.clear();
+
+    //7. keep building new cars
+    // DONE : @jo NB NB NB Adjust whole flow for cross-season functionality
+    pr::Doc::summary("Start work on new cars");
     for (int i = 0; i < numPairs; ++i) {
-        carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+        carsInDevIDs.push_back(callEngDept()->buildCar(budget));
+    }
+    for (int i : carsInDevIDs) {
+        callEngDept()->improveCar(i, false);
+        callEngDept()->improveCar(i, false);
     }
 
-    //6. clear out remaining containers
+    //8. Choose cars for season (randomly)
+    std::random_shuffle (carsInDevIDs.begin(), carsInDevIDs.end());
+    while (carsInDevIDs.size() > numPairs) {
+        int id = carsInSeasonIDs.back();
+        eng::Car* c = callEngDept()->checkCarOutOfFactory(id);
+        delete c;
+        carsInDevIDs.pop_back();
+    }
+    for (int i: carsInDevIDs) {
+        carsInSeasonIDs.push_back(i);
+    }
+    carsInDevIDs.clear();
+
+    //9. clear out remaining containers
     europeanContainer = nullptr;
     nonEuropeanContainers.clear();
 
@@ -365,7 +406,7 @@ void Logistics::driverBootCamp() {
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Difficult); //interval [50,100]
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Rainy, Extreme);
                 callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Hot, Extreme);
-                callRacingDept()->trainDriver(d,abs(rand() % 50 + 51), Rainy, Difficult);
+                callRacingDept()->trainDriver(d, abs(rand() % 50 + 51), Rainy, Difficult);
             }
             //time higher, more weather conditions, higher track complexity, worse weather condtions
             break;
@@ -378,7 +419,7 @@ void Logistics::driverBootCamp() {
             //medium time, range of weather conditions, middling track complexity
             break;
         case Aggressive:
-            for (ppl::Driver* d: drivers) {
+            for (ppl::Driver *d: drivers) {
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL()); //interval [1,100]
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
                 callRacingDept()->trainDriver(d, abs(rand() % 100 + 1), randomWC(), randomTL());
@@ -421,15 +462,14 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isBroken) {
     if (isBroken) {
         for (int i = 0; i < cars.size(); ++i) {
-            // TODO: @marike descriptionality of the rush to get the car fixed
+            // TODO: @marike description of the rush to get the car fixed
             transportManager->transport(r, nullptr, cars[0]);
 
             callEngDept()->carArrivesAtFactory(cars[0]);
             callEngDept()->fixCar(cars[0]->getId());
             callEngDept()->improveCar(cars[0]->getId(), true);
         }
-    }
-    else {
+    } else {
         for (int i = 0; i < cars.size(); ++i) {
             transportManager->transport(r, nullptr, cars[i]);
             callEngDept()->carArrivesAtFactory(cars[i]);
@@ -444,12 +484,8 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
     }
 }
 
-/*void Logistics::containerHasBeenPacked(Container *) {
-    cout << "fly container" << endl;
-}*/
-
 /**
- * @status Should be done
+ * @status Should be done (is done)
  * @param tyreOrder
  */
 void Logistics::orderTyres(int *tyreOrder) {
@@ -476,14 +512,23 @@ void Logistics::orderTyres(int *tyreOrder) {
         }
     }
 
+    //instantiate first set of tyres
+    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
+    //from there on copy constructor <- could later be changed to prototype clone method if object becomes expensive
+    for (int i = 1; i < numPairs; ++i) {
+        tyreSpecs.push_back(new rce::Tyres(tyreSpecs.back()));
+    }
 
-    //instantiate tyres
-    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
-    tyreSpecs.push_back(new rce::Tyres(tyreOrder));
 }
 
-void Logistics::moveDrivers(std::vector<ppl::Driver *>) {
-    throw "error";
+void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
+    pr::Doc::summary("Drivers picked up in a limousine and flown in a private jet");
+    if (pr::Doc::transparency >= 1) {
+        for (ppl::Driver *d : drivers) {
+            pr::Doc::detail(d->getName() + " currently has " + to_string(d->getXp()) + "XP\n");
+        }
+    }
+
 }
 
 
