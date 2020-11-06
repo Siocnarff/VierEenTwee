@@ -146,9 +146,9 @@ void testTyres() {
 //    tyres2->printStats();
 //    tyres3->printStats();
 
-        SetOfTyres* tyreSet1 = tyres1->getTyres(0);
-        SetOfTyres* tyreSet2 = tyres1->getTyres(0);
-        SetOfTyres* tyreSet3 = tyres1->getTyres(0);
+        rce::SetOfTyres* tyreSet1 = tyres1->getTyres(0);
+        rce::SetOfTyres* tyreSet2 = tyres1->getTyres(0);
+        rce::SetOfTyres* tyreSet3 = tyres1->getTyres(0);
 
     rce::Tyres* tyres4 = new rce::Tyres();
     tyres4->setOrder(tyres1->getTyreOrder());

@@ -5,6 +5,8 @@
 #include <iostream>
 #include "SetOfTyres.h"
 
+using namespace rce;
+
 SetOfTyres::SetOfTyres(int compound) {
     this->tyreCompoundInt = compound;
     if (compound ==0) {
