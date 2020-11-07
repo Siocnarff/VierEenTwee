@@ -17,6 +17,7 @@
 
 
 int pr::Doc::transparency = 2;
+bool pr::Doc::outputOverride = false;
 
 void logDeptTesting();
 void engTeamTesting();

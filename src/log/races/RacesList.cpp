@@ -7,7 +7,7 @@
 #include "Doc.h"
 
 namespace lg {
-    // TODO : @jo find suitable spot for this function
+    // todolist : @jo find suitable spot for this function
     std::string convertComplexityToString(TrackComplexity t) {
         switch (t) {
             case Easy:
