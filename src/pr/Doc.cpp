@@ -13,18 +13,18 @@ void Doc::setTransparency(int outOf2) {
 
 void Doc::summary(const std::string& message) {
     if (Doc::transparency >= 0) {
-        std::cout << message;
+        std::cout << message << std::flush;
     }
 }
 
 void Doc::midInfo(const std::string &message) {
     if (Doc::transparency >= 1) {
-        std::cout << message;
+        std::cout << message << std::flush;
     }
 }
 
 void Doc::detail(const std::string &message) {
     if (Doc::transparency >= 2) {
-        std::cout << message;
+        std::cout << message << std::flush;
     }
 }
