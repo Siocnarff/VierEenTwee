@@ -46,7 +46,7 @@ void proto_FinalMain() {
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
-    for (int i = 0; i < 1; ++i) {
+    for (int i = 0; i < 10; ++i) {
         seasonRun(logDept);
     }
     //breaks at 4, not at 3
