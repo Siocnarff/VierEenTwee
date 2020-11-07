@@ -160,8 +160,7 @@ void Logistics::preSeasonPreparation() {
     } else {
         pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
         currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-        pr::Doc::detail(
-                "    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
+        pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
 
     }
 
@@ -186,14 +185,30 @@ void Logistics::preSeasonPreparation() {
 
     //5. Build the cars if not already developed cars from previous season
     if (carsInSeasonIDs.empty()) {
-        pr::Doc::summary("  ~Build new cars from scratch.~\n");
+        pr::Doc::summary("  ~It's the first season - build new cars from scratch.~\n");
+        pr::Doc::summary("Do you want to visit the factory to see how the cars are built? Y/N");
+        std::cin >> interactionInput;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        }
+        interactionInput = "";
         for (int i = 0; i < numPairs; ++i) {
             carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
         }
+        pr::Doc::transparency = 0;
     }
-    for (int id : carsInSeasonIDs) {
-        pr::Doc::summary("  ~Build cars for the season using data and experience built up from previous season(s).~\n");
-        callEngDept()->improveCar(id, false);
+    else {
+        pr::Doc::summary("We won't be using the wind tunnel this week, but you're welcome to obseve the improve-Car-process? Y/N");
+        std::cin >> interactionInput;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        }
+        for (int id : carsInSeasonIDs) {
+            pr::Doc::summary("  ~Build cars for the season using data and experience built up from previous season(s).~\n");
+            callEngDept()->improveCar(id, false);
+        }
+        interactionInput = "";
+        pr::Doc::transparency = 0;
     }
 }
 
@@ -353,6 +368,14 @@ void Logistics::raceSeason() {
     pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
+        pr::Doc::summary("This is race" + to_string(developTracker+1) + ". Do you want to observer the details? Y/N");
+        std::cin >> interactionInput;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        }
+        interactionInput = "";
+
+
         simulateEvent(t.currentItem());
         developTracker++;
         if (developTracker == 7 || developTracker == 14) { //third of the way through
@@ -513,8 +536,8 @@ void Logistics::driverBootCamp() {
             //any time,any weather, any track
             break;
     }
-    pr::Doc::transparency = 1;
-    std::cin >> interactionInput;
+    pr::Doc::transparency = 0;
+    interactionInput = "";
 }
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0

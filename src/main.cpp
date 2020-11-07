@@ -36,7 +36,6 @@ int main() {
 void proto_FinalMain() {
 
 
-
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
