@@ -41,6 +41,7 @@ void proto_FinalMain() {
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
 
+    cout << time(0) << endl;
     srand(time(0));
 
     logDept->registerNotifier(racingDept);
@@ -69,10 +70,15 @@ void seasonRun(lg::Logistics* a) {
     pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
     pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
 
-    a->doYearPlanning();
-    a->preSeasonPreparation();
-    a->raceSeason();
-    a->postSeasonDebrief();
+    //a->doYearPlanning();
+    //a->preSeasonPreparation();
+    //a->raceSeason();
+    //a->postSeasonDebrief();
+
+    std::cout << "" << std::endl;
+    std::cout << "╔═╗┬ ┬┌─┐┌┬┐┬─┐┌─┐┬  ┬┌─┐" << std::endl;
+    std::cout << "╠═╣│ │└─┐ │ ├┬┘├─┤│  │├─┤" << std::endl;
+    std::cout << "╩ ╩└─┘└─┘ ┴ ┴└─┴ ┴┴─┘┴┴ ┴" << std::endl;
 }
 
 void logDeptTesting() {

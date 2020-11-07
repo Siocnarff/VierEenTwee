@@ -9,7 +9,7 @@ using namespace lg;
 void Fly::transport(Race *fromLocation, Race *destination, eng::Car *car) {
     if (car) {
         if (fromLocation == nullptr) {
-            pr::Doc::summary("Car " + to_string(car->getId() ) +"  picked up from factory and flow to ");
+            pr::Doc::summary("Car " + to_string(car->getId() ) +" picked up from factory and flow to ");
             pr::Doc::summary(destination->getLocation() + "\n");
         } else if (destination == nullptr) {
             pr::Doc::summary("Car " + to_string(car->getId() ) +" picked up from ");
