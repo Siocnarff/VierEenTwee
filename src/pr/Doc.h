@@ -18,6 +18,8 @@ namespace pr {
         static void summary(const std::string& message);
 
         static void detail(const std::string& message);
+
+        static void midInfo(const std::string& message);
     };
 }
 

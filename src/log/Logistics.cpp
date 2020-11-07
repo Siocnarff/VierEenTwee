@@ -75,21 +75,27 @@ void Logistics::registerNotifier(Colleague *colleague) {
  * @status really finished
  */
 void Logistics::doYearPlanning() {
-    //1. getBudget from "Sponsors"
-    sponsoredBudget();
+    pr::Doc::summary("\n>>Plan Racing Year\n--------------------\n");
 
+    //1. getBudget from "Sponsors"
+    pr::Doc::summary("  ~Set team budget~\n");
+    sponsoredBudget();
     //2. Hire emplpoyees: each department
+    pr::Doc::summary("  ~Hire an engineering team~\n");
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
 
     //3. Set tickets of racingDept;
+    pr::Doc::summary("  ~Assign training tickets to racing department as per regulations~\n");
     callEngDept()->resetTickets();
 
     //4. putRacesIntoCalender();
+    pr::Doc::summary("  ~Find out which tracks are going to be used this year~\n");
     putRacesIntoCalender();
 
     //5. Hire drivers
+    pr::Doc::summary("  ~Hire drives~\n");
     ppl::HireDriver driverCurator;
     for (int i = 0; i < numPairs; ++i) {
         drivers.push_back(dynamic_cast<ppl::Driver *>(driverCurator.hire("Driver")));
@@ -104,6 +110,7 @@ void Logistics::doYearPlanning() {
     }
 
     //7. hire transportManager
+    pr::Doc::summary("  ~Hire a transport manager~\n");
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
     transportManager->addAMethod(new Fly);
@@ -115,33 +122,41 @@ void Logistics::doYearPlanning() {
  * @author Jo
  */
 void Logistics::preSeasonPreparation() {
+    pr::Doc::summary("\n>>Pre Season Planning\n------------------------\n");
     // 1. Get strategy
+    pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
-                    currentTeamStrategy->getStratName());
+    pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
 
+    /*pr::Doc::detail("The Strategists of the " + callRacingDept()->getTeamName() + " team have decided on a strategy: " +
+                    currentTeamStrategy->getStratName() + "\n");
+*/
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    pr::Doc::summary("Tyre Order has arrived after one month");
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
-    pr::Doc::detail("Ordering the necessary tooleries and garage equipment thingamabobs\n");
+    pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
+    pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
     packContainers();
 
     //3. Train drivers
+    pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
     driverBootCamp();
 
     //4.Inform engDept of riskLevel
+    pr::Doc::summary("  ~Inform the engineering team how daring the sponsors are.~\n");
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
     //5. Build the cars if not already developed cars from previous season
     if (carsInSeasonIDs.empty()) {
+        pr::Doc::summary("  ~Build new cars from scratch.~\n");
         for (int i = 0; i < numPairs; ++i) {
             carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
         }
     }
     for (int id : carsInSeasonIDs) {
+        pr::Doc::summary("  ~Build cars for the season using data and experience built up from previous season(s).~\n");
         callEngDept()->improveCar(id, false);
     }
 }
@@ -160,7 +175,7 @@ void Logistics::packContainers() {
             nonEuropeanContainers.push_back(packSingleContainer());
         }
     }
-    pr::Doc::summary("Packed all containers\n");
+    pr::Doc::midInfo("     Packed all containers\n");
 }
 
 /**
@@ -176,18 +191,19 @@ Container *Logistics::packSingleContainer() const {
     box->addElement(garageEquip);
     box->addElement(cateringEquip);
 
-    pr::Doc::summary("Packed a container\n");
+    /*pr::Doc::summary("Packed a container\n");
     pr::Doc::detail("\n");
     box->print();
     pr::Doc::detail("\n");
-
+*/
     return box;
 
 }
 
 void Logistics::simulateEvent(Race *r) {
     //1. Transport car (from factory to race location)
-    //1.1 Fill up clipboard
+
+    //1.1 Fill up clipboard       //--//Wat is die clipboard presies?
     vector<eng::Car *> carClipboard;
     for (int id : carsInSeasonIDs) {
         eng::Car *temp = callEngDept()->checkCarOutOfFactory(id);
@@ -197,10 +213,15 @@ void Logistics::simulateEvent(Race *r) {
 
     //2. Transport Drivers
     //IDEA : add fly functionality for drivers
-    pr::Doc::detail("The two drivers are transported in a luxury mode of transport to ");
-    pr::Doc::detail(r->getLocation());
+    //   pr::Doc::summary(locationString);
+    pr::Doc::transparency;
 
-    //3. get correct container, transport and fly and fly
+    std::string message = "The two drivers are transported in a luxury mode of transport to ";
+    message.append(r->getLocation());
+    message.append("\n");
+    pr::Doc::summary(message);
+
+    //3. get correct container, transport and fly    //transport all the drivers and cars to where they should go
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
@@ -264,7 +285,7 @@ void Logistics::putRacesIntoCalender() {
             }
             infile.close();
         } else { //exception e
-            std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
+            //std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
             throw "Error";
         }
     }
@@ -274,7 +295,7 @@ void Logistics::putRacesIntoCalender() {
 
 void Logistics::raceSeason() {
     //And the season starts
-    pr::Doc::summary("And the season begins!");
+    pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         simulateEvent(t.currentItem());
@@ -287,13 +308,15 @@ void Logistics::raceSeason() {
 }
 
 void Logistics::postSeasonDebrief() {
+    pr::Doc::summary("\n>>The racing season is over for this year. Debrief.\n--------------------\n");
+
     //1. Get results
     int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
     int zero = tumTumTum[0];
     int one = tumTumTum[1];
     int two = tumTumTum[2];
     int three = tumTumTum[3];
-    std::cout << zero << one << two << three << std::endl;
+    //std::cout << zero << one << two << three << std::endl;
 
     //2. Flashy results
     // TODO: @marike Flashy results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
@@ -431,28 +454,28 @@ void Logistics::driverBootCamp() {
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 
-    pr::Doc::summary("Approaching sponsors to negotiate a new budget\n");
+    pr::Doc::midInfo("  ~Approach spronsers to negotiate budget~\n");
 
     if (budget == -1) {  //default argument in constructor
         budget = abs(rand() % 100 + 1);
     } else {
         //todolist : check accuracy at runtime
         if (sumPositions >= 3) {
-            pr::Doc::detail("Rolex is the team's next sponsor! Budget increases wildly\n");
+            pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
         } else if (sumPositions <= 6) {
-            pr::Doc::detail("Emirates is the team's next sponsor! Budget increases wildly\n");
+            pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
             budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
         } else if (sumPositions <= 10) {
-            pr::Doc::detail("The sponsor is satisfied with the performance");
+            pr::Doc::detail("     The sponsor is satisfied with the performance");
         } else {
-            pr::Doc::detail("This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
+            pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
             budget -= (int) ((double) budget * 0.1);
         }
         if (budget > 100) budget = 100;
         if (budget < 0) budget = 10;
     }
-    pr::Doc::summary("The team has been allocated a budget of " + to_string(budget) + "\n");
+    pr::Doc::midInfo("     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
 }
 
 
@@ -489,13 +512,14 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
  * @param tyreOrder
  */
 void Logistics::orderTyres(int *tyreOrder) {
-    pr::Doc::summary("Ordering tyres as informed by Racing Departement\n");
-    pr::Doc::detail("Tedious paperwork to complete tyre order\n");
+    pr::Doc::summary("  ~Tyres ordered according to strategy chosen.(Arrives after a month).~\n");
+    pr::Doc::midInfo("     Ordering tyres as informed by Racing Departement\n");
+    pr::Doc::detail("        Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
         if (tyreOrder[i] != 0) {
-            pr::Doc::detail("Ordering");
+            pr::Doc::detail("        Ordering");
             pr::Doc::detail(to_string(tyreOrder[i]));
             pr::Doc::detail("pair(s) of ");
             switch (i) {

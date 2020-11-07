@@ -211,4 +211,6 @@ add_executable(VierEenTwee
         src/rce/RaceWeekend.h
         src/rce/RacingDep.cpp
         src/rce/RacingDep.h
-        src/main.cpp src/log/enums/randomisation.h)
+        src/main.cpp
+        src/log/enums/randomisation.h
+        )

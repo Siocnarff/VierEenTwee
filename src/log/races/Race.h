@@ -11,15 +11,15 @@
 namespace lg {
     class Race {
     private:
-        std::string location;
+        const std::string location;
         TrackComplexity complexity;
         bool isInEurope;
         Race *next;
-        Race *prev;
+        Race *previous;
         //WeatherConditions raceDayWeather;
         int numLaps;
         int id;
-        TrackComplexity computeTrackComplexity(int comp);
+        static TrackComplexity computeTrackComplexity(int comp);
 
     public:
         Race();
@@ -28,30 +28,30 @@ namespace lg {
 
         ~Race();
 
-        void setNextRace(Race *);
+        void setNextRace(Race *r);
 
-        void setPrevRace(Race *);
+        void setPrevRace(Race *r);
 
         Race *nextRace();
 
         Race *prevRace();
 
-        bool isRaceEuropean();
+        bool isRaceEuropean() const;
 
-        std::string getLocation();
+        [[nodiscard]] std::string getLocation() const;
 
         TrackComplexity getTrackComplexity();
 
-        int getTrackID();
+        int getTrackID() const;
 
         /**
          * @details returns a randomly generated weather condition to be gotten for each separate day.
          * If so inclined, one may use only once at the beginning of each race.
          * @return
          */
-        WeatherConditions getRaceDayWeather();
+        static WeatherConditions getRaceDayWeather();
 
-        int getNumLaps();
+        int getNumLaps() const;
     };
 }
 

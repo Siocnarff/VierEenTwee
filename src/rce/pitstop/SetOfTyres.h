@@ -20,7 +20,7 @@ namespace rce {
 
         void reduceThread(int);
 
-        void printStats();
+        std::string printStats();
 
     private:
         int thread;

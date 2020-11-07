@@ -27,7 +27,7 @@ EngTeam::~EngTeam() {
 }
 
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("Engineering team is hiring new employees...\n");
+    pr::Doc::midInfo("    **Engineering team hires new employees**\n");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",

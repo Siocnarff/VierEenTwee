@@ -34,6 +34,9 @@ int main() {
 }
 
 void proto_FinalMain() {
+
+
+
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
@@ -43,6 +46,8 @@ void proto_FinalMain() {
     int time = (int) t;
     srand(time);
 */
+
+
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
@@ -60,6 +65,12 @@ void proto_FinalMain() {
 
 
 void seasonRun(lg::Logistics* a) {
+    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
+    pr::Doc::summary("       ____           ___________\n");
+    pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
+    pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
+    pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
+
     a->doYearPlanning();
     a->preSeasonPreparation();
     a->raceSeason();

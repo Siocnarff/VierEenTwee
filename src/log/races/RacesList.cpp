@@ -93,6 +93,7 @@ void RacesList::printList() {
            temp = temp->nextRace();
         }
     }
+    pr::Doc::detail("\n");
 
 }
 

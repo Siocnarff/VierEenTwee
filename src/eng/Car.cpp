@@ -100,9 +100,9 @@ void Car::removeDriver(ppl::Driver *driver) {
 }
 
 void Car::print() {
-    pr::Doc::summary("CAR INFO: id=");
-    pr::Doc::summary(std::to_string(id));
-    pr::Doc::summary(" Driver=" + (driver ? driver->getName() : "None") + "\n");
+    pr::Doc::detail("CAR INFO: id=");
+    pr::Doc::detail(std::to_string(id));
+    pr::Doc::detail(" Driver=" + (driver ? driver->getName() : "None") + "\n");
     pr::Doc::detail("  Detail:");
     pr::Doc::detail(" Damage=" + std::to_string(getDamage()));
     pr::Doc::detail(" Speed=" + std::to_string(getSpeed()));
@@ -113,7 +113,7 @@ void Car::print() {
             component->print();
         }
     }
-    pr::Doc::summary("\n------------------------------\n\n");
+    pr::Doc::detail("\n------------------------------\n\n");
 }
 
 int Car::getDriverXP() {
