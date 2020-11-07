@@ -30,8 +30,12 @@ int main() {
 //    logDeptTesting();
 //    engTeamTesting();
     //seasonRun();
-    proto_FinalMain();
+    //proto_FinalMain();
 //   testTyres();
+
+    auto* logDept = new lg::Logistics;
+    logDept->putRacesIntoCalender();
+
 }
 
 void proto_FinalMain() {
@@ -105,13 +109,13 @@ d
     delete engDept;
     delete a;*/
     //Testing racingCalender destructor
-    lg::RacesList* r = new lg::RacesList;
+    /*lg::RacesList* r = new lg::RacesList;
     r->addRace(new lg::Race("Australia", 0, 0,12));
     r->addRace(new lg::Race("Benoni", 1, 1,21));
     r->addRace(new lg::Race("Cambridge", 2, 0,112));
     r->addRace(new lg::Race("Dallas", 0, 1,212));
     r->printList();
-    delete r;
+    delete r;*/
 }
 
 

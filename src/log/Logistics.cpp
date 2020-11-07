@@ -329,28 +329,37 @@ void Logistics::putRacesIntoCalender() {
     if (racingCalendar == nullptr) {
         racingCalendar = new RacesList;
 
-        std::ifstream infile;
-        infile.open("../src/log/races/raceData.txt");
+        std::ifstream infileRace;
+        infileRace.open("../src/log/races/raceData.txt");
+        std::ifstream infileASCII;
+        infileRace.open("../src/log/races/asciiRace.txt");
 
-        if (infile.is_open()) {
+        if (infileRace.is_open() && infileASCII) {
             int numRaces;
-            infile >> numRaces;
+            infileRace >> numRaces;
 
             std::string name;
             int complexity;
             bool inEurope;
             int laps;
-            getline(infile, name); //to remove first random /n
+            getline(infileRace, name); //to remove first random /n
             for (int i = 0; i < numRaces; ++i) {
-                std::getline(infile, name);
-                infile >> complexity;
-                infile >> inEurope;
-                infile >> laps;
-                Race *newRace = new Race(name, complexity, inEurope, laps);
+                std::getline(infileRace, name);
+                infileRace >> complexity;
+                infileRace >> inEurope;
+                infileRace >> laps;
+
+                std::string prettyOutput[3];
+                for (int j = 0; j < 3; ++j) {
+                    std::getline(infileASCII, prettyOutput[i]);
+                }
+
+                Race *newRace = new Race(name, complexity, inEurope, laps, prettyOutput);
                 racingCalendar->addRace(newRace);
-                getline(infile, name); //to remove first random /n
+                newRace->printLoc();
+                getline(infileRace, name); //to remove first random /n
             }
-            infile.close();
+            infileRace.close();
         } else { //exception e
             //std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
             throw "Error";

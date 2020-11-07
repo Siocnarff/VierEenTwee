@@ -7,6 +7,7 @@
 
 #include <utility>
 #include "Race.h"
+#include "Doc.h"
 using namespace lg;
 
 Race::Race() : location("outer space") {
@@ -19,7 +20,7 @@ Race::Race() : location("outer space") {
     id = trackID++;
 }
 
-Race::Race(std::string loc, int comp, bool eur, int laps, Race *nextR, Race* prevR) : location(std::move(loc)) {
+Race::Race(std::string loc, int comp, bool eur, int laps, std::string* output, Race *nextR, Race* prevR) : location(std::move(loc)) {
     static int trackID = 0;
     complexity = computeTrackComplexity(comp);
     isInEurope = eur;
@@ -101,6 +102,13 @@ int Race::getNumLaps() const {
 
 int Race::getTrackID() const {
     return id;
+}
+
+void Race::printLoc() {
+    for (int i = 0; i < 3; ++i) {
+        pr::Doc::summary(output[i] + "\n");
+    }
+
 }
 
 Race::~Race() = default;

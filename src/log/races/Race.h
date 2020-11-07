@@ -20,11 +20,12 @@ namespace lg {
         int numLaps;
         int id;
         static TrackComplexity computeTrackComplexity(int comp);
+        std::string* output;
 
     public:
         Race();
 
-        Race(std::string, int complexity, bool inEU, int laps, Race *next = nullptr, Race *prev = nullptr);
+        Race(std::string, int complexity, bool inEU, int laps, std::string* output, Race *next = nullptr, Race *prev = nullptr);
 
         ~Race();
 
@@ -52,6 +53,8 @@ namespace lg {
         static WeatherConditions getRaceDayWeather();
 
         int getNumLaps() const;
+
+        void printLoc();
     };
 }
 

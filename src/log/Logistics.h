@@ -33,6 +33,8 @@ namespace lg {
 
         void postSeasonDebrief();
 
+        void putRacesIntoCalender();
+
     protected:
         void sendCarToFactory(std::vector<eng::Car *>, Race*, bool isBroken) override;
 
@@ -46,7 +48,7 @@ namespace lg {
 
         void simulateEvent(Race *);
 
-        void putRacesIntoCalender();
+
 
         void orderTyres(int* tyreOrder) override;
 
