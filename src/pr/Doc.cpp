@@ -12,19 +12,20 @@ void Doc::setTransparency(int outOf2) {
 }
 
 void Doc::summary(const std::string& message) {
-    if (Doc::transparency >= 0) {
+    if (Doc::transparency >= 0 && !outputOverride) {
         std::cout << message << std::flush;
     }
 }
 
 void Doc::midInfo(const std::string &message) {
-    if (Doc::transparency >= 1) {
+    if (Doc::transparency >= 1  && !outputOverride) {
         std::cout << message << std::flush;
     }
 }
 
 void Doc::detail(const std::string &message) {
-    if (Doc::transparency >= 2) {
+    if (Doc::transparency >= 2  && !outputOverride ) {
         std::cout << message << std::flush;
     }
 }
+

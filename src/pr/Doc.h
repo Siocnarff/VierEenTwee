@@ -12,6 +12,7 @@ namespace pr {
     class Doc {
     public:
         static int transparency;
+        static bool outputOverride;
 
         static void setTransparency(int outOf2);
 
