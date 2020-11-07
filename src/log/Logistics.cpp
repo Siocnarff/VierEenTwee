@@ -137,7 +137,7 @@ void Logistics::preSeasonPreparation() {
 
     //2. Pack containers
     pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
-    pr::Doc::detail("Ordering the necessary tooleries and garage equipment thingamabobs\n");
+    pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
     packContainers();
 
     //3. Train drivers
@@ -175,7 +175,7 @@ void Logistics::packContainers() {
             nonEuropeanContainers.push_back(packSingleContainer());
         }
     }
-    pr::Doc::midInfo("Packed all containers\n");
+    pr::Doc::midInfo("     Packed all containers\n");
 }
 
 /**

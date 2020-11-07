@@ -117,9 +117,6 @@ class RaceWeekend
 
         bool* getBrokenCar();
 
-
-//    void hireEmployees(int);
-
     };
 }
 #endif

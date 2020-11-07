@@ -226,12 +226,12 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 
 int * RacingDep::Race()
 {
-    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
-    int * Score = racingweekend->RacingWeekend();
-    delete racingweekend;
+    RaceWeekend* racingWeekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
+    int * Score = racingWeekend->RacingWeekend();
+    delete racingWeekend;
     CarContainer->print();
-    std::vector<eng::Car*> carresult ;
-    bool* k=racingweekend->getBrokenCar();
+    std::vector<eng::Car*> carResult ;
+    bool* k=racingWeekend->getBrokenCar();
     for(int i=0;i<2;i++)
     {
         if(k[i])
@@ -241,9 +241,9 @@ int * RacingDep::Race()
     }
     for(int h =0; h < 2; h++)
     {
-        carresult.push_back(cars[h]);
+        carResult.push_back(cars[h]);
     }
-    notifybackCar(carresult,race);
+    notifybackCar(carResult,race);
 
     return Score;
     //ToDo final stuff for array
