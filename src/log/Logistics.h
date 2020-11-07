@@ -79,6 +79,8 @@ namespace lg {
         int budget;
         int numPairs = 2;
 
+        std::string interactionInput = "";
+
     };
 
 

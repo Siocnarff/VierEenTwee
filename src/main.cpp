@@ -42,19 +42,17 @@ void proto_FinalMain() {
     auto* logDept = new lg::Logistics;
 
     srand(time(0));
-    /*time_t t = time(nullptr);
-    int time = (int) t;
-    srand(time);
-*/
-
 
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
-    for (int i = 0; i < 10; ++i) {
+    std::string continueSeasons = "y";
+    while (continueSeasons=="y" || continueSeasons == "Y") {
         seasonRun(logDept);
+        std::cout << "\nDo you want run another season? Y/N \n";
+        std::cin >> continueSeasons;
     }
-    //breaks at 4, not at 3
+    std::cout << "That's all folks!" << std::endl;
 
 
     delete racingDept;
@@ -82,7 +80,7 @@ void logDeptTesting() {
     /*    auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* a = new lg::Logistics;
-
+d
     lg::TransportHandler* curator = new lg::Road;
     curator->addAMethod(new lg::Ship);
     curator->addAMethod(new lg::Fly);

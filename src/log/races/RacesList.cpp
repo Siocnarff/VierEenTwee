@@ -84,7 +84,7 @@ void RacesList::printList() {
         return;
     } else {
         while (temp != nullptr) {
-            pr::Doc::detail(temp->getLocation());
+            pr::Doc::detail("\n" + temp->getLocation());
             pr::Doc::detail("\nNumber of Laps: ");
             pr::Doc::detail(std::to_string(temp->getNumLaps()));
             pr::Doc::detail("\nTrack Complexity: ");
