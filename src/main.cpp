@@ -43,7 +43,6 @@ void proto_FinalMain() {
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
 
-    cout << time(0) << endl;
     srand(time(0));
 
     logDept->registerNotifier(racingDept);
