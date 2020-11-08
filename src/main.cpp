@@ -30,11 +30,9 @@ int main() {
 //    logDeptTesting();
 //    engTeamTesting();
     //seasonRun();
-    //proto_FinalMain();
+    proto_FinalMain();
 //   testTyres();
 
-    auto* logDept = new lg::Logistics;
-    logDept->putRacesIntoCalender();
 
 }
 
@@ -68,21 +66,23 @@ void proto_FinalMain() {
 
 
 void seasonRun(lg::Logistics* a) {
-    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
+    //pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
+    pr::Doc::summary("\t   _   _   _   _     _   _   _   _   _   _\n");
+    pr::Doc::summary("\t  / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\\n");
+    pr::Doc::summary("\t ( R | a | c | e ) ( S | e | a | s | o | n )\n");
+    pr::Doc::summary("\t  \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/\n");
+    pr::Doc::summary("\n");
+
     pr::Doc::summary("       ____           ___________\n");
     pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
     pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
     pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
 
-    //a->doYearPlanning();
-    //a->preSeasonPreparation();
-    //a->raceSeason();
-    //a->postSeasonDebrief();
+    a->doYearPlanning();
+    a->preSeasonPreparation();
+    a->raceSeason();
+    a->postSeasonDebrief();
 
-    std::cout << "" << std::endl;
-    std::cout << "╔═╗┬ ┬┌─┐┌┬┐┬─┐┌─┐┬  ┬┌─┐" << std::endl;
-    std::cout << "╠═╣│ │└─┐ │ ├┬┘├─┤│  │├─┤" << std::endl;
-    std::cout << "╩ ╩└─┘└─┘ ┴ ┴└─┴ ┴┴─┘┴┴ ┴" << std::endl;
 }
 
 void logDeptTesting() {

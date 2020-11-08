@@ -20,7 +20,7 @@ Race::Race() : location("outer space") {
     id = trackID++;
 }
 
-Race::Race(std::string loc, int comp, bool eur, int laps, std::string* output, Race *nextR, Race* prevR) : location(std::move(loc)) {
+Race::Race(std::string loc, int comp, bool eur, int laps, std::string* prettyOutput, Race *nextR, Race* prevR) : location(std::move(loc)) {
     static int trackID = 0;
     complexity = computeTrackComplexity(comp);
     isInEurope = eur;
@@ -28,6 +28,9 @@ Race::Race(std::string loc, int comp, bool eur, int laps, std::string* output, R
     next = nextR;
     previous = prevR;
     id = trackID ++;
+    for (int i = 0; i < 3; ++i) {
+        output[i] = prettyOutput[i];
+    }
 }
 
 /**

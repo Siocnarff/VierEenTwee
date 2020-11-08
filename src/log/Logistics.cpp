@@ -77,7 +77,12 @@ void Logistics::registerNotifier(Colleague *colleague) {
  * @status really finished
  */
 void Logistics::doYearPlanning() {
-    pr::Doc::summary("\n>>Plan Racing Year\n--------------------\n");
+    //pr::Doc::summary("\n>>Plan Racing Year\n--------------------\n");
+    pr::Doc::summary("\n   _   _   _   _     _   _   _   _   _   _     _   _   _   _  \n");
+    pr::Doc::summary("  / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\\n");
+    pr::Doc::summary(" ( P | l | a | n ) ( R | a | c | i | n | g ) ( Y | e | a | r )\n");
+    pr::Doc::summary("  \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/\n");
+
 
     //1. getBudget from "Sponsors"
     pr::Doc::summary("  ~Set team budget~\n");
@@ -332,9 +337,9 @@ void Logistics::putRacesIntoCalender() {
         std::ifstream infileRace;
         infileRace.open("../src/log/races/raceData.txt");
         std::ifstream infileASCII;
-        infileRace.open("../src/log/races/asciiRace.txt");
+        infileASCII.open("../src/log/races/asciiRace.txt");
 
-        if (infileRace.is_open() && infileASCII) {
+        if (infileRace.is_open() && infileASCII.is_open()) {
             int numRaces;
             infileRace >> numRaces;
 
@@ -349,19 +354,21 @@ void Logistics::putRacesIntoCalender() {
                 infileRace >> inEurope;
                 infileRace >> laps;
 
-                std::string prettyOutput[3];
+                std::string* prettyOutput = new std::string[3];
                 for (int j = 0; j < 3; ++j) {
-                    std::getline(infileASCII, prettyOutput[i]);
+                    std::string temp;
+                    std::getline(infileASCII, temp);
+                    prettyOutput[j] = temp;
                 }
+
 
                 Race *newRace = new Race(name, complexity, inEurope, laps, prettyOutput);
                 racingCalendar->addRace(newRace);
-                newRace->printLoc();
                 getline(infileRace, name); //to remove first random /n
             }
             infileRace.close();
         } else { //exception e
-            //std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
+            std::cout << "There was a file-reading error !\n"; //die bly 'n cout aangesien dit 'n ernstige probleem is
             throw "Error";
         }
     }
@@ -385,9 +392,10 @@ void Logistics::raceSeason() {
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
         if (!pr::Doc::outputOverride) {
-            pr::Doc::summary("\nThis is race " + to_string(developTracker + 1) +
-                             ".\n Do you want to observer the details? Yes[Y], Some all of it[S], No[N]");
-            pr::Doc::summary("\nOptionally, press C to continue the entire season\n");
+            pr::Doc::summary("\n");
+            t.currentItem()->printLoc();
+            pr::Doc::summary("\n Do you want to observe the details? Yes[Y], Some all of it[S], No[N]");
+            pr::Doc::summary("\nOptionally, press [C] to run the entire season\n");
             std::cin >> interactionInput;
             switch (interactionInput[0]) {
                 case 'y':
@@ -605,7 +613,7 @@ void Logistics::driverBootCamp() {
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
     interactionInput = "";
     if (sumPositions == 0) {
-        pr::Doc::summary("\nAre you willing to sponsor our team? Y/N");
+        pr::Doc::summary("Are you willing to sponsor our team? Y/N\n");
         std::cin >> interactionInput;
     }
     if (interactionInput == "Y" || interactionInput == "y") {
