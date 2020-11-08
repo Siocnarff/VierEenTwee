@@ -48,8 +48,6 @@ namespace lg {
 
         void simulateEvent(Race *);
 
-
-
         void orderTyres(int* tyreOrder) override;
 
         void driverBootCamp();
@@ -57,6 +55,8 @@ namespace lg {
         void sponsoredBudget(int sumPositions = 0);
 
         void moveDrivers(std::vector<ppl::Driver *>) override;
+
+        void changeTransparency();
 
     private:
         rce::RacingDep *callRacingDept();

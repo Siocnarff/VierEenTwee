@@ -48,6 +48,13 @@ void proto_FinalMain() {
     logDept->registerNotifier(racingDept);
     logDept->registerNotifier(engDept);
 
+    pr::Doc::summary("Before we begin, please note: \nThis interactive demo makes use of differing levels of detailed output. \nWhenever prompted to provide an input, the user may preface their input \nwith a * to indicate the desire to change levels of transparency\n");
+    pr::Doc::summary("\nPlease do so now by choosing a desired level of transparency: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ");
+    std::string input;
+    std::cin >> input;
+    pr::Doc::transparency = stoi(input);
+
+
     std::string continueSeasons = "y";
     while (continueSeasons=="y" || continueSeasons == "Y") {
         seasonRun(logDept);

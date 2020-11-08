@@ -17,17 +17,20 @@
 #include <factories/HireDriver.h>
 #include <algorithm>
 #include "enums/randomisation.h"
+#include <string>
 
 using namespace lg;
 
 // DONE : @jo Implement and check accuracy of pop and push for cars
 // IDEA : approach budget people in the middle to ask for raise?
 // IDEA : use up the budget
-// todolist : @both fix memleaks
-// TODO : @marike ensure deletion of containers works //--// I think is does
 // DONE : @jo delete cars in season
-// TODO : change "This is race x to be fancier"
-// TODO : change "preseason" to be fancier
+// DONE : change "This is race x to be fancier"
+// DONE : change "preseason" to be fancier
+// todolist : @both fix memleaks
+
+// TODO : @marike couts
+// TODO: @marike standardise
 
 /**
  * @author Jo
@@ -94,6 +97,10 @@ void Logistics::doYearPlanning() {
 
     pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2;
     } else {
@@ -149,9 +156,17 @@ void Logistics::preSeasonPreparation() {
 
     pr::Doc::summary("\nDo you want to help decide on a strategy? Y/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::summary("\nWould you suggest a strategy with an Aggressive(A), Moderate(M) or Safe(S) level of risk?\n");
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
         currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
         //tyre order in the meantime
         switch (interactionInput[0]) {
@@ -180,7 +195,6 @@ void Logistics::preSeasonPreparation() {
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
     pr::Doc::summary("   ~Tyre orders arrive a month later\n");
-    //TODO : @marike is it even a todo?
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
@@ -201,6 +215,10 @@ void Logistics::preSeasonPreparation() {
         pr::Doc::summary("\n   ~It's the first season - cars are constructed from scratch.\n");
         pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         }
@@ -212,6 +230,10 @@ void Logistics::preSeasonPreparation() {
     } else {
         pr::Doc::summary("\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         }
@@ -243,6 +265,10 @@ void Logistics::packContainers() {
 
     pr::Doc::summary("\nDo you want to inspect what is in a typical container? Y/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2;
         getEuropeanContainer()->print();
@@ -275,7 +301,6 @@ Container *Logistics::packSingleContainer() const {
 
 void Logistics::simulateEvent(Race *r) {
     //0. Determine if a new strategy is necessary
-    // TODO : couts Marike
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     pr::Doc::summary("   ~Tyre orders arrive a month later\n");
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
@@ -382,6 +407,10 @@ void Logistics::putRacesIntoCalender() {
 
     pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2;
     } else {
@@ -395,6 +424,10 @@ void Logistics::putRacesIntoCalender() {
 void Logistics::raceSeason() {
     pr::Doc::summary("\nPress any key for the season to start:\n");
     cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     interactionInput = "";
 
     //And the season starts
@@ -412,6 +445,10 @@ void Logistics::raceSeason() {
             pr::Doc::summary("\n Do you want to observe the details? Yes[Y], Some all of it[S], No[N]\n");
             pr::Doc::summary("Optionally, press [C] to run the entire season\n");
             std::cin >> interactionInput;
+            if (interactionInput[0] == '*') {
+                changeTransparency();
+                interactionInput = interactionInput[1];
+            }
             switch (interactionInput[0]) {
                 case 'y':
                 case 'Y':
@@ -455,6 +492,10 @@ void Logistics::postSeasonDebrief() {
 
     pr::Doc::summary("Press any key to view the final results\n");
     cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     interactionInput = "";
 
 
@@ -472,6 +513,10 @@ void Logistics::postSeasonDebrief() {
 
     pr::Doc::summary("Press any key commence the final team debriefing\n");
     cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     interactionInput = "";
 
     //3. Debriefing
@@ -514,6 +559,10 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("\nThroughout the season we've been working on cars.\n We now start work on additional cars\n");
     pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
 
     switch (interactionInput[0]) {
         case 'y':
@@ -553,7 +602,7 @@ void Logistics::postSeasonDebrief() {
     }
     carsInDevIDs.clear();
 
-    //TODO: @jo decide if in or not
+    //TODO: @jo decide if in or not (waiting for Gianni)
     if (pr::Doc::transparency == 2) {
         for (int i: carsInSeasonIDs) {
             callEngDept()->checkCarOutOfFactory(i)->print();
@@ -613,6 +662,10 @@ void Logistics::driverBootCamp() {
 
     pr::Doc::summary("\nDo you want to observe the training regime? Y/N\n");
     std::cin >> interactionInput;
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2;
         interactionInput = "";
@@ -655,9 +708,17 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
         pr::Doc::summary("Are you willing to sponsor our team? Y/N\n");
         std::cin >> interactionInput;
     }
+    if (interactionInput[0] == '*') {
+        changeTransparency();
+        interactionInput = interactionInput[1];
+    }
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::summary("\nHow much are you willing to sponsor us for? [0,100]\n");
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
         budget = stoi(interactionInput);
         interactionInput = "";
     } else {
@@ -695,7 +756,6 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
 void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isBroken) {
     if (isBroken) {
         for (int i = 0; i < cars.size(); ++i) {
-            // TODO: @marike standardise
             pr::Doc::midInfo("Car " + to_string(cars[i]->getId()) + " is BROKEN! Fly to factory ASAP\n");
             transportManager->transport(r, nullptr, cars[0]);
             callEngDept()->carArrivesAtFactory(cars[0]);
@@ -763,6 +823,14 @@ void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
             pr::Doc::detail(d->getName() + " currently has " + to_string(d->getXp()) + "XP\n");
         }
     }
+
+}
+
+void Logistics::changeTransparency() {
+    std::cout << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ";
+    std::string input;
+    std::cin >> input;
+    pr::Doc::transparency = stoi(input);
 
 }
 
