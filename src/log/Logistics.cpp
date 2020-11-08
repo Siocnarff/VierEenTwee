@@ -30,7 +30,8 @@ using namespace lg;
 // todolist : @both fix memleaks
 
 // TODO : @marike couts
-// TODO: @marike standardise
+// TODO : @marike standardise
+// TODO : remove/change doxygen commentaries (or we can leave them in so that others laugh)
 
 /**
  * @author Jo
@@ -784,15 +785,13 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
  */
 void Logistics::orderTyres(int *tyreOrder) {
     pr::Doc::summary("\n  ~Tyres ordered according to strategy chosen.~\n");
-    pr::Doc::midInfo("     Ordering tyres as informed by Racing Departement\n");
+    pr::Doc::midInfo("     Ordering tyres as informed by Racing Department\n");
     pr::Doc::detail("        Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
         if (tyreOrder[i] != 0) {
-            pr::Doc::detail("        Ordering");
-            pr::Doc::detail(to_string(tyreOrder[i]));
-            pr::Doc::detail("pair(s) of ");
+            pr::Doc::detail("        Ordering " + to_string(tyreOrder[i]) + " pair(s) of ");
             switch (i) {
                 case 0:
                     pr::Doc::detail("Soft Compound Tyres\n");

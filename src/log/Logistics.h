@@ -75,7 +75,7 @@ namespace lg {
         Container *europeanContainer;   //1 container for European
 
         rce::CreateStrategy *currentTeamStrategy;
-        std::vector<rce::Tyres*> tyreSpecs; //possibly unnecessary? No
+        std::vector<rce::Tyres*> tyreSpecs;
 
         std::vector<int> seasonPointTally;
         int budget;
