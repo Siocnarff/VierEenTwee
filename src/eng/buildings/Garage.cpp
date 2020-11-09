@@ -6,7 +6,7 @@ void Garage::storeCar(Car *c) {
 	pr::Doc::detail("[_] Storing car in garage. [_]\n");
     pr::Doc::detail("Car has id: " + std::to_string(c->getId()));
     for (int i = 0; i < cars.size(); i++) {
-        if (!cars[i]) {
+        if (!cars[i] || cars[i] == c) {
             cars[i] = c;
 			pr::Doc::detail("\nAnd is stored at position " + std::to_string(i) + "\n");
             pr::Doc::detail("------------------------------\n\n");
@@ -51,5 +51,6 @@ Car *Garage::getPrototype() {
 Garage::~Garage() {
     for (auto & car : cars) {
         delete car;
+        car = nullptr;
     }
 }

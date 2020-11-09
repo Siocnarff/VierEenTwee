@@ -652,9 +652,9 @@ void Logistics::postSeasonDebrief() {
     std::random_shuffle(carsInDevIDs.begin(), carsInDevIDs.end());
     while (carsInDevIDs.size() > numPairs) {
         int id = carsInSeasonIDs.back();
+        carsInDevIDs.pop_back();
         eng::Car *c = callEngDept()->checkCarOutOfFactory(id);
         delete c;
-        carsInDevIDs.pop_back();
     }
     for (int i: carsInDevIDs) {
         carsInSeasonIDs.push_back(i);
