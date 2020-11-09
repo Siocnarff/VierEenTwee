@@ -21,7 +21,8 @@ void SimulatorNormalCondition::SimulateWeather()
         i=20;
     }
 
-    std::cout<<"Driver using simulator to train in normal conditions"<<std::endl;
+    std::string output = "Driver using simulator to train in normal conditions\n";
+    pr::Doc::detail(output);
     xp=i*(((getTime()/5)/100)*3);
     if(getDriver()->getXp()+xp>=100)
     {

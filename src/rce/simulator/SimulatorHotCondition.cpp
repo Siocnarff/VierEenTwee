@@ -25,7 +25,9 @@ void SimulatorHotCondition::SimulateWeather()
     {
 	    i=20;
     }
-	std::cout<<"Driver using simulator to train in hot conditions"<<std::endl;
+
+    std::string output = "Driver using simulator to train in hot conditions\n";
+    pr::Doc::detail(output);
 	xp=i*(((getTime()/5)/100)*6);
 	if(getDriver()->getXp()+xp>=100)
     {

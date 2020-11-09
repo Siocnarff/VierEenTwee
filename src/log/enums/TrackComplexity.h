@@ -6,7 +6,8 @@
 #define SRC_TRACKCOMPLEXITY_H
 
 namespace lg {
-    enum TrackComplexity {
+    enum TrackComplexity
+            {
         Easy, Average, Difficult, Extreme
     };
 }

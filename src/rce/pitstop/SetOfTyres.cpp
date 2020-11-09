@@ -30,8 +30,11 @@ void SetOfTyres::reduceThread(int damage) {
     if (thread > damage && damage > 0) {
         thread = thread - damage;
     }
-    else {
-        std::cout << "Tyres worn out" << std::endl;
+    else
+   {
+
+        std::string output = "Tyres worn out\n";
+        pr::Doc::detail(output);
     }
 }
 
@@ -39,8 +42,14 @@ std::string SetOfTyres::getTyreCompoundString() {
     return tyreCompoundString;
 }
 
-void SetOfTyres::printStats() {
-    std::cout << tyreCompoundString << " - Thread: " << getThread() << std::endl;
+void SetOfTyres::printStats()
+{
+    std::string output = tyreCompoundString;
+    output.append(" - Thread: ");
+    output.append(std::to_string(getThread()));
+    output.append("\n");
+    pr::Doc::detail(output);
+//    std::cout << tyreCompoundString << " - Thread: " << getThread() << std::endl;
 }
 
 

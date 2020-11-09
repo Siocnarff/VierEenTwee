@@ -5,29 +5,29 @@
 #ifndef VIEREENTWEE_SETOFTYRES_H
 #define VIEREENTWEE_SETOFTYRES_H
 
+#include "../pr/Doc.h"
 
-class SetOfTyres {
-public:
-    SetOfTyres(int);
+    class SetOfTyres {
+    public:
+        SetOfTyres(int);
 
-    ~SetOfTyres();
+        ~SetOfTyres();
 
-    int getThread();
+        int getThread();
 
-    std::string getTyreCompoundString();
+        std::string getTyreCompoundString();
 
-    void reduceThread(int);
+        void reduceThread(int);
 
-    void printStats();
+        void printStats();
 
-private:
-    int thread;
+    private:
+        int thread;
 
-    int tyreCompoundInt;
+        int tyreCompoundInt;
 
-    std::string tyreCompoundString;
+        std::string tyreCompoundString;
 
-};
-
+    };
 
 #endif //VIEREENTWEE_SETOFTYRES_H

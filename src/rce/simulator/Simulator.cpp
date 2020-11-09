@@ -5,6 +5,11 @@ int Simulator::getTime()
 	return time;
 }
 
+void Simulator::run()
+{
+   SimulateWeather();
+}
+
 lg::TrackComplexity Simulator::getTrackDifficulty()
 {
 	return trackDifficulty;

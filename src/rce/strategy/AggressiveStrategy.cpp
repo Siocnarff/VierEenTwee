@@ -7,7 +7,8 @@ CreateStrategy* AggressiveStrategy::execute()
 
 AggressiveStrategy::AggressiveStrategy(int p,int* t,lg::RiskLevel risk)
 {
-	std::cout<<"The startegists have decided to implement an aggressive strategy"<<std::endl;
+    std::string print="The startegists have decided to implement an aggressive strategy\n";
+    pr::Doc::midInfo(print);
 	SetPitstops(p);
 	SetTyres(t);
 	SetRiskLevel(lg::Aggressive);

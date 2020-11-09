@@ -5,7 +5,7 @@
 #include "../log/enums/WeatherConditions.h"
 #include <iostream>
 #include <string>
-
+#include "../pr/Doc.h"
 namespace rce {
     class CreateStrategy {
 
