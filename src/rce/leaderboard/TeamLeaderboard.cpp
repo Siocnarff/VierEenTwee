@@ -90,7 +90,7 @@ int TeamLeaderboard::GetTeamScore(std::string TN)
 
 void TeamLeaderboard::display()
 {
-    pr::Doc::outputOverride=false;
+    //pr::Doc::outputOverride=false;
 //    int resultarray[20];
 //    std::string interactionInput = "";
 //    pr::Doc::summary("Do you want to see the race's Team leaderboard? Y/N"); //in julle gecal iets anders

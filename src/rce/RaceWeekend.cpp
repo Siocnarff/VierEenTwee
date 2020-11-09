@@ -11,7 +11,7 @@ int * RaceWeekend::RacingWeekend()
     TC = raceConditions->getTrackComplexity();
     broken[0]=false;
     broken[1]=false;
-    pr::Doc::outputOverride=false;
+    //pr::Doc::outputOverride=false;
 
 
     for(int i = 0; i < 3; i++)

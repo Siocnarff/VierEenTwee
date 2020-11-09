@@ -145,7 +145,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
     {
         tyres[i] = t[i];
     }
-    std::string output = "Unpacking container---------------------------------------------\n";
+    std::string output = "Unpacking container\n---------------------------------------------\n";
     pr::Doc::detail(output);
     output = "";
     if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
@@ -229,7 +229,7 @@ void RacingDep::setPitcrew(ppl::Person** pitcrew)
 
 void RacingDep::SetCarAfterRace(eng::Car* c)
 {
-	car=c;//
+	car=c;
 }
 
 int * RacingDep::Race()
@@ -239,10 +239,11 @@ int * RacingDep::Race()
 //    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
     RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();
-//    delete racingweekend;
-    pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
+
+    pr::Doc::summary("  ~Packing up after racing weekend. (Repack container)~\n");
     CarContainer->print();
-    std::vector<eng::Car*> carresult ;
+    pr::Doc::summary("\n");
+    std::vector<eng::Car*> carResult ;
     bool* k=racingweekend->getBrokenCar();
     for(int i=0;i<2;i++)
     {
@@ -253,15 +254,14 @@ int * RacingDep::Race()
     }
     for(int h =0; h < 2; h++)
     {
-	if(!k[h])
-	{
-        carresult.push_back(cars[h]);
+        if(!k[h]) {
+            carResult.push_back(cars[h]);
+        }
 	}
+    if(!carResult.empty())
+    {
+        notifybackCar(carResult, race);
     }
-	if(!carresult.empty())
-	{
-   		 notifybackCar(carresult,race);
-	}
     delete racingweekend;
     return Score;
 
@@ -271,6 +271,7 @@ int * RacingDep::getFinalScore()
 {
    // int *k= lead[0]->getFinalScore();
     return lead[0]->getFinalScore();
+//    return lead[0]->getFinalScore();
 }
 
 
@@ -305,10 +306,10 @@ RacingDep::RacingDep()
 
 lg::Container *RacingDep::postRacePackUp()
 {
-    std::string output = "Packing container---------------------------------------------\n";
+    std::string output = "Packing container\n---------------------------------------------\n";
     pr::Doc::detail(output);
     output = "";
-    if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
+    if(pr::Doc::transparency >= 1)
     {
         CarContainer->print();
     }

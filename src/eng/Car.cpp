@@ -24,7 +24,7 @@ Car::Car(Car *car) {
 }
 
 Car::~Car() {
-    std::cout << id << std::endl;
+//    std::cout << id << std::endl;
     for (auto & component : components) {
         delete component;
         component = nullptr;

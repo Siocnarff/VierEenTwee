@@ -25,7 +25,7 @@ Department::Department(Department *next) {
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
     pr::Doc::midInfo(
-            departmentName + " hired a new " +
+            "      **" + departmentName + " hired a new " +
             (specialist->hasDegree() ? "specialist.\n" : "employee.\n")
     );
     pr::Doc::detail(specialist->getResume() + "\n");
@@ -35,7 +35,8 @@ void Department::fix(Car *car) {
     if (nextDepartment) {
         nextDepartment->fix(car);
     } else {
-        pr::Doc::summary("There are no more departments, the car has been fixed and stored in garage.\n\n");
+        pr::Doc::summary("  ~Fixed the car~\n");
+        pr::Doc::detail("          There are no more departments, the car has been fixed and stored in garage.\n\n");
     }
 }
 

@@ -84,11 +84,11 @@ void RacesList::printList() {
         return;
     } else {
         while (temp != nullptr) {
-            pr::Doc::detail("\n" + temp->getLocation());
-            pr::Doc::detail("\nNumber of Laps: ");
-            pr::Doc::detail(std::to_string(temp->getNumLaps()));
-            pr::Doc::detail("\nTrack Complexity: ");
-            pr::Doc::detail(convertComplexityToString(temp->getTrackComplexity()));
+            pr::Doc::midInfo("     " + temp->getLocation() + "\n");
+            pr::Doc::detail("     Number of Laps: ");
+            pr::Doc::detail(std::to_string(temp->getNumLaps()) + "\n");
+            pr::Doc::detail("     Track Complexity: ");
+            pr::Doc::detail( convertComplexityToString(temp->getTrackComplexity()) + "\n");
             pr::Doc::detail("\n");
            temp = temp->nextRace();
         }
