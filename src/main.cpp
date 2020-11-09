@@ -12,10 +12,34 @@
 int pr::Doc::transparency = 0;
 bool pr::Doc::outputOverride = false;
 
+void demoVersion1();
 void seasonRun(lg::Logistics*);
+void plainSeasonRun(lg::Logistics*);
 
 int main() {
 
+   demoVersion1();
+
+}
+
+
+void plainSeasonRun(lg::Logistics* a) {
+    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
+
+    pr::Doc::summary("       ____           ___________\n");
+    pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
+    pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
+    pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
+
+    pr::Doc::transparency = 2;
+
+    a->doYearPlanning();
+    a->preSeasonPreparation();
+    a->raceSeason();
+    a->postSeasonDebrief();
+}
+
+void demoVersion1(){
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
@@ -51,11 +75,11 @@ int main() {
     delete engDept;
     delete logDept;
 
-
 }
 
-
 void seasonRun(lg::Logistics* a) {
+
+    a->interactiveDemo = true;
 
     pr::Doc::summary("\t   _   _   _   _     _   _   _   _   _   _\n");
     pr::Doc::summary("\t  / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\\n");
@@ -78,20 +102,3 @@ void seasonRun(lg::Logistics* a) {
     a->postSeasonDebrief();
 
 }
-
-/*
-void coutTesting(lg::Logistics* a) {
-    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
-
-    pr::Doc::summary("       ____           ___________\n");
-    pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
-    pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
-    pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
-
-    pr::Doc::transparency = 2;
-
-    a->doYearPlanning();
-    a->preSeasonPreparation();
-    a->raceSeason();
-    a->postSeasonDebrief();
-}*/

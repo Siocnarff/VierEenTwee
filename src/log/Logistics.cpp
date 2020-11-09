@@ -47,6 +47,7 @@ Logistics::Logistics(int numDriverCarPairs) {
     europeanContainer = nullptr;
     currentTeamStrategy = nullptr;
     budget = -1;
+    interactiveDemo = false;
 }
 
 
@@ -96,16 +97,18 @@ void Logistics::doYearPlanning() {
     //2. Hire emplpoyees: each department
     pr::Doc::summary("\n  ~Hire employees for each department~\n");
 
-    pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
-    }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2;
-    } else {
-        pr::Doc::transparency = 0;
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        } else {
+            pr::Doc::transparency = 0;
+        }
     }
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
@@ -155,37 +158,40 @@ void Logistics::preSeasonPreparation() {
     pr::Doc::summary("\n");
     // 1. Get strategy
 
-    pr::Doc::summary("\nDo you want to help decide on a strategy? Y/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
-    }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::summary("\nWould you suggest a strategy with an Aggressive(A), Moderate(M) or Safe(S) level of risk?\n");
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to help decide on a strategy? Y/N\n");
         std::cin >> interactionInput;
         if (interactionInput[0] == '*') {
             changeTransparency();
             interactionInput = interactionInput[1];
         }
-        currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-        //tyre order in the meantime
-        switch (interactionInput[0]) {
-            case 'a':
-            case 'A':
-                currentTeamStrategy->SetRiskLevel(Aggressive);
-                break;
-            case 'm':
-            case 'M':
-                currentTeamStrategy->SetRiskLevel(Moderate);
-                break;
-            case 's':
-            case 'S':
-                currentTeamStrategy->SetRiskLevel(Safe);
-                break;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::summary(
+                    "\nWould you suggest a strategy with an Aggressive(A), Moderate(M) or Safe(S) level of risk?\n");
+            std::cin >> interactionInput;
+            if (interactionInput[0] == '*') {
+                changeTransparency();
+                interactionInput = interactionInput[1];
+            }
+            currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
+            //tyre order in the meantime
+            switch (interactionInput[0]) {
+                case 'a':
+                case 'A':
+                    currentTeamStrategy->SetRiskLevel(Aggressive);
+                    break;
+                case 'm':
+                case 'M':
+                    currentTeamStrategy->SetRiskLevel(Moderate);
+                    break;
+                case 's':
+                case 'S':
+                    currentTeamStrategy->SetRiskLevel(Safe);
+                    break;
+            }
+            interactionInput = "";
         }
-        interactionInput = "";
-    } else {
+    }else {
         pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
         currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
         pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
@@ -402,20 +408,21 @@ void Logistics::putRacesIntoCalender() {
         }
     }
 
-
-    pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        } else {
+            pr::Doc::transparency = 0;
+        }
+        racingCalendar->printList();
+        interactionInput = "";
     }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2;
-    } else {
-        pr::Doc::transparency = 0;
-    }
-    racingCalendar->printList();
-    interactionInput = "";
 
 }
 
@@ -701,50 +708,56 @@ void Logistics::driverBootCamp() {
 }
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
-    interactionInput = "";
-    if (sumPositions == 0) {
-        pr::Doc::summary("Are you willing to sponsor our team? Y/N\n");
-        std::cin >> interactionInput;
-    }
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
-    }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::summary("\nHow much are you willing to sponsor us for? [0,100]\n");
-        std::cin >> interactionInput;
+    int willingToSponser = 0;
+    if (interactiveDemo) {
+        interactionInput = "";
+
+        if (sumPositions == 0) {
+            pr::Doc::summary("Are you willing to sponsor our team? Y/N\n");
+            std::cin >> interactionInput;
+        }
         if (interactionInput[0] == '*') {
             changeTransparency();
             interactionInput = interactionInput[1];
         }
-        budget = stoi(interactionInput);
-        interactionInput = "";
-    } else {
-        pr::Doc::midInfo("\n  ~Approach sponsors to negotiate budget~\n");
-        if (budget == -1) {  //default argument in constructor
-            budget = abs(rand() % 100 + 1);
-        } else {
-            //todolist : check accuracy at runtime
-            if (sumPositions >= 3) {
-                pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
-                budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
-            } else if (sumPositions <= 6) {
-                pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
-                budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
-            } else if (sumPositions <= 10) {
-                pr::Doc::detail("     The sponsor is satisfied with the performance");
-            } else {
-                pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
-                budget -= (int) ((double) budget * 0.1);
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::summary("\nHow much are you willing to sponsor us for? [0,100]\n");
+            std::cin >> interactionInput;
+            if (interactionInput[0] == '*') {
+                changeTransparency();
+                interactionInput = interactionInput[1];
             }
-            if (budget > 100) budget = 100;
-            if (budget < 0) budget = 10;
+            budget = stoi(interactionInput);
+            interactionInput = "";
+            willingToSponser = 1;
         }
-        pr::Doc::midInfo(
-                "     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
     }
 
+        if (willingToSponser == 0) {
+            pr::Doc::midInfo("\n  ~Approach sponsors to negotiate budget~\n");
 
+            if (budget == -1) {  //default argument in constructor
+                budget = abs(rand() % 100 + 1);
+            } else {
+                //todolist : check accuracy at runtime
+                if (sumPositions >= 3) {
+                    pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
+                    budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
+                } else if (sumPositions <= 6) {
+                    pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
+                    budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
+                } else if (sumPositions <= 10) {
+                    pr::Doc::detail("     The sponsor is satisfied with the performance");
+                } else {
+                    pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
+                    budget -= (int) ((double) budget * 0.1);
+                }
+                if (budget > 100) budget = 100;
+                if (budget < 0) budget = 10;
+            }
+            pr::Doc::midInfo(
+                    "     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
+        }
 }
 
 
