@@ -12,17 +12,17 @@ using namespace rce;
 void RacingDep::hireEmployees(int b)
 {
     pr::Doc::detail("     Racing department is hiring employees\n");
-    ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
-	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
+    ppl::HumanResources *PitCrewFactory=new ppl::HirePitCrew();
+	ppl::HumanResources *StratFactory=new ppl::HireStrategist();
 	Strategist=new ppl::Person* [2];
 	pitcrew=new ppl::Person* [b];
     for (int i = 0; i <2 ; ++i)
     {
-        Strategist[i]=StratFactory->source("racing strategist");
+        Strategist[i]=StratFactory->hire("racing strategist");
     }
     for (int i = 0; i <b ; ++i)
     {
-        pitcrew[i]=PitCrewFactory->source("pitcrew member");
+        pitcrew[i]=PitCrewFactory->hire("pitcrew member");
     }
     delete PitCrewFactory;
     delete StratFactory;

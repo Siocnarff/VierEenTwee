@@ -7,7 +7,6 @@
 #include <races/Race.h>
 #include <leaderboard/Leaderboard.h>
 #include "PitCrew.h"
-#include "../ppl/factories/HireRacingDep.h"
 #include "../ppl/factories/HireStrategist.h"
 #include "../ppl/factories/HirePitCrew.h"
 

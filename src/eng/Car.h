@@ -15,8 +15,8 @@ namespace eng {
 
 	private:
         ppl::Driver* driver = nullptr;
-        int id = 0;
-        Component* components[5]{};
+        int id = -1;
+        Component* components[5];
 
 	public:
 	    ~Car();
