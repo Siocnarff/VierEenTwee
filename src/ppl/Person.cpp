@@ -22,17 +22,17 @@ int Person::getSkillLevel() const {
 }
 
 std::string Person::getResume() {
-    std::string resume = "RESUME:\n    id: ";
+    std::string resume = "   RESUME:\n    ||id: ";
     resume.append(std::to_string(id));
-    resume.append("\n    Name: ");
+    resume.append("\n    ||Name: ");
     resume.append(name);
-    resume.append("\n    Has A Degree: ");
+    resume.append("\n    ||Has A Degree: ");
     resume.append(degree ? "Yes" : "No");
-    resume.append("\n    Job Description: ");
+    resume.append("\n    ||Job Description: ");
     resume.append( jobDescription);
-    resume.append("\n    Skill Level: ");
+    resume.append("\n    ||Skill Level: ");
     resume.append(std::to_string(skillLevel));
-    resume.append( "\n----");
+    resume.append( "\n   ----");
     return resume;
 }
 
