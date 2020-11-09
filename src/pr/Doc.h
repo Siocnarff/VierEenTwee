@@ -10,6 +10,9 @@
 
 namespace pr {
     class Doc {
+    private:
+        Doc();
+
     public:
         static int transparency;
         static bool outputOverride;
@@ -21,6 +24,8 @@ namespace pr {
         static void detail(const std::string& message);
 
         static void midInfo(const std::string& message);
+
+        static Doc & instance();
     };
 }
 
