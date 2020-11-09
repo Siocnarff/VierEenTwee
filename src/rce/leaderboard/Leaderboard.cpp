@@ -49,19 +49,7 @@ void Leaderboard::setFinalScore(int * score)
 int * Leaderboard::getFinalScore()
 {
 //    int resultarray[20];
-    std::string interactionInput = "";
-    pr::Doc::outputOverride=false;
-    pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
-    std::cin >> interactionInput;
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2; //of watookal julle wil.
-        interactionInput = "";
-    }
-    else
-    {
-        pr::Doc::transparency = 0;
-        interactionInput = "";
-    }
+
     bool array[20];
     int counter = 0;
     int * finalresult = new int[4];

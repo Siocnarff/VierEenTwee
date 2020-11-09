@@ -24,9 +24,9 @@ Car::Car(Car *car) {
 }
 
 Car::~Car() {
-    for (Component * comp : components) {
-        delete comp;
-        comp = nullptr;
+    for (auto & component : components) {
+        delete component;
+        component = nullptr;
     }
 }
 

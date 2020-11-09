@@ -35,6 +35,8 @@ namespace lg {
 
         void putRacesIntoCalender();
 
+        bool interactiveDemo;
+
     protected:
         void sendCarToFactory(std::vector<eng::Car *>, Race*, bool isBroken) override;
 

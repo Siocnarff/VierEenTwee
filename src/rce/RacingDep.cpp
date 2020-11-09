@@ -11,9 +11,7 @@ using namespace rce;
 
 void RacingDep::hireEmployees(int b)
 {
-    std::string output;
-    output.append("Racing department is hiring employees\n");
-    pr::Doc::summary(output);
+    pr::Doc::detail("     Racing department is hiring employees\n");
     ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
 	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
 	Strategist=new ppl::Person* [2];
@@ -73,7 +71,8 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
 	//train ppl::Driver (increase xp) according to track difficulty and time
     std::string output = driver->getName();
     output.append(" is training.\n");
-    pr::Doc::summary(output);
+    pr::Doc::detail("     ");
+    pr::Doc::detail(output);
     output = "";
     Simulator* simulator;
 	if(weather==lg::Rainy)
@@ -92,7 +91,6 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
     simulator->setWeather(weather);
     simulator->setDifficulty(trackDifficulty);
     simulator->setTime(time);
-//    std::cout<<"yes it works"<<std::endl;
     simulator->run();
 
     return driver;
@@ -139,6 +137,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
     race = r;
     for(int i = 0; i < 2; i++)
     {
+        tyres[i] = t[i];
         cars[i] = c[i];
         drivers[i] = d[i];
     }
@@ -236,10 +235,13 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 
 int * RacingDep::Race()
 {
+    pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
+    pr::Doc::summary("\n");
 //    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
     RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();
 //    delete racingweekend;
+    pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
     CarContainer->print();
     std::vector<eng::Car*> carresult ;
     bool* k=racingweekend->getBrokenCar();

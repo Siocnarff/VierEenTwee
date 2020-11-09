@@ -12,23 +12,33 @@ int * RaceWeekend::RacingWeekend()
     broken[0]=false;
     broken[1]=false;
     pr::Doc::outputOverride=false;
-    std::string interactionInput = "Do you want to observer the races? Y/N\n";
-    pr::Doc::summary(interactionInput); //in julle gecal iets anders
-    interactionInput="";
-    std::cin >> interactionInput;
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2; //of watookal julle wil.
-        interactionInput = "";
-    }
-    else
-    {
-        pr::Doc::transparency = 1;
-        interactionInput = "";
-    }
+
+
     for(int i = 0; i < 3; i++)
     {
+        setDayWeather();
+        pr::Doc::midInfo("\n      Today's Weather: ");
+        if (DayWeather == lg::Hot) {
+            pr::Doc::midInfo("Hot\n");
+            pr::Doc::detail("         Careful drivers! The tarmac is melting your tyres!\n");
+        }
+        else if (DayWeather == lg::Normal) {
+            pr::Doc::midInfo("Normal\n");
+            pr::Doc::detail("         One less thing to worry about.\n");
+        }
+        else if (DayWeather == lg::Rainy) {
+            pr::Doc::midInfo("Rainy\n");
+            pr::Doc::detail("         Careful around the bends.\n");
+        }
 
+
+        pr::Doc::detail("\n");
         lg::RiskLevel rl = getRiskLevel();
+        pr::Doc::detail("##########################\n");
+        pr::Doc::detail("#   Race # ");
+        pr::Doc::detail(std::to_string(i+1));
+        pr::Doc::detail(" is starting.\n");
+        pr::Doc::detail("##########################\n\n");
         // pr::Doc::transparency=2;
         output = "Race # ";
         output.append(std::to_string(i+1));
@@ -57,7 +67,7 @@ int * RaceWeekend::RacingWeekend()
                     int t=rand()%50+20;
                     time[n] -= t;
                     //std::cout <<"Car "<< n << " is fast and made up 33 units of time. "<< std:: endl;
-                    output = "Car ";
+                    output = "#   Car ";
                     output.append(std::to_string(n));
                     output.append(" is fast and made up ");
                     output.append(std::to_string(t));
@@ -72,7 +82,7 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t=rand()%40+10;
                         time[n] -=t; //todo verander
-                        output = "Car ";
+                        output = "#   Car ";
                         output.append(std::to_string(n));
                         output.append(" is fast and made up ");
                         output.append(std::to_string(t));
@@ -96,7 +106,7 @@ int * RaceWeekend::RacingWeekend()
                             //pr::Doc::detail("Car ");
                             // pr::Doc::detail(std::to_string(n));
                             //pr::Doc::detail( " is slow but made up 11 units of time.\n");
-                            output = "Car ";
+                            output = "#   Car ";
                             output.append(std::to_string(n));
                             output.append(" is fast and made up ");
                             output.append(std::to_string(t));
@@ -284,7 +294,7 @@ int * RaceWeekend::RacingWeekend()
                         }
                     }
                 }//end of xp if
-                if(TC ==    lg::Easy)
+                if(TC == lg::Easy)
                 {
                     int t= rand()%30+20;
                     time[n] -= t;
@@ -1117,6 +1127,7 @@ RaceWeekend::RaceWeekend(eng::Car** cars, ppl::Driver** drivers, lg::Race* r, Cr
 
     }
     this->raceConditions =r;
+
 
 }
 

@@ -33,7 +33,7 @@ void SetOfTyres::reduceThread(int damage) {
         thread = thread - damage;
     }
     else {
-        pr::Doc::detail("Tyres worn out\n");
+        pr::Doc::detail("#   Tyres worn out, change to a new set.\n");
     }
 }
 

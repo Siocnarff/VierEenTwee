@@ -11,6 +11,8 @@ namespace eng {
 	    std::vector<Car*> cars;
 
 	public:
+	    ~Garage();
+
 		void storeCar(Car* car);
 
 		Car* retrieveCar(int id);
