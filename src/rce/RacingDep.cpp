@@ -250,9 +250,14 @@ int * RacingDep::Race()
     }
     for(int h =0; h < 2; h++)
     {
-        carResult.push_back(cars[h]);
+        if(!k[h]) {
+            carResult.push_back(cars[h]);
+        }
     }
-    notifybackCar(carResult, race);
+    if(!carResult.empty())
+    {
+        notifybackCar(carResult, race);
+    }
     delete racingweekend;
     return Score;
 }

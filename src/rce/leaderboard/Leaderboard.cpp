@@ -50,7 +50,7 @@ int * Leaderboard::getFinalScore() {
     bool array[20];
     int counter = 0;
     finalresult = new int[4];
-    pr::Doc::outputOverride=false;
+    //pr::Doc::outputOverride=false;
     for(int i = 0; i < 20; i++)
     {
         array[i] = false;

@@ -92,7 +92,7 @@ void Logistics::doYearPlanning() {
     //2. Hire emplpoyees: each department
     pr::Doc::summary("\n  ~Hire employees for each department~\n");
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
         std::cin >> interactionInput;
         if (interactionInput == "Y" || interactionInput == "y") {
@@ -155,7 +155,7 @@ void Logistics::preSeasonPreparation() {
     // 1. Get strategy
 
     int gotStrat = 0;
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to help decide on a strategy? Y/N\n");
         std::cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -219,7 +219,7 @@ void Logistics::preSeasonPreparation() {
         //5. Build the cars if not already developed cars from previous season
         if (carsInSeasonIDs.empty()) {
             pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
-            if (interactiveDemo) {
+            if (interactiveDemo && !pr::Doc::outputOverride) {
                 pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
                 std::cin >> interactionInput;
                 if (interactionInput[0] == '*') {
@@ -273,7 +273,7 @@ void Logistics::packContainers() {
     }
     pr::Doc::midInfo("     Packed all containers\n");
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to inspect what is in a typical container? Y/N\n");
 
         std::cin >> interactionInput;
@@ -347,7 +347,7 @@ void Logistics::simulateEvent(Race *r) {
 
     //4. racing weekend finishes and get points for each pair
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         std::string interactionInput = "Do you want to observe the races? Y/N\n";
         pr::Doc::summary(interactionInput); //in julle geval iets anders
         interactionInput="";
@@ -437,7 +437,7 @@ void Logistics::putRacesIntoCalender() {
     }
 
     int keeper = pr::Doc::transparency;
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
         std::cin >> interactionInput;
          if (interactionInput == "Y" || interactionInput == "y") {
@@ -452,7 +452,7 @@ void Logistics::putRacesIntoCalender() {
 }
 
 void Logistics::raceSeason() {
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nPress any key for the season to start:\n");
 
         cin >> interactionInput;
@@ -475,7 +475,7 @@ void Logistics::raceSeason() {
         if (!pr::Doc::outputOverride) {
             pr::Doc::summary("\n");
             t.currentItem()->printLoc();
-            if (interactiveDemo) {
+            if (interactiveDemo && !pr::Doc::outputOverride) {
                 pr::Doc::summary("\n Do you want to observe the details? Yes[Y], Some all of it[S], No[N]\n");
                 pr::Doc::summary("Optionally, press [C] to run the entire season\n");
                 std::cin >> interactionInput;
@@ -524,7 +524,7 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/   \\_/ \\_/ \\_/ \\_/   \\_/\n");
     pr::Doc::summary("\n");
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("Press any key to view the final results\n");
         cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -537,7 +537,7 @@ void Logistics::postSeasonDebrief() {
 
     //1. Get results
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         std::string interactionInput = "";
         pr::Doc::outputOverride=false;
         pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
@@ -564,7 +564,7 @@ void Logistics::postSeasonDebrief() {
     // TODO: @marike Analysis of results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
 
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("Press any key commence the final team debriefing\n");
         cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -617,7 +617,7 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("  ~Cars in progress\n");
     pr::Doc::midInfo("\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
         std::cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -725,7 +725,7 @@ void Logistics::driverBootCamp() {
     pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
     //todolist : Check runtime accuracy of regime
 
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to observe the training regime? Y/N\n");
         std::cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -771,7 +771,7 @@ void Logistics::driverBootCamp() {
 
 void Logistics::sponsoredBudget(int sumPositions) { //default is 0
     int willingToSponser = 0;
-    if (interactiveDemo) {
+    if (interactiveDemo && !pr::Doc::outputOverride) {
         interactionInput = "";
 
         if (sumPositions == 0) {
