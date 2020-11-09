@@ -46,10 +46,7 @@ void Leaderboard::setFinalScore(int * score)
 //    }
 }
 
-int * Leaderboard::getFinalScore()
-{
-//    int resultarray[20];
-
+int * Leaderboard::getFinalScore() {
     bool array[20];
     int counter = 0;
     int * finalresult = new int[4];
@@ -62,7 +59,7 @@ int * Leaderboard::getFinalScore()
     int position =1;
     if(getdisplayLeaderboard()== true){
 
-        pr::Doc::midInfo("Final Leaderboard\n\n");
+        pr::Doc::summary("  ~Final Leaderboard\n\n");
         for(int i = 0; i < 20; i ++)
         {
             for(int n = 0; n < 20; n++){
@@ -72,74 +69,6 @@ int * Leaderboard::getFinalScore()
                     largepos = n;
                 }
             }
-//            switch(position)
-//            {
-//                case 1:
-//                {
-//                    resultarray[largepos] = 25;
-//                    break;
-//                }
-//                case 2:
-//                {
-//                    resultarray[largepos] = 18;
-//                    break;
-//                }
-//                case 3:
-//                {
-//                    resultarray[largepos] = 15;
-//                    break;
-//                }
-//                case 4:
-//                {
-//                    resultarray[largepos] = 12;
-//                    break;
-//                }
-//                case 5:
-//                {
-//                    resultarray[largepos] = 10;
-//                    break;
-//                }
-//                case 6:
-//                {
-//                    resultarray[largepos] = 8;
-//                    break;
-//                }
-//                case 7:
-//                {
-//                    resultarray[largepos] = 6;
-//                    break;
-//                }
-//                case 8:
-//                {
-//                    resultarray[largepos] = 4;
-//                    break;
-//                }
-//                case 9:
-//                {
-//                    resultarray[largepos] = 2;
-//                    break;
-//                }
-//                case 10:
-//                {
-//                    resultarray[largepos] = 1;
-//                    break;
-//                }
-//                default:
-//                {
-//                    resultarray[largepos] = 0;
-//                    break;
-//                }
-//            }
-
-//            Message #racing-strategy-simulation
-//		std::cout << "#" << position << "	" << DriverName[largepos] << ":			"<< finalScore[largepos]<< std::endl;
-            //pr::Doc::detail("#");
-            //pr::Doc::detail(std::to_string(position));
-            //pr::Doc::detail(" ");
-            //pr::Doc::detail(DriverName[largepos]);
-            //pr::Doc::detail( ":			");
-            //pr::Doc::detail(std::to_string(finalScore[largepos]));
-            //pr::Doc::detail( "\n");
             std::string output = "#";
             output.append(std::to_string(position));
             output.append(" ");
@@ -147,31 +76,15 @@ int * Leaderboard::getFinalScore()
             output.append( ":			");
             output.append(std::to_string(finalScore[largepos]));
             output.append( "\n");
-            pr::Doc::midInfo(output);
+            pr::Doc::summary(output);
             output = "";
-//            for(int m =0; m < 2; m++ )
-//            {
                 if(largepos==9 || largepos==19)
                 {
                     finalresult[counter] = finalScore[largepos];
-//                    std::cout << "#" << finalresult[counter]<< std::endl;
                     counter++;
                     finalresult[counter] = position;
-//                    std::cout << "#" <<finalresult[counter]<< std::endl;
                     counter++;
                 }
-//                if(OurDriver[m] == DriverName[largepos] )
-//                {
-//                    finalresult[counter] = finalScore[largepos];
-//                    std::cout << "#" << finalresult[counter]<< std::endl;
-//                    counter++;
-//                    finalresult[counter] = position;
-//                    std::cout << "#" <<finalresult[counter]<< std::endl;
-//                    counter++;
-//
-//                }
-//            }
-
             array[largepos] = true;
             position++;
             largest = 0;

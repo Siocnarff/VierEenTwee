@@ -521,15 +521,14 @@ void Logistics::raceSeason() {
 }
 
 void Logistics::postSeasonDebrief() {
+
     pr::Doc::outputOverride = false;
-    pr::Doc::transparency = 2;
     //pr::Doc::summary("\n>>The racing season is over for this year! Debrief.\n--------------------\n");
     pr::Doc::summary("\n   _   _   _     _   _   _   _   _   _     _   _     _   _   _   _     _\n");
     pr::Doc::summary("  / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\   / \\ / \\ / \\ / \\   / \\\n");
     pr::Doc::summary(" ( T | h | e ) ( S | e | a | s | o | n ) ( i | s ) ( D | o | n | e ) ( ! )\n");
     pr::Doc::summary("  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/   \\_/ \\_/ \\_/ \\_/   \\_/\n");
     pr::Doc::summary("\n");
-
 
     if (interactiveDemo) {
         pr::Doc::summary("Press any key to view the final results\n");
@@ -543,6 +542,7 @@ void Logistics::postSeasonDebrief() {
 
 
     //1. Get results
+
     if (interactiveDemo) {
         std::string interactionInput = "";
         pr::Doc::outputOverride=false;
@@ -558,6 +558,7 @@ void Logistics::postSeasonDebrief() {
             interactionInput = "";
         }
     }
+
     int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
     int zero = tumTumTum[0];
     int one = tumTumTum[1];
@@ -579,6 +580,7 @@ void Logistics::postSeasonDebrief() {
         interactionInput = "";
     }
 
+
     //3. Debriefing
     pr::Doc::summary("\n   _   _   _   _   _   _   _   _   _   _\n");
     pr::Doc::summary("  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\\n");
@@ -587,11 +589,13 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("\n");
 
     //4. let transportManager take a holiday
-    pr::Doc::summary("~ Transport Manager puts in leave. Sufering from overwork\n");
+    pr::Doc::summary("~ Transport Manager puts in leave. Suffering from overwork\n");
+    pr::Doc::summary("\n");
     delete transportManager;
 
     //5. Let driver take a holiday
     pr::Doc::summary("~ Driver go on holiday\n");
+    pr::Doc::summary("\n");
     int sumPositions = 0;
     for (int i = 0; i < numPairs; ++i) {
         ppl::Driver *d = drivers.back();
