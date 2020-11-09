@@ -127,7 +127,6 @@ void Logistics::doYearPlanning() {
         int rand_hom_tracks = abs(rand() % 5) + 1; //# home tracks in [1,5]
         for (int i = 0; i < rand_hom_tracks; ++i) {
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
-            //pr::Doc::detail(d->)
         }
     }
 
@@ -135,7 +134,10 @@ void Logistics::doYearPlanning() {
     pr::Doc::summary("\n  ~Hire a transport manager~\n");
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
+    pr::Doc::midInfo("     --Procured a shipping plan for containers\n");
     transportManager->addAMethod(new Fly);
+    pr::Doc::midInfo("     --Procured a flight plan for cars\n");
+
 
 }
 
