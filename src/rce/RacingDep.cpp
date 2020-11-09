@@ -258,7 +258,7 @@ int * RacingDep::Race()
         carresult.push_back(cars[h]);
 	}
     }
-	if(!carResult.empty())
+	if(!carresult.empty())
 	{
    		 notifybackCar(carresult,race);
 	}
