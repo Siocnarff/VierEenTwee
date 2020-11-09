@@ -104,8 +104,6 @@ add_executable(VierEenTwee
         src/log/Mediator.h
 #        src/log/RacingDept.cpp
 #        src/log/RacingDept.h
-        src/ppl/factories/HireRacingDep.h
-        src/ppl/factories/HireRacingDep.cpp
         src/ppl/factories/HirePitCrew.h
         src/ppl/factories/HirePitCrew.cpp
         src/ppl/factories/HireStrategist.h

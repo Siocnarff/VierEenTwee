@@ -1,10 +1,11 @@
 #ifndef PEOPLE_HIREPITCREW_H
 #define PEOPLE_HIREPITCREW_H
 
-#include "HireRacingDep.h"
+
+#include <HumanResources.h>
 
 namespace ppl {
-    class HirePitCrew : public HireRacingDep
+    class HirePitCrew : public HumanResources
     {
 
     public:
