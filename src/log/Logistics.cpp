@@ -218,16 +218,18 @@ void Logistics::preSeasonPreparation() {
     //5. Build the cars if not already developed cars from previous season
     if (carsInSeasonIDs.empty()) {
         pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
-        pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
-        std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
+        if (interactiveDemo) {
+            pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
+            std::cin >> interactionInput;
+            if (interactionInput[0] == '*') {
+                changeTransparency();
+                interactionInput = interactionInput[1];
+            }
+            if (interactionInput == "Y" || interactionInput == "y") {
+                pr::Doc::transparency = 2;
+            }
+            interactionInput = "";
         }
-        if (interactionInput == "Y" || interactionInput == "y") {
-            pr::Doc::transparency = 2;
-        }
-        interactionInput = "";
         for (int i = 0; i < numPairs; ++i) {
             carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
         }
@@ -268,18 +270,21 @@ void Logistics::packContainers() {
     }
     pr::Doc::midInfo("     Packed all containers\n");
 
-    pr::Doc::summary("\nDo you want to inspect what is in a typical container? Y/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to inspect what is in a typical container? Y/N\n");
+
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+            getEuropeanContainer()->print();
+        }
+        pr::Doc::transparency = 0;
+        interactionInput = "";
     }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2;
-        getEuropeanContainer()->print();
-    }
-    pr::Doc::transparency = 0;
-    interactionInput = "";
 }
 
 /**
@@ -427,13 +432,16 @@ void Logistics::putRacesIntoCalender() {
 }
 
 void Logistics::raceSeason() {
-    pr::Doc::summary("\nPress any key for the season to start:\n");
-    cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+    if (interactiveDemo) {
+        pr::Doc::summary("\nPress any key for the season to start:\n");
+
+        cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        interactionInput = "";
     }
-    interactionInput = "";
 
     //And the season starts
     //pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
@@ -447,32 +455,34 @@ void Logistics::raceSeason() {
         if (!pr::Doc::outputOverride) {
             pr::Doc::summary("\n");
             t.currentItem()->printLoc();
-            pr::Doc::summary("\n Do you want to observe the details? Yes[Y], Some all of it[S], No[N]\n");
-            pr::Doc::summary("Optionally, press [C] to run the entire season\n");
-            std::cin >> interactionInput;
-            if (interactionInput[0] == '*') {
-                changeTransparency();
-                interactionInput = interactionInput[1];
+            if (interactiveDemo) {
+                pr::Doc::summary("\n Do you want to observe the details? Yes[Y], Some all of it[S], No[N]\n");
+                pr::Doc::summary("Optionally, press [C] to run the entire season\n");
+                std::cin >> interactionInput;
+                if (interactionInput[0] == '*') {
+                    changeTransparency();
+                    interactionInput = interactionInput[1];
+                }
+                switch (interactionInput[0]) {
+                    case 'y':
+                    case 'Y':
+                        pr::Doc::transparency = 2;
+                        break;
+                    case 'S':
+                    case 's':
+                        pr::Doc::transparency = 1;
+                        break;
+                    case 'N':
+                    case 'n':
+                        pr::Doc::transparency = 0;
+                        break;
+                    case 'c':
+                    case 'C':
+                        pr::Doc::outputOverride = true;
+                        break;
+                }
+                interactionInput = "";
             }
-            switch (interactionInput[0]) {
-                case 'y':
-                case 'Y':
-                    pr::Doc::transparency = 2;
-                    break;
-                case 'S':
-                case 's':
-                    pr::Doc::transparency = 1;
-                    break;
-                case 'N':
-                case 'n':
-                    pr::Doc::transparency = 0;
-                    break;
-                case 'c':
-                case 'C':
-                    pr::Doc::outputOverride = true;
-                    break;
-            }
-            interactionInput = "";
         }
 
         simulateEvent(t.currentItem());
@@ -495,13 +505,15 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("\n");
 
 
-    pr::Doc::summary("Press any key to view the final results\n");
-    cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+    if (interactiveDemo) {
+        pr::Doc::summary("Press any key to view the final results\n");
+        cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        interactionInput = "";
     }
-    interactionInput = "";
 
 
     //1. Get results
@@ -516,13 +528,15 @@ void Logistics::postSeasonDebrief() {
     // TODO: @marike Analysis of results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
 
 
-    pr::Doc::summary("Press any key commence the final team debriefing\n");
-    cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+    if (interactiveDemo) {
+        pr::Doc::summary("Press any key commence the final team debriefing\n");
+        cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        interactionInput = "";
     }
-    interactionInput = "";
 
     //3. Debriefing
     pr::Doc::summary("\n   _   _   _   _   _   _   _   _   _   _\n");
@@ -562,11 +576,14 @@ void Logistics::postSeasonDebrief() {
 
     //8. keep building new cars
     pr::Doc::summary("\nThroughout the season we've been working on cars.\n We now start work on additional cars\n");
-    pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
+
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
     }
 
     switch (interactionInput[0]) {
@@ -665,15 +682,17 @@ eng::EngTeam *Logistics::callEngDept() {
 void Logistics::driverBootCamp() {
     //todolist : Check runtime accuracy of regime
 
-    pr::Doc::summary("\nDo you want to observe the training regime? Y/N\n");
-    std::cin >> interactionInput;
-    if (interactionInput[0] == '*') {
-        changeTransparency();
-        interactionInput = interactionInput[1];
-    }
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2;
-        interactionInput = "";
+    if (interactiveDemo) {
+        pr::Doc::summary("\nDo you want to observe the training regime? Y/N\n");
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+            interactionInput = "";
+        }
     }
 
     switch (currentTeamStrategy->getRiskLevel()) {
