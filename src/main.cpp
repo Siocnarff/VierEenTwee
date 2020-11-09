@@ -9,7 +9,7 @@
 #include "rce/RacingDep.h"
 
 
-int pr::Doc::transparency = 2;
+int pr::Doc::transparency = 1;
 bool pr::Doc::outputOverride = false;
 
 void seasonRun(lg::Logistics*);
