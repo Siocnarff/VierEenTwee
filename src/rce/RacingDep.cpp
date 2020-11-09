@@ -5,7 +5,7 @@
 #include <simulator/SimulatorHotCondition.h>
 #include <simulator/SimulatorNormalCondition.h>
 #include "RacingDep.h"
-#include <vector>
+
 #include <utility>
 using namespace rce;
 
