@@ -9,7 +9,11 @@
 #include <utility>
 using namespace rce;
 
-void RacingDep::hireEmployees(int b) {   //b: -1
+void RacingDep::hireEmployees(int b)
+{
+    std::string output;
+    output.append("Racing department is hiring employees\n");
+    pr::Doc::summary(output);
     ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
 	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
 	Strategist=new ppl::Person* [2];
@@ -24,7 +28,7 @@ void RacingDep::hireEmployees(int b) {   //b: -1
     }
 }
 
-CreateStrategy* RacingDep:: PlanSeasonStrategy(int budget)
+CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
     if(strategy != nullptr)
@@ -64,67 +68,66 @@ CreateStrategy* RacingDep:: PlanSeasonStrategy(int budget)
 	}
 }
 
-
 ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions weather,lg::TrackComplexity trackDifficulty)
 {
 	//create simulator according to weather,track difficulty
 	//train ppl::Driver (increase xp) according to track difficulty and time
-
-	//net sodat nie error gee nie.
-	//todo hkm kan mens nie enums hier gebruik nie?
-
+    std::string output = driver->getName();
+    output.append(" is training.\n");
+    pr::Doc::summary(output);
+    output = "";
+    Simulator* simulator;
 	if(weather==lg::Rainy)
 	{
-		Simulator* wet=new SimulatorWetCondition();
-		wet->setDriver(driver);
-		wet->setWeather(weather);
-		wet->setDifficulty(trackDifficulty);
-		wet->setTime(time);
-		wet->SimulateWeather();
-        return driver;
+        simulator=new SimulatorWetCondition();
 	}
 	else if(weather==lg::Hot)
 	{
-		Simulator* hot=new SimulatorHotCondition();
-		hot->setDriver(driver);
-		hot->setWeather(weather);
-		hot->setDifficulty(trackDifficulty);
-		hot->setTime(time);
-		hot->SimulateWeather();
-        return driver;
+        simulator=new SimulatorHotCondition();
 	}
 	else if(weather==lg::Normal)
 	{
-		Simulator* normal=new SimulatorNormalCondition();
-		normal->setDriver(driver);
-		normal->setWeather(weather);
-		normal->setDifficulty(trackDifficulty);
-		normal->setTime(time);
-		normal->SimulateWeather();
-        return driver;
+        simulator=new SimulatorNormalCondition();
 	}
-	return driver;
+    simulator->setDriver(driver);
+    simulator->setWeather(weather);
+    simulator->setDifficulty(trackDifficulty);
+    simulator->setTime(time);
+//    std::cout<<"yes it works"<<std::endl;
+    simulator->run();
+
+    return driver;
 }
 
 ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::TrackComplexity trackDifficulty)
 {
+    std::string output = driver->getName();
+    output.append(" is training.\n");
+    pr::Doc::summary(output);
+    output = "";
     Simulator* normal=new SimulatorNormalCondition();
     normal->setDriver(driver);
     normal->setWeather(lg::Normal);
     normal->setDifficulty(trackDifficulty);
     normal->setTime(time);
-    normal->SimulateWeather();
+    normal->run();
+
     return driver;
 }
 
 ppl::Driver *RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherConditions weather)
 {
+    std::string output = driver->getName();
+    output.append(" is training.\n");
+    pr::Doc::summary(output);
+    output = "";
     Simulator* normal=new SimulatorNormalCondition();
     normal->setDriver(driver);
     normal->setWeather(weather);
     normal->setDifficulty(lg::Average);
     normal->setTime(time);
-    normal->SimulateWeather();
+    normal->run();
+
     return driver;
 }
 
@@ -141,7 +144,17 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
         cars[i] = c[i];
         drivers[i] = d[i];
     }
-//    CarContainer->print();
+    for (int i = 0; i < 3; ++i)
+    {
+        tyres[i] = t[i];
+    }
+    std::string output = "Unpacking container---------------------------------------------\n";
+    pr::Doc::summary(output);
+    output = "";
+    if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
+    {
+        CarContainer->print();
+    }
 }
 
 CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
@@ -227,13 +240,14 @@ int * RacingDep::Race()
 {
     pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
     pr::Doc::summary("\n");
-    RaceWeekend* racingWeekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
+//    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
+    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
+    int * Score = racingweekend->RacingWeekend();
+//    delete racingweekend;
     pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
     CarContainer->print();
-    int * Score = racingWeekend->RacingWeekend();
-    delete racingWeekend;
-    std::vector<eng::Car*> carResult ;
-    bool* k=racingWeekend->getBrokenCar();
+    std::vector<eng::Car*> carresult ;
+    bool* k=racingweekend->getBrokenCar();
     for(int i=0;i<2;i++)
     {
         if(k[i])
@@ -243,9 +257,9 @@ int * RacingDep::Race()
     }
     for(int h =0; h < 2; h++)
     {
-        carResult.push_back(cars[h]);
+        carresult.push_back(cars[h]);
     }
-    notifybackCar(carResult,race);
+    notifybackCar(carresult,race);
 
     return Score;
     //ToDo final stuff for array
@@ -253,17 +267,19 @@ int * RacingDep::Race()
 
 int * RacingDep::getFinalScore()
 {
+    int *k= lead[0]->getFinalScore();
     return lead[0]->getFinalScore();
 }
 
 
 RacingDep::~RacingDep()
 {
-//    std::cout << "destructor" << std::endl;
+
 }
 
 RacingDep::RacingDep()
 {
+
     lead = new Leaderboard*[2];
     lead[0] = new DriversLeaderboard();
     lead[1] = new TeamLeaderboard();
@@ -272,7 +288,13 @@ RacingDep::RacingDep()
 
 lg::Container *RacingDep::postRacePackUp()
 {
-    CarContainer->print();
+    std::string output = "Packing container---------------------------------------------\n";
+    pr::Doc::summary(output);
+    output = "";
+    if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
+    {
+        CarContainer->print();
+    }
     return CarContainer;
 }
 

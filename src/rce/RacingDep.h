@@ -32,7 +32,7 @@
 #include "../rce/pitstop/SetOfTyres.h"
 
 #include "../rce/RaceWeekend.h"
-
+#include <string>
 namespace rce {
     class RacingDep : public lg::Colleague {
 

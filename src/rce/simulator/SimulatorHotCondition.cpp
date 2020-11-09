@@ -1,4 +1,3 @@
-#include <Doc.h>
 #include "SimulatorHotCondition.h"
 using namespace rce;
 SimulatorHotCondition::SimulatorHotCondition()
@@ -26,7 +25,9 @@ void SimulatorHotCondition::SimulateWeather()
     {
 	    i=20;
     }
-	pr::Doc::detail("Driver using simulator to train in hot conditions\n");
+
+    std::string output = "Driver using simulator to train in hot conditions\n";
+    pr::Doc::detail(output);
 	xp=i*(((getTime()/5)/100)*6);
 	if(getDriver()->getXp()+xp>=100)
     {

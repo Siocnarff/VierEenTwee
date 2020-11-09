@@ -7,6 +7,7 @@
 
 #include "../log/enums/WeatherConditions.h"
 #include "../log/enums/TrackComplexity.h"
+#include "../pr/Doc.h"
 namespace rce
 {
     class Simulator
@@ -17,7 +18,10 @@ namespace rce
         int time;
         lg::TrackComplexity trackDifficulty;
     public:
-        virtual void SimulateWeather() = 0;
+
+        void run();
+
+        virtual void SimulateWeather() =0;
 
         int getTime();
 

@@ -1,4 +1,3 @@
-#include <Doc.h>
 #include "SimulatorNormalCondition.h"
 using namespace rce;
 void SimulatorNormalCondition::SimulateWeather() 
@@ -22,7 +21,8 @@ void SimulatorNormalCondition::SimulateWeather()
         i=20;
     }
 
-   pr::Doc::detail("Driver using simulator to train in normal conditions\n");
+    std::string output = "Driver using simulator to train in normal conditions\n";
+    pr::Doc::detail(output);
     xp=i*(((getTime()/5)/100)*3);
     if(getDriver()->getXp()+xp>=100)
     {

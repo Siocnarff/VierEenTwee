@@ -18,27 +18,8 @@ void plainSeasonRun();
 
 int main() {
 
-//   demoVersion1();  //First draft of interactive demo
+    //   demoVersion1();  //First draft of interactive demo
     plainSeasonRun(); //Runs through program without asking questions
-
-}
-
-
-void plainSeasonRun() {
-    auto* racingDept = new rce::RacingDep();
-    auto* engDept = new eng::EngTeam;
-    auto* logDept = new lg::Logistics;
-
-    logDept->registerNotifier(racingDept);
-    logDept->registerNotifier(engDept);
-
-    logDept->interactiveDemo = false;
-    seasonRun(logDept);
-
-    delete racingDept;
-    delete engDept;
-    delete logDept;
-
 }
 
 void demoVersion1(){
@@ -79,6 +60,26 @@ void demoVersion1(){
     delete logDept;
 
 }
+
+
+void plainSeasonRun() {
+    auto* racingDept = new rce::RacingDep();
+    auto* engDept = new eng::EngTeam;
+    auto* logDept = new lg::Logistics;
+
+    logDept->registerNotifier(racingDept);
+    logDept->registerNotifier(engDept);
+
+    logDept->interactiveDemo = false;
+    seasonRun(logDept);
+
+    delete racingDept;
+    delete engDept;
+    delete logDept;
+
+}
+
+
 
 void seasonRun(lg::Logistics* a) {
 
