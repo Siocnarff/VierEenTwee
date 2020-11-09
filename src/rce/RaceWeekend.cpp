@@ -50,10 +50,10 @@ int * RaceWeekend::RacingWeekend()
         for(int n = 0; n < 2; n++)
         {
             time[n] = 100;
-            if(set[n])
-            {
-                std::cout<<getState(n)<<" "<<set[n]->getTyreCompoundString()<<std::endl;
-            }
+//            if(set[n])
+//            {
+//                std::cout<<getState(n)<<" "<<set[n]->getTyreCompoundString()<<std::endl;
+//            }
 
             if(getState(n)!= "Broken" && set[n] != nullptr)
             {
@@ -81,7 +81,7 @@ int * RaceWeekend::RacingWeekend()
                     if(speed>= 60 && speed <90)
                     {
                         int t=rand()%40+10;
-                        time[n] -=t; //todo verander
+                        time[n] -=t;
                         output = "#   Car ";
                         output.append(std::to_string(n));
                         output.append(" is fast and made up ");
@@ -100,7 +100,7 @@ int * RaceWeekend::RacingWeekend()
                         {
 //                            time[n] -= 11;
                             int t=rand()%30+5;
-                            time[n] -= t;//todo verander
+                            time[n] -= t;
 
                             //std::cout <<"Car "<< n << " is slow but made up 11 units of time. "<< std:: endl;
                             //pr::Doc::detail("Car ");
@@ -120,7 +120,7 @@ int * RaceWeekend::RacingWeekend()
                             {
 //                                time[n] -= 5;
                                 int t=rand()%20;
-                                time[n] -= t;//todo verander
+                                time[n] -= t;
 
                                 //std::cout <<"Car "<< n << " is slow but made up 5 units of time. "<< std:: endl;
                                 // pr::Doc::detail("Car ");
@@ -647,7 +647,7 @@ int * RaceWeekend::RacingWeekend()
                         }
                         else
                         {
-                            break;// todo no tyres left
+                            break;// no tyres left
                         }
                     }
                 }
@@ -1019,7 +1019,7 @@ int * RaceWeekend::RacingWeekend()
         }
     final=array;
     }
-    int *ret = new int[2];
+    ret = new int[2];
     ret[0] =  resultarray[9];
     ret[1] = resultarray[19];
 
@@ -1034,9 +1034,33 @@ RaceWeekend::~RaceWeekend()
 {
     for(int i=0;i<2;i++)
     {
-        delete tyre[i];
+//        delete tyre[i];
+//        delete car[i];
+//        delete driver[i];
+//        delete pitstop[i];
+//        delete set[i];
+//        delete CState[i]; //
     }
-    delete tyre;
+    delete []tyre;
+    delete []set;
+    delete []car;
+    delete []pitstop;
+    delete []driver;
+    delete []CState;
+    delete ret;
+
+
+//    car = new eng::Car*[2];
+//    driver = new ppl::Driver*[2];
+////    lead = new Leaderboard*[2];
+//    pitstop = new Pitstop*[2];
+//    lead=l;
+//    pitcrew = p;
+//    tyre = new Tyres*[2];
+//    set = new SetOfTyres*[2];
+//    strategy =s;
+//    CState = new CarState*[2];
+//    strategy->getRiskLevel();
 }
 
 eng::Car* RaceWeekend::getCar(int i) {

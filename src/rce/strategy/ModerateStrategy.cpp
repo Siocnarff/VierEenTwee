@@ -17,3 +17,8 @@ ModerateStrategy::ModerateStrategy(int p,int* t,lg::RiskLevel risk)
     SetRiskLevel(lg::Moderate);
     SetStratName("Moderate");
 }
+
+//ModerateStrategy::~ModerateStrategy()
+//{
+//
+//}

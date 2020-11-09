@@ -7,7 +7,7 @@ class CarStateDamaged : public rce::CarState {
 
 public:
 	void handleChange();
-
+    ~CarStateDamaged();
 	std::string getCarState();
 };
 }

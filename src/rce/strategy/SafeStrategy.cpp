@@ -16,3 +16,8 @@ SafeStrategy::SafeStrategy(int p,int* t,lg::RiskLevel risk)
     SetRiskLevel(lg::Safe);
     SetStratName("Safe");
 }
+
+//SafeStrategy::~SafeStrategy()
+//{
+//
+//}

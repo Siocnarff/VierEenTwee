@@ -8,3 +8,8 @@ void CarStateBroken::handleChange() {
 std::string CarStateBroken::getCarState() {
 	return "Broken";
 }
+
+CarStateBroken::~CarStateBroken()
+{
+
+}

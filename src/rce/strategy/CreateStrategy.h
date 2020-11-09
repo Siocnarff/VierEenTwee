@@ -38,6 +38,8 @@ namespace rce {
         int getPitstops();
 
         std::string getStratName();
+
+//        virtual ~CreateStrategy();
         // need some getters or make some of the members public
     };
 }

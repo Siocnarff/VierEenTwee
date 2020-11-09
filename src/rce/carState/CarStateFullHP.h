@@ -9,7 +9,7 @@ class CarStateFullHP : public rce::CarState
 
 public:
 	void handleChange();
-
+    ~CarStateFullHP();
 	std::string getCarState();
 };
 }

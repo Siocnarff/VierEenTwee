@@ -11,6 +11,7 @@ private:
 		bool displayLeaderboard;
 public:
 	TeamLeaderboard();
+	~TeamLeaderboard();
 
 	void UpdateLeaderBoard(std::string TN,std::string DriverName, int Score);
 	

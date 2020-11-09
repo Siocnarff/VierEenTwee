@@ -14,3 +14,8 @@ AggressiveStrategy::AggressiveStrategy(int p,int* t,lg::RiskLevel risk)
 	SetRiskLevel(lg::Aggressive);
 	SetStratName("Aggressive");
 }
+
+//AggressiveStrategy::~AggressiveStrategy()
+//{
+//
+//}

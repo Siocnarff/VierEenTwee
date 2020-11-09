@@ -31,7 +31,7 @@ void Leaderboard::setDriver(std::string Driver1, std::string Driver2)
     DriverName[19] = Driver2;
     OurDriver[0] = Driver1;
     OurDriver[1] = Driver2;
-    std::cout<<"@@@@@@@"<<" "<<OurDriver[0]<<" "<<OurDriver[1]<<std::endl;
+//    std::cout<<"@@@@@@@"<<" "<<OurDriver[0]<<" "<<OurDriver[1]<<std::endl;
 }
 
 void Leaderboard::setFinalScore(int * score)
@@ -52,7 +52,8 @@ int * Leaderboard::getFinalScore()
 
     bool array[20];
     int counter = 0;
-    int * finalresult = new int[4];
+    finalresult = new int[4];
+    pr::Doc::outputOverride=false;
     for(int i = 0; i < 20; i++)
     {
         array[i] = false;
@@ -179,4 +180,9 @@ int * Leaderboard::getFinalScore()
 
     }
     return finalresult;
+}
+
+Leaderboard::~Leaderboard()
+{
+    delete finalresult;
 }

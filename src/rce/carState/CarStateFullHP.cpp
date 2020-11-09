@@ -11,3 +11,8 @@ void CarStateFullHP::handleChange( ) {
 std::string CarStateFullHP::getCarState() {
 	return "FullHP";
 }
+
+CarStateFullHP::~CarStateFullHP()
+{
+
+}

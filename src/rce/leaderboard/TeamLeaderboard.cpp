@@ -210,3 +210,8 @@ void TeamLeaderboard::display()
 
 
 }
+
+TeamLeaderboard::~TeamLeaderboard()
+{
+
+}

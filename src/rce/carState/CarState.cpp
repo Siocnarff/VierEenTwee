@@ -11,7 +11,10 @@ void CarState::setCarState(CarState * c)
 	this->carState = c;
 }
 
-
+CarState::~CarState()
+{
+    delete carState;
+}
 
 
 

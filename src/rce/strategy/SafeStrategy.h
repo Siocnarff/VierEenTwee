@@ -11,6 +11,7 @@ namespace rce {
         CreateStrategy *execute() override;
 
         SafeStrategy(int p, int *t, lg::RiskLevel risk);
+//        ~SafeStrategy();
     };
 }
 #endif
