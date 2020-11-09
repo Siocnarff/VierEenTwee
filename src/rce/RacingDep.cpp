@@ -146,7 +146,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
         tyres[i] = t[i];
     }
     std::string output = "Unpacking container---------------------------------------------\n";
-    pr::Doc::summary(output);
+    pr::Doc::detail(output);
     output = "";
     if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
     {
@@ -285,7 +285,7 @@ RacingDep::RacingDep()
 lg::Container *RacingDep::postRacePackUp()
 {
     std::string output = "Packing container---------------------------------------------\n";
-    pr::Doc::summary(output);
+    pr::Doc::detail(output);
     output = "";
     if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
     {
