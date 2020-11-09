@@ -5,6 +5,7 @@
 
 namespace ppl {
 	class Amateur : public Person {
+    public:
         Amateur(std::string name, bool hasDegree, int skillLevel);
 	};
 }
