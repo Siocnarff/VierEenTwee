@@ -236,10 +236,10 @@ int * RacingDep::Race()
     RaceWeekend * racingweekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
     int * Score = racingweekend->RacingWeekend();
 
-    pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
+    pr::Doc::summary("  ~Packing up after racing weekend. (Repack container)~\n");
     CarContainer->print();
     pr::Doc::summary("\n");
-    std::vector<eng::Car*> carresult ;
+    std::vector<eng::Car*> carResult ;
     bool* k=racingweekend->getBrokenCar();
     for(int i=0;i<2;i++)
     {
@@ -250,9 +250,9 @@ int * RacingDep::Race()
     }
     for(int h =0; h < 2; h++)
     {
-        carresult.push_back(cars[h]);
+        carResult.push_back(cars[h]);
     }
-    notifybackCar(carresult,race);
+    notifybackCar(carResult, race);
     delete racingweekend;
     return Score;
 }

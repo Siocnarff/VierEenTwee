@@ -127,7 +127,7 @@ void Logistics::doYearPlanning() {
         int rand_hom_tracks = abs(rand() % 5) + 1; //# home tracks in [1,5]
         for (int i = 0; i < rand_hom_tracks; ++i) {
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
-            pr::Doc::detail(d->)
+            //pr::Doc::detail(d->)
         }
     }
 
