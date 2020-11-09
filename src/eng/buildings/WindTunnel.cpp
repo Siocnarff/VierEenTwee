@@ -29,4 +29,5 @@ WindTunnel &WindTunnel::instance() {
 
 void WindTunnel::resetTickets() {
     tickets = 400;
+    pr::Doc::midInfo("     --Tickets now at " + std::to_string(tickets) + "\n");
 }

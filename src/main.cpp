@@ -63,7 +63,7 @@ void demoVersion1(){
 
 
 void plainSeasonRun() {
-    pr::Doc::transparency = 0;
+    pr::Doc::transparency = 1;
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;

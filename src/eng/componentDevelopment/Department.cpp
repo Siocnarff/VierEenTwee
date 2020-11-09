@@ -25,7 +25,7 @@ Department::Department(Department *next) {
 void Department::addSpecialist(ppl::Person *specialist) {
     specialists.push_back(specialist);
     pr::Doc::midInfo(
-            departmentName + " hired a new " +
+            "      **" + departmentName + " hired a new " +
             (specialist->hasDegree() ? "specialist.\n" : "employee.\n")
     );
     pr::Doc::detail(specialist->getResume() + "\n");

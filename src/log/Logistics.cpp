@@ -95,10 +95,6 @@ void Logistics::doYearPlanning() {
     if (interactiveDemo) {
         pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
         std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
-        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         } else {
@@ -125,10 +121,13 @@ void Logistics::doYearPlanning() {
     }
 
     //6. Set drivers' home tracks
-    for (ppl::Driver *d : drivers) {        //for each driver
+    for (ppl::Driver *d : drivers) {//for each driver
+        pr::Doc::midInfo("    Hired: " + d->getName() + "\n");
+        pr::Doc::detail("      -Home track: ");
         int rand_hom_tracks = abs(rand() % 5) + 1; //# home tracks in [1,5]
         for (int i = 0; i < rand_hom_tracks; ++i) {
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
+            pr::Doc::detail(d->)
         }
     }
 
@@ -435,22 +434,19 @@ void Logistics::putRacesIntoCalender() {
         }
     }
 
+    int keeper = pr::Doc::transparency;
     if (interactiveDemo) {
         pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
         std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
-        }
-        if (interactionInput == "Y" || interactionInput == "y") {
+         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         } else {
             pr::Doc::transparency = 0;
         }
-        racingCalendar->printList();
         interactionInput = "";
     }
-
+    racingCalendar->printList();
+    pr::Doc::transparency = keeper;
 }
 
 void Logistics::raceSeason() {
@@ -798,7 +794,7 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
     }
 
         if (willingToSponser == 0) {
-            pr::Doc::midInfo("\n  ~Approach sponsors to negotiate budget~\n");
+            pr::Doc::midInfo("\n     --Approach sponsors to negotiate budget\n");
 
             if (budget == -1) {  //default argument in constructor
                 budget = abs(rand() % 100 + 1);
@@ -820,7 +816,7 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
                 if (budget < 0) budget = 10;
             }
             pr::Doc::midInfo(
-                    "     After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
+                    "     --After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
         }
 }
 
