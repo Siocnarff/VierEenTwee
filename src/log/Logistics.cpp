@@ -339,6 +339,7 @@ void Logistics::simulateEvent(Race *r) {
 
     //3. get correct container, transport and fly    //transport all the drivers and cars to where they should go
     pr::Doc::summary("  ~Make sure containers are where they are supposed to be~\n");
+
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);

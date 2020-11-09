@@ -231,13 +231,14 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 int * RacingDep::Race()
 {
     pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
-    pr::Doc::summary("\n");
+    pr::Doc::summary("\n\n");
 
     RaceWeekend * racingweekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
     int * Score = racingweekend->RacingWeekend();
 
     pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
     CarContainer->print();
+    pr::Doc::summary("\n");
     std::vector<eng::Car*> carresult ;
     bool* k=racingweekend->getBrokenCar();
     for(int i=0;i<2;i++)
