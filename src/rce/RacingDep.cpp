@@ -9,8 +9,7 @@
 #include <utility>
 using namespace rce;
 
-void RacingDep::hireEmployees(int b)
-{
+void RacingDep::hireEmployees(int b) {   //b: -1
     ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
 	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
 	Strategist=new ppl::Person* [2];
@@ -28,7 +27,7 @@ void RacingDep::hireEmployees(int b)
 CreateStrategy* RacingDep:: PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
-    if(strategy)
+    if(strategy != nullptr)
     {
         delete strategy;
         strategy=NULL;
@@ -265,10 +264,10 @@ RacingDep::~RacingDep()
 
 RacingDep::RacingDep()
 {
-//    std::cout << "Constructor" << std::endl;
     lead = new Leaderboard*[2];
     lead[0] = new DriversLeaderboard();
     lead[1] = new TeamLeaderboard();
+    strategy = nullptr;
 }
 
 lg::Container *RacingDep::postRacePackUp()

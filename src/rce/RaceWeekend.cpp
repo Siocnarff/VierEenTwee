@@ -12,7 +12,7 @@ int * RaceWeekend::RacingWeekend() {
     for(int i = 0; i < 3; i++)
     {
         setDayWeather();
-        pr::Doc::midInfo("\n      Today's weather: ");
+        pr::Doc::midInfo("\n      Today's eather: ");
         if (DayWeather == lg::Hot) {
             pr::Doc::midInfo("Hot\n");
             pr::Doc::detail("         Careful drivers! The tarmac is melting your tyres!\n");

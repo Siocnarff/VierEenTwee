@@ -12,10 +12,36 @@
 int pr::Doc::transparency = 0;
 bool pr::Doc::outputOverride = false;
 
+void demoVersion1();
 void seasonRun(lg::Logistics*);
+void plainSeasonRun();
 
 int main() {
 
+//   demoVersion1();  //First draft of interactive demo
+    plainSeasonRun(); //Runs through program without asking questions
+
+}
+
+
+void plainSeasonRun() {
+    auto* racingDept = new rce::RacingDep();
+    auto* engDept = new eng::EngTeam;
+    auto* logDept = new lg::Logistics;
+
+    logDept->registerNotifier(racingDept);
+    logDept->registerNotifier(engDept);
+
+    logDept->interactiveDemo = false;
+    seasonRun(logDept);
+
+    delete racingDept;
+    delete engDept;
+    delete logDept;
+
+}
+
+void demoVersion1(){
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
@@ -38,6 +64,7 @@ int main() {
     std::cin >> input;
     pr::Doc::transparency = stoi(input);
 
+    logDept->interactiveDemo = true;
 
     std::string continueSeasons = "y";
     while (continueSeasons=="y" || continueSeasons == "Y") {
@@ -51,9 +78,7 @@ int main() {
     delete engDept;
     delete logDept;
 
-
 }
-
 
 void seasonRun(lg::Logistics* a) {
 
@@ -78,20 +103,3 @@ void seasonRun(lg::Logistics* a) {
     a->postSeasonDebrief();
 
 }
-
-/*
-void coutTesting(lg::Logistics* a) {
-    pr::Doc::summary("--------------------\nRACING SEASON\n--------------------\n");
-
-    pr::Doc::summary("       ____           ___________\n");
-    pr::Doc::summary("    .   |````>..-- ``             |_..--.._______\n");
-    pr::Doc::summary("   :.'. \\_ /```\\. . . . . .      - -     ``````````/```\\- - ...\n");
-    pr::Doc::summary(" :;';>._   \\.../--__________________. . . . . ...~ \\.../--  ~ ~ /\n");
-
-    pr::Doc::transparency = 2;
-
-    a->doYearPlanning();
-    a->preSeasonPreparation();
-    a->raceSeason();
-    a->postSeasonDebrief();
-}*/
