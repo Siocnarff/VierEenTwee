@@ -235,6 +235,7 @@ void Logistics::preSeasonPreparation() {
             }
             pr::Doc::transparency = 0;
         } else {
+            drivers[0]->getName();
             pr::Doc::summary(
                     "\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
             std::cin >> interactionInput;
