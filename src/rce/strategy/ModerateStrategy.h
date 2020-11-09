@@ -9,7 +9,7 @@ namespace rce {
     public:
         CreateStrategy *execute();
         ModerateStrategy(int p, int *t, lg::RiskLevel risk);
-
+//        ~ModerateStrategy();
     };
 }
 #endif

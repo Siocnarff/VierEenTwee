@@ -11,6 +11,7 @@ private:
 	int driverResult[20];
 public:
 	DriversLeaderboard();
+	~DriversLeaderboard();
 
 	void display();
 

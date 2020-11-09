@@ -49,7 +49,8 @@ Car *Garage::getPrototype() {
 
 //TODO: Put Garage destructor back. Commented out for reasons of misbehaving code
 Garage::~Garage() {
-    for (auto & car : cars) {
+    for (auto & car : cars)
+    {
         delete car;
         car = nullptr;
     }

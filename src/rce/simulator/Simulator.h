@@ -38,6 +38,7 @@ namespace rce
         void setTime(int t);
 
         void setDifficulty(lg::TrackComplexity dif);
+
     };
 }
 #endif

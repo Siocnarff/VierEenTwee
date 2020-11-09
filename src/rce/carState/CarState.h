@@ -10,7 +10,7 @@ public:
 	virtual void handleChange() = 0;
 
 	virtual std::string getCarState()=0;
-
+    virtual ~CarState();
 	CarState * getState();
 
 	void setCarState(CarState * c);

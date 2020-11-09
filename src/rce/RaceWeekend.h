@@ -41,7 +41,6 @@ namespace rce{
 
 class RaceWeekend
 {
-
     private:
         bool broken [2];
         CreateStrategy* strategy;
@@ -66,7 +65,7 @@ class RaceWeekend
         bool brokenstate[2];
         Tyres ** tyre;
         SetOfTyres ** set;
-
+        int * ret;
 
     public:
         ~RaceWeekend();

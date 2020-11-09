@@ -10,6 +10,7 @@ namespace rce
         AggressiveStrategy(int p, int *t, lg::RiskLevel risk);
 
         CreateStrategy *execute();
+//        ~AggressiveStrategy();
     };
 
 }

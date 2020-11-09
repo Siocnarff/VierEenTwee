@@ -52,4 +52,9 @@ std::string CreateStrategy::getStratName()
      return StratName;
  }
 
+//CreateStrategy::~CreateStrategy()
+//{
+////    delete [] tyres;
+//}
+
 CreateStrategy::~CreateStrategy() = default;

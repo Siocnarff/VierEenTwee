@@ -11,8 +11,10 @@ private:
 	std::string DriverName[20];
 	int RaceCounter;
 	std::string OurDriver[2];
+    int * finalresult;
 public:
 	Leaderboard();
+	virtual ~Leaderboard();
 	virtual void UpdateLeaderBoard(std::string TN,std::string DriverName, int Score) = 0;
 	//virtual void UpdateDriverLeaderBoard(std::string driverName, int Score) = 0;
 	virtual void createLeaderboard(std::string DriverName1,std::string DriverName2 ,int *score)=0;

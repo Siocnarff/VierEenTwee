@@ -9,3 +9,8 @@ void CarStateDamaged::handleChange() {
 std::string CarStateDamaged::getCarState() {
 	return "Damaged";
 }
+
+CarStateDamaged::~CarStateDamaged()
+{
+
+}

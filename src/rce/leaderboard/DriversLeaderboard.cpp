@@ -153,3 +153,8 @@ void DriversLeaderboard::display()
 
     }
 }
+
+DriversLeaderboard::~DriversLeaderboard()
+{
+
+}

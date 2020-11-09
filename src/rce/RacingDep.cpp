@@ -12,26 +12,25 @@ using namespace rce;
 void RacingDep::hireEmployees(int b)
 {
     pr::Doc::detail("     Racing department is hiring employees\n");
-    ppl::HireRacingDep *PitCrewFactory=new ppl::HirePitCrew();
-	ppl::HireRacingDep *StratFactory=new ppl::HireStrategist();
+    ppl::HumanResources *PitCrewFactory=new ppl::HirePitCrew();
+	ppl::HumanResources *StratFactory=new ppl::HireStrategist();
 	Strategist=new ppl::Person* [2];
 	pitcrew=new ppl::Person* [b];
     for (int i = 0; i <2 ; ++i)
     {
-        Strategist[i]=StratFactory->source("racing strategist");
+        Strategist[i]=StratFactory->hire("racing strategist");
     }
     for (int i = 0; i <b ; ++i)
     {
-        pitcrew[i]=PitCrewFactory->source("pitcrew member");
+        pitcrew[i]=PitCrewFactory->hire("pitcrew member");
     }
+    delete PitCrewFactory;
+    delete StratFactory;
 }
 
 CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
-
-	delete strategy;
-	strategy = nullptr;
 
 	int* tyre=new int[3];
 	if(budget<25)
@@ -63,6 +62,7 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
             notify(tyre);
 			return strategy->execute();
 	}
+
 }
 
 ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions weather,lg::TrackComplexity trackDifficulty)
@@ -92,7 +92,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherCo
     simulator->setDifficulty(trackDifficulty);
     simulator->setTime(time);
     simulator->run();
-
+    delete simulator;
     return driver;
 }
 
@@ -108,7 +108,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::TrackComp
     normal->setDifficulty(trackDifficulty);
     normal->setTime(time);
     normal->run();
-
+    delete normal;
     return driver;
 }
 
@@ -124,7 +124,7 @@ ppl::Driver *RacingDep::trainDriver(ppl::Driver * driver, int time, lg::WeatherC
     normal->setDifficulty(lg::Average);
     normal->setTime(time);
     normal->run();
-
+    delete normal;
     return driver;
 }
 
@@ -156,11 +156,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
 
 CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
 {
-    if(strategy)
-    {
-        delete strategy;
-        strategy=NULL;
-    }
+
     int* tyre=new int[3];
     if(risk==lg::Safe)
     {
@@ -169,6 +165,7 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=0;
         strategy=new SafeStrategy(2,tyre,lg::Safe);
         notify(tyre);
+
         return strategy->execute();
     }
     else if(risk==lg::Moderate)
@@ -178,6 +175,7 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=0;
         strategy=new ModerateStrategy(2,tyre,lg::Moderate);
         notify(tyre);
+
         return strategy->execute();
     }
     else
@@ -187,6 +185,7 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=1;
         strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
         notify(tyre);
+
         return strategy->execute();
     }
 }
@@ -230,7 +229,7 @@ void RacingDep::setPitcrew(ppl::Person** pitcrew)
 
 void RacingDep::SetCarAfterRace(eng::Car* c)
 {
-	car=c;// todo double check
+	car=c;//
 }
 
 int * RacingDep::Race()
@@ -257,9 +256,9 @@ int * RacingDep::Race()
         carresult.push_back(cars[h]);
     }
     notifybackCar(carresult,race);
-
+    delete racingweekend;
     return Score;
-    //ToDo final stuff for array
+
 }
 
 int * RacingDep::getFinalScore()
@@ -272,11 +271,27 @@ int * RacingDep::getFinalScore()
 RacingDep::~RacingDep()
 {
 
+    for (int i = 0; i <2; ++i)
+    {
+        delete Strategist[i];
+    }
+    delete []Strategist;
+    for (int i = 0; i < sizeof(pitcrew); ++i)
+    {
+        delete pitcrew[i];
+    }
+    delete []pitcrew;
+    for (int i = 0; i < 2; ++i)
+    {
+//       delete tyres[i];
+        delete lead[i];
+    }
+//    delete []tyres;
+    delete []lead;
 }
 
 RacingDep::RacingDep()
 {
-
     lead = new Leaderboard*[2];
     lead[0] = new DriversLeaderboard();
     lead[1] = new TeamLeaderboard();

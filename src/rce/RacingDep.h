@@ -7,7 +7,6 @@
 #include <races/Race.h>
 #include <leaderboard/Leaderboard.h>
 #include "PitCrew.h"
-#include "../ppl/factories/HireRacingDep.h"
 #include "../ppl/factories/HireStrategist.h"
 #include "../ppl/factories/HirePitCrew.h"
 
@@ -37,57 +36,38 @@ namespace rce {
     class RacingDep : public lg::Colleague {
 
     private:
-
         lg::RiskLevel risklevel;
-
         int budget;
-
         lg::Race *race;
-
         rce::Leaderboard ** lead;
-
         CreateStrategy *strategy;
-
         lg::Container *CarContainer;
-
         std::string TeamName;
-
         ppl::Person** Strategist;
-
         ppl::Person** pitcrew;
-
         eng::Car *car;//needed?
-
-        eng::Car ** cars;//todo: where to get and set?
-
-        ppl::Driver **drivers;//todo: where to get and set?
-
+        eng::Car ** cars;
+        ppl::Driver **drivers;
         Tyres ** tyres;
 
+// / ppl::Driver array of size 2?
+// / car array of size 2? 
+// / different strategies for each ppl::Driver and car?
     public:
 
         RacingDep();
-
         ~RacingDep();
-
         void hireEmployees(int b);
-
         CreateStrategy *PlanSeasonStrategy(int budget);
-
         void preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver*> d, lg::Race* r, lg::Container* con , std::vector<Tyres *> t);
-
         lg::Container* postRacePackUp();// return the container with tires in
-
         CreateStrategy* changeStrat(lg::RiskLevel risk);//used to change strat during season
 
         ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions);
-
         ppl::Driver* trainDriver(ppl::Driver *, int time, lg::TrackComplexity);
-
         ppl::Driver* trainDriver(ppl::Driver *, int time, lg::WeatherConditions weather, lg::TrackComplexity trackDifficulty);
 
         int * Race();
-
 
         lg::Race *getRace();
 
