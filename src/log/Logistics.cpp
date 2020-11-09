@@ -188,14 +188,12 @@ void Logistics::preSeasonPreparation() {
     } else {
         pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
         currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-        pr::Doc::detail(
-                "    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
-
+        pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
     }
 
     // 1.1 Notified about tyres (in the meanwhile)
     // 1.2 Receive Order
-    pr::Doc::summary("   ~Tyre orders arrive a month later\n");
+    pr::Doc::summary("  ~Tyre orders arrive a month later\n");
     //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
     //2. Pack containers
@@ -213,7 +211,7 @@ void Logistics::preSeasonPreparation() {
 
     //5. Build the cars if not already developed cars from previous season
     if (carsInSeasonIDs.empty()) {
-        pr::Doc::summary("\n   ~It's the first season - cars are constructed from scratch.\n");
+        pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
         pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
         std::cin >> interactionInput;
         if (interactionInput[0] == '*') {
@@ -303,11 +301,12 @@ Container *Logistics::packSingleContainer() const {
 void Logistics::simulateEvent(Race *r) {
     //0. Determine if a new strategy is necessary
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    pr::Doc::summary("   ~Tyre orders arrive a month later\n");
+    pr::Doc::summary("  ~Confirm strategy to be used for the race~\n");
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
     //1. Transport car (from factory to race location)
-    //1.1 Fill up clipboard       //--//Wat is die clipboard presies?
+    //1.1 Fill up clipboard
+    pr::Doc::summary("  ~Transport cars for race from factory to track~\n");
     vector<eng::Car *> carClipboard;
     for (int id : carsInSeasonIDs) {
         eng::Car *temp = callEngDept()->checkCarOutOfFactory(id);
@@ -317,13 +316,10 @@ void Logistics::simulateEvent(Race *r) {
 
     //2. Transport Drivers
     //IDEA : add fly functionality for drivers
-    //   pr::Doc::summary(locationString);
-    pr::Doc::transparency;
-
-
-    pr::Doc::summary("The two drivers are transported in a luxury mode of transport to " + r->getLocation() + "\n");
+    // pr::Doc::summary("The two drivers are transported in a luxury mode of transport to " + r->getLocation() + "\n");
 
     //3. get correct container, transport and fly    //transport all the drivers and cars to where they should go
+    pr::Doc::summary("  ~Make sure containers are where they are supposed to be~\n");
     transportManager->transport(r->prevRace(), r);
     if (r->isRaceEuropean()) {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getEuropeanContainer(), tyreSpecs);
@@ -332,6 +328,7 @@ void Logistics::simulateEvent(Race *r) {
     }
 
     //4. racing weekend finishes and get points for each pair
+
     int *temp = callRacingDept()->Race();
     for (int i = 0; i < numPairs; ++i) {
         seasonPointTally[i] += temp[i];

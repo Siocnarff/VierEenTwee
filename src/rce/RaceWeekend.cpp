@@ -11,12 +11,29 @@ int * RaceWeekend::RacingWeekend() {
 
     for(int i = 0; i < 3; i++)
     {
+        setDayWeather();
+        pr::Doc::midInfo("\n      Today's weather: ");
+        if (DayWeather == lg::Hot) {
+            pr::Doc::midInfo("Hot\n");
+            pr::Doc::detail("         Careful drivers! The tarmac is melting your tyres!\n");
+        }
+        else if (DayWeather == lg::Normal) {
+            pr::Doc::midInfo("Normal\n");
+            pr::Doc::detail("         One less thing to worry about.\n");
+        }
+        else if (DayWeather == lg::Rainy) {
+            pr::Doc::midInfo("Rainy\n");
+            pr::Doc::detail("         Careful around the bends.\n");
+        }
 
+
+        pr::Doc::detail("\n");
         lg::RiskLevel rl = getRiskLevel();
-        pr::Doc::detail("Race # ");
+        pr::Doc::detail("##########################\n");
+        pr::Doc::detail("#   Race # ");
         pr::Doc::detail(std::to_string(i+1));
         pr::Doc::detail(" is starting.\n");
-        setDayWeather();
+        pr::Doc::detail("##########################\n\n");
         for(int n = 0; n < 2; n++)
         {
             time[n] = 100;
@@ -30,7 +47,7 @@ int * RaceWeekend::RacingWeekend() {
                 if(speed >= 90)
                 {
                     time[n] -= 33;
-                    pr::Doc::detail("Car ");
+                    pr::Doc::detail("#   Car ");
                     pr::Doc::detail(std::to_string(n));
                     pr::Doc::detail(" is fast and made up 33 units of time.\n");
                 }
@@ -39,7 +56,7 @@ int * RaceWeekend::RacingWeekend() {
                     if(speed>= 60 && speed <90)
                     {
                         time[n] -= 22;
-                        pr::Doc::detail("Car ");
+                        pr::Doc::detail("#   Car ");
                         pr::Doc::detail(std::to_string(n));
                         pr::Doc::detail(" is fast and made up 22 units of time.\n");
                     }
@@ -48,7 +65,7 @@ int * RaceWeekend::RacingWeekend() {
                         if(speed >=30 && speed <60)
                         {
                             time[n] -= 11;
-                            pr::Doc::detail("Car ");
+                            pr::Doc::detail("#   Car ");
                             pr::Doc::detail(std::to_string(n));
                             pr::Doc::detail( " is slow but made up 11 units of time.\n");
                         }
@@ -57,7 +74,7 @@ int * RaceWeekend::RacingWeekend() {
                             if(speed <30)
                             {
                                 time[n] -= 5;
-                                pr::Doc::detail("Car ");
+                                pr::Doc::detail("#   Car ");
                                 pr::Doc::detail(std::to_string(n));
                                 pr::Doc::detail(" is slow but made up 5 units of time.\n");
                             }
@@ -67,7 +84,7 @@ int * RaceWeekend::RacingWeekend() {
                 if(handling[n] >= 90)
                 {
                     time[n] -= 33;
-                    pr::Doc::detail("Car ");
+                    pr::Doc::detail("#   Car ");
                     pr::Doc::detail(std::to_string(n));
                     pr::Doc::detail(" handles great and made up 33 units of time.\n");
                 }
@@ -76,7 +93,7 @@ int * RaceWeekend::RacingWeekend() {
                     if(handling[n]>= 60 && handling[n] <90)
                     {
                         time[n] -= 22;
-                        pr::Doc::detail("Car ");
+                        pr::Doc::detail("#   Car ");
                         pr::Doc::detail(std::to_string(n));
                         pr::Doc::detail(" handles good and made up 22 units of time.\n");
                     }
@@ -85,7 +102,7 @@ int * RaceWeekend::RacingWeekend() {
                         if(handling[n] >=30 && handling[n] <60)
                         {
                             time[n] -= 11;
-                            pr::Doc::detail("Car ");
+                            pr::Doc::detail("#   Car ");
                             pr::Doc::detail(std::to_string(n));
                             pr::Doc::detail(" handles bad but made up 11 units of time.\n");
                         }
@@ -94,7 +111,7 @@ int * RaceWeekend::RacingWeekend() {
                             if(handling[n] <30)
                             {
                                 time[n] -= 5;
-                                pr::Doc::detail("Car ");
+                                pr::Doc::detail("#   Car ");
                                 pr::Doc::detail(std::to_string(n));
                                 pr::Doc::detail(" handles bad but made up 5 units of time.\n");
                             }
@@ -106,7 +123,7 @@ int * RaceWeekend::RacingWeekend() {
                 {
                     int t = rand()%15+1;
                     time[n] -= t;
-                    pr::Doc::detail("This is ");
+                    pr::Doc::detail("#   This is ");
                     pr::Doc::detail(driver[n]->getName());
                     pr::Doc::detail( "'s home track thus could make up ");
                     pr::Doc::detail(std::to_string(t));
@@ -115,7 +132,7 @@ int * RaceWeekend::RacingWeekend() {
                 if(xp >= 90)
                 {
                     time[n] -= 40;
-                    pr::Doc::detail(driver[n]->getName());
+                    pr::Doc::detail("#   " + driver[n]->getName());
                     pr::Doc::detail( " has a lot of experience and could make up 40 units of time.\n");
                 }
                 else
@@ -123,7 +140,7 @@ int * RaceWeekend::RacingWeekend() {
                     if(xp>= 60 && xp <90)
                     {
                         time[n] -= 30;
-                        pr::Doc::detail(driver[n]->getName());
+                        pr::Doc::detail("#   " + driver[n]->getName());
                         pr::Doc::detail( " has a good amount of experience and could make up 30 units of time.\n");
                     }
                     else
@@ -131,7 +148,7 @@ int * RaceWeekend::RacingWeekend() {
                         if(xp >=30 && xp <60)
                         {
                             time[n] -= 20;
-                            pr::Doc::detail(driver[n]->getName());
+                            pr::Doc::detail("#   " + driver[n]->getName());
                             pr::Doc::detail( " has some experience and could make up 20 units of time.\n");
                         }
                         else
@@ -139,7 +156,7 @@ int * RaceWeekend::RacingWeekend() {
                             if(xp <30)
                             {
                                 time[n] -= 10;
-                                pr::Doc::detail(driver[n]->getName());
+                                pr::Doc::detail("#   " + driver[n]->getName());
                                 pr::Doc::detail( " has little experience and could make up 10 units of time.\n");
                             }
                         }
@@ -148,7 +165,7 @@ int * RaceWeekend::RacingWeekend() {
                 if(TC == lg::Easy)
                 {
                     time[n] -= 30;
-                    pr::Doc::detail( "The track was easy and " );
+                    pr::Doc::detail( "#   The track was easy and " );
                     pr::Doc::detail(driver[n]->getName());
                     pr::Doc::detail( " has gained 30 unites of time.\n");
                 }
@@ -157,7 +174,7 @@ int * RaceWeekend::RacingWeekend() {
                     if(TC==lg::Average)
                     {
                         time[n] -= 20;
-                        pr::Doc::detail( "The track was good and " );
+                        pr::Doc::detail( "#   The track was good and " );
                         pr::Doc::detail(driver[n]->getName());
                         pr::Doc::detail( " has gained 15 unites of time.\n");
                     }
@@ -166,7 +183,7 @@ int * RaceWeekend::RacingWeekend() {
                         if( TC == lg::Difficult)
                         {
                             time[n] += 5;
-                            pr::Doc::detail( "The track was difficult and " );
+                            pr::Doc::detail( "#   The track was difficult and " );
                             pr::Doc::detail(driver[n]->getName());
                             pr::Doc::detail( " has lost 5 unites of time.\n");
                         }
@@ -175,7 +192,7 @@ int * RaceWeekend::RacingWeekend() {
                             if(TC== lg::Extreme)
                             {
                                 time[n] += 15;
-                                pr::Doc::detail( "The track was extremely difficult and " );
+                                pr::Doc::detail( "#   The track was extremely difficult and " );
                                 pr::Doc::detail(driver[n]->getName());
                                 pr::Doc::detail( " has lost 15 unites of time.\n");
                             }
@@ -235,7 +252,7 @@ int * RaceWeekend::RacingWeekend() {
                     {
                         time[n] -= 20;
                         dam = rand() %40 +0;
-                        pr::Doc::detail("Car ");
+                        pr::Doc::detail("#   Car ");
                         pr::Doc::detail(std::to_string(n));
                         pr::Doc::detail(" has taken ");
                         pr::Doc::detail(std::to_string(dam));
@@ -248,7 +265,7 @@ int * RaceWeekend::RacingWeekend() {
                         {
                             time[n] -= 20;
                             dam = rand() %30 + 10;
-                            pr::Doc::detail("Car ");
+                            pr::Doc::detail("#   Car ");
                             pr::Doc::detail(std::to_string(n));
                             pr::Doc::detail(" has taken ");
                             pr::Doc::detail(std::to_string(dam));
@@ -262,7 +279,7 @@ int * RaceWeekend::RacingWeekend() {
                                 time[n] -= 20;
                                 Damagetotyres =rand() %130;
                                 dam = rand()%10+0;
-                                pr::Doc::detail("Car ");
+                                pr::Doc::detail("#   Car ");
                                 pr::Doc::detail(std::to_string(n));
                                 pr::Doc::detail(" has taken ");
                                 pr::Doc::detail(std::to_string(dam));
@@ -278,7 +295,7 @@ int * RaceWeekend::RacingWeekend() {
                     {
                         time[n] -= 10;
                         dam = rand() %15+0;
-                        pr::Doc::detail("Car ");
+                        pr::Doc::detail("#   Car ");
                         pr::Doc::detail(std::to_string(n));
                         pr::Doc::detail(" has taken ");
                         pr::Doc::detail(std::to_string(dam));
@@ -291,7 +308,7 @@ int * RaceWeekend::RacingWeekend() {
                         {
                             time[n] -= 10;
                             dam = rand() %10 + 0;
-                            pr::Doc::detail("Car ");
+                            pr::Doc::detail("#   Car ");
                             pr::Doc::detail(std::to_string(n));
                             pr::Doc::detail(" has taken ");
                             pr::Doc::detail(std::to_string(dam));
@@ -304,7 +321,7 @@ int * RaceWeekend::RacingWeekend() {
                             {
                                 time[n] -= 10;
                                 dam = rand()%5+0;
-                                pr::Doc::detail("Car ");
+                                pr::Doc::detail("#   Car ");
                                 pr::Doc::detail(std::to_string(n));
                                 pr::Doc::detail(" has taken ");
                                 pr::Doc::detail(std::to_string(dam));
@@ -420,7 +437,7 @@ int * RaceWeekend::RacingWeekend() {
                     int t = rand()%10+1 ;
                     time[n] += t ;
                     //std::cout << driver[n]->getName() << "has lost "<<t << " units of time due to normal weather."<< std:: endl;
-                    pr::Doc::detail(driver[n]->getName());
+                    pr::Doc::detail("#   " + driver[n]->getName());
                     pr::Doc::detail(std::to_string(n));
                     pr::Doc::detail("has lost ");
                     pr::Doc::detail(std::to_string(t));
@@ -433,7 +450,7 @@ int * RaceWeekend::RacingWeekend() {
                     {
                         int t = rand()%5+0 ;
                         time[n] += t ;
-                        pr::Doc::detail(driver[n]->getName());
+                        pr::Doc::detail("#   " +driver[n]->getName());
                         pr::Doc::detail(std::to_string(n));
                         pr::Doc::detail("has lost ");
                         pr::Doc::detail(std::to_string(t));
@@ -446,7 +463,7 @@ int * RaceWeekend::RacingWeekend() {
                         {
                             int t = rand()%15+1 ;
                             time[n] += t;
-                            pr::Doc::detail(driver[n]->getName());
+                            pr::Doc::detail("#   " +driver[n]->getName());
                             pr::Doc::detail(std::to_string(n));
                             pr::Doc::detail("has lost ");
                             pr::Doc::detail(std::to_string(t));

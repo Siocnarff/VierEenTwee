@@ -142,7 +142,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
         cars[i] = c[i];
         drivers[i] = d[i];
     }
-    CarContainer->print();
+//    CarContainer->print();
 }
 
 CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
@@ -226,10 +226,13 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 
 int * RacingDep::Race()
 {
+    pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
+    pr::Doc::summary("\n");
     RaceWeekend* racingWeekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
+    pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
+    CarContainer->print();
     int * Score = racingWeekend->RacingWeekend();
     delete racingWeekend;
-    CarContainer->print();
     std::vector<eng::Car*> carResult ;
     bool* k=racingWeekend->getBrokenCar();
     for(int i=0;i<2;i++)
