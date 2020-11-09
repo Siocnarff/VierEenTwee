@@ -23,7 +23,7 @@
 #include "../ppl/specialists/Driver.h"
 
 #include "../eng/Car.h"
-
+#include <vector>
 #include "../log/races/Race.h"
 
 #include "../rce/leaderboard/Leaderboard.h"
