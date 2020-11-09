@@ -35,7 +35,8 @@ void Department::fix(Car *car) {
     if (nextDepartment) {
         nextDepartment->fix(car);
     } else {
-        pr::Doc::summary("There are no more departments, the car has been fixed and stored in garage.\n\n");
+        pr::Doc::summary("  ~Fixed the car~\n");
+        pr::Doc::detail("          There are no more departments, the car has been fixed and stored in garage.\n\n");
     }
 }
 

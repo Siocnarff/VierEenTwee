@@ -589,12 +589,12 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::summary("\n");
 
     //4. let transportManager take a holiday
-    pr::Doc::summary("~ Transport Manager puts in leave. Suffering from overwork\n");
+    pr::Doc::summary("  ~Transport Manager puts in leave. Suffering from overwork\n");
     pr::Doc::summary("\n");
     delete transportManager;
 
     //5. Let driver take a holiday
-    pr::Doc::summary("~ Driver go on holiday\n");
+    pr::Doc::summary("  ~Driver go on holiday\n");
     pr::Doc::summary("\n");
     int sumPositions = 0;
     for (int i = 0; i < numPairs; ++i) {
@@ -620,7 +620,8 @@ void Logistics::postSeasonDebrief() {
     carsInSeasonIDs.clear();
 
     //8. keep building new cars
-    pr::Doc::summary("\nThroughout the season we've been working on cars.\n We now start work on additional cars\n");
+    pr::Doc::summary("  ~Cars in progress\n");
+    pr::Doc::midInfo("\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
 
     if (interactiveDemo) {
         pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
