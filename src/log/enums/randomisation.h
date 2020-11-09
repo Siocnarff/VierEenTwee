@@ -20,6 +20,8 @@ namespace lg {
                 return Normal;
             case 2:
                 return Rainy;
+            default:
+                return Normal;
         }
     }
 
@@ -35,6 +37,8 @@ namespace lg {
                 return Difficult;
             case 3:
                 return Extreme;
+            default:
+                return Average;
         }
     }
 
@@ -48,6 +52,8 @@ namespace lg {
                 return Moderate;
             case 2:
                 return Aggressive;
+            default:
+                return Moderate;
         }
     }
 }

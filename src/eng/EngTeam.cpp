@@ -27,7 +27,7 @@ EngTeam::~EngTeam() {
 }
 
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("Engineering team is hiring new employees...\n");
+    pr::Doc::midInfo("    **Engineering team hires new employees**\n");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -117,7 +117,7 @@ int EngTeam::buildCar(int budget) {
     garage.storeCar(car);
     car->print();
     int transparency = pr::Doc::transparency;
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         improveCar(id, true);
         pr::Doc::transparency = -1;
     }

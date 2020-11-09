@@ -1,119 +1,121 @@
-/*class Logistics;
-#include "Container.h"
-#include "Logistics.h"
+void logDeptTesting() {
+    //Testing containers
+    /*    auto* racingDept = new rce::RacingDep();
+    auto* engDept = new eng::EngTeam;
+    auto* a = new lg::Logistics;
 
-class Colleague {
-private:
-    Logistics* observeringLogisticsDept;
-public:
-    virtual void registerForSeason(Logistics* logistcsDep) {
-        observeringLogisticsDept = logistcsDep;
-    };
-    virtual void notify(auto*) ;
-    //virtual void notify(Car*, TyresCompounds ); //pre-Season strategy planned
-    //virtual void notify(Car*, Driver*, Container*); //postRacePackup
-    virtual void HireEmployees(int budget) = 0;// die groot indiensnemingsproses
-    virtual void requestContainerChangeState(bool EuropeanRace) { //type of notify
-        if (EuropeanRace) {
-            Container* temp = observeringLogisticsDept->getEuropeanContainer();
-            //temp.changeState();
+    lg::TransportHandler* curator = new lg::Road;
+    curator->addAMethod(new lg::Ship);
+    curator->addAMethod(new lg::Fly);
+
+    auto* race1 = new lg::Race("Aussies",0,1,58);
+    auto* race2 = new lg::Race("Mozzies", 2, 1, 26);
+    auto* car = new eng::Car(50);
+
+    //transport container between non-european races
+    curator->transport(race1, race2); //between races
+    curator->transport(nullptr, race2); //from factory
+    curator->transport(race1, nullptr); //to factory
+
+
+    delete racingDept;
+    delete engDept;
+    delete a;*/
+    //Testing racingCalender destructor
+    /*lg::RacesList* r = new lg::RacesList;
+    r->addRace(new lg::Race("Australia", 0, 0,12));
+    r->addRace(new lg::Race("Benoni", 1, 1,21));
+    r->addRace(new lg::Race("Cambridge", 2, 0,112));
+    r->addRace(new lg::Race("Dallas", 0, 1,212));
+    r->printList();
+    delete r;*/
+}
+
+
+void engTeamTesting() {
+    auto *e = new eng::EngTeam();
+
+    e->hireEmployees(100);
+
+    e->setRiskLevel(lg::Moderate);
+
+
+    int id = e->buildCar(50);
+
+    pr::Doc::setTransparency(1);
+    int id2 = e->buildCar(80);
+    eng::Car *car = e->checkCarOutOfFactory(id);
+    car->print();
+
+    eng::Car *car2 = e->checkCarOutOfFactory(id2);
+    car2->print();
+
+    car2->setDamage(50);
+
+    car2->print();
+
+    e->carArrivesAtFactory(car2);
+    e->carArrivesAtFactory(car);
+
+    e->fixCar(id2);
+
+    eng::Car *fixedCar = e->checkCarOutOfFactory(id2);
+
+    fixedCar->print();
+
+    delete fixedCar;
+
+    delete e;
+}
+
+void testTyres() {
+        int arr1[] = {2,1,2};
+        int arr2[] = {0,1,4};
+        int arr3[] = {0,0,5};
+
+
+        auto* tyres1 = new rce::Tyres(arr1);
+        auto* tyres2 = new rce::Tyres(arr2);
+        auto* tyres3 = new rce::Tyres(arr3);
+
+        tyres1->printStats();
+//    tyres2->printStats();
+//    tyres3->printStats();
+
+        rce::SetOfTyres* tyreSet1 = tyres1->getTyres(0);
+        rce::SetOfTyres* tyreSet2 = tyres1->getTyres(0);
+        rce::SetOfTyres* tyreSet3 = tyres1->getTyres(0);
+
+    rce::Tyres* tyres4 = new rce::Tyres();
+    tyres4->setOrder(tyres1->getTyreOrder());
+
+    if (tyreSet1 != nullptr) {
+            tyreSet1->printStats();
+
+            tyreSet1->reduceThread(49);
+            tyreSet1->printStats();
+
+            for (int x = 0; x < 20; x++) {
+                tyreSet1->reduceThread(2);
+            }
+
+            tyreSet1->printStats();
+
         }
-        else {
-            Container* temp = observeringLogisticsDept->getNextNonEuropeanContainer();
-            //temp.advanceState();
+
+    if(tyreSet3 == nullptr) {
+            std::cout << "No more tyres of that type" << std::endl;
         }
-    };
-};*/
 
 
+    tyres1->printStats();
 
-/*
-void Logistics::doYearPlanning() {
-    //1. getBudget from "Sponsors"
-    //2. Hire for all departments
-    for (Colleague* dept: departments) {
-        dept->HireEmployees(budget);
+    std::cout << "print 4" << std::endl;
+    tyres4->printStats();
+
+        delete tyres1;
+        delete tyres2;
+        delete tyres3;
+        delete tyres4;
+
     }
-    //3. putRacesIntoCalender();
-    //4. hire driver
-    //5. hire transportManager
-}
-
-void Logistics::putRacesIntoCalender() {
-        //user interactive
-        //read from file and instantiate race objects as well as putting into a linked list.
-        //
-
-}
-
-void Logistics::preSeasonPreparation() {
-    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-    //depts[0] -> planSeasonStrategy(); //of wil ons chain gebruik hierso
-    //as genotify word, sal ons binne notify() die bande bestel;
-    //print: tyres arrived
-
-    //trainDriver();
-    carsInSeasonIDs.push_back(callEngDepartment()->buildCar(budget,currentTeamStrategy->getRiskLevel()));
-    //carsInSeason.push(buildCar()); //ons gaan bou die kar
-    //testCar();
-    //getRaceIterator();
-    //packContainers();
-
-}
-
-void Logistics::raceSeason() {
-    */
-/* while (iter.hasNext()) {
-         * simulateEvent(iter.current); <- this could be a command
-         * //we could have raceHandlers(one for European and one for non-European?)
-         * iter++;
-         *//*
-
-
-}
-
-void Logistics::packContainers() {
-    //create all container objects with regards to races
-    //store them accordingly
-
-}
-
-void Logistics::simulateEvent(Race *r) {
-        //ship container to location (cout accordingly) transportHandler -> transport(start, end, nullptr)
-        //transportHandler
-        //fly car to location
-        //preRaceArrival();
-        //tally += racingWeekend();
-        //get Car back <- this has to happen immediately so that the car can get into good shape
-        //fly car to factory
-        //postRacePackUp <- kry driver terug en dalk container
-        //fix_UpdateCar <- accordingly
-
-}
-
-void Logistics::postSeasonDebrief() {
-        //maybe do some analysis?
-        //start building a new car
-        //let driver take holiday
-        //let transportHandler take holiday
-
-}
-
-Container *Logistics::getEuropeanContainer() {
-        return europeanContainer;
-}
-
-Container *Logistics::getNextNonEuropeanContainer() {
-        Container* c = nonEuropeanContainers.back();
-        nonEuropeanContainers.pop_back();
-        return c;
-}
-
-EngDept* Logistics::callEngDepartment() {
-        return static_cast<EngDept*>(departments[0]); //subject to change
-}
-
-RacingDept* Logistics::callRacingDept() {
-        return static_cast<RacingDept*>(departments[1]);
-}
-*/

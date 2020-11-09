@@ -9,7 +9,7 @@ using namespace lg;
 
 /**
  * @author Marike
- * //TODO: create int parameter constructor
+ * //todolist: create int parameter constructor
  */
 GarageEquipment::GarageEquipment() {
     contents.emplace_back("Spare Tyres");

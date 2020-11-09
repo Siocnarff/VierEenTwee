@@ -33,10 +33,10 @@ namespace lg {
 
         void postSeasonDebrief();
 
+        void putRacesIntoCalender();
+
     protected:
         void sendCarToFactory(std::vector<eng::Car *>, Race*, bool isBroken) override;
-
-        //void containerHasBeenPacked(Container *) override;
 
         Container *getEuropeanContainer();
 
@@ -48,8 +48,6 @@ namespace lg {
 
         void simulateEvent(Race *);
 
-        void putRacesIntoCalender();
-
         void orderTyres(int* tyreOrder) override;
 
         void driverBootCamp();
@@ -57,6 +55,8 @@ namespace lg {
         void sponsoredBudget(int sumPositions = 0);
 
         void moveDrivers(std::vector<ppl::Driver *>) override;
+
+        void changeTransparency();
 
     private:
         rce::RacingDep *callRacingDept();
@@ -67,17 +67,21 @@ namespace lg {
         TransportHandler *transportManager;
         //Won't be holding a handle to car as will always be passing directly from one place to another
         RacesList *racingCalendar;
+
         std::vector<int> carsInSeasonIDs;
         std::vector<int> carsInDevIDs;
+
         std::vector<Container *> nonEuropeanContainers; //lots of containers for non-European
         Container *europeanContainer;   //1 container for European
-        rce::CreateStrategy *currentTeamStrategy;
 
-        std::vector<rce::Tyres*> tyreSpecs; //possibly unnecessary? No
+        rce::CreateStrategy *currentTeamStrategy;
+        std::vector<rce::Tyres*> tyreSpecs;
 
         std::vector<int> seasonPointTally;
         int budget;
         int numPairs = 2;
+
+        std::string interactionInput = "";
 
     };
 

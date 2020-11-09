@@ -1,3 +1,7 @@
+//
+// Created by josuabotha on 2020/10/31.
+//
+
 #include <iostream>
 #include "Doc.h"
 
@@ -24,3 +28,4 @@ void Doc::detail(const std::string &message) {
         std::cout << message << std::flush;
     }
 }
+

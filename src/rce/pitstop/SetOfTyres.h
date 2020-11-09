@@ -5,7 +5,8 @@
 #ifndef VIEREENTWEE_SETOFTYRES_H
 #define VIEREENTWEE_SETOFTYRES_H
 
-#include "../pr/Doc.h"
+
+namespace rce {
 
     class SetOfTyres {
     public:
@@ -19,7 +20,7 @@
 
         void reduceThread(int);
 
-        void printStats();
+        std::string printStats();
 
     private:
         int thread;
@@ -29,5 +30,7 @@
         std::string tyreCompoundString;
 
     };
+}
+
 
 #endif //VIEREENTWEE_SETOFTYRES_H

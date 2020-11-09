@@ -3,48 +3,54 @@
 //
 
 #include <iostream>
+#include <Doc.h>
 #include "Tyres.h"
 
+
+//TODO: Change couts to DOC prints
 using namespace rce;
 
+/**
+ * @author: Marike
+ * @status: pretty much done
+ */
 
-rce::Tyres::Tyres() {
-    std::cout << "Order for tyres is on its way! \n";
+
+Tyres::Tyres() {
+    pr::Doc::detail("Order for tyres is on its way! \n");
 }
 
+
+
 //changed a bit to incorporate the possibility of default constructor and then later instantiation;
-rce::Tyres::Tyres(int tyreOrder[3]) {       //changed from 2 to 3
+Tyres::Tyres(int tyreOrder[3]) {       //changed from 2 to 3
+    for (int x = 0; x < 3; x++) {
+        this->tyreOrder[x] = tyreOrder[x];
+    }
+
     setOrder(tyreOrder);
 }
 
-rce::Tyres::~Tyres() {
+Tyres::Tyres(Tyres *prev) {
+    for (int x = 0; x < 3; x++) {
+        this->tyreOrder[x] = prev->tyreOrder[x];
+    }
+    setOrder(tyreOrder);
+}
+
+Tyres::~Tyres() {
     for (int x = 0; x < 3; x++) {
         if (!tyreSets[x].empty()) {
             for (std::_List_iterator<SetOfTyres *> it = tyreSets[x].begin(); it != tyreSets[x].end(); ++it) {
                 delete *it;
             }
         }
-        /*if (!softTyres.empty()) {
-            for (std::_List_iterator<SetOfTyres *> it = softTyres.begin(); it != softTyres.end(); ++it) {
-                delete *it;
-            }
-        }
-        if (!mediumTyres.empty()) {
-            for (std::_List_iterator<SetOfTyres *> it = mediumTyres.begin(); it != mediumTyres.end(); ++it) {
-                delete *it;
-            }
-        }
-        if (!hardTyres.empty()) {
-            for (std::_List_iterator<SetOfTyres *> it = hardTyres.begin(); it != hardTyres.end(); ++it) {
-                delete *it;
-            }
-        }*/
 
     }
-    std::cout << "Tyres recycled" << std::endl;
+    pr::Doc::detail("Tyres recycled\n");
 }
 
-SetOfTyres *rce::Tyres::getTyres(int compound) {
+SetOfTyres *Tyres::getTyres(int compound) {
     SetOfTyres *tyreSet = nullptr;
     if (!tyreSets[compound].empty()) {
         tyreSet = *tyreSets[compound].begin();
@@ -53,50 +59,29 @@ SetOfTyres *rce::Tyres::getTyres(int compound) {
     return tyreSet;
 }
 
-void rce::Tyres::printStats() {
-    std::cout << "---------------------------" << std::endl;
-    std::cout << "Tyres condition: " << std::endl;
+void Tyres::printStats() {
+    pr::Doc::detail("---------------------------\n");
+    pr::Doc::detail("Tyres condition: \n");
+
+    std::string temp = "";
 
     for (int x = 0; x < 3; x++) {
         if (!tyreSets[x].empty()) {
             int setNum = 1;
             for (std::_List_iterator<SetOfTyres *> it = tyreSets[x].begin(); it != tyreSets[x].end(); ++it) {
-                std::cout << "  " << (*it)->getTyreCompoundString() << ":" << std::endl;
-                std::cout << "     Tyre set #" << setNum++ << " thread: " << (*it)->getThread() << std::endl;
+                temp = "  "+ (*it)->getTyreCompoundString() + ":\n";
+                temp = temp + "     Tyre set #" + std::to_string(setNum++) + " thread: " + std::to_string((*it)->getThread()) + "\n";
             }
         }
-        std::cout << std::endl;
+        temp = temp + "\n";
+        pr::Doc::detail(temp);
     }
-
-    /* if (!softTyres.empty()) {
-         std::cout << "   Soft Tyres:" << std::endl;
-         int setNum = 1;
-         for (std::_List_iterator<SetOfTyres *> it = softTyres.begin(); it != softTyres.end(); ++it) {
-             std::cout << "     Tyre set #" << setNum++ << " thread: "<< (*it)->getThread() << std::endl;
-         }
-     }
-     if (!mediumTyres.empty()) {
-         std::cout << "   Medium Tyres:" << std::endl;
-         int setNum = 1;
-         for (std::_List_iterator<SetOfTyres *> it = mediumTyres.begin(); it != mediumTyres.end(); ++it) {
-             std::cout << "     Tyre set #" << setNum++ << " thread: " << (*it)->getThread() << std::endl;
-         }
-     }
-     if (!hardTyres.empty()) {
-         std::cout << "   Hard Tyres:" << std::endl;
-         int setNum = 1;
-         for (std::_List_iterator<SetOfTyres *> it = hardTyres.begin(); it != hardTyres.end(); ++it) {
-             std::cout << "     Tyre set #" << setNum++ << " thread: "<< (*it)->getThread() << std::endl;
-         }
-     }*/
-    std::cout << std::endl << "--------------------------" << std::endl;
-
+    pr::Doc::detail("--------------------------\n");
 }
 
 void Tyres::setOrder(int tyreOrder[3]) {
     for (int x = 0; x < 3; x++) {
         if (tyreOrder[x] > 0) {
-//            std::cout << "no.: " << tyreOrder[x] << std::endl;
             for (int comp = 0; comp < tyreOrder[x]; comp++) {
                 switch (x) {
                     case 0:
@@ -116,3 +101,10 @@ void Tyres::setOrder(int tyreOrder[3]) {
     tyreSets.push_back(mediumTyres);
     tyreSets.push_back(hardTyres);
 }
+
+
+int* Tyres::getTyreOrder() {
+    return this->tyreOrder;
+}
+
+

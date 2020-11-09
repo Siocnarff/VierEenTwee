@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace rce;
 void CarStateBroken::handleChange() {
-	std::cout << "The car is broken" << std::endl;
+	pr::Doc::detail("The car is broken");
 }
 
 std::string CarStateBroken::getCarState() {

@@ -71,7 +71,6 @@ add_executable(VierEenTwee
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
-        src/log/races/Aggregate.h
         src/log/containers/Box.cpp
         src/log/containers/Box.h
         src/log/containers/CateringEquipment.cpp
@@ -208,10 +207,10 @@ add_executable(VierEenTwee
         src/ppl/factories/HireDriver.h
         src/pr/Doc.cpp
         src/pr/Doc.h
-        src/rce/RaceDaysIterator.cpp
-        src/rce/RaceDaysIterator.h
         src/rce/RaceWeekend.cpp
         src/rce/RaceWeekend.h
         src/rce/RacingDep.cpp
         src/rce/RacingDep.h
-        src/main.cpp src/log/enums/randomisation.h)
+        src/main.cpp
+        src/log/enums/randomisation.h
+        )

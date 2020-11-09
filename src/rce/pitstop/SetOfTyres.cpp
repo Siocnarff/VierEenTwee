@@ -3,7 +3,10 @@
 //
 
 #include <iostream>
+#include <Doc.h>
 #include "SetOfTyres.h"
+
+using namespace rce;
 
 SetOfTyres::SetOfTyres(int compound) {
     this->tyreCompoundInt = compound;
@@ -17,7 +20,6 @@ SetOfTyres::SetOfTyres(int compound) {
         this->tyreCompoundString = "Hard Tyres";
     }
     this->thread = 100;
-//    std::cout << "     Ordered " << this->tyreCompoundString << std::endl;
 }
 
 SetOfTyres::~SetOfTyres() {}
@@ -30,11 +32,8 @@ void SetOfTyres::reduceThread(int damage) {
     if (thread > damage && damage > 0) {
         thread = thread - damage;
     }
-    else
-   {
-
-        std::string output = "Tyres worn out\n";
-        pr::Doc::detail(output);
+    else {
+        pr::Doc::detail("Tyres worn out\n");
     }
 }
 
@@ -42,14 +41,8 @@ std::string SetOfTyres::getTyreCompoundString() {
     return tyreCompoundString;
 }
 
-void SetOfTyres::printStats()
-{
-    std::string output = tyreCompoundString;
-    output.append(" - Thread: ");
-    output.append(std::to_string(getThread()));
-    output.append("\n");
-    pr::Doc::detail(output);
-//    std::cout << tyreCompoundString << " - Thread: " << getThread() << std::endl;
+std::string SetOfTyres::printStats() {
+    return tyreCompoundString + " - Thread: " + std::to_string(getThread());
 }
 
 
