@@ -58,6 +58,7 @@ int * Leaderboard::getFinalScore() {
     int largepos = 0;
     int largest = 0;
     int position =1;
+
     if(getdisplayLeaderboard()== true){
 
         pr::Doc::summary("  ~Final Leaderboard\n\n");

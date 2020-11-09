@@ -62,7 +62,6 @@ CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
             notify(tyre);
 			return strategy->execute();
 	}
-
 }
 
 ppl::Driver *RacingDep::trainDriver(ppl::Driver *driver, int time, lg::WeatherConditions weather,lg::TrackComplexity trackDifficulty)
@@ -165,7 +164,6 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=0;
         strategy=new SafeStrategy(2,tyre,lg::Safe);
         notify(tyre);
-
         return strategy->execute();
     }
     else if(risk==lg::Moderate)
@@ -175,7 +173,6 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=0;
         strategy=new ModerateStrategy(2,tyre,lg::Moderate);
         notify(tyre);
-
         return strategy->execute();
     }
     else
@@ -185,7 +182,6 @@ CreateStrategy* RacingDep::changeStrat(lg::RiskLevel risk)
         tyre[2]=1;
         strategy=new AggressiveStrategy(2,tyre,lg::Aggressive);
         notify(tyre);
-
         return strategy->execute();
     }
 }
@@ -229,17 +225,17 @@ void RacingDep::setPitcrew(ppl::Person** pitcrew)
 
 void RacingDep::SetCarAfterRace(eng::Car* c)
 {
-	car=c;//
+	car=c;
 }
 
 int * RacingDep::Race()
 {
     pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
     pr::Doc::summary("\n");
-//    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
-    RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
+
+    RaceWeekend * racingweekend= new RaceWeekend(cars, drivers, race, strategy, pitcrew, tyres, lead);
     int * Score = racingweekend->RacingWeekend();
-//    delete racingweekend;
+
     pr::Doc::summary("  ~Setting up for racing weekend. (Unpack container)~\n");
     CarContainer->print();
     std::vector<eng::Car*> carresult ;
@@ -258,13 +254,12 @@ int * RacingDep::Race()
     notifybackCar(carresult,race);
     delete racingweekend;
     return Score;
-
 }
 
 int * RacingDep::getFinalScore()
 {
-    int *k= lead[0]->getFinalScore();
     return lead[0]->getFinalScore();
+//    return lead[0]->getFinalScore();
 }
 
 

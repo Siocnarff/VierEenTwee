@@ -214,7 +214,6 @@ void Logistics::preSeasonPreparation() {
         pr::Doc::summary("\n");
 
         //3. Train drivers
-        pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
         driverBootCamp();
 
         //4.Inform engDept of riskLevel
@@ -727,6 +726,7 @@ eng::EngTeam *Logistics::callEngDept() {
 
 //IDEA: Change to command?
 void Logistics::driverBootCamp() {
+    pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
     //todolist : Check runtime accuracy of regime
 
     if (interactiveDemo) {
