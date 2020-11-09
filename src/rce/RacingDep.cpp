@@ -269,7 +269,7 @@ int * RacingDep::Race()
 
 int * RacingDep::getFinalScore()
 {
-    int *k= lead[0]->getFinalScore();
+   // int *k= lead[0]->getFinalScore();
     return lead[0]->getFinalScore();
 }
 
