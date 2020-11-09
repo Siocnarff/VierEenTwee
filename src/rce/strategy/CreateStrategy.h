@@ -11,13 +11,15 @@ namespace rce {
 
     private:
 
-        lg::RiskLevel risklevel;
+        lg::RiskLevel riskLevel;
 
         int *tyres = new int[3];// 3 compounds in pairs and a wet compound [soft,meduim,hard]//only 5 pairs per weekend
         int Pitstops;//added
         std::string StratName;
     public:
         virtual CreateStrategy *execute() = 0;
+
+        virtual ~CreateStrategy();
 
         CreateStrategy();
 

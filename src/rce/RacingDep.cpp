@@ -31,11 +31,10 @@ void RacingDep::hireEmployees(int b)
 CreateStrategy* RacingDep::PlanSeasonStrategy(int budget)
 {
 	//safe ,moderate ,aggressive
-    if(strategy)
-    {
-        delete strategy;
-        strategy=NULL;
-    }
+
+	delete strategy;
+	strategy = nullptr;
+
 	int* tyre=new int[3];
 	if(budget<25)
 	{
