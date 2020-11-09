@@ -15,11 +15,11 @@ namespace eng {
     class EngTeam final : public lg::Colleague {
 
     private:
-        Garage garage;
         BlueprintStore blueprintStore;
         WindTunnel windTunnel = WindTunnel::instance();
         ComponentSimulator simulator;
         Department *department[5] = {nullptr};
+        Garage garage;
 
         void cashUpDeps(int cash);
 

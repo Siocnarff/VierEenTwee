@@ -193,6 +193,7 @@ void Logistics::preSeasonPreparation() {
             }
             interactionInput = "";
         }
+    }
 
         if (gotStrat == 0) {
             pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
@@ -203,7 +204,7 @@ void Logistics::preSeasonPreparation() {
 
         // 1.1 Notified about tyres (in the meanwhile)
         // 1.2 Receive Order
-        pr::Doc::summary("  ~Tyre orders arrive a month later\n");
+        pr::Doc::midInfo("     Tyre orders arrive a month later\n");
         //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
         //2. Pack containers
@@ -257,7 +258,6 @@ void Logistics::preSeasonPreparation() {
             interactionInput = "";
             pr::Doc::transparency = 0;
         }
-    }
 }
 
 /**
@@ -345,6 +345,22 @@ void Logistics::simulateEvent(Race *r) {
     }
 
     //4. racing weekend finishes and get points for each pair
+
+    if (interactiveDemo) {
+        std::string interactionInput = "Do you want to observe the races? Y/N\n";
+        pr::Doc::summary(interactionInput); //in julle geval iets anders
+        interactionInput="";
+        std::cin >> interactionInput;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2; //of watookal julle wil.
+            interactionInput = "";
+        }
+        else
+        {
+            pr::Doc::transparency = 1;
+            interactionInput = "";
+        }
+    }
 
     int *temp = callRacingDept()->Race();
     for (int i = 0; i < numPairs; ++i) {
@@ -523,6 +539,21 @@ void Logistics::postSeasonDebrief() {
 
 
     //1. Get results
+    if (interactiveDemo) {
+        std::string interactionInput = "";
+        pr::Doc::outputOverride=false;
+        pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
+        std::cin >> interactionInput;
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2; //of watookal julle wil.
+            interactionInput = "";
+        }
+        else
+        {
+            pr::Doc::transparency = 0;
+            interactionInput = "";
+        }
+    }
     int *tumTumTum = callRacingDept()->getFinalScore(); //structure: {points_d1, final_pos_d1, points_d2, final_pos_d2
     int zero = tumTumTum[0];
     int one = tumTumTum[1];
@@ -590,23 +621,23 @@ void Logistics::postSeasonDebrief() {
             changeTransparency();
             interactionInput = interactionInput[1];
         }
-    }
 
-    switch (interactionInput[0]) {
-        case 'y':
-        case 'Y':
-            pr::Doc::transparency = 2;
-            break;
-        case 'S':
-        case 's':
-            pr::Doc::transparency = 1;
-            break;
-        case 'N':
-        case 'n':
-            pr::Doc::transparency = 0;
-            break;
+        switch (interactionInput[0]) {
+            case 'y':
+            case 'Y':
+                pr::Doc::transparency = 2;
+                break;
+            case 'S':
+            case 's':
+                pr::Doc::transparency = 1;
+                break;
+            case 'N':
+            case 'n':
+                pr::Doc::transparency = 0;
+                break;
+        }
+        interactionInput = "";
     }
-    interactionInput = "";
 
     for (int i = 0; i < numPairs; ++i) {
         carsInDevIDs.push_back(callEngDept()->buildCar(budget));

@@ -13,19 +13,7 @@ int * RaceWeekend::RacingWeekend()
     broken[1]=false;
     pr::Doc::outputOverride=false;
 
-    std::string interactionInput = "Do you want to observer the races? Y/N\n";
-    pr::Doc::summary(interactionInput); //in julle gecal iets anders
-    interactionInput="";
-    std::cin >> interactionInput;
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2; //of watookal julle wil.
-        interactionInput = "";
-    }
-    else
-    {
-        pr::Doc::transparency = 1;
-        interactionInput = "";
-    }
+
     for(int i = 0; i < 3; i++)
     {
         setDayWeather();
