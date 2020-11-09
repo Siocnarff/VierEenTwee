@@ -211,6 +211,7 @@ void Logistics::preSeasonPreparation() {
         pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
         pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
         packContainers();
+        pr::Doc::summary("\n");
 
         //3. Train drivers
         pr::Doc::summary("  ~Send drivers that were hired to go train under supervision~\n");
@@ -320,6 +321,7 @@ void Logistics::simulateEvent(Race *r) {
     currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     pr::Doc::summary("  ~Confirm strategy to be used for the race~\n");
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
+    pr::Doc::summary("\n");
 
     //1. Transport car (from factory to race location)
     //1.1 Fill up clipboard
@@ -330,6 +332,7 @@ void Logistics::simulateEvent(Race *r) {
         transportManager->transport(nullptr, r, temp);
         carClipboard.push_back(temp);
     }
+    pr::Doc::summary("\n");
 
     //2. Transport Drivers
     //IDEA : add fly functionality for drivers
@@ -343,6 +346,7 @@ void Logistics::simulateEvent(Race *r) {
     } else {
         callRacingDept()->preRaceArrival(carClipboard, drivers, r, getNextNonEuropean(), tyreSpecs);
     }
+    pr::Doc::summary("\n");
 
     //4. racing weekend finishes and get points for each pair
 
@@ -598,7 +602,7 @@ void Logistics::postSeasonDebrief() {
             pr::Doc::detail(d->getName() + " is tactfully offered a retirement package\n");
         }
         sumPositions += tumTumTum[2 * i + 1];
-        // IDEA : keep good drivers for next season
+        // IDEA : keep good drivers for next season // unfortunately never implemented it again
     }
 
     //6. Get some sponsors again.
@@ -638,6 +642,8 @@ void Logistics::postSeasonDebrief() {
         }
         interactionInput = "";
     }
+
+    pr::Doc::transparency = 0;
 
     for (int i = 0; i < numPairs; ++i) {
         carsInDevIDs.push_back(callEngDept()->buildCar(budget));
@@ -871,6 +877,7 @@ void Logistics::orderTyres(int *tyreOrder) {
             }
         }
     }
+    pr::Doc::summary("\n");
 
     //instantiate first set of tyres
     tyreSpecs.push_back(new rce::Tyres(tyreOrder));
