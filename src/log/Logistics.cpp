@@ -21,17 +21,12 @@
 
 using namespace lg;
 
-// DONE : @jo Implement and check accuracy of pop and push for cars
-// IDEA : approach budget people in the middle to ask for raise?
-// IDEA : use up the budget
-// DONE : @jo delete cars in season
-// DONE : change "This is race x to be fancier"
-// DONE : change "preseason" to be fancier
+// todolist : @both fix memleaks
 // todolist : @both fix memleaks
 
 // TODO : @marike couts
 // TODO : @marike standardise
-// TODO : remove/change doxygen commentaries (or we can leave them in so that others laugh)
+// TODO : remove/change doxygen commentaries (or we can leave them in so that others laugh) (and we left them)
 
 /**
  * @author Jo
