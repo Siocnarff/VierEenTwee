@@ -11,8 +11,10 @@ int * RaceWeekend::RacingWeekend()
     TC = raceConditions->getTrackComplexity();
     broken[0]=false;
     broken[1]=false;
-    std::string interactionInput = "";
-    pr::Doc::summary("Do you want to observer the races? Y/N"); //in julle gecal iets anders
+    pr::Doc::outputOverride=false;
+    std::string interactionInput = "Do you want to observer the races? Y/N\n";
+    pr::Doc::summary(interactionInput); //in julle gecal iets anders
+    interactionInput="";
     std::cin >> interactionInput;
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2; //of watookal julle wil.

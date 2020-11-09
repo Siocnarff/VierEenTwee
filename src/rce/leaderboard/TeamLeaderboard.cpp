@@ -90,19 +90,20 @@ int TeamLeaderboard::GetTeamScore(std::string TN)
 
 void TeamLeaderboard::display()
 {
+    pr::Doc::outputOverride=false;
 //    int resultarray[20];
-    std::string interactionInput = "";
-    pr::Doc::summary("Do you want to see the race's Team leaderboard? Y/N"); //in julle gecal iets anders
-    std::cin >> interactionInput;
-    if (interactionInput == "Y" || interactionInput == "y") {
-        pr::Doc::transparency = 2; //of watookal julle wil.
-        interactionInput = "";
-    }
-    else
-    {
-        pr::Doc::transparency = 0;
-        interactionInput = "";
-    }
+//    std::string interactionInput = "";
+//    pr::Doc::summary("Do you want to see the race's Team leaderboard? Y/N"); //in julle gecal iets anders
+//    std::cin >> interactionInput;
+//    if (interactionInput == "Y" || interactionInput == "y") {
+//        pr::Doc::transparency = 2; //of watookal julle wil.
+//        interactionInput = "";
+//    }
+//    else
+//    {
+//        pr::Doc::transparency = 0;
+//        interactionInput = "";
+//    }
     bool array[10];
     for(int i = 0; i < 10; i++)
     {
@@ -112,7 +113,7 @@ void TeamLeaderboard::display()
     int largest = 0;
     int position =1;
     if(getdisplayLeaderboard()== true){
-        pr::Doc::detail("Team Leaderboard\n\n");
+        pr::Doc::midInfo("Team Leaderboard\n\n");
         for(int i = 0; i < 10; i ++)
         {
             for(int n = 0; n < 10; n++){
@@ -191,7 +192,7 @@ void TeamLeaderboard::display()
             output.append( ":			");
             output.append(std::to_string(teamresult[0][largepos]));
             output.append( "\n");
-            pr::Doc::detail(output);
+            pr::Doc::midInfo(output);
             output = "";
             //pr::Doc::detail("#");
             //pr::Doc::detail(std::to_string(position));

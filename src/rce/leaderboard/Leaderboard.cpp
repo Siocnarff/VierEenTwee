@@ -50,7 +50,8 @@ int * Leaderboard::getFinalScore()
 {
 //    int resultarray[20];
     std::string interactionInput = "";
-    pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N"); //in julle gecal iets anders
+    pr::Doc::outputOverride=false;
+    pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
     std::cin >> interactionInput;
     if (interactionInput == "Y" || interactionInput == "y") {
         pr::Doc::transparency = 2; //of watookal julle wil.
@@ -73,7 +74,7 @@ int * Leaderboard::getFinalScore()
     int position =1;
     if(getdisplayLeaderboard()== true){
 
-        pr::Doc::detail("Final Leaderboard\n\n");
+        pr::Doc::midInfo("Final Leaderboard\n\n");
         for(int i = 0; i < 20; i ++)
         {
             for(int n = 0; n < 20; n++){
@@ -158,7 +159,7 @@ int * Leaderboard::getFinalScore()
             output.append( ":			");
             output.append(std::to_string(finalScore[largepos]));
             output.append( "\n");
-            pr::Doc::detail(output);
+            pr::Doc::midInfo(output);
             output = "";
 //            for(int m =0; m < 2; m++ )
 //            {
