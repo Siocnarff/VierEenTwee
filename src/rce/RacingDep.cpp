@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
 #include <strategy/SafeStrategy.h>
 #include <strategy/ModerateStrategy.h>
 #include <strategy/AggressiveStrategy.h>

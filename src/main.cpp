@@ -1,5 +1,11 @@
 //
-// Created by josuabotha on 2020/10/28.
+// TEAM MEMBERS :
+//Josua Botha - u19138182 - Engineering Team
+//Raymond Boonzaier - u19014725 - Racing Department
+//Berné Nortier - u17091820 - Logistics Department
+//Louis Van As - u19046007 - Racing Department
+//Marike Van Zyl - u19339152 - Logistics Department
+//Gianni Volpi - u18085335 - Engineering Team
 //
 
 #include <thread>

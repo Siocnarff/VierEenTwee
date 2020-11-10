@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Josua Botha
+// Gianni Volpi
+//
+
 #ifndef ENG_ENGTEAM_H
 #define ENG_ENGTEAM_H
 

@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
 #include "RaceWeekend.h"
 //#include "RiskLevel.h"
 #include <iostream>
