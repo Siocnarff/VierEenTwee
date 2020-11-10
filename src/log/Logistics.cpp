@@ -655,6 +655,7 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::midInfo(
             "\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
 
+    int keeper = pr::Doc::transparency;
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
         std::cin >> interactionInput;
@@ -680,7 +681,7 @@ void Logistics::postSeasonDebrief() {
         interactionInput = "";
     }
 
-    pr::Doc::transparency = 0;
+//    pr::Doc::transparency = 0;
 
     for (int i = 0; i < numPairs; ++i) {
         carsInDevIDs.push_back(callEngDept()->buildCar(budget));
@@ -703,7 +704,7 @@ void Logistics::postSeasonDebrief() {
         carsInSeasonIDs.push_back(i);
     }
     carsInDevIDs.clear();
-
+    pr::Doc::transparency = keeper;
     //TODO: @jo decide if in or not (waiting for Gianni)
     if (pr::Doc::transparency == 2) {
         for (int i: carsInSeasonIDs) {

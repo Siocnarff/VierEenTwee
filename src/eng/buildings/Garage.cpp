@@ -3,7 +3,7 @@
 using namespace eng;
 
 void Garage::storeCar(Car *c) {
-	pr::Doc::detail("     [_] Storing car in garage. [_]\n");
+	pr::Doc::detail("\n     [_] Storing car in garage. [_]\n");
     pr::Doc::detail("\t\tCar has id: " + std::to_string(c->getId()) + "\n");
     for (int i = 0; i < cars.size(); i++) {
         if (!cars[i] || cars[i] == c) {

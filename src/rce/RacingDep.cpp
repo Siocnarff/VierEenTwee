@@ -252,6 +252,8 @@ int * RacingDep::Race()
     pr::Doc::transparency = 2;
 
     CarContainer->print();
+    pr::Doc::transparency = keeper;
+
     pr::Doc::summary("\n");
     std::vector<eng::Car*> carResult ;
     bool* k=racingweekend->getBrokenCar();
@@ -267,12 +269,11 @@ int * RacingDep::Race()
         if(!k[h]) {
             carResult.push_back(cars[h]);
         }
-	}
+    }
     if(!carResult.empty()) {
         notifybackCar(carResult, race);
     }
 
-    pr::Doc::transparency = keeper;
     delete racingweekend;
     return Score;
 

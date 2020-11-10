@@ -22,11 +22,11 @@ int * RaceWeekend::RacingWeekend()
     for(int i = 0; i < 3; i++) {
         pr::Doc::detail("\n");
         lg::RiskLevel rl = getRiskLevel();
-        pr::Doc::detail("##########################\n");
-        pr::Doc::detail("#   Race # ");
-        pr::Doc::detail(std::to_string(i+1));
-        pr::Doc::detail(" is starting.\n");
-        pr::Doc::detail("##########################\n\n");
+        pr::Doc::summary("##########################\n");
+        pr::Doc::summary("#   Race # ");
+        pr::Doc::summary(std::to_string(i+1));
+        pr::Doc::summary(" is starting.\n");
+        pr::Doc::summary("##########################\n\n");
 
         setDayWeather();
         pr::Doc::midInfo("      Today's Weather: ");
@@ -763,7 +763,7 @@ int * RaceWeekend::RacingWeekend()
          output = "Race # ";
         output.append(std::to_string(i+1));
         output.append( " has ended.\n");
-        pr::Doc::midInfo("#\t" +output);
+        pr::Doc::midInfo("#\t" +output + "\n\n");
         output = "";
 
         int array[20];
