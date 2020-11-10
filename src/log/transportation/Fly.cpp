@@ -13,12 +13,12 @@ void Fly::transport(Race *fromLocation, Race *destination, eng::Car *car) {
             pr::Doc::detail(destination->getLocation() + "\n");
         } else if (destination == nullptr) {
             pr::Doc::detail("     Car " + to_string(car->getId() ) +" picked up from ");
-            pr::Doc::detail(fromLocation->getLocation());
-            pr::Doc::detail(" and flown to factory\n");
+            pr::Doc::detail(fromLocation->getLocation() + "\n");
+            pr::Doc::detail("\t\tand flown to factory\n");
         } else {
             pr::Doc::detail("     Car " + to_string(car->getId() ) + "picked up from ");
-            pr::Doc::detail(fromLocation->getLocation());
-            pr::Doc::detail(" and flown to ");
+            pr::Doc::detail(fromLocation->getLocation() + "\n");
+            pr::Doc::detail("\t\tand flown to ");
             pr::Doc::detail(fromLocation->getLocation() + "\n");
         }
     } else {

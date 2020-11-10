@@ -14,6 +14,7 @@ void ComponentSimulator::testComponent(Component* component) {
 	pr::Doc::detail("       Component was run through the extremely advanced simulator and seen to have a quality of ");
 	pr::Doc::detail(std::to_string(label));
 	pr::Doc::detail(" plus or minus 5 units.\n");
+	pr::Doc::detail("\n");
 }
 
 void ComponentSimulator::testComponents(Car* car) {

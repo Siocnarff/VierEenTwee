@@ -58,7 +58,7 @@ void DriversLeaderboard::display()
     int position =1;
     if(getdisplayLeaderboard()== true){
         //std::cout << "Driver Leaderboard"<< std::endl<<std::endl;
-        pr::Doc::midInfo(" Driver Leaderboard\n\n");
+        pr::Doc::midInfo("\n\tDriver Leaderboard\n");
         for(int i = 0; i < 20; i ++)
         {
             for(int n = 0; n < 20; n++){

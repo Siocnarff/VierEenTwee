@@ -851,6 +851,7 @@ int * RaceWeekend::RacingWeekend()
         }
     final=array;
     }
+    pr::Doc::summary("\n");
     ret = new int[2];
     ret[0] =  resultarray[9];
     ret[1] = resultarray[19];
@@ -858,21 +859,11 @@ int * RaceWeekend::RacingWeekend()
     lead[0]->setDriver(driver[0]->getName(), driver[1]->getName());
     lead[0]->setFinalScore(resultarray);
 
-//    notifybackCar(carresult,raceConditions);
     return ret;
 }
 
-RaceWeekend::~RaceWeekend()
-{
-    for(int i=0;i<2;i++)
-    {
-//        delete tyre[i];
-//        delete car[i];
-//        delete driver[i];
-//        delete pitstop[i];
-//        delete set[i];
-//        delete CState[i]; //
-    }
+RaceWeekend::~RaceWeekend() {
+
     delete []tyre;
     delete []set;
     delete []car;

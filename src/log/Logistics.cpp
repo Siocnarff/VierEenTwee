@@ -246,6 +246,7 @@ void Logistics::preSeasonPreparation() {
             }
 
             for (int i = 0; i < numPairs; ++i) {
+                pr::Doc::summary("     --Each car is built and tested\n\n");
                 carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
             }
             pr::Doc::transparency = 0;
@@ -299,6 +300,9 @@ void Logistics::packContainers() {
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         }
+       else {
+           pr::Doc::transparency = 0;
+       }
         pr::Doc::detail("\n\tTypical packed container:\n");
         getEuropeanContainer()->print();
         pr::Doc::transparency = 0;
@@ -875,7 +879,6 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
             transportManager->transport(r, nullptr, cars[i]);
             callEngDept()->carArrivesAtFactory(cars[i]);
             int performance = cars[i]->getSpeed() + cars[i]->getHandling();
-            // todolist : Check parameter at runtime ( & Improve strategy for using windTunnel)
             if (performance > 10) {
                 callEngDept()->improveCar(cars[i]->getId(), false);
             } else {

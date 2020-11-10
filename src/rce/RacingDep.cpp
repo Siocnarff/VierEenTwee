@@ -247,6 +247,10 @@ int * RacingDep::Race()
     int * Score = racingweekend->RacingWeekend();
 
     pr::Doc::summary("  ~Packing up after racing weekend. (Repack container)~\n");
+
+    int keeper = pr::Doc::transparency;
+    pr::Doc::transparency = 2;
+
     CarContainer->print();
     pr::Doc::summary("\n");
     std::vector<eng::Car*> carResult ;
@@ -264,10 +268,11 @@ int * RacingDep::Race()
             carResult.push_back(cars[h]);
         }
 	}
-    if(!carResult.empty())
-    {
+    if(!carResult.empty()) {
         notifybackCar(carResult, race);
     }
+
+    pr::Doc::transparency = keeper;
     delete racingweekend;
     return Score;
 
