@@ -248,11 +248,11 @@ int * RacingDep::Race()
 
     pr::Doc::summary("  ~Packing up after racing weekend. (Repack container)~\n");
 
-    int keeper = pr::Doc::transparency;
-    pr::Doc::transparency = 2;
+//    int keeper = pr::Doc::transparency;
+//    pr::Doc::transparency = 2;
 
     CarContainer->print();
-    pr::Doc::transparency = keeper;
+//    pr::Doc::transparency = keeper;
 
     pr::Doc::summary("\n");
     std::vector<eng::Car*> carResult ;

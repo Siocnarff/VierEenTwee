@@ -26,8 +26,8 @@ void plainSeasonRun();
 int main() {
 
 //       demoVersion1();  //First draft of interactive demo
-       demoVersion2();
-//    plainSeasonRun(); //Runs through program without asking questions
+//       demoVersion2();
+    plainSeasonRun(); //Runs through program without asking questions
 }
 
 void demoVersion1(){
@@ -106,7 +106,7 @@ void demoVersion2() {
 
 
 void plainSeasonRun() {
-    pr::Doc::transparency = 2;
+    pr::Doc::transparency = 0;
     auto* racingDept = new rce::RacingDep();
     auto* engDept = new eng::EngTeam;
     auto* logDept = new lg::Logistics;
