@@ -52,7 +52,7 @@ int * RaceWeekend::RacingWeekend()
 
         setDayWeather();
         for(int n = 0; n < 2; n++) {
-            pr::Doc::summary("\n");
+            pr::Doc::midInfo("\n");
             pr::Doc::midInfo("\t|| Car ID:" + std::to_string(n) + " performance ||\n");
             time[n] = 100;
             if(getState(n)!= "Broken" && set[n] != nullptr) {
