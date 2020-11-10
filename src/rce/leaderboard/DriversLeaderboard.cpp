@@ -58,7 +58,7 @@ void DriversLeaderboard::display()
     int position =1;
     if(getdisplayLeaderboard()== true){
         //std::cout << "Driver Leaderboard"<< std::endl<<std::endl;
-        pr::Doc::midInfo(" Driver Leaderboard\n\n");
+        pr::Doc::midInfo("\n\tDriver Leaderboard\n");
         for(int i = 0; i < 20; i ++)
         {
             for(int n = 0; n < 20; n++){
@@ -68,74 +68,6 @@ void DriversLeaderboard::display()
                     largepos = n;
                 }
             }
-//            switch(position)
-//            {
-//                case 1:
-//                {
-//                    resultarray[largepos] = 25;
-//                    break;
-//                }
-//                case 2:
-//                {
-//                    resultarray[largepos] = 18;
-//                    break;
-//                }
-//                case 3:
-//                {
-//                    resultarray[largepos] = 15;
-//                    break;
-//                }
-//                case 4:
-//                {
-//                    resultarray[largepos] = 12;
-//                    break;
-//                }
-//                case 5:
-//                {
-//                    resultarray[largepos] = 10;
-//                    break;
-//                }
-//                case 6:
-//                {
-//                    resultarray[largepos] = 8;
-//                    break;
-//                }
-//                case 7:
-//                {
-//                    resultarray[largepos] = 6;
-//                    break;
-//                }
-//                case 8:
-//                {
-//                    resultarray[largepos] = 4;
-//                    break;
-//                }
-//                case 9:
-//                {
-//                    resultarray[largepos] = 2;
-//                    break;
-//                }
-//                case 10:
-//                {
-//                    resultarray[largepos] = 1;
-//                    break;
-//                }
-//                default:
-//                {
-//                    resultarray[largepos] = 0;
-//                    break;
-//                }
-//            }
-
-//            Message #racing-strategy-simulation
-//		std::cout << "#" << position << "	" << ydriverName[largepos] << ":			"<< driverResult[largepos]<< std::endl;
-            //pr::Doc::detail("#");
-            //pr::Doc::detail(std::to_string(position));
-            //pr::Doc::detail(" ");
-            //pr::Doc::detail(driverName[largepos]);
-            //pr::Doc::detail( ":			");
-            //pr::Doc::detail(std::to_string(driverResult[largepos]));
-            //pr::Doc::detail( "\n");
             std::string output = "#";
             output.append(std::to_string(position));
             output.append(" ");
@@ -143,7 +75,7 @@ void DriversLeaderboard::display()
             output.append( ":			");
             output.append(std::to_string(driverResult[largepos]));
             output.append( "\n");
-            pr::Doc::midInfo(output);
+            pr::Doc::detail(output);
             output = "";
 
             array[largepos] = true;

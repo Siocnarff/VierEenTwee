@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
 #include <strategy/SafeStrategy.h>
 #include <strategy/ModerateStrategy.h>
 #include <strategy/AggressiveStrategy.h>
@@ -145,7 +151,7 @@ void RacingDep::preRaceArrival(std::vector<eng::Car*> c, std::vector<ppl::Driver
     {
         tyres[i] = t[i];
     }
-    std::string output = "Unpacking container\n---------------------------------------------\n";
+    std::string output = "\t\tUnpacking container\n\t\t---------------------------------------------\n";
     pr::Doc::detail(output);
     output = "";
     if(pr::Doc::transparency == 1 || pr::Doc::transparency == 2)
@@ -235,13 +241,19 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 int * RacingDep::Race()
 {
     pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
-    pr::Doc::summary("\n");
+    pr::Doc::summary("\n\n");
 //    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
     RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();
 
     pr::Doc::summary("  ~Packing up after racing weekend. (Repack container)~\n");
+
+//    int keeper = pr::Doc::transparency;
+//    pr::Doc::transparency = 2;
+
     CarContainer->print();
+//    pr::Doc::transparency = keeper;
+
     pr::Doc::summary("\n");
     std::vector<eng::Car*> carResult ;
     bool* k=racingweekend->getBrokenCar();
@@ -257,11 +269,11 @@ int * RacingDep::Race()
         if(!k[h]) {
             carResult.push_back(cars[h]);
         }
-	}
-    if(!carResult.empty())
-    {
+    }
+    if(!carResult.empty()) {
         notifybackCar(carResult, race);
     }
+
     delete racingweekend;
     return Score;
 
@@ -306,7 +318,7 @@ RacingDep::RacingDep()
 
 lg::Container *RacingDep::postRacePackUp()
 {
-    std::string output = "Packing container\n---------------------------------------------\n";
+    std::string output = "\t\tPacking container\n\t\t---------------------------------------------\n";
     pr::Doc::detail(output);
     output = "";
     if(pr::Doc::transparency >= 1)

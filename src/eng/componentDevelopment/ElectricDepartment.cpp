@@ -6,6 +6,9 @@ using namespace eng;
 void ElectricDepartment::build(Car* car) {
     if (haveSpecialists()) {
         buildComponentIntoCar(car, new ElectricHarness(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" wires car. (It only sometimes shocks the driver).\n");
     }
     Department::build(car);
 }
@@ -15,7 +18,7 @@ void ElectricDepartment::fix(Car *car) {
 	if (damage == 0) {
 		pr::Doc::detail("All the shocks came from the correct wires, sending car to next department.\n");
 	} else {
-		pr::Doc::detail(departmentName);
+		pr::Doc::detail("     " + departmentName);
 		pr::Doc::detail(" is rewiring the harness which took ");
 		pr::Doc::detail(std::to_string(damage));
 		pr::Doc::detail("% damage.\n");
@@ -27,12 +30,12 @@ void ElectricDepartment::update(Component* component) {
 	if (budget > 0) {
 		budget -= rand() % 2;
 	} else {
-		pr::Doc::detail(departmentName);
+		pr::Doc::detail("     " + departmentName);
 		pr::Doc::detail(" has no more funds to improve the component.\n");
 		return;
 	}
-	pr::Doc::detail(departmentName);
-	pr::Doc::detail(" is rewiring the electric harness.\n");
+	pr::Doc::midInfo("     " + departmentName);
+	pr::Doc::midInfo(" is rewiring the electric harness.\n");
 	Department::specialistsImproveComponent(component);
 }
 

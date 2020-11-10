@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
 #ifndef RCE_RACEWEEKEND_H
 #define RCE_RACEWEEKEND_H
 #include "../rce/carState/CarState.h"

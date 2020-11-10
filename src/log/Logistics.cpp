@@ -1,5 +1,7 @@
 //
-// Created by jo on 2020/10/09.
+// Coordinators
+// Marike Van Zyl
+// Berné Nortier
 //
 
 #include "transportation/Fly.h"
@@ -92,18 +94,24 @@ void Logistics::doYearPlanning() {
     //2. Hire emplpoyees: each department
     pr::Doc::summary("\n  ~Hire employees for each department~\n");
 
+    int keeper = pr::Doc::transparency;
     if (interactiveDemo && !pr::Doc::outputOverride) {
-        pr::Doc::summary("\nDo you want to see full resume's? Y/N\n");
+        pr::Doc::summary("\nDo you want to see full resume's?\n   0 - No\n   1 - MidInfo\n"
+                         "   2 - All detail\n");
         std::cin >> interactionInput;
-        if (interactionInput == "Y" || interactionInput == "y") {
+        if (interactionInput == "Y" || interactionInput == "y" || interactionInput == "2") {
             pr::Doc::transparency = 2;
-        } else {
+        } else if (interactionInput == "1"){
+            pr::Doc::transparency = 1;
+        }
+        else {
             pr::Doc::transparency = 0;
         }
     }
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
+    pr::Doc::transparency = keeper;
 
     //3. Set tickets of racingDept;
     pr::Doc::summary("\n  ~Assign training tickets to racing department as per regulations~\n");
@@ -121,16 +129,25 @@ void Logistics::doYearPlanning() {
     }
 
     //6. Set drivers' home tracks
+    keeper = pr::Doc::transparency;
+    if (interactiveDemo) {
+        pr::Doc::transparency = 2;
+    }
     for (ppl::Driver *d : drivers) {//for each driver
-        pr::Doc::midInfo("    Hired: " + d->getName() + "\n");
-        pr::Doc::detail("      -Home track: ");
+        pr::Doc::midInfo("     --Hired: " + d->getName() + "\n");
+//        pr::Doc::detail("     --Home track: ");
         int rand_hom_tracks = abs(rand() % 5) + 1; //# home tracks in [1,5]
         for (int i = 0; i < rand_hom_tracks; ++i) {
             d->addHomeTrack(abs(rand() % racingCalendar->getNumRaces())); //pick one of number of races
         }
+        pr::Doc::detail("\n");
     }
+    pr::Doc::transparency = keeper;
 
     //7. hire transportManager
+    keeper = pr::Doc::transparency;
+    if (interactiveDemo) {pr::Doc::transparency = 1;}
+
     pr::Doc::summary("\n  ~Hire a transport manager~\n");
     transportManager = new Road;
     transportManager->addAMethod(new Ship);
@@ -138,6 +155,7 @@ void Logistics::doYearPlanning() {
     transportManager->addAMethod(new Fly);
     pr::Doc::midInfo("     --Procured a flight plan for cars\n");
 
+    pr::Doc::transparency = keeper;
 
 }
 
@@ -146,81 +164,96 @@ void Logistics::doYearPlanning() {
  * @author Jo
  */
 void Logistics::preSeasonPreparation() {
-    //pr::Doc::summary("\n>>Pre Season Planning\n------------------------\n");
     pr::Doc::summary("\n\n   _   _   _   _   _   _   _   _   _   _     _   _   _   _   _   _   _   _\n");
     pr::Doc::summary("  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\\n");
     pr::Doc::summary(" ( P | r | e | - | S | e | a | s | o | n ) ( P | l | a | n | n | i | n | g )\n");
     pr::Doc::summary("  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/\n");
     pr::Doc::summary("\n");
-    // 1. Get strategy
 
     int gotStrat = 0;
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to help decide on a strategy? Y/N\n");
         std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
-        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::summary(
                     "\nWould you suggest a strategy with an Aggressive(A), Moderate(M) or Safe(S) level of risk?\n");
             std::cin >> interactionInput;
-            if (interactionInput[0] == '*') {
-                changeTransparency();
-                interactionInput = interactionInput[1];
-            }
-            currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
+//             currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
             gotStrat = 1;
             //tyre order in the meantime
             switch (interactionInput[0]) {
                 case 'a':
                 case 'A':
-                    currentTeamStrategy->SetRiskLevel(Aggressive);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(60);
                     break;
                 case 'm':
                 case 'M':
-                    currentTeamStrategy->SetRiskLevel(Moderate);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(30);
                     break;
                 case 's':
                 case 'S':
-                    currentTeamStrategy->SetRiskLevel(Safe);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(10);
                     break;
             }
             interactionInput = "";
         }
     }
 
-    if (gotStrat == 0) {
-        pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
-        currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-        pr::Doc::detail(
-                "    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
-    }
+        if (gotStrat == 0) {
+            pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
+            currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
+        }
+        std::string strat = currentTeamStrategy->getStratName();
+        pr::Doc::detail("    The strategists have advised on a " + currentTeamStrategy->getStratName() + " strategy.\n");
 
-    // 1.1 Notified about tyres (in the meanwhile)
-    // 1.2 Receive Order
-    pr::Doc::midInfo("     Tyre orders arrive a month later\n");
-    //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
+        // 1.1 Notified about tyres (in the meanwhile)
+        // 1.2 Receive Order
+        pr::Doc::midInfo("     Tyre orders arrive a month later\n");
+        pr::Doc::midInfo("\n");
 
-    //2. Pack containers
-    pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
-    pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
-    packContainers();
-    pr::Doc::summary("\n");
+        //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
-    //3. Train drivers
-    driverBootCamp();
+        //2. Pack containers
+        pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
+        pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
+        packContainers();
+        pr::Doc::summary("\n");
 
-    //4.Inform engDept of riskLevel
-    pr::Doc::summary("\n  ~Inform the engineering team how daring the sponsors are.~\n");
-    callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
+        //3. Train drivers
+        int keeper = pr::Doc::transparency;
+        driverBootCamp();
+        pr::Doc::transparency = keeper;
 
-    //5. Build the cars if not already developed cars from previous season
-    if (carsInSeasonIDs.empty()) {
-        pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
-        if (interactiveDemo && !pr::Doc::outputOverride) {
-            pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
+        //4.Inform engDept of riskLevel
+        pr::Doc::summary("\n  ~Inform the engineering team how daring the sponsors are.~\n");
+        callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
+        pr::Doc::midInfo("     -Acceptable risk level currently at: " + to_string(currentTeamStrategy->getRiskLevel()) + "\n");
+
+        //5. Build the cars if not already developed cars from previous season
+        if (carsInSeasonIDs.empty()) {
+            pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
+            if (interactiveDemo && !pr::Doc::outputOverride) {
+                pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
+                std::cin >> interactionInput;
+                if (interactionInput[0] == '*') {
+                    changeTransparency();
+                    interactionInput = interactionInput[1];
+                }
+                if (interactionInput == "Y" || interactionInput == "y") {
+                    pr::Doc::transparency = 2;
+                }
+                interactionInput = "";
+            }
+
+            for (int i = 0; i < numPairs; ++i) {
+                pr::Doc::summary("     --Each car is built and tested\n\n");
+                carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+            }
+            pr::Doc::transparency = 0;
+        } else {
+            drivers[0]->getName();
+            pr::Doc::summary(
+                    "\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
             std::cin >> interactionInput;
             if (interactionInput[0] == '*') {
                 changeTransparency();
@@ -229,32 +262,15 @@ void Logistics::preSeasonPreparation() {
             if (interactionInput == "Y" || interactionInput == "y") {
                 pr::Doc::transparency = 2;
             }
+            for (int id : carsInSeasonIDs) {
+                pr::Doc::summary(
+                        "  ~Build cars for the season using data and experience built up from previous season(s).~\n");
+                callEngDept()->improveCar(id, false);
+            }
             interactionInput = "";
+            pr::Doc::transparency = 0;
         }
-        for (int i = 0; i < numPairs; ++i) {
-            carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
-        }
-        pr::Doc::transparency = 0;
-    } else {
-        drivers[0]->getName();
-        pr::Doc::summary(
-                "\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
-        std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
-        }
-        if (interactionInput == "Y" || interactionInput == "y") {
-            pr::Doc::transparency = 2;
-        }
-        for (int id : carsInSeasonIDs) {
-            pr::Doc::summary(
-                    "  ~Build cars for the season using data and experience built up from previous season(s).~\n");
-            callEngDept()->improveCar(id, false);
-        }
-        interactionInput = "";
-        pr::Doc::transparency = 0;
-    }
+        pr::Doc::transparency = keeper;
 }
 
 /**
@@ -283,8 +299,12 @@ void Logistics::packContainers() {
         }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
-            getEuropeanContainer()->print();
         }
+       else {
+           pr::Doc::transparency = 0;
+       }
+        pr::Doc::detail("\n\tTypical packed container:\n");
+        getEuropeanContainer()->print();
         pr::Doc::transparency = 0;
         interactionInput = "";
     }
@@ -314,8 +334,8 @@ Container *Logistics::packSingleContainer() const {
 
 void Logistics::simulateEvent(Race *r) {
     //0. Determine if a new strategy is necessary
-    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     pr::Doc::summary("  ~Confirm strategy to be used for the race~\n");
+    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
     pr::Doc::summary("\n");
 
@@ -450,12 +470,17 @@ void Logistics::putRacesIntoCalender() {
     }
 
     int keeper = pr::Doc::transparency;
+
     if (interactiveDemo && !pr::Doc::outputOverride) {
-        pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
+        pr::Doc::summary("\nDo you want to see a list of all the races?\n   0 - No\n   1 - MidInfo\n"
+                         "   2 - All detail\n");
         std::cin >> interactionInput;
-        if (interactionInput == "Y" || interactionInput == "y") {
+        if (interactionInput == "Y" || interactionInput == "y" || interactionInput == "2") {
             pr::Doc::transparency = 2;
-        } else {
+        } else if (interactionInput == "1"){
+            pr::Doc::transparency = 1;
+        }
+        else {
             pr::Doc::transparency = 0;
         }
         interactionInput = "";
@@ -465,7 +490,7 @@ void Logistics::putRacesIntoCalender() {
 }
 
 void Logistics::raceSeason() {
-    if (interactiveDemo && !pr::Doc::outputOverride) {
+     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nPress any key for the season to start:\n");
 
         cin >> interactionInput;
@@ -479,11 +504,9 @@ void Logistics::raceSeason() {
     //And the season starts
     //pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
     pr::Doc::summary("\n   _   _   _     _   _   _     _   _   _   _   _   _     _   _   _   _   _     _\n");
-    pr::Doc::summary(
-            "  / \\ / \\ / \\   / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\   / \\\n");
+    pr::Doc::summary("  / \\ / \\ / \\   / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\   / \\\n");
     pr::Doc::summary(" ( L | e | t ) ( t | h | e ) ( R | a | c | i | n | g ) ( B | e | g | i | n ) ( ! )\n");
-    pr::Doc::summary(
-            "  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/\n");
+    pr::Doc::summary("  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/\n");
     pr::Doc::summary("\n");
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
@@ -557,10 +580,6 @@ void Logistics::postSeasonDebrief() {
         pr::Doc::outputOverride = false;
         pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
         std::cin >> interactionInput;
-        if (interactionInput[0] == '*') {
-            changeTransparency();
-            interactionInput = interactionInput[1];
-        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2; //of watookal julle wil.
             interactionInput = "";
@@ -636,6 +655,7 @@ void Logistics::postSeasonDebrief() {
     pr::Doc::midInfo(
             "\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
 
+    int keeper = pr::Doc::transparency;
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
         std::cin >> interactionInput;
@@ -661,7 +681,7 @@ void Logistics::postSeasonDebrief() {
         interactionInput = "";
     }
 
-    pr::Doc::transparency = 0;
+//    pr::Doc::transparency = 0;
 
     for (int i = 0; i < numPairs; ++i) {
         carsInDevIDs.push_back(callEngDept()->buildCar(budget));
@@ -684,7 +704,7 @@ void Logistics::postSeasonDebrief() {
         carsInSeasonIDs.push_back(i);
     }
     carsInDevIDs.clear();
-
+    pr::Doc::transparency = keeper;
     //TODO: @jo decide if in or not (waiting for Gianni)
     if (pr::Doc::transparency == 2) {
         for (int i: carsInSeasonIDs) {
@@ -860,7 +880,6 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
             transportManager->transport(r, nullptr, cars[i]);
             callEngDept()->carArrivesAtFactory(cars[i]);
             int performance = cars[i]->getSpeed() + cars[i]->getHandling();
-            // todolist : Check parameter at runtime ( & Improve strategy for using windTunnel)
             if (performance > 10) {
                 callEngDept()->improveCar(cars[i]->getId(), false);
             } else {
@@ -875,9 +894,9 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
  * @param tyreOrder
  */
 void Logistics::orderTyres(int *tyreOrder) {
-    pr::Doc::summary("\n  ~Tyres ordered according to strategy chosen.~\n");
-    pr::Doc::midInfo("     Ordering tyres as informed by Racing Department\n");
-    pr::Doc::detail("        Tedious paperwork to complete tyre order\n");
+    pr::Doc::summary("\n  ~Tyres ordered according to strategy chosen.\n");
+//    pr::Doc::midInfo("     --Ordering tyres for\n");
+    pr::Doc::midInfo("        Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
@@ -896,7 +915,7 @@ void Logistics::orderTyres(int *tyreOrder) {
             }
         }
     }
-    pr::Doc::summary("\n");
+    pr::Doc::midInfo("\n");
 
     //instantiate first set of tyres
     tyreSpecs.push_back(new rce::Tyres(tyreOrder));
@@ -918,8 +937,7 @@ void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
 }
 
 void Logistics::changeTransparency() {
-    std::cout
-            << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ";
+    std::cout << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2: All possible detail\n ";
     std::string input;
     std::cin >> input;
     pr::Doc::transparency = stoi(input);

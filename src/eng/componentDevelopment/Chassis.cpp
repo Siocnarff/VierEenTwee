@@ -3,7 +3,7 @@
 using namespace eng;
 
 void Chassis::print() {
-    pr::Doc::detail("\tChassis Quality: " + std::to_string(getQualityLabel()));
+    pr::Doc::detail("\t\tChassis Quality: " + std::to_string(getQualityLabel()) + "\n");
 }
 
 Chassis::Chassis(Component *toClone) : Component(toClone) {}

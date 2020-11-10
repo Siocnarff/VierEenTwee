@@ -88,23 +88,8 @@ int TeamLeaderboard::GetTeamScore(std::string TN)
 }
 
 
-void TeamLeaderboard::display()
-{
-    //pr::Doc::outputOverride=false;
-//    int resultarray[20];
-//    std::string interactionInput = "";
-//    pr::Doc::summary("Do you want to see the race's Team leaderboard? Y/N"); //in julle gecal iets anders
-//    std::cin >> interactionInput;
-//    if (interactionInput == "Y" || interactionInput == "y") {
-//        pr::Doc::transparency = 2; //of watookal julle wil.
-//        interactionInput = "";
-//    }
-//    else
-//    {
-//        pr::Doc::transparency = 0;
-//        interactionInput = "";
-//    }
-    bool array[10];
+void TeamLeaderboard::display() {
+     bool array[10];
     for(int i = 0; i < 10; i++)
     {
         array[i] = false;
@@ -113,7 +98,7 @@ void TeamLeaderboard::display()
     int largest = 0;
     int position =1;
     if(getdisplayLeaderboard()== true){
-        pr::Doc::midInfo("Team Leaderboard\n\n");
+        pr::Doc::midInfo("\n\tTeam Leaderboard\n");
         for(int i = 0; i < 10; i ++)
         {
             for(int n = 0; n < 10; n++){
@@ -123,68 +108,6 @@ void TeamLeaderboard::display()
                     largepos = n;
                 }
             }
-//            switch(position)
-//            {
-//                case 1:
-//                {
-//                    resultarray[largepos] = 25;
-//                    break;
-//                }
-//                case 2:
-//                {
-//                    resultarray[largepos] = 18;
-//                    break;
-//                }
-//                case 3:
-//                {
-//                    resultarray[largepos] = 15;
-//                    break;
-//                }
-//                case 4:
-//                {
-//                    resultarray[largepos] = 12;
-//                    break;
-//                }
-//                case 5:
-//                {
-//                    resultarray[largepos] = 10;
-//                    break;
-//                }
-//                case 6:
-//                {
-//                    resultarray[largepos] = 8;
-//                    break;
-//                }
-//                case 7:
-//                {
-//                    resultarray[largepos] = 6;
-//                    break;
-//                }
-//                case 8:
-//                {
-//                    resultarray[largepos] = 4;
-//                    break;
-//                }
-//                case 9:
-//                {
-//                    resultarray[largepos] = 2;
-//                    break;
-//                }
-//                case 10:
-//                {
-//                    resultarray[largepos] = 1;
-//                    break;
-//                }
-//                default:
-//                {
-//                    resultarray[largepos] = 0;
-//                    break;
-//                }
-//            }
-
-//            Message #racing-strategy-simulation
-            //std::cout << "largest: " << largest<< std::endl;
-//		std::cout << "#" << position << "	" << TeamName[0][largepos] << ":			"<< teamresult[0][largepos]<< std::endl;
             std::string output = "#";
             output.append(std::to_string(position));
             output.append(" ");
@@ -194,14 +117,7 @@ void TeamLeaderboard::display()
             output.append( "\n");
             pr::Doc::midInfo(output);
             output = "";
-            //pr::Doc::detail("#");
-            //pr::Doc::detail(std::to_string(position));
-            //pr::Doc::detail(" ");
-            //pr::Doc::detail(TeamName[0][largepos]);
-            //pr::Doc::detail( ":			");
-            //pr::Doc::detail(std::to_string(teamresult[0][largepos]));
-            //pr::Doc::detail( "\n");
-            array[largepos] = true;
+              array[largepos] = true;
             position++;
             largest = 0;
         }

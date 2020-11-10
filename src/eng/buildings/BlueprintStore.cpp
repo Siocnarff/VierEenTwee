@@ -10,7 +10,7 @@ Blueprint* BlueprintStore::getBlueprint() {
 }
 
 void BlueprintStore::setBlueprint(Blueprint* blueprint) {
-	pr::Doc::detail("{--Storing blueprint of component for later use--}\n\n");
+	pr::Doc::detail("     \t{--Storing blueprint of component for later use--}\n");
     delete this->blueprint;
 	this->blueprint = blueprint;
 }

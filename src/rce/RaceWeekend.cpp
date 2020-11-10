@@ -1,3 +1,9 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
 #include "RaceWeekend.h"
 //#include "RiskLevel.h"
 #include <iostream>
@@ -11,13 +17,19 @@ int * RaceWeekend::RacingWeekend()
     TC = raceConditions->getTrackComplexity();
     broken[0]=false;
     broken[1]=false;
-    //pr::Doc::outputOverride=false;
 
 
-    for(int i = 0; i < 3; i++)
-    {
+    for(int i = 0; i < 3; i++) {
+        pr::Doc::detail("\n");
+        lg::RiskLevel rl = getRiskLevel();
+        pr::Doc::midInfo("##########################\n");
+        pr::Doc::midInfo("#   Race # ");
+        pr::Doc::midInfo(std::to_string(i+1));
+        pr::Doc::midInfo(" is starting.\n");
+        pr::Doc::midInfo("##########################\n\n");
+
         setDayWeather();
-        pr::Doc::midInfo("\n      Today's Weather: ");
+        pr::Doc::midInfo("      Today's Weather: ");
         if (DayWeather == lg::Hot) {
             pr::Doc::midInfo("Hot\n");
             pr::Doc::detail("         Careful drivers! The tarmac is melting your tyres!\n");
@@ -30,34 +42,20 @@ int * RaceWeekend::RacingWeekend()
             pr::Doc::midInfo("Rainy\n");
             pr::Doc::detail("         Careful around the bends.\n");
         }
+        pr::Doc::summary("\n");
 
-
-        pr::Doc::detail("\n");
-        lg::RiskLevel rl = getRiskLevel();
-        pr::Doc::detail("##########################\n");
-        pr::Doc::detail("#   Race # ");
-        pr::Doc::detail(std::to_string(i+1));
-        pr::Doc::detail(" is starting.\n");
-        pr::Doc::detail("##########################\n\n");
-        // pr::Doc::transparency=2;
         output = "Race # ";
         output.append(std::to_string(i+1));
         output.append(" is starting.\n");
         pr::Doc::midInfo(output);
         output = "";
-//        std::cout <<std:: endl<<"Rakce #"<<i+1<< " is starting."<<std:: endl<<std:: endl;
+
         setDayWeather();
-        for(int n = 0; n < 2; n++)
-        {
+        for(int n = 0; n < 2; n++) {
+            pr::Doc::midInfo("\n");
+            pr::Doc::midInfo("\t|| Car ID:" + std::to_string(n) + " performance ||\n");
             time[n] = 100;
-//            if(set[n])
-//            {
-//                std::cout<<getState(n)<<" "<<set[n]->getTyreCompoundString()<<std::endl;
-//            }
-
-            if(getState(n)!= "Broken" && set[n] != nullptr)
-            {
-
+            if(getState(n)!= "Broken" && set[n] != nullptr) {
                 score[n] = 0;
                 speed = car[n]->getSpeed();
                 hometrack = driver[n]->isHomeTrack(trackID);
@@ -66,14 +64,12 @@ int * RaceWeekend::RacingWeekend()
                 {
                     int t=rand()%50+20;
                     time[n] -= t;
-                    //std::cout <<"Car "<< n << " is fast and made up 33 units of time. "<< std:: endl;
-                    output = "#   Car ";
+                    output = "Car ";
                     output.append(std::to_string(n));
                     output.append(" is fast and made up ");
                     output.append(std::to_string(t));
                     output.append(" units of time.\n");
-                    // pr::Doc::detail(std::to_string(n));
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                 }
                 else
@@ -87,13 +83,9 @@ int * RaceWeekend::RacingWeekend()
                         output.append(" is fast and made up ");
                         output.append(std::to_string(t));
                         output.append(" units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
-                        //std::cout <<"Car "<< n << " is fast and made up 22 units of time. "<< std:: endl;
-                        // pr::Doc::detail("Car ");
-                        // pr::Doc::detail(std::to_string(n));
-                        // pr::Doc::detail(" is fast and made up 22 units of time.\n");
-                    }
+                        }
                     else
                     {
                         if(speed >=30 && speed <60)
@@ -102,16 +94,12 @@ int * RaceWeekend::RacingWeekend()
                             int t=rand()%30+5;
                             time[n] -= t;
 
-                            //std::cout <<"Car "<< n << " is slow but made up 11 units of time. "<< std:: endl;
-                            //pr::Doc::detail("Car ");
-                            // pr::Doc::detail(std::to_string(n));
-                            //pr::Doc::detail( " is slow but made up 11 units of time.\n");
-                            output = "#   Car ";
+                             output = "#   Car ";
                             output.append(std::to_string(n));
                             output.append(" is fast and made up ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                         }
                         else
@@ -122,16 +110,12 @@ int * RaceWeekend::RacingWeekend()
                                 int t=rand()%20;
                                 time[n] -= t;
 
-                                //std::cout <<"Car "<< n << " is slow but made up 5 units of time. "<< std:: endl;
-                                // pr::Doc::detail("Car ");
-                                // pr::Doc::detail(std::to_string(n));
-                                // pr::Doc::detail(" is slow but made up 5 units of time.\n");
-                                output = "Car ";
+                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append(" is fast and made up ");
                                 output.append(std::to_string(t));
                                 output.append(" units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                             }
                         }
@@ -141,16 +125,12 @@ int * RaceWeekend::RacingWeekend()
                 {
                     int t=rand()%40+17;
                     time[n] -= t;
-                    //std::cout <<"Car "<< n << " handles great and made up 33 units of time. "<< std:: endl;
-                    //  pr::Doc::detail("Car ");
-                    // pr::Doc::detail(std::to_string(n));
-                    //  pr::Doc::detail(" handles great and made up 33 units of time.\n");
                     output = "Car ";
                     output.append(std::to_string(n));
                     output.append(" handles great and made up ");
                     output.append(std::to_string(t));
                     output.append(" units of time.\n");
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                 }
                 else
@@ -159,16 +139,12 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t=rand()%40+12;
                         time[n] -= t;
-                        //std::cout <<"Car "<< n << " handles good and made up 22 units of time. "<< std:: endl;
-                        //pr::Doc::detail("Car ");
-                        // pr::Doc::detail(std::to_string(n));
-                        // pr::Doc::detail(" handles good and made up 22 units of time.\n");
                         output = "Car ";
                         output.append(std::to_string(n));
                         output.append(" handles good and made up ");
                         output.append(std::to_string(t));
                         output.append("units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                     }
                     else
@@ -177,16 +153,12 @@ int * RaceWeekend::RacingWeekend()
                         {
                             int t=rand()%30+6;
                             time[n] -= t;
-                            //std::cout <<"Car "<< n << " handles bad but made up 11 units of time. "<< std:: endl;
-                            //pr::Doc::detail("Car ");
-                            // pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail(" handles bad but made up 11 units of time.\n");
                             output = "Car ";
                             output.append(std::to_string(n));
                             output.append(" handles bad and made up ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                         }
                         else
@@ -195,16 +167,12 @@ int * RaceWeekend::RacingWeekend()
                             {
                                 int t=rand()%20+5;
                                 time[n] -= t;
-                                //std::cout <<"Car "<< n << " handles bad but made up 5 units of time. "<< std:: endl;
-                                // pr::Doc::detail("Car ");
-                                //  pr::Doc::detail(std::to_string(n));
-                                // pr::Doc::detail(" handles bad but made up 5 units of time.\n");
                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append(" handles bad but made up ");
                                 output.append(std::to_string(t));
                                 output.append(" units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                             }
                         }
@@ -215,32 +183,23 @@ int * RaceWeekend::RacingWeekend()
                 {
                     int t = rand()%15+1;
                     time[n] -= t;
-                    //std::cout <<"This is "<< driver[n]->getName() << "'s home track thus could make up "<<t << " units of time through prior knowledge."<< std:: endl;
-                    //pr::Doc::detail("This is ");
-                    // pr::Doc::detail(driver[n]->getName());
-                    // pr::Doc::detail( "'s home track thus could make up ");
-                    // pr::Doc::detail(std::to_string(t));
-                    // pr::Doc::detail( " units of time through prior knowledge.\n");
                     output = "This is ";
                     output.append(driver[n]->getName());
                     output.append("'s home track thus could make up ");
                     output.append(std::to_string(t));
                     output.append(" units of time through prior knowledge.\n");
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                 }
                 if(xp >= 90)
                 {
                     int t=rand()%40+30;
                     time[n] -= t;
-                    //std::cout << driver[n]->getName() << " has a lot of experience and could make up 40 units of time."<< std:: endl;
-                    // pr::Doc::detail(driver[n]->getName());
-                    // pr::Doc::detail( " has a lot of experience and could make up 40 units of time.\n");
-                    output = driver[n]->getName();
+                     output = driver[n]->getName();
                     output.append(" has a lot of experience and could make up ");
                     output.append(std::to_string(t));
                     output.append(" units of time.\n");
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                 }
                 else
@@ -249,14 +208,11 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t=rand()%30+20;
                         time[n] -= t;
-                        //std::cout << driver[n]->getName() << " has a good amount of experience and could make up 30 units of time."<< std:: endl;
-                        // pr::Doc::detail(driver[n]->getName());
-                        // pr::Doc::detail( " has a good amount of experience and could make up 30 units of time.\n");
-                        output = driver[n]->getName();
+                       output = driver[n]->getName();
                         output.append(" has a good amount of experience and could make up ");
                         output.append(std::to_string(t));
                         output.append(" units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                     }
                     else
@@ -265,14 +221,11 @@ int * RaceWeekend::RacingWeekend()
                         {
                             int t=rand()%20+15;
                             time[n] -= t;
-                            //std::cout << driver[n]->getName() << " has some experience and could make up 20 units of time."<< std:: endl;
-                            // pr::Doc::detail(driver[n]->getName());
-                            //  pr::Doc::detail( " has some experience and could make up 20 units of time.\n");
                             output = driver[n]->getName();
                             output.append(" has some experience and could make up ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                         }
                         else
@@ -281,14 +234,11 @@ int * RaceWeekend::RacingWeekend()
                             {
                                 int t=rand()%15+10;
                                 time[n] -= t;
-                                //std::cout << driver[n]->getName() << " has little experience and could make up 10 units of time."<< std:: endl;
-                                // pr::Doc::detail(driver[n]->getName());
-                                // pr::Doc::detail( " has little experience and could make up 10 units of time.\n");
                                 output = driver[n]->getName();
                                 output.append(" has little experience and could make up ");
                                 output.append(std::to_string(t));
                                output.append(" units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                             }
                         }
@@ -298,16 +248,12 @@ int * RaceWeekend::RacingWeekend()
                 {
                     int t= rand()%30+20;
                     time[n] -= t;
-                    //std::cout << "The track was easy and " <<driver[n]->getName()<<" has gained 30 unites of time."<< std:: endl;
-                    // pr::Doc::detail( "The track was easy and " );
-                    // pr::Doc::detail(driver[n]->getName());
-                    // pr::Doc::detail( " has gained 30 unites of time.\n");
                     output = "The track was easy and ";
                     output.append(driver[n]->getName());
                     output.append(" has gained ");
                     output.append(std::to_string(t));
                     output.append(" unites of time.\n");
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                 }
                 else
@@ -316,16 +262,12 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t= rand()%15+10;
                         time[n] -= t;
-                        //std::cout << "The track was good and " <<driver[n]->getName()<<" has gained 15 unites of time."<< std:: endl;
-                        //pr::Doc::detail( "The track was good and " );
-                        // pr::Doc::detail(driver[n]->getName());
-                        // pr::Doc::detail( " has gained 15 unites of time.\n");
                         output = "The track was good and ";
                         output.append(driver[n]->getName());
                         output.append(" has gained ");
                         output.append(std::to_string(t));
                         output.append(" unites of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                     }
                     else
@@ -334,16 +276,12 @@ int * RaceWeekend::RacingWeekend()
                         {
                             int t= rand()%10;
                             time[n] += t;
-                            //std::cout << "The track was difficult and " <<driver[n]->getName()<<" has lost 5 unites of time."<< std:: endl;
-                            // pr::Doc::detail( "The track was difficult and " );
-                            // pr::Doc::detail(driver[n]->getName());
-                            // pr::Doc::detail( " has lost 5 unites of time.\n");
-                            output = "The track was difficult and ";
+                             output = "The track was difficult and ";
                             output.append(driver[n]->getName());
                             output.append(" has gained ");
                             output.append(std::to_string(t));
                             output.append(" unites of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                         }
                         else
@@ -352,16 +290,12 @@ int * RaceWeekend::RacingWeekend()
                             {
                                 int t=rand()%20+15;
                                 time[n] += t;
-                                //std::cout << "The track was extremely difficult and " <<driver[n]->getName()<<" has lost 15 unites of time."<< std:: endl;
-                                // pr::Doc::detail( "The track was extremely difficult and " );
-                                // pr::Doc::detail(driver[n]->getName());
-                                // pr::Doc::detail( " has lost 15 unites of time.\n");
-                                output = "The track was extremely difficult and ";
+                                 output = "The track was extremely difficult and ";
                                 output.append(driver[n]->getName());
                                 output.append( " has lost ");
                                 output.append(std::to_string(t));
                                 output.append(" unites of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                             }
                         }
@@ -386,7 +320,7 @@ int * RaceWeekend::RacingWeekend()
                         output.append(" units of damage due to being aggressive, but has gained ");
                         output.append(std::to_string(t));
                         output.append(" units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                         Damagetotyres = rand() %250 +5;
                     }
@@ -397,12 +331,6 @@ int * RaceWeekend::RacingWeekend()
                             int t=rand()%40+20 ;
                             time[n] -= t;
                             dam = rand() %40 + 5;
-                            //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to being aggressive, but has gained 40 units of time. "<< std:: endl;
-                            // pr::Doc::detail("Car ");
-                            // pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail(" has taken ");
-                            //  pr::Doc::detail(std::to_string(dam));
-                            // pr::Doc::detail(" units of damage due to being aggressive, but has gained 40 units of time.\n");
                             output = "Car ";
                             output.append(std::to_string(n));
                             output.append( " has taken ");
@@ -410,7 +338,7 @@ int * RaceWeekend::RacingWeekend()
                             output.append(" units of damage due to being aggressive, but has gained ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                             Damagetotyres = rand() %230 +5;
                         }
@@ -421,12 +349,6 @@ int * RaceWeekend::RacingWeekend()
                                 int t=rand()%40+20 ;
                                 time[n] -= t;
                                 dam = rand()%20+0;
-                                //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to being aggressive,but has gained 40 units of time. "<< std:: endl;
-                                // pr::Doc::detail("Car ");
-                                // pr::Doc::detail(std::to_string(n));
-                                // pr::Doc::detail(" has taken ");
-                                // pr::Doc::detail(std::to_string(dam));
-                                //  pr::Doc::detail(" units of damage due to being aggressive, but has gained 40 units of time.\n");
                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append( " has taken ");
@@ -434,7 +356,7 @@ int * RaceWeekend::RacingWeekend()
                                 output.append(" units of damage due to being aggressive, but has gained ");
                                 output.append(std::to_string(t));
                                 output.append(" units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                                 Damagetotyres =rand() %210 +5;
                             }
@@ -449,20 +371,14 @@ int * RaceWeekend::RacingWeekend()
                         int t=rand()%20+10 ;
                         time[n] -=t;
                         dam = rand() %40 +0;
-                        //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving at a moderate risk level, but has gained 20 units od time."<< std:: endl;
-                        // pr::Doc::detail("Car ");
-                        // pr::Doc::detail(std::to_string(n));
-                        // pr::Doc::detail(" has taken ");
-                        // pr::Doc::detail(std::to_string(dam));
-                        // pr::Doc::detail(" units of damage due to driving at a moderate risk level, but has gained 20 units od time.\n");
-                        output = "Car ";
+                         output = "Car ";
                         output.append(std::to_string(n));
                         output.append( " has taken ");
                         output.append( std::to_string(dam));
                         output.append(" units of damage due to driving at a moderate risk level, but has gained ");
                         output.append(std::to_string(t));
                         output.append(" units od time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                         Damagetotyres = rand() %200 +5;
                     }
@@ -473,20 +389,14 @@ int * RaceWeekend::RacingWeekend()
                             int t=rand()%20+10 ;
                             time[n] -=t;
                             dam = rand() %30 + 10;
-                            //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving at a moderate risk level,but has gained 20 units od time."<< std:: endl;
-                            // pr::Doc::detail("Car ");
-                            //  pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail(" has taken ");
-                            // pr::Doc::detail(std::to_string(dam));
-                            //  pr::Doc::detail(" units of damage due to driving at a moderate risk level, but has gained 20 units od time.\n");
-                            output = "Car ";
+                             output = "Car ";
                             output.append(std::to_string(n));
                             output.append( " has taken ");
                             output.append( std::to_string(dam));
                             output.append(" units of damage due to driving at a moderate risk level, but has gained ");
                             output.append(std::to_string(t));
                             output.append(" units od time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                             Damagetotyres = rand() %170;
                         }
@@ -498,12 +408,6 @@ int * RaceWeekend::RacingWeekend()
                                 time[n] -=t;
                                 Damagetotyres =rand() %130;
                                 dam = rand()%10+0;
-                                //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving at a moderate risk levelbut has gained 20 units od time."<< std:: endl;
-                                //pr::Doc::detail("Car ");
-                                // pr::Doc::detail(std::to_string(n));
-                                // pr::Doc::detail(" has taken ");
-                                // pr::Doc::detail(std::to_string(dam));
-                                //  pr::Doc::detail(" units of damage due to driving at a moderate risk level, but has gained 20 units od time.\n");
                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append( " has taken ");
@@ -511,7 +415,7 @@ int * RaceWeekend::RacingWeekend()
                                 output.append(" units of damage due to driving at a moderate risk level, but has gained ");
                                 output.append(std::to_string(t));
                                 output.append(" units od time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
 
                             }
@@ -526,12 +430,6 @@ int * RaceWeekend::RacingWeekend()
                         int t=rand()%10+5 ;
                         time[n] -= t;
                         dam = rand() %15+0;
-                        //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving Safely and gained 10 units of time."<< std:: endl;
-                        //pr::Doc::detail("Car ");
-                        // pr::Doc::detail(std::to_string(n));
-                        // pr::Doc::detail(" has taken ");
-                        // pr::Doc::detail(std::to_string(dam));
-                        // pr::Doc::detail(" units of damage due to driving Safely and gained 10 units of time.\n");
                         output = "Car ";
                         output.append(std::to_string(n));
                         output.append( " has taken ");
@@ -539,7 +437,7 @@ int * RaceWeekend::RacingWeekend()
                         output.append(" units of damage due to driving Safely and gained ");
                         output.append(std::to_string(t));
                         output.append(" units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                         Damagetotyres =rand() %150;
                     }
@@ -550,20 +448,14 @@ int * RaceWeekend::RacingWeekend()
                             int t= rand()%10+5;
                             time[n] -= t;
                             dam = rand() %10 + 0;
-                            //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving Safely and gained 10 units of time."<< std:: endl;
-                            // pr::Doc::detail("Car ");
-                            //  pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail(" has taken ");
-                            //  pr::Doc::detail(std::to_string(dam));
-                            //  pr::Doc::detail(" units of damage due to driving Safely and gained 10 units of time.\n");
-                            output = "Car ";
+                             output = "Car ";
                             output.append(std::to_string(n));
                             output.append( " has taken ");
                             output.append( std::to_string(dam));
                             output.append(" units of damage due to driving Safely and gained ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                             Damagetotyres =rand() %100;
                         }
@@ -574,20 +466,14 @@ int * RaceWeekend::RacingWeekend()
                                 int t= rand()%10+5;
                                 time[n] -= t;
                                 dam = rand()%5+0;
-                                //std::cout <<"Car "<< n << " has taken "<<dam<<" units of damage due to driving Safely and gained 10 units of time."<< std:: endl;
-                                // pr::Doc::detail("Car ");
-                                // pr::Doc::detail(std::to_string(n));
-                                // pr::Doc::detail(" has taken ");
-                                // pr::Doc::detail(std::to_string(dam));
-                                //  pr::Doc::detail(" units of damage due to driving Safely and gained 10 units of time.\n");
-                                output = "Car ";
+                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append( " has taken ");
                                 output.append( std::to_string(dam));
                                 output.append(" units of damage due to driving Safely and gained ");
                                 output.append(std::to_string(t));
                                 output.append("  units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                                 Damagetotyres = rand() %50;
                             }
@@ -705,17 +591,11 @@ int * RaceWeekend::RacingWeekend()
                 {
                     int t = rand()%10+1 ;
                     time[n] += t ;
-                    //std::cout << driver[n]->getName() << "has lost "<<t << " units of time due to normal weather."<< std:: endl;
-                    //pr::Doc::detail(driver[n]->getName());
-                    // pr::Doc::detail(std::to_string(n));
-                    // pr::Doc::detail("has lost ");
-                    // pr::Doc::detail(std::to_string(t));
-                    // pr::Doc::detail(" units of time due to normal weather.\n");
-                    output = driver[n]->getName();
+                   output = driver[n]->getName();
                     output.append("has lost ");
                     output.append( std::to_string(t));
                     output.append(" units of time due to normal weather.\n");
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                     Damagetotyres += rand() %70;
                 }
@@ -725,17 +605,11 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t = rand()%5+0 ;
                         time[n] += t ;
-                        //std::cout << driver[n]->getName() << " has lost "<<t << " units of time due to hot weather."<< std:: endl;
-                        //pr::Doc::detail(driver[n]->getName());
-                        // pr::Doc::detail(std::to_string(n));
-                        // pr::Doc::detail("has lost ");
-                        // pr::Doc::detail(std::to_string(t));
-                        // pr::Doc::detail(" units of time due to hot weather.\n");
-                        output = driver[n]->getName();
+                          output = driver[n]->getName();
                         output.append("has lost ");
                         output.append( std::to_string(t));
                         output.append(" units of time due to hot weather.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                         Damagetotyres +=rand() %50;
                     }
@@ -745,24 +619,17 @@ int * RaceWeekend::RacingWeekend()
                         {
                             int t = rand()%15+1 ;
                             time[n] += t;
-                            //std::cout << driver[n]->getName() << " has lost "<<t << " units of time due to rainy weather."<< std:: endl;
-                            // pr::Doc::detail(driver[n]->getName());
-                            // pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail("has lost ");
-                            // pr::Doc::detail(std::to_string(t));
-                            // pr::Doc::detail(" units of time due to rainy weather.\n");
-                            output = driver[n]->getName();
+                             output = driver[n]->getName();
                             output.append("has lost ");
                             output.append( std::to_string(t));
                             output.append(" units of time due to rainy weather.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                             Damagetotyres +=rand() %15;
                         }
                     }
                 }
-                if(set[n] != nullptr)
-                {
+                if(set[n] != nullptr) {
                     if(set[n]->getTyreCompoundString() == "Medium Tyres")
                     {
                         Damagetotyres -= rand() %20;
@@ -807,34 +674,21 @@ int * RaceWeekend::RacingWeekend()
                     }
                 }
 
-                //std::cout <<"Car "<< n << " has to take "<<count<<" pitstops through the race."<< std:: endl;
-                // pr::Doc::detail("Car ");
-                // pr::Doc::detail(std::to_string(n));
-                // pr::Doc::detail(" has to take ");
-                // pr::Doc::detail(std::to_string(count));
-                // pr::Doc::detail(" pitstops through the race.\n");
                 output = "Car ";
                 output.append(std::to_string(n));
                 output.append( " has to take ");
                 output.append(std::to_string(count));
                 output.append(" pitstops through the race.\n");
-                pr::Doc::detail(output);
+                pr::Doc::detail("#\t" +output);
                 output = "";
                 if(getState(n) == "Broken")
                 {
-//                    getCarnotify(n, raceConditions);
                     broken[n]=true;
-                    //std::cout <<"Car "<< n << " has taken too much damage during and is broken. The race has ended for Car "<< n <<"."<< std:: endl;
-                    // pr::Doc::detail("Car ");
-                    // pr::Doc::detail(std::to_string(n));
-                    // pr::Doc::detail(" has taken too much damage during and is broken. The race has ended for Car ");
-                    // pr::Doc::detail(std::to_string(n));
-                    // pr::Doc::detail(".\n");
-                    output = "Car ";
+                      output = "Car ";
                     output.append(std::to_string(n));
                     output.append( " has taken too much damage during and is broken. The race has ended for Car ");
                     output.append(std::to_string(n));
-                    pr::Doc::detail(output);
+                    pr::Doc::detail("#\t" +output);
                     output = "";
                     time[n] = 100;
                 }
@@ -844,18 +698,12 @@ int * RaceWeekend::RacingWeekend()
                     {
                         int t = rand()%5+0;
                         time[n] +=  t;
-                        //std::cout <<"Car "<< n << " has taken damage and lost "<<t<<" units of time."<< std:: endl;
-                        //  pr::Doc::detail("Car ");
-                        //   pr::Doc::detail(std::to_string(n));
-                        //   pr::Doc::detail(" has taken damage and lost ");
-                        //   pr::Doc::detail(std::to_string(t));
-                        //   pr::Doc::detail(" units of time.\n");
-                        output = "Car ";
+                       output = "Car ";
                         output.append(std::to_string(n));
                         output.append( " has taken damage and lost ");
                         output.append(std::to_string(t));
                         output.append(" units of time.\n");
-                        pr::Doc::detail(output);
+                        pr::Doc::detail("#\t" +output);
                         output = "";
                     }
                     else
@@ -864,18 +712,12 @@ int * RaceWeekend::RacingWeekend()
                         {
                             int t = rand()%8+0;
                             time[n] +=  t;
-                            //std::cout <<"Car "<< n << " has taken damage and lost "<<t<<" units of time."<< std:: endl;
-                            // pr::Doc::detail("Car ");
-                            // pr::Doc::detail(std::to_string(n));
-                            // pr::Doc::detail(" has taken damage and lost ");
-                            //  pr::Doc::detail(std::to_string(t));
-                            //  pr::Doc::detail(" units of time.\n");
-                            output = "Car ";
+                             output = "Car ";
                             output.append(std::to_string(n));
                             output.append( " has taken damage and lost ");
                             output.append(std::to_string(t));
                             output.append(" units of time.\n");
-                            pr::Doc::detail(output);
+                            pr::Doc::detail("#\t" +output);
                             output = "";
                         }
                         else
@@ -884,18 +726,12 @@ int * RaceWeekend::RacingWeekend()
                             {
                                 int t = rand()%15+0;
                                 time[n] +=  t;
-                                //std::cout <<"Car "<< n << " has taken a lot of damage and lost "<<t<<" units of time."<< std:: endl;
-                                // pr::Doc::detail("Car ");
-                                // pr::Doc::detail(std::to_string(n));
-                                //  pr::Doc::detail(" has taken damage and lost ");
-                                //  pr::Doc::detail(std::to_string(t));
-                                //  pr::Doc::detail(" units of time.\n");
-                                output = "Car ";
+                                 output = "Car ";
                                 output.append(std::to_string(n));
                                 output.append( " has taken damage and lost ");
                                 output.append(std::to_string(t));
                                 output.append(" units of time.\n");
-                                pr::Doc::detail(output);
+                                pr::Doc::detail("#\t" +output);
                                 output = "";
                             }
                         }
@@ -924,14 +760,10 @@ int * RaceWeekend::RacingWeekend()
             setScore(100 - time[n], n) ;
 
         }
-        //std::cout <<std:: endl<<"Race #"<<i+1<< " has ended."<<std:: endl<<std:: endl;
-        //pr::Doc::detail("Race # ");
-        // pr::Doc::detail(std::to_string(i+1));
-        // pr::Doc::detail(" has ended.\n");
-        output = "Race # ";
+         output = "Race # ";
         output.append(std::to_string(i+1));
         output.append( " has ended.\n");
-        pr::Doc::midInfo(output);
+        pr::Doc::midInfo("#\t" +output + "\n\n");
         output = "";
 
         int array[20];
@@ -1019,6 +851,7 @@ int * RaceWeekend::RacingWeekend()
         }
     final=array;
     }
+    pr::Doc::summary("\n");
     ret = new int[2];
     ret[0] =  resultarray[9];
     ret[1] = resultarray[19];
@@ -1026,21 +859,11 @@ int * RaceWeekend::RacingWeekend()
     lead[0]->setDriver(driver[0]->getName(), driver[1]->getName());
     lead[0]->setFinalScore(resultarray);
 
-//    notifybackCar(carresult,raceConditions);
     return ret;
 }
 
-RaceWeekend::~RaceWeekend()
-{
-    for(int i=0;i<2;i++)
-    {
-//        delete tyre[i];
-//        delete car[i];
-//        delete driver[i];
-//        delete pitstop[i];
-//        delete set[i];
-//        delete CState[i]; //
-    }
+RaceWeekend::~RaceWeekend() {
+
     delete []tyre;
     delete []set;
     delete []car;
@@ -1216,17 +1039,3 @@ bool* RaceWeekend::getBrokenCar()
     k=broken;
     return k;
 }
-//void RaceWeekend::getCarnotify(int i,lg::Race* r)
-//{
-//    notify(car[i],r);
-//}
-//
-//void RaceWeekend::notifybackCar(std::vector<eng::Car*> c, lg::Race *r)
-//{
-//    notify(c,r);
-//}
-
-//void RaceWeekend::hireEmployees(int)
-//{
-//
-//}

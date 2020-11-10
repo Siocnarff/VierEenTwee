@@ -22,7 +22,7 @@ void Pitstop::tyres(Tyres* t)
 
 SetOfTyres* Pitstop::stop()
 {
-    std::string output = "stopping to change tyres\n";
+    std::string output = "\t\t**Pitstop: change tyres**\n";
     pr::Doc::detail(output);
     return PitStopTeam->changeTyre();
 }

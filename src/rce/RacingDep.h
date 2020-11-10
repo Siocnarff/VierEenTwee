@@ -1,3 +1,10 @@
+//
+// Coordinators
+// Raymond Boonzaier
+// Louis van As
+//
+
+
 #ifndef RACINGDEP_H
 #define RACINGDEP_H
 

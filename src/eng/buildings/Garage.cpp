@@ -3,19 +3,19 @@
 using namespace eng;
 
 void Garage::storeCar(Car *c) {
-	pr::Doc::detail("[_] Storing car in garage. [_]\n");
-    pr::Doc::detail("Car has id: " + std::to_string(c->getId()));
+	pr::Doc::detail("\n     [_] Storing car in garage. [_]\n");
+    pr::Doc::detail("\t\tCar has id: " + std::to_string(c->getId()) + "\n");
     for (int i = 0; i < cars.size(); i++) {
         if (!cars[i] || cars[i] == c) {
             cars[i] = c;
-			pr::Doc::detail("\nAnd is stored at position " + std::to_string(i) + "\n");
-            pr::Doc::detail("------------------------------\n\n");
+			pr::Doc::detail("\t\tAnd is stored at position " + std::to_string(i) + "\n");
+            pr::Doc::detail("     ------------------------------\n\n");
             return;
         }
     }
     cars.push_back(c);
-    pr::Doc::detail("\nAnd is stored at position " + std::to_string(cars.size() - 1) + "\n");
-    pr::Doc::detail("------------------------------\n\n");
+    pr::Doc::detail("\t\tAnd is stored at position " + std::to_string(cars.size() - 1) + "\n");
+    pr::Doc::detail("     ------------------------------\n\n");
 }
 
 Car *Garage::retrieveCar(int id) {
