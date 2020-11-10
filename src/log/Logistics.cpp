@@ -191,54 +191,36 @@ void Logistics::preSeasonPreparation() {
         }
     }
 
-        if (gotStrat == 0) {
-            pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
-            currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
-            pr::Doc::detail(
-                    "    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
-        }
+    if (gotStrat == 0) {
+        pr::Doc::summary("  ~Consult professional strategists on best strategy for this racing season~\n");
+        currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
+        pr::Doc::detail(
+                "    The strategists have advised on a " + currentTeamStrategy->getStratName() + " stragegy.\n");
+    }
 
-        // 1.1 Notified about tyres (in the meanwhile)
-        // 1.2 Receive Order
-        pr::Doc::midInfo("     Tyre orders arrive a month later\n");
-        //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
+    // 1.1 Notified about tyres (in the meanwhile)
+    // 1.2 Receive Order
+    pr::Doc::midInfo("     Tyre orders arrive a month later\n");
+    //tyreSpecs->printStats(); //hierdie moet seker wel geimplimenteer word om op verskillende vlakke te print?
 
-        //2. Pack containers
-        pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
-        pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
-        packContainers();
-        pr::Doc::summary("\n");
+    //2. Pack containers
+    pr::Doc::summary("  ~Pack containers with necessities needed for each race, according to allowed budget~\n");
+    pr::Doc::detail("     Ordering the necessary tooleries and garage equipment thingamabobs\n");
+    packContainers();
+    pr::Doc::summary("\n");
 
-        //3. Train drivers
-        driverBootCamp();
+    //3. Train drivers
+    driverBootCamp();
 
-        //4.Inform engDept of riskLevel
-        pr::Doc::summary("\n  ~Inform the engineering team how daring the sponsors are.~\n");
-        callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
+    //4.Inform engDept of riskLevel
+    pr::Doc::summary("\n  ~Inform the engineering team how daring the sponsors are.~\n");
+    callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
 
-        //5. Build the cars if not already developed cars from previous season
-        if (carsInSeasonIDs.empty()) {
-            pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
-            if (interactiveDemo && !pr::Doc::outputOverride) {
-                pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
-                std::cin >> interactionInput;
-                if (interactionInput[0] == '*') {
-                    changeTransparency();
-                    interactionInput = interactionInput[1];
-                }
-                if (interactionInput == "Y" || interactionInput == "y") {
-                    pr::Doc::transparency = 2;
-                }
-                interactionInput = "";
-            }
-            for (int i = 0; i < numPairs; ++i) {
-                carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
-            }
-            pr::Doc::transparency = 0;
-        } else {
-            drivers[0]->getName();
-            pr::Doc::summary(
-                    "\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
+    //5. Build the cars if not already developed cars from previous season
+    if (carsInSeasonIDs.empty()) {
+        pr::Doc::summary("\n  ~It's the first season - cars are constructed from scratch.~\n");
+        if (interactiveDemo && !pr::Doc::outputOverride) {
+            pr::Doc::summary("\nDo you want to visit the factory to see how the cars are built? Y/N\n");
             std::cin >> interactionInput;
             if (interactionInput[0] == '*') {
                 changeTransparency();
@@ -247,14 +229,32 @@ void Logistics::preSeasonPreparation() {
             if (interactionInput == "Y" || interactionInput == "y") {
                 pr::Doc::transparency = 2;
             }
-            for (int id : carsInSeasonIDs) {
-                pr::Doc::summary(
-                        "  ~Build cars for the season using data and experience built up from previous season(s).~\n");
-                callEngDept()->improveCar(id, false);
-            }
             interactionInput = "";
-            pr::Doc::transparency = 0;
         }
+        for (int i = 0; i < numPairs; ++i) {
+            carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
+        }
+        pr::Doc::transparency = 0;
+    } else {
+        drivers[0]->getName();
+        pr::Doc::summary(
+                "\nWe won't be using the wind tunnel this week, but you're welcome to observe the improve-Car-process? Y/N\n");
+        std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
+        if (interactionInput == "Y" || interactionInput == "y") {
+            pr::Doc::transparency = 2;
+        }
+        for (int id : carsInSeasonIDs) {
+            pr::Doc::summary(
+                    "  ~Build cars for the season using data and experience built up from previous season(s).~\n");
+            callEngDept()->improveCar(id, false);
+        }
+        interactionInput = "";
+        pr::Doc::transparency = 0;
+    }
 }
 
 /**
@@ -360,9 +360,7 @@ void Logistics::simulateEvent(Race *r) {
 
             //pr::Doc::transparency = 2; //of watookal julle wil.
             interactionInput = "";
-        }
-        else
-        {
+        } else {
             pr::Doc::transparency = 1;
             interactionInput = "";
         }
@@ -371,6 +369,16 @@ void Logistics::simulateEvent(Race *r) {
     int *temp = callRacingDept()->Race();
     for (int i = 0; i < numPairs; ++i) {
         seasonPointTally[i] += temp[i];
+
+        pr::Doc::midInfo(drivers[i]->getName() + " has gained experience after the race at " + r->getLocation() + "\n");
+        if (drivers[i]->getXp() <= 50) {
+            drivers[i]->setXp(drivers[i]->getXp() + 3);
+        } else if (drivers[i]->getXp() <= 75) {
+            drivers[i]->setXp(drivers[i]->getXp() + 2);
+        } else if (drivers[i]->getXp() <= 95) {
+            drivers[i]->setXp(drivers[i]->getXp() + 1);
+        }
+
     }
 
     //5. finish the packup
@@ -422,7 +430,7 @@ void Logistics::putRacesIntoCalender() {
                 infileRace >> inEurope;
                 infileRace >> laps;
 
-                std::string* prettyOutput = new std::string[3];
+                std::string *prettyOutput = new std::string[3];
                 for (int j = 0; j < 3; ++j) {
                     std::string temp;
                     std::getline(infileASCII, temp);
@@ -445,7 +453,7 @@ void Logistics::putRacesIntoCalender() {
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to see a list of all the races? Y/N\n");
         std::cin >> interactionInput;
-         if (interactionInput == "Y" || interactionInput == "y") {
+        if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         } else {
             pr::Doc::transparency = 0;
@@ -471,9 +479,11 @@ void Logistics::raceSeason() {
     //And the season starts
     //pr::Doc::summary("\n>>Let the racing begin!\n-------------------------\n");
     pr::Doc::summary("\n   _   _   _     _   _   _     _   _   _   _   _   _     _   _   _   _   _     _\n");
-    pr::Doc::summary("  / \\ / \\ / \\   / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\   / \\\n");
+    pr::Doc::summary(
+            "  / \\ / \\ / \\   / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\   / \\\n");
     pr::Doc::summary(" ( L | e | t ) ( t | h | e ) ( R | a | c | i | n | g ) ( B | e | g | i | n ) ( ! )\n");
-    pr::Doc::summary("  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/\n");
+    pr::Doc::summary(
+            "  \\_/ \\_/ \\_/   \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/\n");
     pr::Doc::summary("\n");
     int developTracker = 0;
     for (RaceIterator t = racingCalendar->begin(); !(t == racingCalendar->end()); ++t) {
@@ -544,15 +554,17 @@ void Logistics::postSeasonDebrief() {
 
     if (interactiveDemo && !pr::Doc::outputOverride) {
         std::string interactionInput = "";
-        pr::Doc::outputOverride=false;
+        pr::Doc::outputOverride = false;
         pr::Doc::summary("Do you want to see all drivers final leaderboard? Y/N\n"); //in julle gecal iets anders
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            changeTransparency();
+            interactionInput = interactionInput[1];
+        }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2; //of watookal julle wil.
             interactionInput = "";
-        }
-        else
-        {
+        } else {
             pr::Doc::transparency = 0;
             interactionInput = "";
         }
@@ -566,6 +578,7 @@ void Logistics::postSeasonDebrief() {
     //std::cout << zero << one << two << three << std::endl;
 
     //2. Flashy results
+    resultsAnalysis(tumTumTum);
     // TODO: @marike Analysis of results based on leaderboard (maybe racing is doing that? I'll check with them during merging)
 
 
@@ -593,18 +606,18 @@ void Logistics::postSeasonDebrief() {
     delete transportManager;
 
     //5. Let driver take a holiday
-    pr::Doc::summary("  ~Driver go on holiday\n");
+    pr::Doc::summary("  ~Drivers go on holiday\n");
     pr::Doc::summary("\n");
     int sumPositions = 0;
     for (int i = 0; i < numPairs; ++i) {
         ppl::Driver *d = drivers.back();
         drivers.pop_back();
-        if (tumTumTum[2 * i + 1] >= 3) {
+        if (tumTumTum[2 * i + 1] <= 3) {
             pr::Doc::detail(d->getName() + " loses all his winning money while on a holiday in Vegas\n");
         } else {
             pr::Doc::detail(d->getName() + " is tactfully offered a retirement package\n");
         }
-        sumPositions += tumTumTum[2 * i + 1];
+        sumPositions += tumTumTum[2 * i];
         // IDEA : keep good drivers for next season // unfortunately never implemented it again
     }
 
@@ -620,7 +633,8 @@ void Logistics::postSeasonDebrief() {
 
     //8. keep building new cars
     pr::Doc::summary("  ~Cars in progress\n");
-    pr::Doc::midInfo("\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
+    pr::Doc::midInfo(
+            "\n         Throughout the season we've been working on cars.\n      We now start work on additional cars\n");
 
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to observe the process? Y/S/N\n");
@@ -800,31 +814,31 @@ void Logistics::sponsoredBudget(int sumPositions) { //default is 0
         }
     }
 
-        if (willingToSponser == 0) {
-            pr::Doc::midInfo("\n     --Approach sponsors to negotiate budget\n");
+    if (willingToSponser == 0) {
+        pr::Doc::midInfo("\n     --Approach sponsors to negotiate budget\n");
 
-            if (budget == -1) {  //default argument in constructor
-                budget = abs(rand() % 100 + 1);
+        if (budget == -1) {  //default argument in constructor
+            budget = abs(rand() % 100 + 1);
+        } else {
+            //todolist : check accuracy at runtime
+            if (sumPositions >= 3) {
+                pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
+                budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
+            } else if (sumPositions <= 6) {
+                pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
+                budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
+            } else if (sumPositions <= 10) {
+                pr::Doc::detail("     The sponsor is satisfied with the performance");
             } else {
-                //todolist : check accuracy at runtime
-                if (sumPositions >= 3) {
-                    pr::Doc::detail("     Rolex is the team's next sponsor! Budget increases wildly\n");
-                    budget = max((int) ((double) budget * 1.5), (100 - (int) ((double) budget * 0.5)));
-                } else if (sumPositions <= 6) {
-                    pr::Doc::detail("     Emirates is the team's next sponsor! Budget increases wildly\n");
-                    budget = max((int) ((double) budget * 0.2), (80 - (int) ((double) budget * 0.2)));
-                } else if (sumPositions <= 10) {
-                    pr::Doc::detail("     The sponsor is satisfied with the performance");
-                } else {
-                    pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
-                    budget -= (int) ((double) budget * 0.1);
-                }
-                if (budget > 100) budget = 100;
-                if (budget < 0) budget = 10;
+                pr::Doc::detail("     This team performed horribly. Sponsor is dissatisfied. \nBudget decreases");
+                budget -= (int) ((double) budget * 0.1);
             }
-            pr::Doc::midInfo(
-                    "     --After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
+            if (budget > 100) budget = 100;
+            if (budget < 0) budget = 10;
         }
+        pr::Doc::midInfo(
+                "     --After much negotiation, team has been allocated a budget of " + to_string(budget) + ".\n");
+    }
 }
 
 
@@ -904,10 +918,38 @@ void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
 }
 
 void Logistics::changeTransparency() {
-    std::cout << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ";
+    std::cout
+            << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ";
     std::string input;
     std::cin >> input;
     pr::Doc::transparency = stoi(input);
+
+}
+
+void Logistics::resultsAnalysis(int *tumTumTum) {
+    //pr::Doc::transparency = 1;
+    for (int i = 0; i < numPairs; ++i) {
+        switch (tumTumTum[2*i + 1]) {
+            case 1:pr::Doc::summary("\n" + drivers[i]->getName() + " came first!\n");
+                break;
+            case 2:
+                pr::Doc::summary("\n" + drivers[i]->getName() + " came second!\n");
+                break;
+            case 3:
+                pr::Doc::summary("\n" + drivers[i]->getName() + " won a podium place (third)!\n");
+                break;
+            case 4:
+            case 5:
+                pr::Doc::summary("\n" +drivers[i]->getName() + " was in the Top 5!\n");
+                break;
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:pr::Doc::summary("\n" +drivers[i]->getName() + " was in the Top 10!\n");
+                break;
+        }
+    }
 
 }
 

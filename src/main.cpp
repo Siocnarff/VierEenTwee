@@ -18,8 +18,8 @@ void plainSeasonRun();
 
 int main() {
 
-       demoVersion1();  //First draft of interactive demo
-    //plainSeasonRun(); //Runs through program without asking questions
+    //   demoVersion1();  //First draft of interactive demo
+    plainSeasonRun(); //Runs through program without asking questions
 }
 
 void demoVersion1(){

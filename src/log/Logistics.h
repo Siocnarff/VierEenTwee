@@ -60,6 +60,8 @@ namespace lg {
 
         void changeTransparency();
 
+        void resultsAnalysis (int *);
+
     private:
         rce::RacingDep *callRacingDept();
         eng::EngTeam *callEngDept();

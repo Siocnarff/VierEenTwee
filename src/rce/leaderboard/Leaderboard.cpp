@@ -59,9 +59,9 @@ int * Leaderboard::getFinalScore() {
     int largest = 0;
     int position =1;
 
-    if(getdisplayLeaderboard()== true && pr::Doc::transparency>=1){
+    if(getdisplayLeaderboard()== true){
 
-        pr::Doc::summary("  ~Final Leaderboard\n\n");
+        pr::Doc::midInfo("  ~Final Leaderboard\n\n");
         for(int i = 0; i < 20; i ++)
         {
             for(int n = 0; n < 20; n++){
@@ -78,7 +78,7 @@ int * Leaderboard::getFinalScore() {
             output.append( ":			");
             output.append(std::to_string(finalScore[largepos]));
             output.append( "\n");
-            pr::Doc::summary(output);
+            pr::Doc::midInfo(output);
             output = "";
                 if(largepos==9 || largepos==19)
                 {
