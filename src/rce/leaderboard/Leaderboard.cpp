@@ -59,7 +59,7 @@ int * Leaderboard::getFinalScore() {
     int largest = 0;
     int position =1;
 
-    if(getdisplayLeaderboard()== true){
+    if(getdisplayLeaderboard()== true && pr::Doc::transparency>=1){
 
         pr::Doc::summary("  ~Final Leaderboard\n\n");
         for(int i = 0; i < 20; i ++)

@@ -18,6 +18,8 @@ namespace lg {
                 return "Difficult";
             case Extreme:
                 return "Extreme";
+            default:
+                return "This will never execute";
         }
     }
 }

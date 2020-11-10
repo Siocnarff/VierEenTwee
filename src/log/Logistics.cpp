@@ -350,10 +350,15 @@ void Logistics::simulateEvent(Race *r) {
     if (interactiveDemo && !pr::Doc::outputOverride) {
         std::string interactionInput = "Do you want to observe the races? Y/N\n";
         pr::Doc::summary(interactionInput); //in julle geval iets anders
-        interactionInput="";
+        //interactionInput="";
         std::cin >> interactionInput;
+        if (interactionInput[0] == '*') {
+            interactionInput = interactionInput[1];
+        }
         if (interactionInput == "Y" || interactionInput == "y") {
-            pr::Doc::transparency = 2; //of watookal julle wil.
+            changeTransparency();
+
+            //pr::Doc::transparency = 2; //of watookal julle wil.
             interactionInput = "";
         }
         else
