@@ -178,21 +178,21 @@ void Logistics::preSeasonPreparation() {
             pr::Doc::summary(
                     "\nWould you suggest a strategy with an Aggressive(A), Moderate(M) or Safe(S) level of risk?\n");
             std::cin >> interactionInput;
-             currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
+//             currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
             gotStrat = 1;
             //tyre order in the meantime
             switch (interactionInput[0]) {
                 case 'a':
                 case 'A':
-                    currentTeamStrategy->SetRiskLevel(Aggressive);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(60);
                     break;
                 case 'm':
                 case 'M':
-                    currentTeamStrategy->SetRiskLevel(Moderate);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(30);
                     break;
                 case 's':
                 case 'S':
-                    currentTeamStrategy->SetRiskLevel(Safe);
+                    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(10);
                     break;
             }
             interactionInput = "";
