@@ -9,6 +9,9 @@ using namespace eng;
 void BodyDep::build(Car* car) {
 	if (haveSpecialists()) {
         buildComponentIntoCar(car, new Body(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" is building a new body for car.\n");
 	}
 	Department::build(car);
 }

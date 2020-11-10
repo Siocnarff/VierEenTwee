@@ -6,6 +6,9 @@ using namespace eng;
 void ChassisDep::build(Car* car) {
     if (haveSpecialists()) {
         buildComponentIntoCar(car, new Chassis(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" builds a new chassis for car.\n");
     }
     Department::build(car);
 }

@@ -6,6 +6,9 @@ using namespace eng;
 void ElectricDepartment::build(Car* car) {
     if (haveSpecialists()) {
         buildComponentIntoCar(car, new ElectricHarness(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" wires car. (It only sometimes shocks the driver).\n");
     }
     Department::build(car);
 }

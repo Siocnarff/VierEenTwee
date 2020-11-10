@@ -8,6 +8,9 @@ using namespace eng;
 void EngineDep::build(Car* car) {
     if (haveSpecialists()) {
         buildComponentIntoCar(car, new Engine(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" builds and installs engine.\n");
     }
     Department::build(car);
 }

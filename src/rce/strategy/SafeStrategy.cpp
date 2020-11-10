@@ -9,7 +9,7 @@ CreateStrategy* SafeStrategy::execute()
 
 SafeStrategy::SafeStrategy(int p,int* t,lg::RiskLevel risk)
 {
-    std::string print="The startegists have decided to implement a safe strategy\n";
+    std::string print="     --The strategists have decided to implement a safe strategy\n";
     pr::Doc::midInfo(print);
     SetPitstops(p);
     SetTyres(t);

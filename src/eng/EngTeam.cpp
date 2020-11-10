@@ -123,6 +123,7 @@ int EngTeam::buildCar(int budget) {
         pr::Doc::transparency = -1;
     }
     pr::Doc::transparency = transparency;
+    pr::Doc::midInfo("\n");
     return id;
 }
 

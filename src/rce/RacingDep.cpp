@@ -235,7 +235,7 @@ void RacingDep::SetCarAfterRace(eng::Car* c)
 int * RacingDep::Race()
 {
     pr::Doc::summary("  ~Racing team has arrived in " + race->getLocation());
-    pr::Doc::summary("\n");
+    pr::Doc::summary("\n\n");
 //    lead[0]->setDriver(drivers[0]->getName(), drivers[1]->getName());
     RaceWeekend * racingweekend= new RaceWeekend(cars,drivers,race,strategy,pitcrew,tyres, lead);
     int * Score = racingweekend->RacingWeekend();

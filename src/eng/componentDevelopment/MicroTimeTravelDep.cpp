@@ -8,6 +8,9 @@ using namespace eng;
 void MicroTimeTravelDep::build(Car* car) {
     if (haveSpecialists()) {
         buildComponentIntoCar(car, new MicroInitiationPlutoniumHammer(specialistsDesignComponent()));
+        pr::Doc::detail("     -");
+        pr::Doc::detail(departmentName);
+        pr::Doc::detail(" secretly installs plutonium hammer in car.\n");
     }
     Department::build(car);
 }
