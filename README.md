@@ -2,17 +2,17 @@
 
 ### Team Members
 
-- Josua Botha - u19138182
+- Josua Botha - u19138182 - Engineering & Testing
+ 
+- Raymond Boonzaier - u19014725 - Racing & Strategy
 
-- Raymond Boonzaier - u19014725
+- Berné Nortier - u17091820 - Logistics
 
-- Berné Nortier - u17091820
+- Louis Van As - u19046007 - Racing & Strategy
 
-- Louis Van As - u19046007
+- Marike Van Zyl - u19339152 - Logistics
 
-- Marike Van Zyl - u19339152
-
-- Gianni Volpi - u18085335
+- Gianni Volpi - u18085335 - Engineering & Testing
 
 ### Goal
 
