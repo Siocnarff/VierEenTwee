@@ -1,5 +1,7 @@
 //
-// Created by jo on 2020/10/09.
+// Coordinators
+// Marike Van Zyl
+// Berné Nortier
 //
 
 #include "transportation/Fly.h"

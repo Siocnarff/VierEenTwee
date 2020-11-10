@@ -1,3 +1,10 @@
+//
+// Coordinators
+// Josua Botha
+// Gianni Volpi
+//
+
+
 #include <HumanResources.h>
 #include <factories/KidnapStudent.h>
 #include <factories/HireAmateur.h>

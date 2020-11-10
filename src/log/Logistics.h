@@ -1,6 +1,10 @@
 //
-// Created by jo on 2020/10/09.
+// Coordinators
+// Marike Van Zyl
+// Berné Nortier
 //
+
+
 
 #ifndef PREMODELLING_LOGISTICSDEPT_H
 #define PREMODELLING_LOGISTICSDEPT_H
