@@ -269,6 +269,7 @@ void Logistics::preSeasonPreparation() {
             interactionInput = "";
             pr::Doc::transparency = 0;
         }
+        pr::Doc::transparency = keeper;
 }
 
 /**
@@ -298,11 +299,11 @@ void Logistics::packContainers() {
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
         }
+        pr::Doc::detail("\n\tTypical packed container:\n");
+        getEuropeanContainer()->print();
         pr::Doc::transparency = 0;
         interactionInput = "";
     }
-    pr::Doc::detail("\n\tTypical packed container:\n");
-    getEuropeanContainer()->print();
 }
 
 /**
@@ -329,8 +330,8 @@ Container *Logistics::packSingleContainer() const {
 
 void Logistics::simulateEvent(Race *r) {
     //0. Determine if a new strategy is necessary
-    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     pr::Doc::summary("  ~Confirm strategy to be used for the race~\n");
+    currentTeamStrategy = callRacingDept()->PlanSeasonStrategy(budget);
     callEngDept()->setRiskLevel(currentTeamStrategy->getRiskLevel());
     pr::Doc::summary("\n");
 
@@ -465,9 +466,10 @@ void Logistics::putRacesIntoCalender() {
     }
 
     int keeper = pr::Doc::transparency;
+
     if (interactiveDemo && !pr::Doc::outputOverride) {
-        pr::Doc::summary("\nDo you want to see a list of all the races?\n   #0 - No\n   #1 - MidInfo\n"
-                         "   #2 - All detail\n");
+        pr::Doc::summary("\nDo you want to see a list of all the races?\n   0 - No\n   1 - MidInfo\n"
+                         "   2 - All detail\n");
         std::cin >> interactionInput;
         if (interactionInput == "Y" || interactionInput == "y" || interactionInput == "2") {
             pr::Doc::transparency = 2;
@@ -484,7 +486,7 @@ void Logistics::putRacesIntoCalender() {
 }
 
 void Logistics::raceSeason() {
-    if (interactiveDemo && !pr::Doc::outputOverride) {
+     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nPress any key for the season to start:\n");
 
         cin >> interactionInput;
@@ -890,7 +892,7 @@ void Logistics::sendCarToFactory(std::vector<eng::Car *> cars, Race *r, bool isB
 void Logistics::orderTyres(int *tyreOrder) {
     pr::Doc::summary("\n  ~Tyres ordered according to strategy chosen.\n");
 //    pr::Doc::midInfo("     --Ordering tyres for\n");
-    pr::Doc::summary("        Tedious paperwork to complete tyre order\n");
+    pr::Doc::midInfo("        Tedious paperwork to complete tyre order\n");
 
 
     for (int i = 0; i < 3; ++i) {
@@ -931,7 +933,7 @@ void Logistics::moveDrivers(std::vector<ppl::Driver *> drivers) {
 }
 
 void Logistics::changeTransparency() {
-    std::cout << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2:All possible detail\n ";
+    std::cout << "Enter the desired level of detail in output: \n0: Only Summaries\n1: More detailed information\n2: All possible detail\n ";
     std::string input;
     std::cin >> input;
     pr::Doc::transparency = stoi(input);

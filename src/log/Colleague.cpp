@@ -30,9 +30,9 @@ void Colleague::notify(eng::Car *broken, Race *r) {
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);
     if (isEuropeanRace) {
-        pr::Doc::midInfo("\nTransportation in Europe\n");
+        pr::Doc::midInfo("     Transportation in Europe\n");
     } else {
-        pr::Doc::midInfo("\nTransportation outside of Europe\n");
+        pr::Doc::midInfo("     Transportation outside of Europe\n");
     }
 
 }

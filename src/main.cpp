@@ -26,8 +26,8 @@ void plainSeasonRun();
 int main() {
 
 //       demoVersion1();  //First draft of interactive demo
-//       demoVersion2();
-    plainSeasonRun(); //Runs through program without asking questions
+       demoVersion2();
+//    plainSeasonRun(); //Runs through program without asking questions
 }
 
 void demoVersion1(){
@@ -48,7 +48,7 @@ void demoVersion1(){
 //    std::this_thread::sleep_until(chrono::system_clock::now() + chrono::seconds(5));
 
     pr::Doc::summary("\nPlease do so now by choosing a desired level of transparency: \n");
-    pr::Doc::summary("0: Only Summaries\n1: More detailed information\n2:All possible detail\n ");
+    pr::Doc::summary("0: Only Summaries\n1: More detailed information\n2: All possible detail\n ");
     std::string input;
     std::cin >> input;
     pr::Doc::transparency = stoi(input);
@@ -84,7 +84,7 @@ void demoVersion2() {
     pr::Doc::summary("At certain intervals a more detailed view of proceedings will be offered,\n");
     pr::Doc::summary("at such times action will also be required.\n");
     pr::Doc::summary("\nPlease choose an initial level of detail: \n");
-    pr::Doc::summary("0: Only Summaries\n1: More detailed information\n2:All possible detail\n ");
+    pr::Doc::summary("0: Only Summaries\n1: More detailed information\n2: All possible detail\n ");
     std::string input;
     std::cin >> input;
     pr::Doc::transparency = stoi(input);

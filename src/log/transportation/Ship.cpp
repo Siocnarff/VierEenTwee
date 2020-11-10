@@ -12,9 +12,10 @@ void Ship::transport(Race *fromLocation, Race *destination, eng::Car *car) {
         //ship and change state etc
         notify(destination->isRaceEuropean());
         //requestContainerChangeState(destination->isRaceEuropean());
-        pr::Doc::midInfo("       Container in transport via SHIP ");
+        pr::Doc::midInfo("       Container was transported via SHIP ");
         pr::Doc::midInfo("from: " + fromLocation->getLocation() + "\n");
         pr::Doc::midInfo("           to " + destination->getLocation() + "\n");
+        pr::Doc::midInfo("\n");
 
     } else if (destination== nullptr) {
         pr::Doc::midInfo("       Container shipped to HQ");
