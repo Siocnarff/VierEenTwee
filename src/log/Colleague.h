@@ -30,6 +30,8 @@ namespace lg {
 
         virtual void hireEmployees(int) = 0;
 
+        void flyDriversBack(std::vector<ppl::Driver*>);
+
     protected:
         Mediator *logisticsDept;
     };

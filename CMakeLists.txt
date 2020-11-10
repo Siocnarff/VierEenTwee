@@ -71,7 +71,6 @@ add_executable(VierEenTwee
         src/log/enums/RiskLevel.h
         src/log/enums/TrackComplexity.h
         src/log/enums/WeatherConditions.h
-        src/log/races/Aggregate.h
         src/log/containers/Box.cpp
         src/log/containers/Box.h
         src/log/containers/CateringEquipment.cpp
@@ -103,8 +102,12 @@ add_executable(VierEenTwee
         src/log/Logistics.h
      #   src/log/main.cpp
         src/log/Mediator.h
-        src/log/Strategy.cpp
-        src/log/Strategy.h
+#        src/log/RacingDept.cpp
+#        src/log/RacingDept.h
+        src/ppl/factories/HirePitCrew.h
+        src/ppl/factories/HirePitCrew.cpp
+        src/ppl/factories/HireStrategist.h
+        src/ppl/factories/HireStrategist.cpp
         src/ppl/factories/HireAmateur.cpp
         src/ppl/factories/HireAmateur.h
         src/ppl/factories/HireProfessional.cpp
@@ -113,6 +116,10 @@ add_executable(VierEenTwee
         src/ppl/factories/KidnapStudent.h
         src/ppl/specialists/Amateur.cpp
         src/ppl/specialists/Amateur.h
+        src/ppl/specialists/Strategist.h
+        src/ppl/specialists/Strategist.cpp
+        src/ppl/specialists/PitCrew.h
+        src/ppl/specialists/PitCrew.cpp
         src/ppl/specialists/Driver.cpp
         src/ppl/specialists/Driver.h
         src/ppl/specialists/Professional.cpp
@@ -123,6 +130,31 @@ add_executable(VierEenTwee
         src/ppl/HumanResources.h
         src/ppl/Person.cpp
         src/ppl/Person.h
+        src/rce/carState/CarState.cpp
+        src/rce/carState/CarState.h
+        src/rce/carState/CarStateBroken.cpp
+        src/rce/carState/CarStateBroken.h
+        src/rce/carState/CarStateDamaged.cpp
+        src/rce/carState/CarStateDamaged.h
+        src/rce/carState/CarStateFullHP.cpp
+        src/rce/carState/CarStateFullHP.h
+        src/rce/leaderboard/DriverScore.cpp
+        src/rce/leaderboard/DriverScore.h
+        src/rce/leaderboard/DriversLeaderboard.cpp
+        src/rce/leaderboard/DriversLeaderboard.h
+        src/rce/leaderboard/Leaderboard.cpp
+        src/rce/leaderboard/Score.cpp
+        src/rce/leaderboard/Score.h
+        src/rce/leaderboard/TeamLeaderboard.cpp
+        src/rce/leaderboard/TeamLeaderboard.h
+        src/rce/pitstop/PitTeam.h
+        src/rce/pitstop/PitTeam.cpp
+        src/rce/pitstop/ChangeTyre.cpp
+        src/rce/pitstop/ChangeTyre.h
+        src/rce/pitstop/DriverPitStop.cpp
+        src/rce/pitstop/DriverPitStop.h
+        src/rce/pitstop/Pitstop.cpp
+        src/rce/pitstop/Pitstop.h
         src/pr/Doc.cpp
         src/pr/Doc.h
         src/rce/carState/CarState.cpp
@@ -147,8 +179,8 @@ add_executable(VierEenTwee
         src/rce/pitstop/ChangeTyre.h
         src/rce/pitstop/DriverPitStop.cpp
         src/rce/pitstop/DriverPitStop.h
-        src/rce/pitstop/PitCrew.cpp
-        src/rce/pitstop/PitCrew.h
+#        src/rce/pitstop/PitCrew.cpp
+#        src/rce/pitstop/PitCrew.h
         src/rce/pitstop/Pitstop.cpp
         src/rce/pitstop/Pitstop.h
         src/rce/pitstop/Tyres.cpp
@@ -173,10 +205,10 @@ add_executable(VierEenTwee
         src/ppl/factories/HireDriver.h
         src/pr/Doc.cpp
         src/pr/Doc.h
-        src/rce/RaceDaysIterator.cpp
-        src/rce/RaceDaysIterator.h
         src/rce/RaceWeekend.cpp
         src/rce/RaceWeekend.h
         src/rce/RacingDep.cpp
         src/rce/RacingDep.h
-        src/main.cpp src/log/enums/randomisation.h)
+        src/main.cpp
+        src/log/enums/randomisation.h
+        )

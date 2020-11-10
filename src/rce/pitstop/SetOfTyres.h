@@ -6,28 +6,31 @@
 #define VIEREENTWEE_SETOFTYRES_H
 
 
-class SetOfTyres {
-public:
-    SetOfTyres(int);
+namespace rce {
 
-    ~SetOfTyres();
+    class SetOfTyres {
+    public:
+        SetOfTyres(int);
 
-    int getThread();
+        ~SetOfTyres();
 
-    std::string getTyreCompoundString();
+        int getThread();
 
-    void reduceThread(int);
+        std::string getTyreCompoundString();
 
-    void printStats();
+        void reduceThread(int);
 
-private:
-    int thread;
+        std::string printStats();
 
-    int tyreCompoundInt;
+    private:
+        int thread;
 
-    std::string tyreCompoundString;
+        int tyreCompoundInt;
 
-};
+        std::string tyreCompoundString;
+
+    };
+}
 
 
 #endif //VIEREENTWEE_SETOFTYRES_H

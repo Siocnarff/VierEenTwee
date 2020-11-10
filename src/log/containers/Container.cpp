@@ -4,6 +4,8 @@
 
 #include "Container.h"
 #include <iostream>
+#include <Doc.h>
+
 using namespace lg;
 
 Container::Container() {
@@ -14,10 +16,10 @@ Container::~Container() {
 }
 
 void Container::addElement(Container * newContainer) {
-    std::cout << "Pack box into main container" << std::endl;
+    pr::Doc::detail("Pack box into main container");
 }
 
 void Container::print() {
-    std::cout << "The container is currently empty" << std::endl;
+    pr::Doc::detail("The container is currently empty");
 }
 

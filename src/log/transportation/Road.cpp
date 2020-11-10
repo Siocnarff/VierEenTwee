@@ -14,16 +14,11 @@ void Road::transport(Race *fromLocation, Race *destination, eng::Car *car) {
         //ship and change state etc
         notify(destination->isRaceEuropean());
         //requestContainerChangeState(destination->isRaceEuropean());
-        cout << "Container in transport via ROAD" << endl;
-        cout << "From: " << fromLocation->getLocation() << " to " << destination->getLocation() << endl;
+        pr::Doc::detail("     Container in transport via ROAD from: " + fromLocation->getLocation() + " to " + destination->getLocation() + "\n");
     } else if (destination == nullptr) {
-        pr::Doc::detail("Container shipped to HQ from ");
-        pr::Doc::detail(fromLocation->getLocation());
-        pr::Doc::detail("\n");
+        pr::Doc::detail("     Confirmed that container has been shipped to HQ from " + fromLocation->getLocation() + "\n");
     } else if (fromLocation == nullptr) {
-        pr::Doc::detail("Container shipped from HQ to ");
-        pr::Doc::detail(destination->getLocation());
-        pr::Doc::detail("\n");
+        pr::Doc::detail("     Confirmed that container has been shipped from HQ to " + destination->getLocation() + "\n");
     } else {
         TransportHandler::transport(fromLocation, destination, car);
     }

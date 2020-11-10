@@ -7,11 +7,17 @@ CreateStrategy* ModerateStrategy::execute()
 	return this;
 }
 
-ModerateStrategy::ModerateStrategy(int p,int* t,int risk) 
+ModerateStrategy::ModerateStrategy(int p,int* t,lg::RiskLevel risk)
 {
-	std::cout<<"The strategists have decided to implement a moderate strategy"<<std::endl;
+    std::string print="     --The strategists have decided to implement a moderate strategy\n";
+    pr::Doc::midInfo(print);
     SetPitstops(p);
     SetTyres(t);
     SetRiskLevel(lg::Moderate);
     SetStratName("Moderate");
 }
+
+//ModerateStrategy::~ModerateStrategy()
+//{
+//
+//}

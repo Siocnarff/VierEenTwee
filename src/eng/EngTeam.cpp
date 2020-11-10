@@ -1,3 +1,10 @@
+//
+// Coordinators
+// Josua Botha
+// Gianni Volpi
+//
+
+
 #include <HumanResources.h>
 #include <factories/KidnapStudent.h>
 #include <factories/HireAmateur.h>
@@ -27,7 +34,8 @@ EngTeam::~EngTeam() {
 }
 
 void EngTeam::hireEmployees(int budget) {
-    pr::Doc::summary("Engineering team is hiring new employees...\n");
+    pr::Doc::midInfo("      --Engineering team hires new employees\n");
+    pr::Doc::midInfo("\n");
     std::string secretJobs[6] = {
             "Neolithic Researcher",
             "Plutonium Handler",
@@ -122,6 +130,7 @@ int EngTeam::buildCar(int budget) {
         pr::Doc::transparency = -1;
     }
     pr::Doc::transparency = transparency;
+    pr::Doc::midInfo("\n");
     return id;
 }
 
@@ -159,7 +168,8 @@ void EngTeam::improveCar(int id, bool usingWindTunnel) {
     } else {
 		simulator.testComponents(car);
     }
-	for (int num = 0; num < 5; num++) {
+    pr::Doc::midInfo("  ~Improve components of car, storing blueprints for use in later season~\n");
+    for (int num = 0; num < 5; num++) {
 		Component* component = car->components[num];
 		if (component) {
 			int currentQuality = component->getQualityLabel();

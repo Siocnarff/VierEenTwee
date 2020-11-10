@@ -1,17 +1,17 @@
-#ifndef RACING_CARSTATEBROKEN_H
-#define RACING_CARSTATEBROKEN_H
-
-#include "../eng/Car.h"
+#ifndef CARSTATEBROKEN_H
+#define CARSTATEBROKEN_H
+#include <string>
 #include "CarState.h"
+#include "RaceWeekend.h"
+namespace rce{
+class CarStateBroken : public rce::CarState {
 
-namespace rce {
-class CarStateBroken : public CarState {
-
+	
 
 public:
-    void handleChange(int i, int d);
-
-    std::string getCarState();
+	void handleChange();
+    ~CarStateBroken();
+	std::string getCarState();
 };
 }
 #endif

@@ -7,7 +7,7 @@
 #include "Doc.h"
 
 namespace lg {
-    // TODO : find suitable spot for this function
+    // todolist : @jo find suitable spot for this function
     std::string convertComplexityToString(TrackComplexity t) {
         switch (t) {
             case Easy:
@@ -18,6 +18,8 @@ namespace lg {
                 return "Difficult";
             case Extreme:
                 return "Extreme";
+            default:
+                return "This will never execute";
         }
     }
 }
@@ -84,17 +86,16 @@ void RacesList::printList() {
         return;
     } else {
         while (temp != nullptr) {
-            pr::Doc::detail(temp->getLocation());
-            pr::Doc::detail("\nNumber of Laps: ");
-            pr::Doc::detail(std::to_string(temp->getNumLaps()));
-            pr::Doc::detail("\nTrack Complexity: ");
-            pr::Doc::detail(convertComplexityToString(temp->getTrackComplexity()));
+            pr::Doc::midInfo("     " + temp->getLocation() + "\n");
+            pr::Doc::detail("     Number of Laps: ");
+            pr::Doc::detail(std::to_string(temp->getNumLaps()) + "\n");
+            pr::Doc::detail("     Track Complexity: ");
+            pr::Doc::detail( convertComplexityToString(temp->getTrackComplexity()) + "\n");
             pr::Doc::detail("\n");
-            /*std::cout << temp->getLocation() << "\nNumLaps: " << temp->getNumLaps() << "\nWeather:"
-                      << temp->getRaceDayWeather() << std::endl;*/
-            temp = temp->nextRace();
+           temp = temp->nextRace();
         }
     }
+    pr::Doc::detail("\n");
 
 }
 

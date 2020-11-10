@@ -10,14 +10,22 @@
 
 namespace pr {
     class Doc {
+    private:
+        Doc();
+
     public:
         static int transparency;
+        static bool outputOverride;
 
         static void setTransparency(int outOf2);
 
         static void summary(const std::string& message);
 
         static void detail(const std::string& message);
+
+        static void midInfo(const std::string& message);
+
+        static Doc & instance();
     };
 }
 

@@ -21,10 +21,14 @@ namespace rce {
 
         std::list<SetOfTyres*> hardTyres;
 
+        int tyreOrder[3];
+
 
     public:
 
         Tyres(int[]);
+
+        Tyres(Tyres*);
 
         Tyres();
 
@@ -35,6 +39,8 @@ namespace rce {
         void setOrder(int[]);
 
         void printStats();
+
+        int* getTyreOrder();
     };
 }
 

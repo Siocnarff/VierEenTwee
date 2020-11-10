@@ -4,28 +4,33 @@
 
 #include <enums/TrackComplexity.h>
 #include <enums/WeatherConditions.h>
+
+#include <utility>
 #include "Race.h"
+#include "Doc.h"
 using namespace lg;
 
-Race::Race() {
+Race::Race() : location("outer space") {
+    numLaps = 0;
     static int trackID = 0;
-    location = "outer space";
     complexity = Difficult;
     isInEurope = false;
     next = nullptr;
-    prev = nullptr;
+    previous = nullptr;
     id = trackID++;
 }
 
-Race::Race(std::string loc, int comp, bool eur, int laps, Race *nextR, Race* prevR) {
+Race::Race(std::string loc, int comp, bool eur, int laps, std::string* prettyOutput, Race *nextR, Race* prevR) : location(std::move(loc)) {
     static int trackID = 0;
-    location = loc;
     complexity = computeTrackComplexity(comp);
     isInEurope = eur;
     numLaps = laps;
     next = nextR;
-    prev = prevR;
+    previous = prevR;
     id = trackID ++;
+    for (int i = 0; i < 3; ++i) {
+        output[i] = prettyOutput[i];
+    }
 }
 
 /**
@@ -48,12 +53,12 @@ TrackComplexity Race::computeTrackComplexity(int comp) {
     }
 }
 
-bool Race::isRaceEuropean() {
+bool Race::isRaceEuropean() const {
     return isInEurope;
 }
 
-std::string Race::getLocation() {
-    return location;
+std::string Race::getLocation() const {
+    return this->location;
 }
 
 TrackComplexity Race::getTrackComplexity() {
@@ -79,40 +84,38 @@ WeatherConditions Race::getRaceDayWeather() {
 
 void Race::setNextRace(Race *race) {
     this->next = race;
-    race->prev = this;
+    race->previous = this;
 }
 
-/*void Race::setPrevRace(Race *race) {
-    this->prev = race;
+void Race::setPrevRace(Race *race) {
+    this->previous = race;
     race->next = this;
-}*/
+}
 
 Race *Race::nextRace() {
     return next;
 }
 
 Race *Race::prevRace() {
-    return prev;
+    return previous;
 }
-int Race::getNumLaps() {
+int Race::getNumLaps() const {
     return numLaps;
 }
 
-int Race::getTrackID() {
+int Race::getTrackID() const {
     return id;
+}
+
+void Race::printLoc() {
+    for (int i = 0; i < 3; ++i) {
+        pr::Doc::summary(output[i] + "\n");
+    }
+
 }
 
 Race::~Race() = default;
 
-/*std::ostream &lg::operator<<(std::ostream &os, const Race &rc) {
-    os << rc.location << '/nEurope: ' << rc.isInEurope << '/nNumLaps: ' << rc.numLaps << std::endl;
-    return os;
-}*/
-
-/*std::ostream& operator<<(std::ostream& stream, lg::Race rc) {
-    stream << rc.getLocation() << "/nEurope: " << rc.isRaceEuropean() << "/nNumLaps: " << rc.getNumLaps() << std::endl;
-    return stream;
-}*/
 
 
 

@@ -8,12 +8,9 @@ namespace eng {
 	class Garage {
 
 	private:
-	    int lookup[20];
-		Car* car[20];
+	    std::vector<Car*> cars;
 
 	public:
-	    Garage();
-
 	    ~Garage();
 
 		void storeCar(Car* car);

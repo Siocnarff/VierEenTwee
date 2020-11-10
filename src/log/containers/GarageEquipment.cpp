@@ -9,7 +9,7 @@ using namespace lg;
 
 /**
  * @author Marike
- * //TODO: create int parameter constructor
+ * //todolist: create int parameter constructor
  */
 GarageEquipment::GarageEquipment() {
     contents.emplace_back("Spare Tyres");
@@ -46,9 +46,9 @@ GarageEquipment::GarageEquipment(int budget) {
 GarageEquipment::~GarageEquipment() = default;
 
 void GarageEquipment::print() {
-    pr::Doc::detail("Garage equipment:\n");
+    pr::Doc::detail("\tGarage equipment:\n");
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
-        pr::Doc::detail("   ");
+        pr::Doc::detail("   \t");
         pr::Doc::detail(*it);
         pr::Doc::detail("\n");
     }

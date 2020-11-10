@@ -3,7 +3,7 @@
 using namespace eng;
 
 void ElectricHarness::print() {
-    pr::Doc::detail("        Electric Harness Quality: " + std::to_string(getQualityLabel()));
+    pr::Doc::detail("\t\tElectric Harness Quality: " + std::to_string(getQualityLabel())+ "\n");
 }
 
 ElectricHarness::ElectricHarness(Component *toClone) : Component(toClone) {}

@@ -2,13 +2,12 @@
 #define SIMULATORNORMALCONDITION_H
 
 #include "Simulator.h"
-using namespace rce;
+namespace rce {
+    class SimulatorNormalCondition : public Simulator {
+    public:
+        SimulatorNormalCondition();
 
-class SimulatorNormalCondition :public Simulator 
-{
-public:
-	SimulatorNormalCondition();
-	void SimulateWeather();
-};
-
+        void SimulateWeather();
+    };
+}
 #endif

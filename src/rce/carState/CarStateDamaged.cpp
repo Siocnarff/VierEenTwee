@@ -1,12 +1,16 @@
 #include "CarStateDamaged.h"
-
+#include "CarStateBroken.h"
 using namespace rce;
+void CarStateDamaged::handleChange() {
 
-void CarStateDamaged::handleChange(int i, int d) {
-    // - implement CarStateDamaged::handleChange
-    throw "Not yet implemented";
+	setCarState(new CarStateBroken());
 }
 
 std::string CarStateDamaged::getCarState() {
-    return "Damaged";
+	return "Damaged";
+}
+
+CarStateDamaged::~CarStateDamaged()
+{
+
 }

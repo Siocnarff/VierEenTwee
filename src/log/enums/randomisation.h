@@ -20,11 +20,15 @@ namespace lg {
                 return Normal;
             case 2:
                 return Rainy;
+            default:
+                return Normal;
         }
     }
 
-    TrackComplexity randomTL() {
-        switch (rand() % 4) {
+    TrackComplexity randomTL()
+    {
+        switch (rand() % 4)
+        {
             case 0:
                 return Easy;
             case 1:
@@ -33,17 +37,23 @@ namespace lg {
                 return Difficult;
             case 3:
                 return Extreme;
+            default:
+                return Average;
         }
     }
 
-    RiskLevel randomRL() {
-        switch (rand()%3) {
+    RiskLevel randomRL()
+    {
+        switch (rand()%3)
+        {
             case 0:
                 return Safe;
             case 1:
                 return Moderate;
             case 2:
                 return Aggressive;
+            default:
+                return Moderate;
         }
     }
 }

@@ -15,13 +15,12 @@ CreateStrategy::CreateStrategy()
 
 lg::RiskLevel CreateStrategy::getRiskLevel()
 {
-	return risklevel;
+	return riskLevel;
 }
 
 void CreateStrategy::SetRiskLevel(lg::RiskLevel rl)
 {
-    risklevel = rl;
-	//risklevel=rl;
+    riskLevel=rl;
 }
 
 void CreateStrategy::SetPitstops(int p)
@@ -48,7 +47,14 @@ void CreateStrategy::SetPitstops(int p)
      return Pitstops;
  }
 
- std::string CreateStrategy::getStratName()
+std::string CreateStrategy::getStratName()
  {
      return StratName;
  }
+
+//CreateStrategy::~CreateStrategy()
+//{
+////    delete [] tyres;
+//}
+
+CreateStrategy::~CreateStrategy() = default;

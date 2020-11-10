@@ -30,13 +30,17 @@ void Colleague::notify(eng::Car *broken, Race *r) {
 void Colleague::notify(bool isEuropeanRace) {
     //logisticsDept->requestContainerStateChange(isEuropeanRace);
     if (isEuropeanRace) {
-        pr::Doc::summary("Transportation in Europe\n");
+        pr::Doc::midInfo("     Transportation in Europe\n");
     } else {
-        pr::Doc::summary("Transportation outside of Europe\n");
+        pr::Doc::midInfo("     Transportation outside of Europe\n");
     }
 
 }
 
 void Colleague::notify(int* tyreOrder) {
     logisticsDept->orderTyres(tyreOrder);
+}
+
+void Colleague::flyDriversBack(std::vector<ppl::Driver*> drivers) {
+    logisticsDept->moveDrivers(drivers);
 }

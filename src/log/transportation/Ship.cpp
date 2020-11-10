@@ -12,16 +12,16 @@ void Ship::transport(Race *fromLocation, Race *destination, eng::Car *car) {
         //ship and change state etc
         notify(destination->isRaceEuropean());
         //requestContainerChangeState(destination->isRaceEuropean());
-        cout << "Container in transport via SHIP" << endl;
-        cout << "From: " << fromLocation->getLocation() << " to " << destination->getLocation() << endl;
+        pr::Doc::midInfo("       Container was transported via SHIP ");
+        pr::Doc::midInfo("from: " + fromLocation->getLocation() + "\n");
+        pr::Doc::midInfo("           to " + destination->getLocation() + "\n");
+        pr::Doc::midInfo("\n");
 
     } else if (destination== nullptr) {
-        pr::Doc::detail("Container shipped to HQ");
-        pr::Doc::detail("\n");
+        pr::Doc::midInfo("       Container shipped to HQ");
+        pr::Doc::midInfo("\n");
     } else if (fromLocation == nullptr) {
-        pr::Doc::detail("Container shipped from HQ to ");
-        pr::Doc::detail(destination->getLocation());
-        pr::Doc::detail("\n");
+        pr::Doc::midInfo("        Container shipped from HQ to " + destination->getLocation() + "\n");
     }
     else {
         TransportHandler::transport(fromLocation, destination, car);
