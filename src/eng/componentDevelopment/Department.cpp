@@ -58,7 +58,7 @@ void Department::build(Car *car) {
     if (nextDepartment) {
         nextDepartment->build(car);
     } else {
-        pr::Doc::detail("          --Car " + std::to_string(car->getId()) + " has been built.\n\n");
+        pr::Doc::detail("          --Car " + std::to_string(car->getId()) + " has been built.--\n\n");
     }
 }
 

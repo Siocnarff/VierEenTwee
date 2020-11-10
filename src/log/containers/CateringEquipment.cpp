@@ -45,9 +45,9 @@ CateringEquipment::CateringEquipment(int budget) {
 CateringEquipment::~CateringEquipment() = default;
 
 void CateringEquipment::print() {
-    pr::Doc::detail("Catering Equipment:\n");
+    pr::Doc::detail("\tCatering Equipment:\n");
     for (std::list<std::string>::iterator it = contents.begin(); it != contents.end(); ++it) {
-        pr::Doc::detail("   ");
+        pr::Doc::detail("   \t");
         pr::Doc::detail(*it);
         pr::Doc::detail("\n");
     }

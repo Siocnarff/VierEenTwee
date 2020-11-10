@@ -92,6 +92,7 @@ void Logistics::doYearPlanning() {
     //2. Hire emplpoyees: each department
     pr::Doc::summary("\n  ~Hire employees for each department~\n");
 
+    int keeper = pr::Doc::transparency;
     if (interactiveDemo && !pr::Doc::outputOverride) {
         pr::Doc::summary("\nDo you want to see full resume's?\n   0 - No\n   1 - MidInfo\n"
                          "   2 - All detail\n");
@@ -108,6 +109,7 @@ void Logistics::doYearPlanning() {
     for (auto const&[key, val] : departments) {
         val->hireEmployees(budget);
     }
+    pr::Doc::transparency = keeper;
 
     //3. Set tickets of racingDept;
     pr::Doc::summary("\n  ~Assign training tickets to racing department as per regulations~\n");
@@ -125,7 +127,7 @@ void Logistics::doYearPlanning() {
     }
 
     //6. Set drivers' home tracks
-    int keeper = pr::Doc::transparency;
+    keeper = pr::Doc::transparency;
     if (interactiveDemo) {
         pr::Doc::transparency = 2;
     }
@@ -160,13 +162,11 @@ void Logistics::doYearPlanning() {
  * @author Jo
  */
 void Logistics::preSeasonPreparation() {
-    //pr::Doc::summary("\n>>Pre Season Planning\n------------------------\n");
     pr::Doc::summary("\n\n   _   _   _   _   _   _   _   _   _   _     _   _   _   _   _   _   _   _\n");
     pr::Doc::summary("  / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\\n");
     pr::Doc::summary(" ( P | r | e | - | S | e | a | s | o | n ) ( P | l | a | n | n | i | n | g )\n");
     pr::Doc::summary("  \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/ \\_/\n");
     pr::Doc::summary("\n");
-    // 1. Get strategy
 
     int gotStrat = 0;
     if (interactiveDemo && !pr::Doc::outputOverride) {
@@ -218,7 +218,9 @@ void Logistics::preSeasonPreparation() {
         pr::Doc::summary("\n");
 
         //3. Train drivers
+        int keeper = pr::Doc::transparency;
         driverBootCamp();
+        pr::Doc::transparency = keeper;
 
         //4.Inform engDept of riskLevel
         pr::Doc::summary("\n  ~Inform the engineering team how daring the sponsors are.~\n");
@@ -240,6 +242,7 @@ void Logistics::preSeasonPreparation() {
                 }
                 interactionInput = "";
             }
+
             for (int i = 0; i < numPairs; ++i) {
                 carsInSeasonIDs.push_back(callEngDept()->buildCar(budget));
             }
@@ -292,11 +295,12 @@ void Logistics::packContainers() {
         }
         if (interactionInput == "Y" || interactionInput == "y") {
             pr::Doc::transparency = 2;
-            getEuropeanContainer()->print();
         }
         pr::Doc::transparency = 0;
         interactionInput = "";
     }
+    pr::Doc::detail("\n\tTypical packed container:\n");
+    getEuropeanContainer()->print();
 }
 
 /**

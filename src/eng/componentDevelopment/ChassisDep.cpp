@@ -16,9 +16,9 @@ void ChassisDep::build(Car* car) {
 void ChassisDep::fix(Car *car) {
 	int damage = fixComponent(car, 0);
     if (damage == 0) {
-        pr::Doc::detail("Chassis was not damaged, sending car to next department.\n");
+        pr::Doc::detail("     Chassis was not damaged, sending car to next department.\n");
     } else {
-        pr::Doc::detail(departmentName);
+        pr::Doc::detail("     " + departmentName);
         pr::Doc::detail(" is fixing the chassis which was at ");
         pr::Doc::detail(std::to_string(damage));
         pr::Doc::detail("% damage.\n");
@@ -30,12 +30,12 @@ void ChassisDep::update(Component* component) {
 	if (budget > 0) {
 		budget -= rand() % 2;
 	} else {
-		pr::Doc::detail(departmentName);
+		pr::Doc::detail("     " + departmentName);
 		pr::Doc::detail(" has no more funds to improve the component.\n");
 		return;
 	}
-	pr::Doc::detail(departmentName);
-	pr::Doc::detail(" is improving the chassis.\n");
+	pr::Doc::midInfo("     " + departmentName);
+	pr::Doc::midInfo(" is improving the chassis.\n");
 	Department::specialistsImproveComponent(component);
 }
 

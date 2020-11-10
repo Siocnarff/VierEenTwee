@@ -3,9 +3,9 @@
 using namespace eng;
 
 void WindTunnel::testCar(Car *car) {
-    pr::Doc::detail("     **                                   **\n");
+    pr::Doc::detail("     **                                     **\n");
 	pr::Doc::detail("     ** Using the Wind Tunnel to test car " + std::to_string(car->getId()) + " **\n");
-	pr::Doc::detail("     **                                   **\n\n");
+	pr::Doc::detail("     **                                     **\n\n");
     if(tickets - 16 >= 0) {
         tickets -= 16;
         for (Component *c: car->components) {

@@ -19,9 +19,9 @@ void plainSeasonRun();
 
 int main() {
 
-       demoVersion1();  //First draft of interactive demo
+//       demoVersion1();  //First draft of interactive demo
 //       demoVersion2();
-//    plainSeasonRun(); //Runs through program without asking questions
+    plainSeasonRun(); //Runs through program without asking questions
 }
 
 void demoVersion1(){
