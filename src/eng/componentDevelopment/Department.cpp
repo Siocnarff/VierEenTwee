@@ -103,7 +103,14 @@ void Department::specialistsImproveComponent(Component *component) {
         totalSkill += specialist->getSkillLevel();
     }
     double average = double(totalSkill) / double(teamSize);
-    double result = int(average * 0.2 + best * 0.4 + riskLevel->trySomethingNew() * 0.4);
+    double bestWeight = 0.3;
+    double riskWeight = 0.5;
+    if (budget > 4) {
+    	budget -= 5;
+    	bestWeight = 0.5;
+    	riskWeight = 0.3;
+    }
+    double result = int(average * 0.2 + best * bestWeight + riskLevel->trySomethingNew() * riskWeight);
     double percentage = ((100 - component->quality) / 100.0 > 0.05) ? 0.04 : (100 - component->quality) / 200.0;
     int quality = component->quality += (int) (result * percentage);
     component->quality = (quality > 100) ? 100 : quality;
